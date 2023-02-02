@@ -22,7 +22,10 @@ void Nanit_Display_Init()
   tft.setTextWrap(true);
   tft.setRotation(1);
   tft.setTextSize(2);
-  tft.print("Hello Nanit!");
+  #define HELLO "Hello Nanit      "
+if(digitalRead(39)) tft.print(HELLO "ver 2.0");
+if(!digitalRead(39)) tft.print(HELLO "ver 3.1");
+ 
 }
 
 
