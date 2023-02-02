@@ -3,15 +3,18 @@
 
 
 
-extern int MOTOR1_A;
-extern int MOTOR1_B;
-extern int P8_3;
-extern int P10_3;
-extern int P10_2;
-extern int P7_6;
-extern int P7_4;
-extern int P9_6;
-extern int P9_4;
+extern uint8_t MOTOR1_A;
+extern uint8_t MOTOR1_B;
+extern uint8_t P1_6; 
+extern uint8_t P1_4;
+extern uint8_t P1_3;
+extern uint8_t P8_3;
+extern uint8_t P10_3;
+extern uint8_t P10_2;
+extern uint8_t P7_6;
+extern uint8_t P7_4;
+extern uint8_t P9_6; 
+extern uint8_t P9_4;
 
 
 #define MOTOR_ENABLE 40 //запустить драйвер на мотор
@@ -22,16 +25,13 @@ extern int P9_4;
 #define BUTTON 3 
 
 ///Порт 1
-#define P1_6 10 /// Мотор М1_А  /// Стара версія
-#define P1_4 10 /// Мотор М1_А
-#define P1_3 9  /// Мотор М1_В
-#define P1_2 A6 ///
-#define P1_1 A7 ///
+#define P1_2 A6 
+#define P1_1 A7 
 
 ///Порт 2
-#define P2_6 A8   /// Стара версія
+#define P2_6 A8  
 #define P2_4 A8
-#define P2_3 42 //servo?
+#define P2_3 42 
 #define P2_2 A9
 #define P2_1 A10
 
