@@ -40,7 +40,6 @@ int ULTRASONIC();
 */
 
 
-#ifdef DEVELOP
 
 #define BUILDIN_STRIP_LED (27)
 
@@ -61,6 +60,8 @@ namespace NanitRobot{
     		static Nanit instance;
     		return instance;
   		}
+		void SelfTestMode(){}
+		void UnitTestMode(){}
 		// 1 & 12 motors
 		class DCMotor{
 			public:
@@ -104,7 +105,6 @@ namespace NanitRobot{
 
 	};
 }
-#endif
 
 
 #endif
