@@ -75,8 +75,8 @@ enum class GuageType{SmileBatt,LAST};
   float getLibVersion()const{};
   void DrawBattGuage(GuageType type= GuageType::SmileBatt)const;
   // 1 & 12 motors
-  class DCMotor {
-  public:
+  // class DCMotor {
+  // public:
   //   DCMotor() {}
   //   void Begin() {}
   //   void End() {}
@@ -149,7 +149,7 @@ private:
   public:
   Adafruit_ST7735 Display;
 };
-} // namespace NanitRobot
+}// namespace NanitRobot
 
 #endif
 
