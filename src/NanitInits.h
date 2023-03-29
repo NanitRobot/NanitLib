@@ -2,7 +2,6 @@
 #define NANITINITS_H_
 
 #include "NanitUtils.h"
-#include "NanitPinout.h"
 
 
 void Nanit_Display_Init();

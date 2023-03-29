@@ -1,20 +1,27 @@
 #include "NanitLib.h"
 
 
-		uint8_t MOTOR1_A;
-		uint8_t MOTOR1_B;
-uint8_t P1_6;
-		uint8_t P1_4;
-		uint8_t P1_3;
-		uint8_t P8_3;
-		uint8_t P10_3;
-		uint8_t P10_2;
-		uint8_t P7_6;
-		uint8_t P7_4;
-		uint8_t P9_6;
-		uint8_t P9_4;
+// 		uint8_t MOTOR1_A;
+// 		uint8_t MOTOR1_B;
+// uint8_t P1_6;
+// 		uint8_t P1_4;
+// 		uint8_t P1_3;
+// 		uint8_t P8_3;
+// 		uint8_t P10_3;
+// 		uint8_t P10_2;
+// 		uint8_t P7_6;
+// 		uint8_t P7_4;
+// 		uint8_t P9_6;
+// 		uint8_t P9_4;
 
 
+Version getBoardVersion(){
+  pinMode(39, INPUT_PULLUP);
+  if (digitalRead(39))
+    return (2);
+  if (!digitalRead(39))
+    return (3,1);
+}
 int getNanitVersion(){
 pinMode(39,INPUT_PULLUP); 
 if(digitalRead(39)) return 2;
@@ -26,40 +33,40 @@ void Nanit_Base_Start()
 {
 	
 
-switch(getNanitVersion()){
-case 2:/// Стара версія
-		MOTOR1_A = 10;
-		MOTOR1_B = 9;
-    P1_6 = 10; 
-    P1_4 = 10;
-		P1_3 = 9;
-		P8_3 = 54; //A0
-		P10_3 = 5;
-		P10_2 = 24;
-    P7_6 = 7;
-		P7_4 = 7;
-		P9_6 = 8;  
-		P9_4 = 8;
-break;
-case 3:
-		MOTOR1_A = 7;
-		MOTOR1_B = 8;
-		P1_6 = 7; 
-		P1_4 = 7;
-		P1_3 = 8;
-		P8_3 = 5;
-		P10_3 = 24;
-		P10_2 = 54; //A0
-		P7_6 = 9; /// 
-    P7_4 = 9;
-		P9_6 = 10;  /// 
-		P9_4 = 10;
-break;
-//case 3:
-//brake;
-default:
-break;
-}
+// switch(getNanitVersion()){
+// case 2:/// Стара версія
+// 		MOTOR1_A = 10;
+// 		MOTOR1_B = 9;
+//     P1_6 = 10; 
+//     P1_4 = 10;
+// 		P1_3 = 9;
+// 		P8_3 = 54; //A0
+// 		P10_3 = 5;
+// 		P10_2 = 24;
+//     P7_6 = 7;
+// 		P7_4 = 7;
+// 		P9_6 = 8;  
+// 		P9_4 = 8;
+// break;
+// case 3:
+// 		MOTOR1_A = 7;
+// 		MOTOR1_B = 8;
+// 		P1_6 = 7; 
+// 		P1_4 = 7;
+// 		P1_3 = 8;
+// 		P8_3 = 5;
+// 		P10_3 = 24;
+// 		P10_2 = 54; //A0
+// 		P7_6 = 9; /// 
+//     P7_4 = 9;
+// 		P9_6 = 10;  /// 
+// 		P9_4 = 10;
+// break;
+// //case 3:
+// //brake;
+// default:
+// break;
+// }
 
 	Nanit_Display_Init();
 }

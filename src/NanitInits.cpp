@@ -1,4 +1,5 @@
-#include "NanitInits.h"
+// #include "NanitInits.h"
+#include "NanitLib.h"
 
 
 
@@ -23,9 +24,9 @@ void Nanit_Display_Init()
   tft.setRotation(1);
   tft.setTextSize(2);
   #define HELLO "Hello Nanit      "
-if(digitalRead(39)) tft.print(HELLO "ver 2.0");
-if(!digitalRead(39)) tft.print(HELLO "ver 3.1");
- 
+  tft.print(String(HELLO "ver ") + StrVersion(getBoardVersion()) +
+            "  Batt Power       " +
+            ::NanitRobot::Nanit::getNanit().getBattaryPower() + "%");
 }
 
 
