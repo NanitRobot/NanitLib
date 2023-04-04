@@ -1,6 +1,10 @@
 #ifndef NANITLIB_H_
 #define NANITLIB_H_
 
+#define NANIT_MAJOR_VERSION (1)
+#define NANIT_MINOR_VERSION (3)
+#define NANIT_PATHC_VERSION (1)
+
 #include "Version.hpp"
 #if defined(__AVR_ATmega2560__)
 
@@ -118,7 +122,7 @@
 #define AVCC_REF (5.f)
 // Розрядність АЦП
 #define ADC_BITRATE (10)
-// #define BAT_FULL_CHARGE (4.19f)
+#define BAT_FULL_CHARGE (4.19f)
 // Яка батарея використовується
 #define LI_ION
 // #elif 0
@@ -131,6 +135,9 @@
 // #include <Servo.h>
 
 Version getBoardVersion();
+Version getLibVersion();
+String getSerialNumber();
+void NanitInfo();
 
 int getNanitVersion();
 
@@ -159,7 +166,7 @@ int ULTRASONIC();
 #define START_NANIT ::NanitRobot::Nanit::getNanit()
 #define GET_NANIT ::NanitRobot::Nanit::getNanit()
 
-#define INIT_NANIT(X)                                                   \
+#define NANIT_BEGIN(X)                                                   \
   ::NanitRobot::Nanit &X { START_NANIT }
 
 namespace NanitRobot {

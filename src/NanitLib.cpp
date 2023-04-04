@@ -1,6 +1,5 @@
 #include "NanitLib.h"
 
-
 // 		uint8_t MOTOR1_A;
 // 		uint8_t MOTOR1_B;
 // uint8_t P1_6;
@@ -14,101 +13,78 @@
 // 		uint8_t P9_6;
 // 		uint8_t P9_4;
 
-
-Version getBoardVersion(){
+Version getBoardVersion() {
   pinMode(39, INPUT_PULLUP);
   if (digitalRead(39))
-    return (2);
+    return Version(2);
   if (!digitalRead(39))
-    return (3,1);
+    return Version(3, 1);
 }
-int getNanitVersion(){
-pinMode(39,INPUT_PULLUP); 
-if(digitalRead(39)) return 2;
-if(!digitalRead(39)) return 3;
+Version getLibVersion() {
+  return Version(NANIT_MAJOR_VERSION, NANIT_MINOR_VERSION, NANIT_PATHC_VERSION);
+}
+
+String getSerialNumber() {
+  // TODO get serial
+  return "0000000";
 };
 
+void NanitInfo() {
 
-void Nanit_Base_Start()
-{
-	
-
-// switch(getNanitVersion()){
-// case 2:/// Стара версія
-// 		MOTOR1_A = 10;
-// 		MOTOR1_B = 9;
-//     P1_6 = 10; 
-//     P1_4 = 10;
-// 		P1_3 = 9;
-// 		P8_3 = 54; //A0
-// 		P10_3 = 5;
-// 		P10_2 = 24;
-//     P7_6 = 7;
-// 		P7_4 = 7;
-// 		P9_6 = 8;  
-// 		P9_4 = 8;
-// break;
-// case 3:
-// 		MOTOR1_A = 7;
-// 		MOTOR1_B = 8;
-// 		P1_6 = 7; 
-// 		P1_4 = 7;
-// 		P1_3 = 8;
-// 		P8_3 = 5;
-// 		P10_3 = 24;
-// 		P10_2 = 54; //A0
-// 		P7_6 = 9; /// 
-//     P7_4 = 9;
-// 		P9_6 = 10;  /// 
-// 		P9_4 = 10;
-// break;
-// //case 3:
-// //brake;
-// default:
-// break;
-// }
-
-	Nanit_Display_Init();
+  START_NANIT.Display.setCursor(10, 10);
+  START_NANIT.Display.setRotation(1);
+  START_NANIT.Display.setTextSize(2);
+  START_NANIT.Display.print("Hello Nanit!");
+  START_NANIT.Display.setCursor(10, 30);
+  START_NANIT.Display.print("  v" + StrVersion(getBoardVersion()));
+  START_NANIT.Display.setCursor(10, 50);
+  START_NANIT.Display.print("Lib v" + StrVersion(Version(1, 3, 1)));
+  START_NANIT.Display.setCursor(10, 70);
+  START_NANIT.Display.print("Bat. " + String(START_NANIT.getBattaryPower()) +
+                            "%");
 }
+int getNanitVersion() {
+  pinMode(39, INPUT_PULLUP);
+  if (digitalRead(39))
+    return 2;
+  if (!digitalRead(39))
+    return 3;
+};
 
-void Nanit_RGB_Write(byte red, byte green, byte blue)
-{
-	red = (red >= 0 && red <= 255)? red : 0;
-	green = (green >= 0 && green <= 255)? green : 0;
-	blue = (blue >= 0 && blue <= 255)? blue : 0;
+void Nanit_Base_Start() { Nanit_Display_Init(); }
 
-	analogWrite(46, red); //46 це або P4_4, або P4_6 (стара версія)
+void Nanit_RGB_Write(byte red, byte green, byte blue) {
+  red = (red >= 0 && red <= 255) ? red : 0;
+  green = (green >= 0 && green <= 255) ? green : 0;
+  blue = (blue >= 0 && blue <= 255) ? blue : 0;
+
+  analogWrite(46, red); // 46 це або P4_4, або P4_6 (стара версія)
   analogWrite(P4_2, green);
   analogWrite(P4_3, blue);
 }
 
-void Nanit_Servo_Rotate(byte angle)
-{
-	angle = (angle >= 0 && angle <= 180)? angle : 0;
-	nanit_servo.write(angle);
+void Nanit_Servo_Rotate(byte angle) {
+  angle = (angle >= 0 && angle <= 180) ? angle : 0;
+  nanit_servo.write(angle);
 }
 
-void Nanit_ActiveBuzz_Scream(byte times, int duration)
-{
-	byte i;
+void Nanit_ActiveBuzz_Scream(byte times, int duration) {
+  byte i;
 
-	times = (times > 0)? times : 1;
+  times = (times > 0) ? times : 1;
 
-	for (i = 0; i < times; i++)
-	{
-		digitalWrite(33, LOW);
-		delay(duration);
-		digitalWrite(33, HIGH);
-		delay(duration);
-	}
-	
- //round(millis() / 500) % 2 == 0
+  for (i = 0; i < times; i++) {
+    digitalWrite(33, LOW);
+    delay(duration);
+    digitalWrite(33, HIGH);
+    delay(duration);
+  }
+
+  // round(millis() / 500) % 2 == 0
 }
 
-
-bool Nanit_Sound_IsSoundDetected(int sound_limit)
-{
-	return (analogRead(A1) > sound_limit);
+bool Nanit_Sound_IsSoundDetected(int sound_limit) {
+  return (analogRead(A1) > sound_limit);
 }
 
 /*
@@ -135,8 +111,7 @@ int ULTRASONIC(){
         return cm;
 }
 */
-void NanitRobot::Nanit::SelfTestMode(){
-};
+void NanitRobot::Nanit::SelfTestMode(){};
 
 void NanitRobot::Nanit::UnitTestMode(){};
 
@@ -147,13 +122,11 @@ float NanitRobot::Map(float inputValue, float inputMin, float inputMax,
          rangeMin;
 }
 
-float NanitRobot::Nanit::getBataryVoltage()const{
-	  return Map(analogRead(BATTARY_PIN), 0, 1 << ADC_BITRATE, 0.f,
-                         AVCC_REF);
+float NanitRobot::Nanit::getBataryVoltage() const {
+  return Map(analogRead(BATTARY_PIN), 0, 1 << ADC_BITRATE, 0.f, AVCC_REF);
 }
 
-
-float NanitRobot::Nanit::getBattaryPower()const {
+float NanitRobot::Nanit::getBattaryPower() const {
   float voltage{getBataryVoltage()};
 #if defined(LI_ION)
   /*
@@ -174,32 +147,34 @@ float NanitRobot::Nanit::getBattaryPower()const {
   +---+-----------+----------+
   */
 #if defined(BAT_FULL_CHARGE)
-  if (voltage > BAT_FULL_CHARGE) return 100.f;
+  if (voltage > BAT_FULL_CHARGE)
+    return 100.f;
 #else
-  if (voltage > 4.24f) return 100.f;
+  if (voltage > 4.24f)
+    return 100.f;
 #endif
   if (4.24f > voltage and voltage > 4.08f)
-    return NanitRobot::Map(voltage, 4.24f, 4.08f, 100.f, 85.f);  // 1
+    return NanitRobot::Map(voltage, 4.24f, 4.08f, 100.f, 85.f); // 1
   if (4.08f > voltage and voltage > 4.06f)
-    return NanitRobot::Map(voltage, 4.08f, 4.06f, 85.f, 81.7f);  // 2
+    return NanitRobot::Map(voltage, 4.08f, 4.06f, 85.f, 81.7f); // 2
   if (4.06f > voltage and voltage > 4.02f)
-    return NanitRobot::Map(voltage, 4.06f, 4.02f, 81.7f, 76.7f);  // 3
+    return NanitRobot::Map(voltage, 4.06f, 4.02f, 81.7f, 76.7f); // 3
   if (4.02f > voltage and voltage > 3.98f)
-    return NanitRobot::Map(voltage, 4.02f, 3.98f, 76.7f, 73.4f);  // 4
+    return NanitRobot::Map(voltage, 4.02f, 3.98f, 76.7f, 73.4f); // 4
   if (3.98f > voltage and voltage > 3.88f)
-    return NanitRobot::Map(voltage, 3.98, 3.88, 73.4, 58.4);  // 5
+    return NanitRobot::Map(voltage, 3.98, 3.88, 73.4, 58.4); // 5
   if (3.88f > voltage and voltage > 3.8f)
-    return NanitRobot::Map(voltage, 3.88f, 3.8f, 58.4f, 22.f);  // 6
+    return NanitRobot::Map(voltage, 3.88f, 3.8f, 58.4f, 22.f); // 6
   if (3.8f > voltage and voltage > 3.68f)
-    return NanitRobot::Map(voltage, 3.88f, 3.68f, 22.f, 8.7f);  // 7
+    return NanitRobot::Map(voltage, 3.88f, 3.68f, 22.f, 8.7f); // 7
   if (3.68f > voltage and voltage > 3.54f)
-    return NanitRobot::Map(voltage, 3.68f, 3.54f, 8.7f, 5.4f);  // 8
+    return NanitRobot::Map(voltage, 3.68f, 3.54f, 8.7f, 5.4f); // 8
   if (3.54f > voltage and voltage > 3.32f)
-    return NanitRobot::Map(voltage, 3.54, 3.32, 5.4, 2.1);  // 9
+    return NanitRobot::Map(voltage, 3.54, 3.32, 5.4, 2.1); // 9
   if (3.32f > voltage and voltage > 3.f)
-    return NanitRobot::Map(voltage, 3.32f, 3.f, 2.1f, .5f);  // 10
+    return NanitRobot::Map(voltage, 3.32f, 3.f, 2.1f, .5f); // 10
   if (3.f > voltage and voltage > 2.5f)
-    return NanitRobot::Map(voltage, 3.f, 2.5f, .5f, .0f);  // 11
+    return NanitRobot::Map(voltage, 3.f, 2.5f, .5f, .0f); // 11
 #else
 #error No battery type specified
 #endif
