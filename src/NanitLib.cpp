@@ -1,18 +1,5 @@
 #include "NanitLib.h"
 
-// 		uint8_t MOTOR1_A;
-// 		uint8_t MOTOR1_B;
-// uint8_t P1_6;
-// 		uint8_t P1_4;
-// 		uint8_t P1_3;
-// 		uint8_t P8_3;
-// 		uint8_t P10_3;
-// 		uint8_t P10_2;
-// 		uint8_t P7_6;
-// 		uint8_t P7_4;
-// 		uint8_t P9_6;
-// 		uint8_t P9_4;
-
 Version getBoardVersion() {
   pinMode(39, INPUT_PULLUP);
   if (digitalRead(39))
@@ -20,13 +7,34 @@ Version getBoardVersion() {
   if (!digitalRead(39))
     return Version(3, 1);
 }
+
 Version getLibVersion() {
   return Version(NANIT_MAJOR_VERSION, NANIT_MINOR_VERSION, NANIT_PATHC_VERSION);
 }
 
 String getSerialNumber() {
-  // TODO get serial
-  return "0000000";
+  if(!checkSerialNum(getSerialNum())){
+    //Запрошення на дисплей підключити до серійного порту    
+  START_NANIT.Display.setCursor(10, 100);
+  START_NANIT.Display.setTextSize(0);
+  START_NANIT.Display.print("Please open terminal &    set number");
+  }
+  while (!checkSerialNum(getSerialNum())) {
+    // допоки не отримаємо серійний номер нічого не вийде
+    Serial.println("Please enter correct serial nummer");
+    while (Serial.available() == 0) {
+    }
+    serial_num SerialNumber = Serial.parseInt();
+
+    if (checkSerialNum(SerialNumber)) {
+      setSerialNum(SerialNumber);
+
+      Serial.print("Serial number set to ");
+      Serial.print(getSerialNumber());
+      return String(SerialNumber);
+    }
+  }
+  return String(getSerialNum());
 };
 
 void NanitInfo() {
@@ -38,18 +46,14 @@ void NanitInfo() {
   START_NANIT.Display.setCursor(10, 30);
   START_NANIT.Display.print("  v" + StrVersion(getBoardVersion()));
   START_NANIT.Display.setCursor(10, 50);
-  START_NANIT.Display.print("Lib v" + StrVersion(Version(1, 3, 1)));
+  START_NANIT.Display.print("Lib v" + StrVersion(getLibVersion()));
   START_NANIT.Display.setCursor(10, 70);
   START_NANIT.Display.print("Bat. " + String(START_NANIT.getBattaryPower()) +
                             "%");
+  START_NANIT.Display.setCursor(10, 120);
+  START_NANIT.Display.setTextSize(0);
+  START_NANIT.Display.print("SN " + getSerialNumber());
 }
-int getNanitVersion() {
-  pinMode(39, INPUT_PULLUP);
-  if (digitalRead(39))
-    return 2;
-  if (!digitalRead(39))
-    return 3;
-};
 
 void Nanit_Base_Start() { Nanit_Display_Init(); }
 
@@ -290,6 +294,8 @@ void NanitRobot::Nanit::DrawBattGuage(
       Display.drawLine(X + 4, Y + SIZE_Y + 3, X + 11, Y + SIZE_Y + 3,
                        ICON_LINE_COLOR);
     }
+  } break;
+  case GuageType::LAST: {
   } break;
 
   default:

@@ -131,6 +131,7 @@
 #endif
 #include "DependsLib.h"
 #include "NanitInits.h"
+#include "SerialNumber.hpp"
 
 // #include <Servo.h>
 
@@ -177,7 +178,7 @@ float Map(float inputValue, float inputMin, float inputMax, float rangeMin,
 class Nanit {
 public:
 
-enum class GuageType{SmileBatt,LAST};
+enum class GuageType{SmileBatt,Volts,Percent,LAST};
 
   inline static Nanit &getNanit() {
     static Nanit instance;
