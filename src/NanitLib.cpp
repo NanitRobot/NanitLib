@@ -53,6 +53,13 @@ void NanitInfo() {
   START_NANIT.Display.setCursor(10, 120);
   START_NANIT.Display.setTextSize(0);
   START_NANIT.Display.print("SN " + getSerialNumber());
+  START_NANIT.BuildinRGB(0xff);
+  delay(500);
+  START_NANIT.BuildinRGB(0xff00);
+  delay(500);
+  START_NANIT.BuildinRGB(0xff0000);
+  delay(500);
+  START_NANIT.BuildinRGB(0x0);
 }
 
 void Nanit_Base_Start() { Nanit_Display_Init(); }

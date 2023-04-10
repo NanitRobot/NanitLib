@@ -25,7 +25,8 @@
 
 
 
-#define MOTOR_ENABLE (40) //запустить драйвер на мотор
+//запустить драйвер на мотор
+#define MOTOR_ENABLE (40) 
 
 #define MOTOR2_A (11)
 #define MOTOR2_B (12)
@@ -132,6 +133,7 @@
 #include "DependsLib.h"
 #include "NanitInits.h"
 #include "SerialNumber.hpp"
+#include <L298NX2.h>
 
 // #include <Servo.h>
 
@@ -191,6 +193,7 @@ enum class GuageType{SmileBatt,Volts,Percent,LAST};
   float getBoardVersion()const{};
   float getLibVersion()const{};
   void DrawBattGuage(GuageType type= GuageType::SmileBatt)const;
+  // L298NX2 DCMotors(MOTOR_ENABLE, MOTOR1_A, MOTOR2_A, MOTOR_ENABLE, MOTOR1_B, MOTOR2_B);
   // 1 & 12 motors
   // class DCMotor {
   // public:
