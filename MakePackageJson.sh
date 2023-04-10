@@ -65,7 +65,7 @@ cat <<EOF > "${OUT_FILE}"
               "name": "Nanit Smart Home (Nanit 3.1 based)"
             },
             {
-              "name": "Nanit Smart Home (Nanit 3.22 based)"
+              "name": "Nanit Smart Home (Nanit 3.3 based)"
             }
           ]
         }
