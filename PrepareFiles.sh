@@ -42,5 +42,4 @@ zip -qq -r NanitCore.zip ${NANIT_PATH}
 rm -fr ${NANIT_PATH}
 
 git submodule deinit -f MegaCore
-
-rm -fr ${MEGACORE_PATH}
+git rm -fr ${MEGACORE_PATH}

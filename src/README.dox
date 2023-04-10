@@ -1,0 +1,20 @@
+/**
+ * @mainpage NanitLib
+ *
+ * Ви можете встановити бібліотеку NanitLib будь яким способом (завантажити
+ * архівом, клонувати репозиторій або встановити через менеджер бібліотек).
+ *
+ * PinOuts
+ * =======
+ *
+ * ![Arduino](../pic/PinOutArduino.jpg)
+ *
+ * MegaCore
+ * ========
+ * Для того щоб користуватися максимальними можливостями Nanit потрібно
+ * встановити через через менеджер плат набір плат наніт.
+ * 
+ * Посилання для на пакет плат
+ * [https://nanitrobot.github.io/NanitLib/package_NanitCore_index.json](https://nanitrobot.github.io/NanitLib/package_NanitCore_index.json)
+ *
+ */

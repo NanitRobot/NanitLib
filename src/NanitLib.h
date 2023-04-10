@@ -173,7 +173,16 @@ int ULTRASONIC();
   ::NanitRobot::Nanit &X { START_NANIT }
 
 namespace NanitRobot {
-  
+/**
+ * @brief Мапінг функція для чисел з плаваючою крапкою
+ * 
+ * @param inputValue[in] значення яке потрібно промаштабувати
+ * @param inputMin[in] Нижній поріг значань які потрібно промаштабувати
+ * @param inputMax[in] Верхній поріг значень, які потрібно промаштвабувати
+ * @param rangeMin[in] Нижня межа значень діапазону вихідних значень
+ * @param rangeMax[in] Верхня межа значень діапазону вихідних значень
+ * @return повертає маштабоване значення
+*/  
 float Map(float inputValue, float inputMin, float inputMax, float rangeMin,
           float rangeMax);
           
