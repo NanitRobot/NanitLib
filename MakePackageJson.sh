@@ -42,10 +42,10 @@ cat <<EOF > "${OUT_FILE}"
         {
           "name": "Nanit",
           "architecture": "avr",
-          "version": "0.1",
+          "version": "0.1.1",
           "category": "Contributed",
           "help": {
-            "online": "${HELP_ONLINE}"
+            "online": ""
           },
           "url": "${HOST}/${FILE_PATH}${FILE_NAME}",
           "archiveFileName": "${FILE_NAME}",
@@ -67,8 +67,12 @@ cat <<EOF > "${OUT_FILE}"
             {
               "name": "Nanit Smart Home (Nanit 3.22 based)"
             }
-          ],
-          "toolsDependencies": [
+          ]
+        }
+      ]
+    }
+  ],
+  "toolsDependencies": [
             {
               "packager": "arduino",
               "name": "avr-gcc",
@@ -79,10 +83,8 @@ cat <<EOF > "${OUT_FILE}"
               "name": "avrdude",
               "version": "6.3.0-arduino17"
             }
-          ]
-        }
-      ],
-      "tools": [
+          ],
+          "tools": [
         {
           "name": "avr-gcc",
           "version": "7.3.0-atmel3.6.1-arduino7",
@@ -131,8 +133,6 @@ cat <<EOF > "${OUT_FILE}"
             }
           ]
         }
-      ],
-    }
-  ]
+      ]
 }
 EOF
