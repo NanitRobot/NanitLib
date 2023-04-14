@@ -17,12 +17,17 @@ String getSerialNumber() {
     //Запрошення на дисплей підключити до серійного порту    
   START_NANIT.Display.setCursor(10, 100);
   START_NANIT.Display.setTextSize(0);
-  START_NANIT.Display.print("Please open terminal &    set number");
+    #define WAIT_FIRST_RUN (30)
+  START_NANIT.Display.print("Please open terminal");
   }
   while (!checkSerialNum(getSerialNum())) {
     // допоки не отримаємо серійний номер нічого не вийде
     Serial.println("Please enter correct serial nummer");
+    unsigned long unlock{millis()+(WAIT_FIRST_RUN*1000)};
     while (Serial.available() == 0) {
+      if(millis()>unlock){
+        setSerialNum(1010123000);
+      }
     }
     serial_num SerialNumber = Serial.parseInt();
 
