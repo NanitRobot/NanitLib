@@ -7,7 +7,7 @@
  * PinOuts
  * =======
  *
- * ![Arduino](../pic/PinOutArduino.jpg)
+ * ![Arduino](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/PinOutArduino.jpg)
  *
  * MegaCore
  * ========
@@ -17,4 +17,35 @@
  * Посилання для на пакет плат
  * [https://nanitrobot.github.io/NanitLib/package_NanitCore_index.json](https://nanitrobot.github.io/NanitLib/package_NanitCore_index.json)
  *
+ * 
+ * Використання бібліотеки
+ * =======================
+ * 
+ * Після оголошенн бібліотеки \code{.cpp} #include <NanitLib.h> \endcode доступні функції, класи та макроси які полегшують 
+ * звернення до портів введення виведення в платі Nanit
+ * 
+ * Приклад використання у коді який нічого не робить
+ * \code{.cpp}
+ * #include<NanitLib.h>
+ * void setup(){}
+ * void loop(){}
+ * \endcode
+ * 
+ * Ще один приклад використання бібліотеки
+ * \code{.cpp}
+ * #include<NanitLib.h>
+ * void setup(){
+ *  NanitInfo();
+ * }
+ * void loop(){}
+ * \endcode
+ * 
+ * \b NanitInfo() функція яка виводить інформацію стан плати Nanit:
+ *  - Версія плати (визначається апаратоно)
+ *  - Версія бібліотеки яка використовувалася під час компіляції скетчу
+ *  - Стан батареї
+ *  - Серійний номер
+ *  - \*Інвормація може змінюватись залежно від версії бібліотеки*\
+ * 
+ *  
  */
