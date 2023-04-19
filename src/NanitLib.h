@@ -3,7 +3,7 @@
 
 #define NANIT_MAJOR_VERSION (1)
 #define NANIT_MINOR_VERSION (3)
-#define NANIT_PATHC_VERSION (1)
+#define NANIT_PATHC_VERSION (2)
 
 #include "Version.hpp"
 #if defined(__AVR_ATmega2560__)
@@ -199,8 +199,6 @@ enum class GuageType{SmileBatt,Volts,Percent,LAST};
   void UnitTestMode();
   float getBataryVoltage() const;
   float getBattaryPower() const;
-  float getBoardVersion()const{};
-  float getLibVersion()const{};
   void DrawBattGuage(GuageType type= GuageType::SmileBatt)const;
   // L298NX2 DCMotors(MOTOR_ENABLE, MOTOR1_A, MOTOR2_A, MOTOR_ENABLE, MOTOR1_B, MOTOR2_B);
   // 1 & 12 motors
