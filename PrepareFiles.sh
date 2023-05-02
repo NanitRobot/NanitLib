@@ -43,7 +43,7 @@ cp -ruf ${MEGACORE_CORE_PATH}/ ${NANIT_CORE_PATH}/
 # КОСТИЛЬ
 mv ${NANIT_CORE_PATH}/MCUdude_corefiles "${NANIT_CORE_PATH}/MegaCore"
 
-# rm -fr "${NANIT_PATH}/bootloaders/.git*"
+rm -fr "${NANIT_PATH}/bootloaders/.git*"
 # Розпаковуємо підготовлені файли
 unzip -o NanitIDE.zip -d ${NANIT_PATH}
 # Пакуємо файл 
