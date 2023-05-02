@@ -1,5 +1,6 @@
 #!/bin/bash
 git submodule add https://github.com/MCUdude/MegaCore
+git submodule add https://github.com/adafruit/Adafruit-GFX-Library
 git submodule update --init --recursive
 #make filepath
 
