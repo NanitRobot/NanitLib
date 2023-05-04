@@ -1,37 +1,47 @@
 #ifndef NANITLIB_H_
 #define NANITLIB_H_
 
-#define NANIT_MAJOR_VERSION (1)
-#define NANIT_MINOR_VERSION (3)
-#define NANIT_PATHC_VERSION (2)
+#define NANIT_MAJOR_VERSION (1) ///< Головна версія бібліотеки
+#define NANIT_MINOR_VERSION (3) ///< Мінорна версія бібліотеки
+#define NANIT_PATHC_VERSION (2) ///< Pathc версія бібілотеки
+
+#define NANIT_SERIAL_SPEED (9600) ///< Швидкість серійного порту
 
 #include "Version.hpp"
+#include "Approof/Approof.hpp"
 #if defined(__AVR_ATmega2560__)
 
-// Пін до якого включена батарея
-#define BATTARY_PIN (69)
-#define BUILDIN_STRIP_LED (27)
+#define BATTARY_PIN (69) ///< Пін підключення батареї вхід АЦП для перевірки стану батареї
+#define BUILDIN_STRIP_LED (27) ///< Пін підключення вбудованого адресного світлодіоду
 
+/**
+ * Піни які відрізняються в різних версіях плати
+ */
 
-#define  MOTOR1_A ((getBoardVersion()>=Version(3,1))?(7):(10))
-#define  MOTOR1_B ((getBoardVersion()>=Version(3,1))?(8):(9))
-#define  P1_4 ((getBoardVersion()>=Version(3,1))?(7):(10))
-#define  P1_3 ((getBoardVersion()>=Version(3,1))?(8):(9))
-#define  P8_3 ((getBoardVersion()>=Version(3,1))?(5):(54))
-#define  P10_3 ((getBoardVersion()>=Version(3,1))?(24):(5))
-#define  P10_2 ((getBoardVersion()>=Version(3,1))?(54):(24))
-#define  P7_4 ((getBoardVersion()>=Version(3,1))?(9):(7)) 
-#define  P9_4 ((getBoardVersion()>=Version(3,1))?(10):(8))
-
-
+#define MOTOR1_A ((getBoardVersion() >= Version(3, 1)) ? (7) : (10)) 
+#define MOTOR1_B ((getBoardVersion() >= Version(3, 1)) ? (8) : (9))
+#define P1_4 ((getBoardVersion() >= Version(3, 1)) ? (7) : (10))
+#define P1_3 ((getBoardVersion() >= Version(3, 1)) ? (8) : (9))
+#define P8_3 ((getBoardVersion() >= Version(3, 1)) ? (5) : (54))
+#define P10_3 ((getBoardVersion() >= Version(3, 1)) ? (24) : (5))
+#define P10_2 ((getBoardVersion() >= Version(3, 1)) ? (54) : (24))
+#define P7_4 ((getBoardVersion() >= Version(3, 1)) ? (9) : (7))
+#define P9_4 ((getBoardVersion() >= Version(3, 1)) ? (10) : (8))
 
 //запустить драйвер на мотор
-#define MOTOR_ENABLE (40) 
+#define MOTOR_ENABLE                                                           \
+  (40) ///< Пін запуску драйверу моторів
+       ///
+       /// для дозволу обертання двигунів цей пін має мати високий рівень
+       /// доступний лише для запису
+#define MOTOR_FAIL (41) ///< Перевірка стану драйверу моторів
+/// Доступний лише для читання
 
 #define MOTOR2_A (11)
 #define MOTOR2_B (12)
 
-#define BUTTON (3) 
+#define BUTTON (3) ///< Сенсорна кнопка підключена до роз'єму \b J3
+#define J_7 (18) ///< Роз'єм на платі \b J7  
 
 ///Порт 1
 #define P1_2 (A6) 
@@ -50,13 +60,19 @@
 #define P3_3 (30)
 #define P3_2 (25)
 #ifdef MEGACORE
-#define P3_1 (71)
+#define P3_1 (71) ///< Пін визначений у розширеному ядрі /bMEGACORE
+/// У стандарному інтерфейсі Arduino цей пін не доступний. На платах Arduino де
+/// використовується мікроконтролер ATMega2560 цей виввід контролера не
+/// розведений на платі. На платах Nanit цей пін розведений та доступний для
+/// використання. Щоб у повній мірі використовувати всі можлтвості плати
+/// потрібно встановити мануально розширене ядро /bMEGACORE, або скористатись менеджером плат
+
 #else
   #warning Install Nanit board manager 
   #warning https://nanitrobot.github.io/package_NanitRobot_index.json
 #endif
 
-///Порт 4
+//Порт 4
 // #define P4_6 (46) // ШІМ, червоний світлодіод (стара версія)
 #define P4_4 (46) // ШІМ, червоний світлодіод
 #define P4_3 (45) // ШІМ, синій світлодіод
@@ -122,13 +138,21 @@
 // Опорна напруга АЦП
 #define AVCC_REF (5.f)
 // Розрядність АЦП
-#define ADC_BITRATE (10)
-#define BAT_FULL_CHARGE (4.19f)
+#define ADC_BITRATE (10) ///< Визначення розміру бітрейту АЦП перетворювача
+#define BAT_FULL_CHARGE                                                        \
+  (4.19f) ///< Визначення рівня повного рівня заряду викорисатної батареї а
+          ///< блоці. Змінна введена на випадок, якщо в подальшому модернізації
+          ///< плати буде замінено тип батареї
 // Яка батарея використовується
-#define LI_ION
-// #elif 0
+#define LI_ION ///< Визначає тип використаної батареї
+/// Визначення введене для випадок зміни типу батареї в процесі розвитку проекту
+
+#elif 0 //
+// тут будуть знаходитись визначення якщо в процесі розвитку проекту буде замінено мікроконтролер
+// щоб зберігти сумісність з версіями плати на ATmega2560
 #else
-#error Check the project settings. Invalid microcontroller selected. This project cannot be built for this processor
+// Повідомлення що потрібно використовувати розширене ядро Arduino MEGACORE
+#warning Check the project settings. Invalid microcontroller selected. This project cannot be built for this processor
 #endif
 #include "DependsLib.h"
 #include "NanitInits.h"
@@ -137,12 +161,36 @@
 
 // #include <Servo.h>
 
+/**
+ * @brief Отримати версію плати
+ */
+
 Version getBoardVersion();
+
+/**
+ * @brief Отримати версію бібліотеки
+*/
 Version getLibVersion();
+
+/**
+ * @brief Отримати серійний номер плати
+ * 
+ * Серійний номер плати читається з вбудованої пам'яті
+*/
 String getSerialNumber();
+
+/**
+ * Вивести на дисплей інформацію про \b Nanit
+*/
 void NanitInfo();
 
-int getNanitVersion();
+// short detectServo(){
+//   pinMode(P2_4,INPUT_PULLUP);
+//   pinMode(P11_4,INPUT_PULLUP);
+//   if(!digitalRead(P2_4)) return 1;
+//   if(!digitalRead(P11_4)) return 2;
+//   return 0;
+// }
 
 void Nanit_Base_Start();
 
@@ -244,7 +292,7 @@ private:
 //  ,        BoardVersion{getBoardVersion()}
   {
     if(!Serial)
-    Serial.begin(9600);
+    Serial.begin(NANIT_SERIAL_SPEED);
     Serial.println("Nanit initialise...");
     _strip_led.begin();
 
@@ -255,21 +303,15 @@ private:
 
     pinMode(TFT_BL, OUTPUT);
     digitalWrite(TFT_BL, HIGH);
-    //виводимо тестове повідомлення
-    // Display.setCursor(10, 10);
-    // Display.setTextWrap(true);
     Display.setRotation(1);
-    // Display.setTextSize(2);
-    // // pinMode(CHECKPIN, INPUT_PULLUP);
-    // // if (CHECK)
-    //   // print("Hello Nanit! 3.1\n");
-    // // if (!CHECK)
-    // //   print("Hello Nanit! 2.0\n");
-    // Display.print("Hello Nanit!");
-    //       //   delay(10000);
-    //     };*/
-    // }
-    // _strip_led.show();
+
+    pinMode(J_7, INPUT_PULLUP);
+    if (!digitalRead(J_7)) {
+      Display.println("Pin test mode");
+      PinTestSetup();
+    }
+    while (!digitalRead(J_7))
+      PinTestLoop();
   };
   inline ~Nanit()=default;
   FastLED_NeoPixel<1, BUILDIN_STRIP_LED, NEO_GRB> _strip_led;
