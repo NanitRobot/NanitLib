@@ -23,7 +23,7 @@ serial_num getSerialNum() {
 }
 /*Перевірити серійни на коректність*/
 bool checkSerialNum(serial_num num) {
-  if (num == 0xFFFFFFFF or num <= 0x000F71E9 /**/)
+  if (num >= 0xFFFFFFF0 or num <= 0x000F71E9 /**/)
     return false;
 
   return true;

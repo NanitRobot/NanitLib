@@ -26,7 +26,8 @@ String getSerialNumber() {
     unsigned long unlock{millis()+(WAIT_FIRST_RUN*1000)};
     while (Serial.available() == 0) {
       if(millis()>unlock){
-        setSerialNum(1010123000);
+        setSerialNum(1010123000);      
+        Serial.println("A gray serial number");
       }
     }
     serial_num SerialNumber = Serial.parseInt();
