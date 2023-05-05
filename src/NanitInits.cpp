@@ -32,26 +32,26 @@ void Nanit_Display_Init()
 
 void Nanit_RGB_Init()
 {
-  pinMode(46, OUTPUT); //red, порт або P4_6(стара версія), або P4_4
+  pinMode(P4_4, OUTPUT); //red, порт або P4_6(стара версія), або P4_4
   pinMode(P4_2, OUTPUT); //green
   pinMode(P4_3, OUTPUT); //blue
 }
 
 void Nanit_Servo_Init()
 {
-  nanit_servo.attach(42); //42 = P2_3
+  nanit_servo.attach(P2_3); //42 = P2_3
 }
 
 
 void Nanit_ActiveBuzz_Init()
 {
-  pinMode(33, OUTPUT); // 33 - це P5_6 (стара версія), або P5_4
+  pinMode(P5_4, OUTPUT); // 33 - це P5_6 (стара версія), або P5_4
 }
 
 void Nanit_Sound_Init()
 {
   pinMode(P5_1, INPUT);
-  pinMode(A1, INPUT);
+  pinMode(P5_2, INPUT);
 }
 
 

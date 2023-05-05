@@ -7,8 +7,8 @@
 	"settings": {
 		"files.autoSave": "onFocusChange",
 		"C_Cpp.default.defines": [
-			"${default} ",
-			"__AVR_ATmega2560__"
+			"__AVR_ATmega2560__", // ,
+			"MEGACORE"
 		]
 	}
 }

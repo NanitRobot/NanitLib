@@ -1,19 +1,16 @@
 #include "Approof.hpp"
 #include "../NanitLib.h"
 
+const uint8_t k_blink_delay{80}; // Затримка між перемиканнями
+const uint8_t k_port_count{12}; // Кількість зовнішніх портів
+const uint8_t k_pin_count{4}; // кількість пінів в роз'ємах як ввикористовуються
+                              // для обміну даними з перефірійними пристроями
+
+// #define APROOF_MODE                                                            \
+
 
 #define TOGGLE HIGH
-
-void check_port2();
-void check_port3();
-void check_port4();
-void check_port5();
-void check_port6();
-void check_port7();
-void check_port8();
-void check_port9();
-void check_port10();
-void check_port11();
+#define IGNORE_PIN (0xFF)
 
 void check_1(bool);
 void check_12(bool);
@@ -21,261 +18,88 @@ void check_12(bool);
 bool drive = 0;
 
 void PinTestSetup() {
-    Serial.end();
-    
-  digitalWrite(40, HIGH);
- #ifdef MEGACORE
-  for (uint8_t pin_to_set_mode = 0; pin_to_set_mode < NUM_DIGITAL_PINS; pin_to_set_mode++) {
+  Serial.end();
 
-// #define TFT_CS (48) 
-// #define TFT_RES (37)
-// #define TFT_DC (49)
-// #define TFT_BL (4)
-// #define TFT_SCK (52)
-// #define TFT_MOSI (51)
-    if (
-        pin_to_set_mode==TFT_BL or //
-        pin_to_set_mode==TFT_CS or //
-        pin_to_set_mode==TFT_DC or //
-        pin_to_set_mode==TFT_MOSI or //
-        pin_to_set_mode==TFT_SCK or //
-        pin_to_set_mode==TFT_RES or //
-        pin_to_set_mode==BATTARY_PIN// or //
-        // pin_to_set_mode==TFT_CS or //
-    )
-    // if (pin_to_set_mode == 69)
+  digitalWrite(MOTOR_ENABLE, HIGH);
+  for (uint8_t pin_to_set_mode{}; pin_to_set_mode < NUM_DIGITAL_PINS;
+       pin_to_set_mode++) {
+    if (pin_to_set_mode == TFT_BL or pin_to_set_mode == TFT_CS or
+        pin_to_set_mode == TFT_DC or pin_to_set_mode == TFT_MOSI or
+        pin_to_set_mode == TFT_SCK or pin_to_set_mode == TFT_RES or
+        pin_to_set_mode == BATTARY_PIN)
       continue;
 
     pinMode(pin_to_set_mode, OUTPUT);
   }
-  #else
-  #endif
 }
 void PinTestLoop() {
-    #ifdef MEGACORE
-    
+  const uint8_t PinMap[k_port_count][k_pin_count]{
+      {IGNORE_PIN, IGNORE_PIN, IGNORE_PIN, IGNORE_PIN}, // 1
+      {P2_1, P2_2, P2_3, P2_4},                         // 2
+      {P3_1, P3_2, P3_3, P3_4},                         // 3
+      {P4_1, P4_2, P4_3, P4_4},                         // 4
+      {P5_1, P5_2, P5_3, P5_4},                         // 5
+      {P6_1, P6_2, P6_3, P6_4},                         // 6
+      {P7_1, P7_2, P7_3, P7_4},                         // 7
+      {1,  0, P8_3, IGNORE_PIN},       // 8
+      {P9_1, P9_2, P9_3, P9_4},                         // 9
+      {P10_1, P10_2, P10_3, P10_4},                     // 10
+      {IGNORE_PIN, IGNORE_PIN, P11_3, P11_4},           // 11
+      {IGNORE_PIN, IGNORE_PIN, IGNORE_PIN, IGNORE_PIN}  // 12
+  };
+
   check_1(drive);
-check_port2();
-check_port3();
-check_port4();
-check_port5();
-check_port6();
-check_port7();
-check_port8();
-check_port9();
-check_port10();
-check_port11();
+  for (uint8_t port{}; port < k_port_count; port++)
+    for (uint8_t pin{}; pin < k_pin_count; pin++) {
+      switch (PinMap[port][pin]) {
+      case IGNORE_PIN:
+        break;
+      default: {
+        digitalWrite(PinMap[port][pin], HIGH);
+        delay(k_blink_delay);
+        digitalWrite(PinMap[port][pin], LOW);
+        delay(k_blink_delay);
+      } break;
+      }
+    }
 
   check_12(drive);
 
   drive = !drive;
-    #else
-    #endif 
-    }
-
-void check_port2() {
-  digitalWrite(A8, HIGH);
-  delay(100);
-  digitalWrite(A8, LOW);
-  digitalWrite(42, HIGH);
-  delay(100);
-  digitalWrite(42, LOW);
-  digitalWrite(A9, HIGH);
-  delay(100);
-  digitalWrite(A9, LOW);
-  digitalWrite(A10, HIGH);
-  delay(100);
-  digitalWrite(A10, LOW);
-
-  // for (int i = 62; i <= 64; i++)
-  // {
-  //   digitalWrite(i, HIGH);
-  //   delay(100);
-  //   digitalWrite(i, LOW);
-  // }
 }
-
-void check_port3() {
-  digitalWrite(31, HIGH);
-  delay(100);
-  digitalWrite(31, LOW);
-  digitalWrite(30, HIGH);
-  delay(100);
-  digitalWrite(30, LOW);
-  digitalWrite(25, HIGH);
-  delay(100);
-  digitalWrite(25, LOW);
-  digitalWrite(71,HIGH);
-  delay(100);
-  digitalWrite(71,LOW);
-}
-
-void check_port4() {
-  for (int i = 46; i >= 44; i--) {
-    digitalWrite(i, HIGH);
-    delay(100);
-    digitalWrite(i, LOW);
-  }
-  digitalWrite(PIN_A11, HIGH);
-  delay(100);
-  digitalWrite(PIN_A11, LOW);
-}
-
-
-
-void check_port5() {
-  digitalWrite(33, HIGH);
-  delay(100);
-  digitalWrite(33, LOW);
-  digitalWrite(PIN_A12, HIGH);
-  delay(100);
-  digitalWrite(PIN_A12, LOW);
-  digitalWrite(PIN_A1, HIGH);
-  delay(100);
-  digitalWrite(PIN_A1, LOW);
-
-
-
-  digitalWrite(2, HIGH);
-  delay(100);
-  digitalWrite(2, LOW);
-}
-
-
-void check_port6() {
-  digitalWrite(22, HIGH);
-  delay(100);
-  digitalWrite(22, LOW);
-  digitalWrite(A13, HIGH);
-  delay(100);
-  digitalWrite(A13, LOW);
-  digitalWrite(A14, HIGH);
-  delay(100);
-  digitalWrite(A14, LOW);
-
-  digitalWrite(23, HIGH);
-  delay(100);
-  digitalWrite(23, LOW);
-}
-
-
-void check_port7() {
-  digitalWrite(9, HIGH);
-  delay(100);
-  digitalWrite(9, LOW);
-
-  digitalWrite(28, HIGH);
-  delay(100);
-  digitalWrite(28, LOW);
-
-  digitalWrite(A4, HIGH);
-  delay(100);
-  digitalWrite(A4, LOW);
-
-  digitalWrite(A3, HIGH);
-  delay(100);
-  digitalWrite(A3, LOW);
-}
-
-
-void check_port8() {
-  //   digitalWrite(5, HIGH);
-  // delay(100);
-  // digitalWrite(5, LOW);
-  digitalWrite(5, HIGH);
-  delay(100);
-  digitalWrite(5, LOW);
-
-  for (int i = 0; i <= 1; i++) {
-    digitalWrite(i, HIGH);
-    delay(100);
-    digitalWrite(i, LOW);
-  }
-}
-
-
-
-void check_port9() {
-  digitalWrite(10, HIGH);
-  delay(100);
-  digitalWrite(10, LOW);
-
-  for (int i = 19; i <= 21; i++) {
-    digitalWrite(i, HIGH);
-    delay(100);
-    digitalWrite(i, LOW);
-  }
-}
-
-
-void check_port10() {
-
-  digitalWrite(PIN_A2, HIGH);
-  delay(100);
-  digitalWrite(PIN_A2, LOW);
-
-  digitalWrite(A0, HIGH);
-  delay(100);
-  digitalWrite(A0, LOW);
-
-  digitalWrite(24, HIGH);
-  delay(100);
-  digitalWrite(24, LOW);
-
-  digitalWrite(6, HIGH);
-  delay(100);
-  digitalWrite(6, LOW);
-}
-
-void check_port11() {
-  for (int i = 14; i <= 15; i++) {
-    digitalWrite(i, HIGH);
-    delay(100);
-    digitalWrite(i, LOW);
-  }
-
-  digitalWrite(43, HIGH);
-  delay(100);
-  digitalWrite(43, LOW);
-
-  digitalWrite(32, HIGH);
-  delay(100);
-  digitalWrite(32, LOW);
-}
-
 
 void check_1(bool what) {
-  if (what == 0) {
+  if (what) {
     digitalWrite(MOTOR1_A, !TOGGLE);
     digitalWrite(MOTOR1_B, TOGGLE);
-  } else if (what == 1) {
+  } else {
     digitalWrite(MOTOR1_A, TOGGLE);
     digitalWrite(MOTOR1_B, !TOGGLE);
   }
 
-  digitalWrite(PIN_A6, HIGH);
-  delay(100);
-  digitalWrite(PIN_A6, LOW);
+  digitalWrite(P1_2, HIGH);
+  delay(k_blink_delay);
+  digitalWrite(P1_2, LOW);
+  delay(k_blink_delay);
 
-  digitalWrite(PIN_A7, HIGH);
-  delay(100);
-  digitalWrite(PIN_A7, LOW);
+  digitalWrite(P1_1, HIGH);
+  delay(k_blink_delay);
+  digitalWrite(P1_1, LOW);
 }
 
 void check_12(bool what) {
-  digitalWrite(34, HIGH);
-  delay(100);
-  digitalWrite(34, LOW);
+  digitalWrite(P12_1, HIGH);
+  delay(k_blink_delay);
+  digitalWrite(P12_1, LOW);
 
-  digitalWrite(36, HIGH);
-  delay(100);
-  digitalWrite(36, LOW);
+  digitalWrite(P12_2, HIGH);
+  delay(k_blink_delay);
+  digitalWrite(P12_2, LOW);
 
-
-  if (what == 0) {
+  if (what) {
     digitalWrite(MOTOR2_A, !TOGGLE);
     digitalWrite(MOTOR2_B, TOGGLE);
-  } else if (what == 1) {
+  } else {
     digitalWrite(MOTOR2_A, TOGGLE);
     digitalWrite(MOTOR2_B, !TOGGLE);
   }

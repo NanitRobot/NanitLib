@@ -74,7 +74,7 @@ void Nanit_RGB_Write(byte red, byte green, byte blue) {
   green = (green >= 0 && green <= 255) ? green : 0;
   blue = (blue >= 0 && blue <= 255) ? blue : 0;
 
-  analogWrite(46, red); // 46 це або P4_4, або P4_6 (стара версія)
+  analogWrite(P4_4, red); // 46 це або P4_4, або P4_6 (стара версія)
   analogWrite(P4_2, green);
   analogWrite(P4_3, blue);
 }
@@ -90,9 +90,9 @@ void Nanit_ActiveBuzz_Scream(byte times, int duration) {
   times = (times > 0) ? times : 1;
 
   for (i = 0; i < times; i++) {
-    digitalWrite(33, LOW);
+    digitalWrite(P5_4, LOW);
     delay(duration);
-    digitalWrite(33, HIGH);
+    digitalWrite(P5_4, HIGH);
     delay(duration);
   }
 
@@ -100,7 +100,7 @@ void Nanit_ActiveBuzz_Scream(byte times, int duration) {
 }
 
 bool Nanit_Sound_IsSoundDetected(int sound_limit) {
-  return (analogRead(A1) > sound_limit);
+  return (analogRead(P5_2) > sound_limit);
 }
 
 /*
@@ -127,9 +127,6 @@ int ULTRASONIC(){
         return cm;
 }
 */
-void NanitRobot::Nanit::SelfTestMode(){};
-
-void NanitRobot::Nanit::UnitTestMode(){};
 
 float NanitRobot::Map(float inputValue, float inputMin, float inputMax,
                       float rangeMin, float rangeMax) {
@@ -139,7 +136,7 @@ float NanitRobot::Map(float inputValue, float inputMin, float inputMax,
 }
 
 float NanitRobot::Nanit::getBataryVoltage() const {
-  return Map(analogRead(BATTARY_PIN), 0, 1 << ADC_BITRATE, 0.f, AVCC_REF);
+  return Map(analogRead(BATTARY_PIN), 0.f, 1 << ADC_BITRATE, 0.f, AVCC_REF);
 }
 
 float NanitRobot::Nanit::getBattaryPower() const {

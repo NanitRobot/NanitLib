@@ -36,7 +36,7 @@ void setup() {
   /// Версію апаратної частини (плати)
   /// Версію бібліотеки
   /// Рівень зараяду батареї
-  Serial.begin(9600);
+  Serial.begin(NANIT_SERIAL_SPEED);
   NanitInfo();
 }
 void loop() {

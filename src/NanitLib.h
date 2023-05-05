@@ -9,7 +9,8 @@
 
 #include "Version.hpp"
 #include "Approof/Approof.hpp"
-#if defined(__AVR_ATmega2560__)
+
+#ifdef __AVR_ATmega2560__
 
 #define BATTARY_PIN (69) ///< Пін підключення батареї вхід АЦП для перевірки стану батареї
 #define BUILDIN_STRIP_LED (27) ///< Пін підключення вбудованого адресного світлодіоду
@@ -59,8 +60,8 @@
 #define P3_4 (31)
 #define P3_3 (30)
 #define P3_2 (25)
-#ifdef MEGACORE
 #define P3_1 (71) ///< Пін визначений у розширеному ядрі /bMEGACORE
+#ifdef MEGACORE
 /// У стандарному інтерфейсі Arduino цей пін не доступний. На платах Arduino де
 /// використовується мікроконтролер ATMega2560 цей виввід контролера не
 /// розведений на платі. На платах Nanit цей пін розведений та доступний для
@@ -103,8 +104,8 @@
 
 ///Порт 9
 #define P9_3 (19)  /// INT.2 pin
-#define P9_2 (20) //SDA
-#define P9_1 (21) //SCL
+#define P9_2 (20) ///< SDA
+#define P9_1 (21) ///< SCL
 
 ///Порт 10
 // #define P10_6 (6)  /// Стара версія
@@ -154,12 +155,9 @@
 // Повідомлення що потрібно використовувати розширене ядро Arduino MEGACORE
 #warning Check the project settings. Invalid microcontroller selected. This project cannot be built for this processor
 #endif
-#include "DependsLib.h"
+#include "DependsLib.h" ///< Залежності від бібліотек третіх сторін
 #include "NanitInits.h"
-#include "SerialNumber.hpp"
-// #include <L298NX2.h>
-
-// #include <Servo.h>
+#include "SerialNumber.hpp" /// < Контроль версії бібліотеки та плати під час виконання коду
 
 /**
  * @brief Отримати версію плати
@@ -184,14 +182,9 @@ String getSerialNumber();
 */
 void NanitInfo();
 
-// short detectServo(){
-//   pinMode(P2_4,INPUT_PULLUP);
-//   pinMode(P11_4,INPUT_PULLUP);
-//   if(!digitalRead(P2_4)) return 1;
-//   if(!digitalRead(P11_4)) return 2;
-//   return 0;
-// }
-
+/**
+ * Ініціація змінних та дисплею
+*/
 void Nanit_Base_Start();
 
 void Nanit_RGB_Write(byte red, byte green, byte blue);
@@ -243,8 +236,6 @@ enum class GuageType{SmileBatt,Volts,Percent,LAST};
     static Nanit instance;
     return instance;
   }
-  void SelfTestMode();
-  void UnitTestMode();
   float getBataryVoltage() const;
   float getBattaryPower() const;
   void DrawBattGuage(GuageType type= GuageType::SmileBatt)const;
@@ -304,14 +295,22 @@ private:
     pinMode(TFT_BL, OUTPUT);
     digitalWrite(TFT_BL, HIGH);
     Display.setRotation(1);
-
-    pinMode(J_7, INPUT_PULLUP);
-    if (!digitalRead(J_7)) {
-      Display.println("Pin test mode");
-      PinTestSetup();
+    {
+      pinMode(J_7, INPUT_PULLUP);
+      if (!digitalRead(J_7)) {
+        Display.println();
+        Display.println(" Port diagnostics mode.");
+        Display.println();
+        Display.println(" You should have a probe");
+        Display.println("     to connect to the  ");
+        Display.println("     ports              ");
+        PinTestSetup();
+        while (!digitalRead(J_7))
+          PinTestLoop();
+      }
     }
-    while (!digitalRead(J_7))
-      PinTestLoop();
+
+    // APROOF_MODE;
   };
   inline ~Nanit()=default;
   FastLED_NeoPixel<1, BUILDIN_STRIP_LED, NEO_GRB> _strip_led;
