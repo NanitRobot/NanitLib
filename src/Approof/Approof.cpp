@@ -44,7 +44,7 @@ void PinTestLoop() {
       {1,  0, P8_3, IGNORE_PIN},       // 8
       {P9_1, P9_2, P9_3, P9_4},                         // 9
       {P10_1, P10_2, P10_3, P10_4},                     // 10
-      {IGNORE_PIN, IGNORE_PIN, P11_3, P11_4},           // 11
+      {14, 15, P11_3, P11_4},           // 11
       {IGNORE_PIN, IGNORE_PIN, IGNORE_PIN, IGNORE_PIN}  // 12
   };
 

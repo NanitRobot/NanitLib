@@ -15,9 +15,9 @@
 #define BATTARY_PIN (69) ///< Пін підключення батареї вхід АЦП для перевірки стану батареї
 #define BUILDIN_STRIP_LED (27) ///< Пін підключення вбудованого адресного світлодіоду
 
-/**
- * Піни які відрізняються в різних версіях плати
- */
+// /**
+//  * Піни які відрізняються в різних версіях плати
+//  */
 
 #define MOTOR1_A ((getBoardVersion() >= Version(3, 1)) ? (7) : (10)) 
 #define MOTOR1_B ((getBoardVersion() >= Version(3, 1)) ? (8) : (9))
@@ -137,9 +137,9 @@
 
 // Контроль заряду батареї
 // Опорна напруга АЦП
-#define AVCC_REF (5.f)
+#define AVCC_REF (5.f) ///< Опорна напруга для вбулованого АЦП (5 вольт)
 // Розрядність АЦП
-#define ADC_BITRATE (10) ///< Визначення розміру бітрейту АЦП перетворювача
+#define ADC_BITRATE (10) ///< Визначення розміру бітрейту АЦП перетворювача (10 розрядний перетворювач)
 #define BAT_FULL_CHARGE                                                        \
   (4.19f) ///< Визначення рівня повного рівня заряду викорисатної батареї а
           ///< блоці. Змінна введена на випадок, якщо в подальшому модернізації
@@ -155,8 +155,11 @@
 // Повідомлення що потрібно використовувати розширене ядро Arduino MEGACORE
 #warning Check the project settings. Invalid microcontroller selected. This project cannot be built for this processor
 #endif
+
 #include "DependsLib.h" ///< Залежності від бібліотек третіх сторін
+
 #include "NanitInits.h"
+
 #include "SerialNumber.hpp" /// < Контроль версії бібліотеки та плати під час виконання коду
 
 /**
@@ -194,19 +197,6 @@ void Nanit_ActiveBuzz_Scream(byte times, int duration);
 
 bool Nanit_Sound_IsSoundDetected(int sound_limit);
 
-
-/*
-inline bool Nanit_PIR_IsMotionDetected()
-{
-        return digitalRead(33); //33 це або P5_6 (стара версія), або P5_4
-}
-*/
-
-/*
-bool BUTTON_();
-int ULTRASONIC();
-*/
-
 #define START_NANIT ::NanitRobot::Nanit::getNanit()
 #define GET_NANIT ::NanitRobot::Nanit::getNanit()
 
@@ -231,13 +221,30 @@ class Nanit {
 public:
 
 enum class GuageType{SmileBatt,Volts,Percent,LAST};
-
+  /**
+   * Отримати адресу розміщення створеного об'єкту класу Nanit
+  */
   inline static Nanit &getNanit() {
     static Nanit instance;
     return instance;
   }
+  /**
+   * @brief Get the Batary Voltage object
+   * 
+   * @return float 
+   */
   float getBataryVoltage() const;
+  /**
+   * @brief Get the Battary Power object
+   * 
+   * @return float 
+   */
   float getBattaryPower() const;
+  /**
+   * @brief 
+   * 
+   * @param void 
+   */
   void DrawBattGuage(GuageType type= GuageType::SmileBatt)const;
   // L298NX2 DCMotors(MOTOR_ENABLE, MOTOR1_A, MOTOR2_A, MOTOR_ENABLE, MOTOR1_B, MOTOR2_B);
   // 1 & 12 motors
@@ -276,8 +283,15 @@ enum class GuageType{SmileBatt,Volts,Percent,LAST};
     _strip_led.setPixelColor(0, color);
     _strip_led.show();
   }
+  Servo ServoMotor;
 
 private:
+  /**
+   * @brief Об'єк ткласу Nanit є об'єктом одинаком.
+   * 
+   * Якщо об'єкт не був створений у оперативній пам'яті ми його створюєм. Якщо об'єкт вже існував в пам'яті то ми отримаємо адресу розміщення.
+   * Такий спосіб не дозволяє не обмежено створювати об'єкти і дозволяє лише один раз ініціювати необхідні змінні для подальшого використання
+  */
   inline Nanit()
       : Display{Adafruit_ST7735(TFT_CS, TFT_DC, TFT_RES)}
 //  ,        BoardVersion{getBoardVersion()}
@@ -312,6 +326,10 @@ private:
 
     // APROOF_MODE;
   };
+  /**
+   * @brief Destroy the Nanit object
+   * 
+   */
   inline ~Nanit()=default;
   FastLED_NeoPixel<1, BUILDIN_STRIP_LED, NEO_GRB> _strip_led;
   public:

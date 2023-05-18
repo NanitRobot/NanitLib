@@ -2,7 +2,7 @@
 #define _SERIAL_NUMBER_H_
 
 #define SERIAL_NUM (E2END - sizeof(uint32_t))
-#include <EEPROM.h>
+#include "Offsets.hpp"
 /*
     XXXXXXXXXX
     ^ ^ ^ ^ ^
