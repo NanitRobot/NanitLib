@@ -3,7 +3,7 @@
 
 #define NANIT_MAJOR_VERSION (1) ///< Головна версія бібліотеки
 #define NANIT_MINOR_VERSION (3) ///< Мінорна версія бібліотеки
-#define NANIT_PATHC_VERSION (2) ///< Pathc версія бібілотеки
+#define NANIT_PATHC_VERSION (3) ///< Pathc версія бібілотеки
 
 #define NANIT_SERIAL_SPEED (9600) ///< Швидкість серійного порту
 
