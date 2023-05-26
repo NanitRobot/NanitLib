@@ -7,19 +7,21 @@
 
 #define NANIT_SERIAL_SPEED (9600) ///< Швидкість серійного порту
 
-#include "Version.hpp"
 #include "Approof/Approof.hpp"
+#include "Version.hpp"
 
 #ifdef __AVR_ATmega2560__
 
-#define BATTARY_PIN (69) ///< Пін підключення батареї вхід АЦП для перевірки стану батареї
-#define BUILDIN_STRIP_LED (27) ///< Пін підключення вбудованого адресного світлодіоду
+#define BATTARY_PIN                                                            \
+  (69) ///< Пін підключення батареї вхід АЦП для перевірки стану батареї
+#define BUILDIN_STRIP_LED                                                      \
+  (27) ///< Пін підключення вбудованого адресного світлодіоду
 
 // /**
 //  * Піни які відрізняються в різних версіях плати
 //  */
 
-#define MOTOR1_A ((getBoardVersion() >= Version(3, 1)) ? (7) : (10)) 
+#define MOTOR1_A ((getBoardVersion() >= Version(3, 1)) ? (7) : (10))
 #define MOTOR1_B ((getBoardVersion() >= Version(3, 1)) ? (8) : (9))
 #define P1_4 ((getBoardVersion() >= Version(3, 1)) ? (7) : (10))
 #define P1_3 ((getBoardVersion() >= Version(3, 1)) ? (8) : (9))
@@ -35,6 +37,7 @@
        ///
        /// для дозволу обертання двигунів цей пін має мати високий рівень
        /// доступний лише для запису
+
 #define MOTOR_FAIL (41) ///< Перевірка стану драйверу моторів
 /// Доступний лише для читання
 
@@ -42,18 +45,23 @@
 #define MOTOR2_B (12)
 
 #define BUTTON (3) ///< Сенсорна кнопка підключена до роз'єму \b J3
-#define J_7 (18) ///< Роз'єм на платі \b J7  
+#define J_7 (18) ///< Роз'єм на платі \b J7
 
 ///Порт 1
-#define P1_2 (A6) 
-#define P1_1 (A7) 
+#define P1_2                                                                   \
+  (A6) ///< Другий пін першого порту може використовуватися як вхід АЦП
+#define P1_1                                                                   \
+  (A7) ///< Перший пін Першого порту може використовуватися як вхід АЦП
 
 ///Порт 2
-// #define P2_6 A8  
-#define P2_4 (A8)
-#define P2_3 (42) 
-#define P2_2 (A9)
-#define P2_1 (A10)
+// #define P2_6 A8
+#define P2_4                                                                   \
+  (A8) ///< Четвертий пін другого потру може використовувватися як вхід АЦП
+#define P2_3 (42)
+#define P2_2                                                                   \
+  (A9) ///< Другий пін другого потру може використовувватися як вхід АЦП
+#define P2_1                                                                   \
+  (A10) ///< Перший пін другого потру може використовувватися як вхід АЦП
 
 ///Порт 3
 // #define P3_6 31 /// Стара версія
@@ -66,11 +74,12 @@
 /// використовується мікроконтролер ATMega2560 цей виввід контролера не
 /// розведений на платі. На платах Nanit цей пін розведений та доступний для
 /// використання. Щоб у повній мірі використовувати всі можлтвості плати
-/// потрібно встановити мануально розширене ядро /bMEGACORE, або скористатись менеджером плат
+/// потрібно встановити мануально розширене ядро /bMEGACORE, або скористатись
+/// менеджером плат
 
 #else
-  #warning Install Nanit board manager 
-  #warning https://nanitrobot.github.io/package_NanitRobot_index.json
+#warning Install Nanit board manager
+#warning https://nanitrobot.github.io/package_NanitRobot_index.json
 #endif
 
 //Порт 4
@@ -78,14 +87,16 @@
 #define P4_4 (46) // ШІМ, червоний світлодіод
 #define P4_3 (45) // ШІМ, синій світлодіод
 #define P4_2 (44) // ШІМ, зелений світлодіод
-#define P4_1 (A11)
+#define P4_1 (A11) ///< Перший пін четвертого порту може використовувватися як вхід АЦП
 
 ///Порт 5
 // #define P5_6 33 /// Стара версія
-#define P5_4 (33) 
-#define P5_3 (A12)
-#define P5_2 (A1)
-#define P5_1 (2) // INT.0 pin
+#define P5_4 (33)
+#define P5_3                                                                   \
+  (A12) ///< Третій пін п'ятого порту може використовувватися як вхід АЦП
+#define P5_2                                                                   \
+  (A1) ///< Другий пін п'ятого порту може використовувватися як вхід АЦП
+#define P5_1 (2) ///< Перший пін п'ятого порту може оброблювати переривання за вектором INT.0
 
 ///Порт 6
 // #define P6_6 22 /// Стара версія
@@ -101,9 +112,8 @@
 
 ///Порт 8
 
-
 ///Порт 9
-#define P9_3 (19)  /// INT.2 pin
+#define P9_3 (19) ///  Третій пін п'ятого порту може оброблювати переривання за векторомINT.2 pin
 #define P9_2 (20) ///< SDA
 #define P9_1 (21) ///< SCL
 
@@ -120,26 +130,26 @@
 ///Порт 12
 // #define P12_6 (11)/// Мотор М2_А /// Стара версія
 #define P12_4 (11)
-#define P12_3 (12)/// Мотор М2_В
+#define P12_3 (12) /// Мотор М2_В
 #define P12_2 (34)
 #define P12_1 (36)
 
 //порти дисплею
 
-#define TFT_CS (48) 
+#define TFT_CS (48)
 #define TFT_RES (37)
 #define TFT_DC (49)
 #define TFT_BL (4)
 #define TFT_SCK (52)
 #define TFT_MOSI (51)
 
-
-
 // Контроль заряду батареї
 // Опорна напруга АЦП
 #define AVCC_REF (5.f) ///< Опорна напруга для вбулованого АЦП (5 вольт)
 // Розрядність АЦП
-#define ADC_BITRATE (10) ///< Визначення розміру бітрейту АЦП перетворювача (10 розрядний перетворювач)
+#define ADC_BITRATE                                                            \
+  (10) ///< Визначення розміру бітрейту АЦП перетворювача (10 розрядний
+       ///< перетворювач)
 #define BAT_FULL_CHARGE                                                        \
   (4.19f) ///< Визначення рівня повного рівня заряду викорисатної батареї а
           ///< блоці. Змінна введена на випадок, якщо в подальшому модернізації
@@ -149,8 +159,9 @@
 /// Визначення введене для випадок зміни типу батареї в процесі розвитку проекту
 
 #elif 0 //
-// тут будуть знаходитись визначення якщо в процесі розвитку проекту буде замінено мікроконтролер
-// щоб зберігти сумісність з версіями плати на ATmega2560
+// тут будуть знаходитись визначення якщо в процесі розвитку проекту буде
+// замінено мікроконтролер щоб зберігти сумісність з версіями плати на
+// ATmega2560
 #else
 // Повідомлення що потрібно використовувати розширене ядро Arduino MEGACORE
 #warning Check the project settings. Invalid microcontroller selected. This project cannot be built for this processor
@@ -170,24 +181,24 @@ Version getBoardVersion();
 
 /**
  * @brief Отримати версію бібліотеки
-*/
+ */
 Version getLibVersion();
 
 /**
  * @brief Отримати серійний номер плати
- * 
+ *
  * Серійний номер плати читається з вбудованої пам'яті
-*/
+ */
 String getSerialNumber();
 
 /**
  * Вивести на дисплей інформацію про \b Nanit
-*/
+ */
 void NanitInfo();
 
 /**
  * Ініціація змінних та дисплею
-*/
+ */
 void Nanit_Base_Start();
 
 void Nanit_RGB_Write(byte red, byte green, byte blue);
@@ -200,56 +211,53 @@ bool Nanit_Sound_IsSoundDetected(int sound_limit);
 #define START_NANIT ::NanitRobot::Nanit::getNanit()
 #define GET_NANIT ::NanitRobot::Nanit::getNanit()
 
-#define NANIT_BEGIN(X)                                                   \
+#define NANIT_BEGIN(X)                                                         \
   ::NanitRobot::Nanit &X { START_NANIT }
 
 namespace NanitRobot {
 /**
  * @brief Мапінг функція для чисел з плаваючою крапкою
- * 
+ *
  * @param inputValue[in] значення яке потрібно промаштабувати
  * @param inputMin[in] Нижній поріг значань які потрібно промаштабувати
  * @param inputMax[in] Верхній поріг значень, які потрібно промаштвабувати
  * @param rangeMin[in] Нижня межа значень діапазону вихідних значень
  * @param rangeMax[in] Верхня межа значень діапазону вихідних значень
  * @return повертає маштабоване значення
-*/  
+ */
 float Map(float inputValue, float inputMin, float inputMax, float rangeMin,
           float rangeMax);
-          
+
 class Nanit {
 public:
-
-enum class GuageType{SmileBatt,Volts,Percent,LAST};
+  enum class GuageType { SmileBatt, Volts, Percent, LAST };
   /**
    * Отримати адресу розміщення створеного об'єкту класу Nanit
-  */
+   */
   inline static Nanit &getNanit() {
     static Nanit instance;
     return instance;
   }
   /**
    * @brief Get the Batary Voltage object
-   * 
-   * @return float 
+   *
+   * @return float
    */
   float getBataryVoltage() const;
   /**
    * @brief Get the Battary Power object
-   * 
-   * @return float 
+   *
+   * @return float
    */
   float getBattaryPower() const;
   /**
-   * @brief 
-   * 
-   * @param void 
+   * @brief
+   *
+   * @param void
    */
-  void DrawBattGuage(GuageType type= GuageType::SmileBatt)const;
-  // L298NX2 DCMotors(MOTOR_ENABLE, MOTOR1_A, MOTOR2_A, MOTOR_ENABLE, MOTOR1_B, MOTOR2_B);
-  // 1 & 12 motors
-  // class DCMotor {
-  // public:
+  void DrawBattGuage(GuageType type = GuageType::SmileBatt) const;
+  // L298NX2 DCMotors(MOTOR_ENABLE, MOTOR1_A, MOTOR2_A, MOTOR_ENABLE, MOTOR1_B,
+  // MOTOR2_B); 1 & 12 motors class DCMotor { public:
   //   DCMotor() {}
   //   void Begin() {}
   //   void End() {}
@@ -264,7 +272,7 @@ enum class GuageType{SmileBatt,Volts,Percent,LAST};
   // } Servo;
   // 3 color & PIR
   // 4 RGB
-		// 4 RGB 
+  // 4 RGB
   // 4 RGB
   // 5 Buzzer & mic
   // 6 ultrasonic
@@ -288,16 +296,15 @@ enum class GuageType{SmileBatt,Volts,Percent,LAST};
 private:
   /**
    * @brief Об'єк ткласу Nanit є об'єктом одинаком.
-   * 
-   * Якщо об'єкт не був створений у оперативній пам'яті ми його створюєм. Якщо об'єкт вже існував в пам'яті то ми отримаємо адресу розміщення.
-   * Такий спосіб не дозволяє не обмежено створювати об'єкти і дозволяє лише один раз ініціювати необхідні змінні для подальшого використання
-  */
-  inline Nanit()
-      : Display{Adafruit_ST7735(TFT_CS, TFT_DC, TFT_RES)}
-//  ,        BoardVersion{getBoardVersion()}
-  {
-    if(!Serial)
-    Serial.begin(NANIT_SERIAL_SPEED);
+   *
+   * Якщо об'єкт не був створений у оперативній пам'яті ми його створюєм. Якщо
+   * об'єкт вже існував в пам'яті то ми отримаємо адресу розміщення. Такий
+   * спосіб не дозволяє не обмежено створювати об'єкти і дозволяє лише один раз
+   * ініціювати необхідні змінні для подальшого використання
+   */
+  inline Nanit() : Display{Adafruit_ST7735(TFT_CS, TFT_DC, TFT_RES)} {
+    if (!Serial)
+      Serial.begin(NANIT_SERIAL_SPEED);
     Serial.println("Nanit initialise...");
     _strip_led.begin();
 
@@ -310,6 +317,12 @@ private:
     digitalWrite(TFT_BL, HIGH);
     Display.setRotation(1);
     {
+      //==================================================================
+      //   Сервісні режими для перевірки плати
+      //==================================================================
+      //------------------------------------------------------------------
+      //   Діагностування портів
+      //------------------------------------------------------------------
       pinMode(J_7, INPUT_PULLUP);
       if (!digitalRead(J_7)) {
         Display.println();
@@ -322,20 +335,239 @@ private:
         while (!digitalRead(J_7))
           PinTestLoop();
       }
+
+      //------------------------------------------------------------------
+      //   Кабелів
+      //------------------------------------------------------------------
+      pinMode(A6, INPUT_PULLUP);
+      pinMode(34, INPUT_PULLUP);
+      if (!digitalRead(A6) and !digitalRead(34)) {
+        Display.fillScreen(0xFFFF);
+
+#define PIN_COUNT (6)
+#define NO_CABLE ((1 << PIN_COUNT) - 1)
+#define GOOD_CABLE (0)
+        // Конфігурування  відображення
+        const uint16_t              // Кольори
+            BackGrougColor{0xFFFF}, //
+            TextColor{0x0},         //
+            GoodColor{0x00FF >> 3}, //
+            NoColor{0xC00},         //
+            BadColor{0xF800};       //
+
+        //
+        const char           // Умовні позначик
+            CHAR('#'),       //
+            CharBroken{'X'}, //
+            CharGood{'Y'},   //
+            CharNO{'O'};     //
+
+        //
+        uint8_t              //
+            PinsPositionX,   //
+            PinsPositionY,   //
+            ResultPositionY, //
+            ResultPositionX; //
+
+        unsigned fps{2}; // Кількість "кадрів"
+
+        Display.setCursor(0, 0);
+        Display.print(CHAR);
+        const char CharWitdh{Display.getCursorX()};
+        Display.println();
+        const char CharHeiht{Display.getCursorY()};
+
+        Display.fillRect(0, 0, CharWitdh * 2, CharHeiht, BackGrougColor);
+        Display.setCursor(0, 0);
+        {
+
+          Display.setTextColor(TextColor);
+          Display.println();
+          Display.println(" +--------------------+");
+          Display.println(" | Cable test mode    |");
+          Display.println(" |   USE 5&6 ports    |");
+          Display.print(" | ");
+          {
+            Display.setTextColor(BadColor);
+            Display.print(CharBroken);
+            Display.setTextColor(TextColor);
+          }
+
+          Display.println(" - Broken         |");
+          Display.print(" | ");
+          {
+            Display.setTextColor(GoodColor);
+            Display.print(CharGood);
+            Display.setTextColor(TextColor);
+          }
+          Display.println(" - Linked         |");
+          Display.print(" | ");
+          {
+            Display.setTextColor(NoColor);
+            Display.print(CharNO);
+            Display.setTextColor(TextColor);
+          }
+          Display.println(" - No cable       |");
+          Display.println(" |                    |");
+          Display.println(" |     PORT 6         |");
+          Display.println(" |    |^^^^^^|        |");
+          Display.print(" |    |");
+
+          PinsPositionX = Display.getCursorX();
+          PinsPositionY = Display.getCursorY();
+          Display.setTextColor(NoColor);
+
+          for (uint8_t wire{}; wire < PIN_COUNT; wire++) {
+            Display.print(CharNO);
+          }
+
+          Display.setTextColor(TextColor);
+          Display.println("|        |");
+          Display.println(" |    +--__--+        |");
+          Display.println(" |       --           |");
+
+          ResultPositionY = Display.getCursorY();
+          Display.print(" |");
+          ResultPositionX = Display.getCursorX();
+          Display.println("                    |");
+          Display.println(" +--------------------+");
+        }
+        while (true) {
+
+          Display.fillRect(PinsPositionX, PinsPositionY, CharWitdh * PIN_COUNT,
+                           CharHeiht, BackGrougColor);
+          Display.fillRect(ResultPositionX, ResultPositionY, CharWitdh * 20,
+                           CharHeiht, BackGrougColor);
+          char BrokenWires = WireManipulate();
+          switch (BrokenWires) {
+          case NO_CABLE:
+            Display.setCursor(PinsPositionX, PinsPositionY);
+            Display.setTextColor(NoColor);
+            for (uint8_t wire{}; wire < PIN_COUNT; wire++)
+              Display.print(CharNO);
+            Display.setCursor(ResultPositionX, ResultPositionY);
+            Display.print("      NO CABLE");
+            break;
+
+          case GOOD_CABLE:
+            Display.setCursor(PinsPositionX, PinsPositionY);
+            Display.setTextColor(GoodColor);
+            for (uint8_t wire{}; wire < PIN_COUNT; wire++)
+              Display.print(CharGood);
+            Display.setCursor(ResultPositionX, ResultPositionY);
+            Display.print("       GOOD");
+            break;
+
+          default:
+            Display.setCursor(PinsPositionX, PinsPositionY);
+            for (uint8_t wire{}; wire < PIN_COUNT; wire++)
+              if (BrokenWires & (1 << wire)) {
+                Display.setTextColor(BadColor);
+                Display.print(CharBroken);
+              } else {
+                Display.setTextColor(GoodColor);
+                Display.print(CharGood);
+              }
+
+            Display.setTextColor(BadColor);
+            Display.setCursor(ResultPositionX, ResultPositionY);
+            Display.print("       BAD");
+            break;
+          }
+
+          delay(static_cast<unsigned>(1000 / fps));
+        };
+        // while (!(!digitalRead(A6) and !digitalRead(34)))
+        //   ;
+        for (;;) // LOCK CODE FLOW
+          ;
+      }
     }
 
     // APROOF_MODE;
   };
+
+  /*
+   * Приватний метод використовується при тестування кібелів які йдуть в
+   * комплекті з Наніт Для активації режиму тестування потрібно включити кабель
+   * у 12 та перший порти. Це ключ для входу в режим тестування
+   *
+   * Для тестування кабелів використувуються 5 та 6 порти
+   *
+   * @return Функція повертає цілочисельне значення яке вказує на номер
+   * токоведучої жилки яка пошкоджена. Якщо кабель цілий то функція поверне
+   * НУЛЬ. Всі інші значення вказують що кабель пошкоджено
+   */
+
+  uint8_t WireManipulate() const {
+    uint8_t result{0};
+    const uint16_t VCC{1 << ADC_BITRATE};
+    const uint16_t Near{20};
+    const uint16_t NearVCC{VCC - Near};
+    const uint16_t NearGND{Near};
+
+    // ПЕРША ЖИЛА
+    { // todo дописатииманіпуляцію жилами
+      // маніпулюємо лінією П5_1
+      pinMode(P5_1, OUTPUT);
+      // і слухаємо лінію П6_4
+      pinMode(P6_4, INPUT_PULLUP);
+      // digi
+      // digitalWrire(P5_1,0);
+      delay(1);
+      // якщо сигнал слідує за маніпуляцією лінія ціла
+      if (digitalRead(P6_4))
+        // інакше позначаємо її як бита
+        result |= 1 << 0;
+    }
+
+    // ДРУГА ЖИЛА
+    // Читаємо аналогий сигнал П5_2 якщо сигнал близький до GND лінія ціла
+    if (analogRead(P5_2) > NearGND)
+      // інакше позгачаємо її битою
+      result |= 1 << 1;
+
+    // ТРЕТЯ ЖИЛА
+    // читаємно аналоговий сигнал, якщо він близький до Vcc лінія ціла
+    if (analogRead(P5_3) < NearVCC)
+      // інакше позгачаємо її битою
+      result |= 1 << 2;
+
+    // ЧЕТВЕРТА ЖИЛА
+    {
+      pinMode(P5_4, OUTPUT);
+      pinMode(P6_1, INPUT_PULLUP);
+      // digitalWrire(33,0);
+      delay(1);
+      if (digitalRead(P6_1))
+        result |= 1 << 3;
+    }
+
+    // П'ЯТА ЖИЛА
+    // Читаємо аналогий сигнал П6_2 якщо сигнал близький до GND лінія ціла
+    if (analogRead(P6_2) > NearGND)
+      // інакше позгначаємо її битою
+      result |= 1 << 4;
+
+    // ШОСТА ЖИЛА
+    // читаємно аналоговий сигнал, якщо він близький до Vcc лінія ціла
+    if (analogRead(P6_3) < NearVCC)
+      // інакше позгачаємо її битою
+      result |= 1 << 5;
+    return result;
+  }
   /**
    * @brief Destroy the Nanit object
-   * 
+   *
    */
-  inline ~Nanit()=default;
+  Nanit(const Nanit &) = delete; // rule of three
+  Nanit &operator=(const Nanit &) = delete;
+  inline ~Nanit() = default;
   FastLED_NeoPixel<1, BUILDIN_STRIP_LED, NEO_GRB> _strip_led;
-  public:
+
+public:
   Adafruit_ST7735 Display;
 };
-}// namespace NanitRobot
+} // namespace NanitRobot
 
 #endif
-

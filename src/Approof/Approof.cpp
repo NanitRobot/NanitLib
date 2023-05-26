@@ -31,6 +31,9 @@ void PinTestSetup() {
 
     pinMode(pin_to_set_mode, OUTPUT);
   }
+  #ifndef MEGACORE    
+  DDRE |= 1 << DDE6;
+  #endif
 }
 void PinTestLoop() {
   const uint8_t PinMap[k_port_count][k_pin_count]{
@@ -41,10 +44,10 @@ void PinTestLoop() {
       {P5_1, P5_2, P5_3, P5_4},                         // 5
       {P6_1, P6_2, P6_3, P6_4},                         // 6
       {P7_1, P7_2, P7_3, P7_4},                         // 7
-      {1,  0, P8_3, IGNORE_PIN},       // 8
+      {1, 0, P8_3, IGNORE_PIN},                         // 8
       {P9_1, P9_2, P9_3, P9_4},                         // 9
       {P10_1, P10_2, P10_3, P10_4},                     // 10
-      {14, 15, P11_3, P11_4},           // 11
+      {14, 15, P11_3, P11_4},                           // 11
       {IGNORE_PIN, IGNORE_PIN, IGNORE_PIN, IGNORE_PIN}  // 12
   };
 
@@ -52,6 +55,14 @@ void PinTestLoop() {
   for (uint8_t port{}; port < k_port_count; port++)
     for (uint8_t pin{}; pin < k_pin_count; pin++) {
       switch (PinMap[port][pin]) {
+#ifndef MEGACORE
+      case 71:
+        PORTE |= 1 << PORTE6;
+        delay(k_blink_delay);
+        PORTE &= ~(1 << PORTE6);
+        delay(k_blink_delay);
+        break;
+#endif
       case IGNORE_PIN:
         break;
       default: {
