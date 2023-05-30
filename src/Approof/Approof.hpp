@@ -13,6 +13,11 @@
   while (!digitalRead(J_7))                                                    \
     PinTestLoop();
 
-
+/*
+Підготовка до тестування пінів
+*/
 void PinTestSetup();
+/*
+Цикл тестування пінів
+*/
 void PinTestLoop();

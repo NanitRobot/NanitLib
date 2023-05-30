@@ -20,8 +20,16 @@
 /*Прочитати серійний*/
 
 typedef unsigned long int serial_num;
+
+/**
+ * @brief Фукція читає серійний номер виробу з енергонезалежної пам'яті
+ * 
+ * @return serial_num 
+ * 
+ */
 serial_num getSerialNum();
 /*Перевірити серійни на коректність*/
 bool checkSerialNum(serial_num num);
+/* Встановити серійний номер*/
 bool setSerialNum(const serial_num num) ;
 #endif

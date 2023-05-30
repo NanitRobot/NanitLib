@@ -3,7 +3,10 @@
 
 #include "NanitUtils.h"
 
-
+/**
+ * @brief Функція виконує ініціалізвцію вбудованого дисплею
+ * 
+ */
 void Nanit_Display_Init();
 
 void Nanit_RGB_Init();
