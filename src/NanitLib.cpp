@@ -192,7 +192,7 @@ float NanitRobot::Nanit::getBattaryPower() const {
 }
 
 void NanitRobot::Nanit::DrawBattGuage(
-    GuageType type = GuageType::SmileBatt) const {
+    GuageType type = GuageType::Simple) const {
   uint8_t Power{/*getBattaryPower()*/ 85};
   uint16_t color{};
 #define SIZE_Y (17)
