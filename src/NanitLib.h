@@ -14,8 +14,10 @@
 
 #define BATTARY_PIN                                                            \
   (69)  ///< Пін підключення батареї вхід АЦП для перевірки стану батареї
+        ///< доступний лише для читання
 #define BUILDIN_STRIP_LED                                                      \
-  (27)  ///< Пін підключення вбудованого адресного світлодіоду
+  (27)  ///< Пін підключення вбудованого адресного світлодіоду доступний лише
+        ///< для запису
 
 // /**
 //  * Піни які відрізняються в різних версіях плати
@@ -152,9 +154,9 @@
 
 ///Порт 8
 // #define P8_4 ()  ///< RESET
-#define P8_3 (5)  ///< 
-// #define P8_2 ()  ///< 
-// #define P8_1 ()  ///< 
+#define P8_3 (5)  ///<
+// #define P8_2 ()  ///<
+// #define P8_1 ()  ///<
 
 ///Порт 9
 #define P9_3                                                                   \
@@ -189,7 +191,7 @@
 #define TFT_CS   (48)  ///< Пін для роботи з картою пам'яті та дисплеєм
 #define TFT_RES  (37)  ///< Пін для роботи з картою пам'яті та дисплеєм
 #define TFT_DC   (49)  ///< Пін для роботи з картою пам'яті та дисплеєм
-#define TFT_BL   (4)  ///< Пін для роботи з картою пам'яті та дисплеєм
+#define TFT_BL   (4)  ///< Підсвідка дисплею пін доступний лише для запису
 #define TFT_SCK  (52)  ///< Пін для роботи з картою пам'яті та дисплеєм
 #define TFT_MOSI (51)  ///< Пін для роботи з картою пам'яті та дисплеєм
 
@@ -259,9 +261,9 @@ void Nanit_Base_Start();
  * Таблиця підключення світлодіода
  * |Пін|Макровизначення|Вивід світлодіода|
  * |:-:|:-------------:|:---------------:|
- * | 2 |  ```P4_x```   |        G        |
- * | 3 |  ```P4_x```   |        B        |
- * | 4 |  ```P4_x```   |        R        |
+ * | 2 |  ```P4_2```   |        G        |
+ * | 3 |  ```P4_3```   |        B        |
+ * | 4 |  ```P4_4```   |        R        |
  * | - |     НЕМА      |       GND       |
  *
  * Якщо світлодіод підключено до іншого порту та за іншою схемою працездатність
@@ -304,7 +306,11 @@ float Map(float inputValue, float inputMin, float inputMax, float rangeMin,
 
 class Nanit {
  public:
-  enum class GuageType { SmileBatt, Volts, Percent, LAST };
+  enum class GuageType {  ///< Типи індикторів батареї
+    SmileBatt,  ///< індикатор батареї у вигляді "емоційної батарейки"
+    Simple,     ///< простий індикатор батарейки
+    LAST
+  };
   /**
    * Отримати адресу розміщення створеного об'єкту класу Nanit
    */
@@ -312,6 +318,26 @@ class Nanit {
     static Nanit instance;
     return instance;
   }
+
+  /**
+   * @brief Увімкнути підсвідку дисплея
+   *
+   */
+  void backlightOn();
+  /**
+   * @brief Вимкнути підсвідку дисплея
+   *
+   */
+  void backlightOff();
+
+  /**
+   * @brief Встановити рівень яскравості підсвідки
+   *
+   * @param brightness[in] Рівень яскравості
+   */
+
+  void backlightSet(uint8_t brightness);
+
   /**
    * @brief Get the Batary Voltage object
    *
@@ -324,12 +350,13 @@ class Nanit {
    * @return float
    */
   float getBattaryPower() const;
-  /**
-   * @brief
-   *
-   * @param void
-   */
-  void DrawBattGuage(GuageType type = GuageType::SmileBatt) const;
+
+/**
+ * @brief 
+ * 
+ * @param type 
+ */
+  void DrawBattGuage(GuageType type = GuageType::Simple) const;
   // L298NX2 DCMotors(MOTOR_ENABLE, MOTOR1_A, MOTOR2_A, MOTOR_ENABLE, MOTOR1_B,
   // MOTOR2_B); 1 & 12 motors class DCMotor { public:
   //   DCMotor() {}
@@ -383,11 +410,11 @@ class Nanit {
 
     Display.initR(INITR_BLACKTAB);
 
-    Display.fillScreen(ST7735_WHITE);
+    Display.fillScreen(_background_color);
     Display.setTextColor(ST7735_BLACK);
 
     pinMode(TFT_BL, OUTPUT);
-    digitalWrite(TFT_BL, HIGH);
+    backlightSet(200);
     Display.setRotation(1);
     {
       //==================================================================
@@ -417,11 +444,10 @@ class Nanit {
         Display.fillScreen(0xFFFF);
 
 #define PIN_COUNT  (6)
-#define NO_CABLE   ((1 << PIN_COUNT) - 1) ///< мітка
-#define GOOD_CABLE (0) ///< Мітка успішного тесту кабелю
+#define NO_CABLE   ((1 << PIN_COUNT) - 1)  ///< мітка
+#define GOOD_CABLE (0)  ///< Мітка успішного тесту кабелю
         // Конфігурування  відображення
         const uint16_t               // Кольори
-            BackGrougColor{0xFFFF},  //
             TextColor{0x0},          //
             GoodColor{0x00FF >> 3},  //
             NoColor{0xC00},          //
@@ -449,7 +475,7 @@ class Nanit {
         Display.println();
         const char CharHeiht{Display.getCursorY()};
 
-        Display.fillRect(0, 0, CharWitdh * 2, CharHeiht, BackGrougColor);
+        Display.fillRect(0, 0, CharWitdh * 2, CharHeiht, _background_color);
         Display.setCursor(0, 0);
         {
           Display.setTextColor(TextColor);
@@ -505,9 +531,9 @@ class Nanit {
         }
         while (true) {
           Display.fillRect(PinsPositionX, PinsPositionY, CharWitdh * PIN_COUNT,
-                           CharHeiht, BackGrougColor);
+                           CharHeiht, _background_color);
           Display.fillRect(ResultPositionX, ResultPositionY, CharWitdh * 20,
-                           CharHeiht, BackGrougColor);
+                           CharHeiht, _background_color);
           char BrokenWires = WireManipulate();
           switch (BrokenWires) {
             case NO_CABLE:
@@ -633,9 +659,22 @@ class Nanit {
   Nanit &operator=(const Nanit &) = delete;
   inline ~Nanit() = default;
   FastLED_NeoPixel<1, BUILDIN_STRIP_LED, NEO_GRB> _strip_led;
+  //
+  uint16_t                               //
+      _background_color{ST7735_WHITE},   //
+      _guage_line_color{0x0000},         //
+      _guage_full_charge_color{0x04A0},  //
+      _guage_80_charge_color{0x06A0},    //
+      _guage_60_charge_color{0xFF00},    //
+      _guage_40_charge_color{0xFCA0},    //
+      _guage_20_charge_color{0xC800};    //
+
+  uint8_t                 //
+      _guage_X_position,  //
+      _guage_Y_position;  //
 
  public:
-  Adafruit_ST7735 Display;
+  Adafruit_ST7735 Display; ///< Дисплей Nanit
 };
 }  // namespace NanitRobot
 

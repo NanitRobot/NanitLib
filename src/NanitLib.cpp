@@ -2,10 +2,8 @@
 
 Version getBoardVersion() {
   pinMode(39, INPUT_PULLUP);
-  if (digitalRead(39))
-    return Version(2);
-  if (!digitalRead(39))
-    return Version(3, 1);
+  if (digitalRead(39)) return Version(2);
+  if (!digitalRead(39)) return Version(3, 1);
 }
 
 Version getLibVersion() {
@@ -13,20 +11,20 @@ Version getLibVersion() {
 }
 
 String getSerialNumber() {
-  if(!checkSerialNum(getSerialNum())){
-    //Запрошення на дисплей підключити до серійного порту    
-  START_NANIT.Display.setCursor(10, 100);
-  START_NANIT.Display.setTextSize(0);
-    #define WAIT_FIRST_RUN (30)
-  START_NANIT.Display.print("Please open terminal");
+  if (!checkSerialNum(getSerialNum())) {
+    //Запрошення на дисплей підключити до серійного порту
+    START_NANIT.Display.setCursor(10, 100);
+    START_NANIT.Display.setTextSize(0);
+#define WAIT_FIRST_RUN (30)
+    START_NANIT.Display.print("Please open terminal");
   }
   while (!checkSerialNum(getSerialNum())) {
     // допоки не отримаємо серійний номер нічого не вийде
     Serial.println("Please enter correct serial nummer");
-    unsigned long unlock{millis()+(WAIT_FIRST_RUN*1000)};
+    unsigned long unlock{millis() + (WAIT_FIRST_RUN * 1000)};
     while (Serial.available() == 0) {
-      if(millis()>unlock){
-        setSerialNum(1010123000);      
+      if (millis() > unlock) {
+        setSerialNum(1010123000);
         Serial.println("A gray serial number");
       }
     }
@@ -44,7 +42,6 @@ String getSerialNumber() {
 };
 
 void NanitInfo() {
-
   START_NANIT.Display.setCursor(10, 10);
   START_NANIT.Display.setRotation(1);
   START_NANIT.Display.setTextSize(2);
@@ -75,7 +72,7 @@ void Nanit_RGB_Write(byte red, byte green, byte blue) {
   green = (green >= 0 && green <= 255) ? green : 0;
   blue = (blue >= 0 && blue <= 255) ? blue : 0;
 
-  analogWrite(P4_4, red); // 46 це або P4_4, або P4_6 (стара версія)
+  analogWrite(P4_4, red);  // 46 це або P4_4, або P4_6 (стара версія)
   analogWrite(P4_2, green);
   analogWrite(P4_3, blue);
 }
@@ -161,34 +158,32 @@ float NanitRobot::Nanit::getBattaryPower() const {
   +---+-----------+----------+
   */
 #if defined(BAT_FULL_CHARGE)
-  if (voltage > BAT_FULL_CHARGE)
-    return 100.f;
+  if (voltage > BAT_FULL_CHARGE) return 100.f;
 #else
-  if (voltage > 4.24f)
-    return 100.f;
+  if (voltage > 4.24f) return 100.f;
 #endif
   if (4.24f > voltage and voltage > 4.08f)
-    return NanitRobot::Map(voltage, 4.24f, 4.08f, 100.f, 85.f); // 1
+    return NanitRobot::Map(voltage, 4.24f, 4.08f, 100.f, 85.f);  // 1
   if (4.08f > voltage and voltage > 4.06f)
-    return NanitRobot::Map(voltage, 4.08f, 4.06f, 85.f, 81.7f); // 2
+    return NanitRobot::Map(voltage, 4.08f, 4.06f, 85.f, 81.7f);  // 2
   if (4.06f > voltage and voltage > 4.02f)
-    return NanitRobot::Map(voltage, 4.06f, 4.02f, 81.7f, 76.7f); // 3
+    return NanitRobot::Map(voltage, 4.06f, 4.02f, 81.7f, 76.7f);  // 3
   if (4.02f > voltage and voltage > 3.98f)
-    return NanitRobot::Map(voltage, 4.02f, 3.98f, 76.7f, 73.4f); // 4
+    return NanitRobot::Map(voltage, 4.02f, 3.98f, 76.7f, 73.4f);  // 4
   if (3.98f > voltage and voltage > 3.88f)
-    return NanitRobot::Map(voltage, 3.98, 3.88, 73.4, 58.4); // 5
+    return NanitRobot::Map(voltage, 3.98, 3.88, 73.4, 58.4);  // 5
   if (3.88f > voltage and voltage > 3.8f)
-    return NanitRobot::Map(voltage, 3.88f, 3.8f, 58.4f, 22.f); // 6
+    return NanitRobot::Map(voltage, 3.88f, 3.8f, 58.4f, 22.f);  // 6
   if (3.8f > voltage and voltage > 3.68f)
-    return NanitRobot::Map(voltage, 3.88f, 3.68f, 22.f, 8.7f); // 7
+    return NanitRobot::Map(voltage, 3.88f, 3.68f, 22.f, 8.7f);  // 7
   if (3.68f > voltage and voltage > 3.54f)
-    return NanitRobot::Map(voltage, 3.68f, 3.54f, 8.7f, 5.4f); // 8
+    return NanitRobot::Map(voltage, 3.68f, 3.54f, 8.7f, 5.4f);  // 8
   if (3.54f > voltage and voltage > 3.32f)
-    return NanitRobot::Map(voltage, 3.54, 3.32, 5.4, 2.1); // 9
+    return NanitRobot::Map(voltage, 3.54, 3.32, 5.4, 2.1);  // 9
   if (3.32f > voltage and voltage > 3.f)
-    return NanitRobot::Map(voltage, 3.32f, 3.f, 2.1f, .5f); // 10
+    return NanitRobot::Map(voltage, 3.32f, 3.f, 2.1f, .5f);  // 10
   if (3.f > voltage and voltage > 2.5f)
-    return NanitRobot::Map(voltage, 3.f, 2.5f, .5f, .0f); // 11
+    return NanitRobot::Map(voltage, 3.f, 2.5f, .5f, .0f);  // 11
 #else
 #error No battery type specified
 #endif
@@ -198,117 +193,135 @@ float NanitRobot::Nanit::getBattaryPower() const {
 
 void NanitRobot::Nanit::DrawBattGuage(
     GuageType type = GuageType::SmileBatt) const {
-  uint8_t Power{getBattaryPower()};
+  uint8_t Power{/*getBattaryPower()*/ 85};
   uint16_t color{};
 #define SIZE_Y (17)
 
 #define X ((160 - 15) - 2)
 #define Y (2)
 
-#define ICON_BACKGROUND_COLOR (0xffff)
-#define ICON_LINE_COLOR (0x0000)
-#define ICON_FULL_CHARGE_COLOR (0x04A0)
-#define ICON_80_CHARGE_COLOR (0x06A0)
-#define ICON_60_CHARGE_COLOR (0xFF00)
-#define ICON_40_CHARGE_COLOR (0xFCA0)
-#define ICON_20_CHARGE_COLOR (0xC800)
-
-  color = ICON_20_CHARGE_COLOR;
-  if (Power > 20)
-    color = ICON_40_CHARGE_COLOR;
-  if (Power > 40)
-    color = ICON_60_CHARGE_COLOR;
-  if (Power > 60)
-    color = ICON_80_CHARGE_COLOR;
-  if (Power > 80)
-    color = ICON_FULL_CHARGE_COLOR;
+  color = _guage_20_charge_color;
+  if (Power > 20) color = _guage_40_charge_color;
+  if (Power > 40) color = _guage_60_charge_color;
+  if (Power > 60) color = _guage_80_charge_color;
+  if (Power > 80) color = _guage_full_charge_color;
   switch (type) {
-  case GuageType::SmileBatt: {
-    // face
-    {
-      Display.fillRect(X + 3, Y + 3, 10, map(Power, 0, 100, SIZE_Y - 1, 0),
-                       ICON_BACKGROUND_COLOR); // empty
-      Display.fillRect(X + 3, Y + 3 + map(Power, 0, 100, SIZE_Y - 1, 0), 10,
-                       map(Power, 100, 0, SIZE_Y - 1, 1), color); // cherged
+    case GuageType::SmileBatt: {
+      // face
+      {
+        Display.fillRect(X + 3, Y + 3, 10, map(Power, 0, 100, SIZE_Y - 1, 0),
+                         _background_color);  // empty
+        Display.fillRect(X + 3, Y + 3 + map(Power, 0, 100, SIZE_Y - 1, 0), 10,
+                         map(Power, 100, 0, SIZE_Y - 1, 1), color);  // cherged
 
-      Display.drawPixel(X + 3, Y + 3, ICON_LINE_COLOR);
-      Display.drawPixel(X + 12, Y + 3, ICON_LINE_COLOR);
-      Display.drawPixel(X + 3, Y + SIZE_Y + 2, ICON_LINE_COLOR);
-      Display.drawPixel(X + 12, Y + SIZE_Y + 2, ICON_LINE_COLOR);
-    }
-    // aye
-    {
-      Display.drawLine(X + 4, Y + 6, X + 6, Y + 6, ICON_LINE_COLOR);
-      Display.drawLine(X + 9, Y + 6, X + 11, Y + 6, ICON_LINE_COLOR);
-      Display.drawLine(X + 10, Y + 5, X + 10, Y + 7, ICON_LINE_COLOR);
-    }
-    { // SMILE
-      //  100
-      if (color == ICON_FULL_CHARGE_COLOR) {
-        Display.drawPixel(X + 10, Y + 9, ICON_LINE_COLOR);
-        Display.drawPixel(X + 5, Y + 9, ICON_LINE_COLOR);
-        Display.drawPixel(X + 9, Y + 10, ICON_LINE_COLOR);
-        Display.drawPixel(X + 6, Y + 10, ICON_LINE_COLOR);
-        Display.drawLine(X + 7, Y + 11, X + 8, Y + 11, ICON_LINE_COLOR);
+        Display.drawPixel(X + 3, Y + 3, _guage_line_color);
+        Display.drawPixel(X + 12, Y + 3, _guage_line_color);
+        Display.drawPixel(X + 3, Y + SIZE_Y + 2, _guage_line_color);
+        Display.drawPixel(X + 12, Y + SIZE_Y + 2, _guage_line_color);
       }
-      // 80
-
-      if (color == ICON_80_CHARGE_COLOR) {
-        Display.drawLine(X + 5, Y + 9, X + 6, Y + 9, ICON_LINE_COLOR);
-        Display.drawLine(X + 9, Y + 9, X + 10, Y + 9, ICON_LINE_COLOR);
-        Display.drawLine(X + 7, Y + 10, X + 8, Y + 10, ICON_LINE_COLOR);
+      // aye
+      {
+        Display.drawLine(X + 4, Y + 6, X + 6, Y + 6, _guage_line_color);
+        Display.drawLine(X + 9, Y + 6, X + 11, Y + 6, _guage_line_color);
+        Display.drawLine(X + 10, Y + 5, X + 10, Y + 7, _guage_line_color);
       }
-      // 60
+      {  // SMILE
+        //  100
+        if (color == _guage_full_charge_color) {
+          Display.drawPixel(X + 10, Y + 9, _guage_line_color);
+          Display.drawPixel(X + 5, Y + 9, _guage_line_color);
+          Display.drawPixel(X + 9, Y + 10, _guage_line_color);
+          Display.drawPixel(X + 6, Y + 10, _guage_line_color);
+          Display.drawLine(X + 7, Y + 11, X + 8, Y + 11, _guage_line_color);
+        }
+        // 80
 
-      if (color == ICON_60_CHARGE_COLOR)
-        Display.drawLine(X + 5, Y + 10, X + 10, Y + 10, ICON_LINE_COLOR);
-      // 40
+        if (color == _guage_80_charge_color) {
+          Display.drawLine(X + 5, Y + 9, X + 6, Y + 9, _guage_line_color);
+          Display.drawLine(X + 9, Y + 9, X + 10, Y + 9, _guage_line_color);
+          Display.drawLine(X + 7, Y + 10, X + 8, Y + 10, _guage_line_color);
+        }
+        // 60
 
-      if (color == ICON_40_CHARGE_COLOR) {
-        Display.drawLine(X + 5, Y + 10, X + 6, Y + 10, ICON_LINE_COLOR);
-        Display.drawLine(X + 9, Y + 10, X + 10, Y + 10, ICON_LINE_COLOR);
-        Display.drawLine(X + 7, Y + 9, X + 8, Y + 9, ICON_LINE_COLOR);
+        if (color == _guage_60_charge_color)
+          Display.drawLine(X + 5, Y + 10, X + 10, Y + 10, _guage_line_color);
+        // 40
+
+        if (color == _guage_40_charge_color) {
+          Display.drawLine(X + 5, Y + 10, X + 6, Y + 10, _guage_line_color);
+          Display.drawLine(X + 9, Y + 10, X + 10, Y + 10, _guage_line_color);
+          Display.drawLine(X + 7, Y + 9, X + 8, Y + 9, _guage_line_color);
+        }
+        // 20
+
+        if (color == _guage_20_charge_color) {
+          Display.drawLine(X + 7, Y + 9, X + 8, Y + 9, _guage_line_color);
+          Display.drawPixel(X + 6, Y + 10, _guage_line_color);
+          Display.drawPixel(X + 9, Y + 10, _guage_line_color);
+          Display.drawPixel(X + 5, Y + 11, _guage_line_color);
+          Display.drawPixel(X + 10, Y + 11, _guage_line_color);
+        }
+      }  // 0
+      {  // BACK_GROUND
+        Display.drawLine(X + 0x5, Y, X + 0xA, Y, _background_color);
+        Display.drawLine(X + 0x3, Y + 0x1, X + 12, Y + 1, _background_color);
+        Display.drawLine(X + 2, Y + 2, X + 13, Y + 2, _background_color);
+        Display.drawLine(X + 1, Y + 3, X + 1, Y + SIZE_Y + 2,
+                         _background_color);
+        Display.drawLine(X + 14, Y + 3, X + 14, Y + SIZE_Y + 2,
+                         _background_color);
+
+        Display.drawPixel(X + 2, Y + SIZE_Y + 2, _background_color);
+        Display.drawPixel(X + 13, Y + SIZE_Y + 2, _background_color);
+
+        Display.drawPixel(X + 3, Y + SIZE_Y + 3, _background_color);
+        Display.drawPixel(X + 12, Y + SIZE_Y + 3, _background_color);
+        Display.drawLine(X + 3, Y + SIZE_Y + 4, X + 12, Y + SIZE_Y + 4,
+                         _background_color);
       }
-      // 20
-
-      if (color == ICON_20_CHARGE_COLOR) {
-        Display.drawLine(X + 7, Y + 9, X + 8, Y + 9, ICON_LINE_COLOR);
-        Display.drawPixel(X + 6, Y + 10, ICON_LINE_COLOR);
-        Display.drawPixel(X + 9, Y + 10, ICON_LINE_COLOR);
-        Display.drawPixel(X + 5, Y + 11, ICON_LINE_COLOR);
-        Display.drawPixel(X + 10, Y + 11, ICON_LINE_COLOR);
+      {  // BODY
+        Display.drawLine(X + 6, Y + 1, X + 9, Y + 1, _guage_line_color);
+        Display.drawLine(X + 4, Y + 2, X + 11, Y + 2, _guage_line_color);
+        Display.drawLine(X + 2, Y + 4, X + 2, Y + SIZE_Y + 1,
+                         _guage_line_color);
+        Display.drawLine(X + 13, Y + 4, X + 13, Y + SIZE_Y + 1,
+                         _guage_line_color);
+        Display.drawLine(X + 4, Y + SIZE_Y + 3, X + 11, Y + SIZE_Y + 3,
+                         _guage_line_color);
       }
-    } // 0
-    { // BACK_GROUND
-      Display.drawLine(X + 0x5, Y, X + 0xA, Y, ICON_BACKGROUND_COLOR);
-      Display.drawLine(X + 0x3, Y + 0x1, X + 12, Y + 1, ICON_BACKGROUND_COLOR);
-      Display.drawLine(X + 2, Y + 2, X + 13, Y + 2, ICON_BACKGROUND_COLOR);
-      Display.drawLine(X + 1, Y + 3, X + 1, Y + SIZE_Y + 2,
-                       ICON_BACKGROUND_COLOR);
-      Display.drawLine(X + 14, Y + 3, X + 14, Y + SIZE_Y + 2,
-                       ICON_BACKGROUND_COLOR);
+    } break;
+    case GuageType::Simple: {
+      {
+        Display.fillRect(X - 1, Y, map(Power, 0, 100, SIZE_Y - 1, 0), 10,
+                         _background_color);
 
-      Display.drawPixel(X + 2, Y + SIZE_Y + 2, ICON_BACKGROUND_COLOR);
-      Display.drawPixel(X + 13, Y + SIZE_Y + 2, ICON_BACKGROUND_COLOR);
+        Display.fillRect(X - 1 + map(Power, 0, 100, SIZE_Y - 1, 0) - 2, Y,
+                         map(Power, 100, 0, SIZE_Y - 1, 1), 10,
+                         color);  // cherged
 
-      Display.drawPixel(X + 3, Y + SIZE_Y + 3, ICON_BACKGROUND_COLOR);
-      Display.drawPixel(X + 12, Y + SIZE_Y + 3, ICON_BACKGROUND_COLOR);
-      Display.drawLine(X + 3, Y + SIZE_Y + 4, X + 12, Y + SIZE_Y + 4,
-                       ICON_BACKGROUND_COLOR);
-    }
-    { // BODY
-      Display.drawLine(X + 6, Y + 1, X + 9, Y + 1, ICON_LINE_COLOR);
-      Display.drawLine(X + 4, Y + 2, X + 11, Y + 2, ICON_LINE_COLOR);
-      Display.drawLine(X + 2, Y + 4, X + 2, Y + SIZE_Y + 1, ICON_LINE_COLOR);
-      Display.drawLine(X + 13, Y + 4, X + 13, Y + SIZE_Y + 1, ICON_LINE_COLOR);
-      Display.drawLine(X + 4, Y + SIZE_Y + 3, X + 11, Y + SIZE_Y + 3,
-                       ICON_LINE_COLOR);
-    }
-  } break;
-  case GuageType::LAST: {
-  } break;
+        Display.drawLine(X - 4, Y + 3, X - 4, Y + 6, _guage_line_color);  // |1
+        Display.drawLine(X - 3, Y + 1, X - 3, Y + 8, _guage_line_color);  // |1
+        Display.drawLine(SIZE_Y + X - 3, Y + 1, X + SIZE_Y - 3, Y + 8,
+                         _guage_line_color);  // |2
 
-  default:
-    break;
+        Display.drawLine(X - 2, Y, X + SIZE_Y - 4, Y,
+                         _guage_line_color);  // _top
+
+        Display.drawLine(X - 2, Y + 9, X + SIZE_Y - 4, Y + 9,
+                         _guage_line_color);  // _buttom
+      }
+    } break;
+    case GuageType::LAST: {
+    } break;
+
+    default:
+      break;
   }
 }
+
+void ::NanitRobot::Nanit::backlightOff() { backlightSet(0x00); };
+void ::NanitRobot::Nanit::backlightOn() { backlightSet(0xFF); };
+
+void ::NanitRobot::Nanit::backlightSet(uint8_t brightness) {
+  analogWrite(TFT_BL, brightness);
+};
