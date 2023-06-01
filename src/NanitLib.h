@@ -351,11 +351,11 @@ class Nanit {
    */
   float getBattaryPower() const;
 
-/**
- * @brief 
- * 
- * @param type 
- */
+  /**
+   * @brief
+   *
+   * @param type
+   */
   void DrawBattGuage(GuageType type = GuageType::Simple) const;
   // L298NX2 DCMotors(MOTOR_ENABLE, MOTOR1_A, MOTOR2_A, MOTOR_ENABLE, MOTOR1_B,
   // MOTOR2_B); 1 & 12 motors class DCMotor { public:
@@ -382,16 +382,23 @@ class Nanit {
   // 9 Gyro
   // 10 line
 
+  /**
+   * @brief
+   *
+   * @param red
+   * @param grean
+   * @param blue
+   * @param brightness
+   */
   void BuildinRGB(uint8_t red, uint8_t grean, uint8_t blue,
-                  uint8_t brightness = 255) {
-    _strip_led.setBrightness(brightness);
-    _strip_led.setPixelColor(0, _strip_led.Color(red, grean, blue));
-    _strip_led.show();
-  }
-  void BuildinRGB(uint32_t color, uint8_t brightness = 255) {
-    _strip_led.setPixelColor(0, color);
-    _strip_led.show();
-  }
+                  uint8_t brightness = 255);
+  /**
+   * @brief
+   *
+   * @param color
+   * @param brightness
+   */
+  void BuildinRGB(uint32_t color, uint8_t brightness = 255);
   Servo ServoMotor;
 
  private:
@@ -595,62 +602,7 @@ class Nanit {
    * НУЛЬ. Всі інші значення вказують що кабель пошкоджено
    */
 
-  uint8_t WireManipulate() const {
-    uint8_t result{0};
-    const uint16_t VCC{1 << ADC_BITRATE};
-    const uint16_t Near{20};
-    const uint16_t NearVCC{VCC - Near};
-    const uint16_t NearGND{Near};
-
-    // ПЕРША ЖИЛА
-    {  // todo дописатииманіпуляцію жилами
-      // маніпулюємо лінією П5_1
-      pinMode(P5_1, OUTPUT);
-      // і слухаємо лінію П6_4
-      pinMode(P6_4, INPUT_PULLUP);
-      // digi
-      // digitalWrire(P5_1,0);
-      delay(1);
-      // якщо сигнал слідує за маніпуляцією лінія ціла
-      if (digitalRead(P6_4))
-        // інакше позначаємо її як бита
-        result |= 1 << 0;
-    }
-
-    // ДРУГА ЖИЛА
-    // Читаємо аналогий сигнал П5_2 якщо сигнал близький до GND лінія ціла
-    if (analogRead(P5_2) > NearGND)
-      // інакше позгачаємо її битою
-      result |= 1 << 1;
-
-    // ТРЕТЯ ЖИЛА
-    // читаємно аналоговий сигнал, якщо він близький до Vcc лінія ціла
-    if (analogRead(P5_3) < NearVCC)
-      // інакше позгачаємо її битою
-      result |= 1 << 2;
-
-    // ЧЕТВЕРТА ЖИЛА
-    {
-      pinMode(P5_4, OUTPUT);
-      pinMode(P6_1, INPUT_PULLUP);
-      // digitalWrire(33,0);
-      delay(1);
-      if (digitalRead(P6_1)) result |= 1 << 3;
-    }
-
-    // П'ЯТА ЖИЛА
-    // Читаємо аналогий сигнал П6_2 якщо сигнал близький до GND лінія ціла
-    if (analogRead(P6_2) > NearGND)
-      // інакше позгначаємо її битою
-      result |= 1 << 4;
-
-    // ШОСТА ЖИЛА
-    // читаємно аналоговий сигнал, якщо він близький до Vcc лінія ціла
-    if (analogRead(P6_3) < NearVCC)
-      // інакше позгачаємо її битою
-      result |= 1 << 5;
-    return result;
-  }
+  uint8_t WireManipulate() const;
   /**
    * @brief Destroy the Nanit object
    *
@@ -674,7 +626,7 @@ class Nanit {
       _guage_Y_position;  //
 
  public:
-  Adafruit_ST7735 Display; ///< Дисплей Nanit
+  Adafruit_ST7735 Display;  ///< Дисплей Nanit
 };
 }  // namespace NanitRobot
 
