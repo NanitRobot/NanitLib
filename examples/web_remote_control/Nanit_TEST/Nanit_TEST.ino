@@ -6,9 +6,9 @@ SoftwareSerial softSerial(P6_3, P6_2); // RX, TX
 void setup() {
   Nanit_Base_Start();
   //MOTOR & BUTTON
-  pinMode(40, OUTPUT);
-  pinMode(3, INPUT);
-  digitalWrite(40, 1);
+  pinMode(MOTOR_ENABLE, OUTPUT);
+  pinMode(BUTTON, INPUT);
+  digitalWrite(MOTOR_ENABLE, 1);
   //PORT 1
   pinMode(P1_1, INPUT);
   pinMode(P1_2, INPUT);
