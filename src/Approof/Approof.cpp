@@ -1,10 +1,10 @@
 #include "Approof.hpp"
 #include "../NanitLib.h"
 
-const uint8_t k_blink_delay{80}; // Затримка між перемиканнями
-const uint8_t k_port_count{12}; // Кількість зовнішніх портів
-const uint8_t k_pin_count{4}; // кількість пінів в роз'ємах як ввикористовуються
-                              // для обміну даними з перефірійними пристроями
+const uint8_t k_blink_delay{80}; ///< Затримка між перемиканнями
+const uint8_t k_port_count{12}; ///< Кількість зовнішніх портів
+const uint8_t k_pin_count{4}; ///< кількість пінів в роз'ємах як ввикористовуються
+                              /// для обміну даними з перефірійними пристроями
 
 // #define APROOF_MODE                                                            \
 

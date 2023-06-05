@@ -1,8 +1,14 @@
-#pragma once
 /**
+ * @file Approof.hpp
  * @author Sam4uk
- * @date 5-May-23
-*/
+ * @brief Колекція функцій які допомогають оцінити працездатність наьору Nanit
+ * @version 0.1
+ * @date 2023-05-05
+ *
+ * @copyright Copyright (c) 2023
+ *
+ */
+#pragma once
 
 #define APROOF_MODE                                                            \
   pinMode(J_7, INPUT_PULLUP);                                                  \
@@ -10,8 +16,7 @@
     Display.println("Pin test mode");                                          \
     PinTestSetup();                                                            \
   }                                                                            \
-  while (!digitalRead(J_7))                                                    \
-    PinTestLoop();
+  while (!digitalRead(J_7)) PinTestLoop();
 
 /*
 Підготовка до тестування пінів
