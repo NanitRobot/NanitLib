@@ -1,3 +1,13 @@
+/**
+ * @file Approof.cpp
+ * @author Sam4uk
+ * @brief Реалізація функцій які допомогають оцінити працездатність наьору Nanit
+ * @version 0.1
+ * @date 2023-05-05
+ * 
+ * @copyright Copyright (c) 2023
+ * 
+ */
 #include "Approof.hpp"
 #include "../NanitLib.h"
 

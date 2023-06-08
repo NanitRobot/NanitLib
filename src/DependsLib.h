@@ -1,8 +1,13 @@
 /**
+ * @file DependsLib.h
  * @author Sam4uk
- * @date 23-03-23
- * @details Інклюди бібілотек третіх сторін
-*/
+ * @brief Інклюди бібілотек третіх сторін
+ * @version 0.1
+ * @date 2023-03-23
+ * 
+ * @copyright Copyright (c) 2023
+ * 
+ */
 #ifndef _DEPENDS_LIB_H_
 #define _DEPENDS_LIB_H_
 #include <FastLED_NeoPixel.h> ///< Стороння біблітека для керування адресними світлодіодами
