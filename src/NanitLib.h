@@ -1,3 +1,16 @@
+/**
+ * @file NanitLib.h
+ * @author NanitRobot
+ * @authors KovalRM, Sam4uk
+ * @brief Головний файл бібіліотеки NanitLib
+ * @details В цьому файлі зосереджені всі головні макровизначення та оголошення
+ * класів функцій та медодів необхідних для зручного програмуваня та
+ * користування наборами плат для вивчення програмування
+ * @version 1.3.4
+ *
+ * @copyright Copyright NanitRobot(c) 2022
+ *
+ */
 #ifndef NANITLIB_H_
 #define NANITLIB_H_
 
@@ -334,6 +347,10 @@ class Nanit {
    * @brief Встановити рівень яскравості підсвідки
    *
    * @param brightness[in] Рівень яскравості
+   *
+   * При яскравості рівній \b 0 робота методу тотожна \code backlightOff()
+   * Максимальна можлива яскаравість \b 255 . Будьте обережні з числами що
+   * перевищують значення 255 (переповнення)
    */
 
   void backlightSet(uint8_t brightness);
@@ -383,20 +400,25 @@ class Nanit {
   // 10 line
 
   /**
-   * @brief
+   * @brief Визначення кольору світіння вбудованого світлодіода
    *
-   * @param red
-   * @param grean
-   * @param blue
-   * @param brightness
+   * @param red[in] Рівень яскравості червоного кристалу
+   * @param grean[in] Рівень яскравості зеленого кристалу
+   * @param blue[in] Рівень яскравості синього кристалу
+   * @param brightness[in] Загальний рівень світіння кристалів
+   *
+   * Всі параметри можуть приймати значення від \b 0 до \b 255
    */
   void BuildinRGB(uint8_t red, uint8_t grean, uint8_t blue,
                   uint8_t brightness = 255);
   /**
-   * @brief
+   * @brief Визначення кольору світіння вбудованого світлодіода
    *
-   * @param color
-   * @param brightness
+   * @param color[in] Визначення кольору світіння всіх трьох кристалів. Число
+   * може примати 32бітне значення. Перший байт відповідає за червоний кристал,
+   * другий -- зелений, третій -- синій
+   * @param brightness[in] Визначає рівень яскравості світіння всіх кристалів
+   * одночасно
    */
   void BuildinRGB(uint32_t color, uint8_t brightness = 255);
   Servo ServoMotor;
@@ -455,17 +477,17 @@ class Nanit {
 #define GOOD_CABLE (0)  ///< Мітка успішного тесту кабелю
         // Конфігурування  відображення
         const uint16_t               // Кольори
-            TextColor{0x0},          //
-            GoodColor{0x00FF >> 3},  //
-            NoColor{0xC00},          //
-            BadColor{0xF800};        //
+            TextColor{0x0},          // тексту
+            GoodColor{0x00FF >> 3},  // цілого кабелю
+            NoColor{0xC00},          // відсутнього кабелю
+            BadColor{0xF800};        // пошкодженого кабелю
 
         //
         const char            // Умовні позначик
             CHAR('#'),        //
-            CharBroken{'X'},  //
-            CharGood{'Y'},    //
-            CharNO{'O'};      //
+            CharBroken{'X'},  // пошкоджена жила
+            CharGood{'Y'},    // ціла жила
+            CharNO{'O'};      // відсутній кабель
 
         //
         uint8_t               //
@@ -474,7 +496,7 @@ class Nanit {
             ResultPositionY,  //
             ResultPositionX;  //
 
-        unsigned fps{2};  // Кількість "кадрів"
+        unsigned fps{2};  // Кількість "кадрів" Чатота оновлення екрану
 
         Display.setCursor(0, 0);
         Display.print(CHAR);
@@ -613,13 +635,13 @@ class Nanit {
   FastLED_NeoPixel<1, BUILDIN_STRIP_LED, NEO_GRB> _strip_led;
   //
   uint16_t                               //
-      _background_color{ST7735_WHITE},   //
-      _guage_line_color{0x0000},         //
-      _guage_full_charge_color{0x04A0},  //
-      _guage_80_charge_color{0x06A0},    //
-      _guage_60_charge_color{0xFF00},    //
-      _guage_40_charge_color{0xFCA0},    //
-      _guage_20_charge_color{0xC800};    //
+      _background_color{ST7735_WHITE},   ///<  Привітне поле визначає колір фону вікна. Використвується при замальовуванні елементів
+      _guage_line_color{0x0000},         ///< Колір промальовування лійній індикатора заряду
+      _guage_full_charge_color{0x04A0},  ///< Колір індикатора заряду при повному заряді вищому за 80%
+      _guage_80_charge_color{0x06A0},    ///< Колір індикатора заряду при рівні заряду нижчому за 80%
+      _guage_60_charge_color{0xFF00},    ///< Колір індикатора заряду при рівні заряду нижчому за 60%
+      _guage_40_charge_color{0xFCA0},    ///< Колір індикатора заряду при рівні заряду нижчому за 40%
+      _guage_20_charge_color{0xC800};    ///< Колір індикатора заряду при рівні заряду нижчому за 20%
 
   uint8_t                 //
       _guage_X_position,  //

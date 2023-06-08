@@ -9,6 +9,9 @@
 		"C_Cpp.default.defines": [
 			"__AVR_ATmega2560__", // ,
 			"MEGACORE"
-		]
+		],
+		"editor.rulers": [72, 80, 100, 120]
+		// 
+		// "editorRuler.foreground": "#ff4081
 	}
 }
