@@ -52,7 +52,7 @@ PROJECT_BRIEF          = "Бібліотека для вивчення прог�
 # the logo to the output directory.
 
 #PROJECT_LOGO           = "./DiConIcon.ico"
-PROJECT_LOGO           = 
+PROJECT_LOGO           = "./pic/Nanit.png"
 
 # The OUTPUT_DIRECTORY tag is used to specify the (relative or absolute) path
 # into which the generated documentation will be written. If a relative path is
