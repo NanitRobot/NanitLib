@@ -12,6 +12,7 @@
 
 #ifndef NANIT_E2ROM_OFFSETS
 #define NANIT_E2ROM_OFFSETS
+#include "Version.hpp"
 
 #include <EEPROM.h>
 
@@ -52,7 +53,7 @@
   (E2END - sizeof(uint32_t)) ///< офсет збереження серійного номеру
 
 #define E2_VERSION_BOARD                                                       \
-  (SERIAL_NUM - (sizeof(unsigned) * 3)) //Резерв для визначення версії плтати
+  (SERIAL_NUM - (sizeof(Version))) //Резерв для визначення версії плтати
 
 #define SIZE_DISCOVERY_RESERVED                                                \
   (0x1FF) ///< Розмір резерву пам'яті з розрахунку на 100 модів цей парамер

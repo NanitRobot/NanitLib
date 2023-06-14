@@ -28,29 +28,62 @@ class Version {
    * @param minor Визначає мінорну версію
    * @param patch Визначає патч версію
    */
-  Version(unsigned major = {}, unsigned minor = {}, unsigned patch = {})
+  Version(uint16_t major = {}, uint16_t minor = {}, uint16_t patch = {})
       : _major{major}, _minor{minor}, _patch{patch} {};
-  unsigned getMajor() const { return _major; }
-  unsigned getMinor() const { return _minor; }
-  unsigned getPatch() const { return _patch; }
+  /**
+   * @brief Отримати Версію
+   *
+   * @return uint16_t
+   */
+  uint16_t getMajor() const { return _major; }
+  /**
+   * @brief Отримати мінорну версію
+   *
+   * @return uint16_t
+   */
+  uint16_t getMinor() const { return _minor; }
+  /**
+   * @brief Отримати патч версію
+   *
+   * @return uint16_t
+   */
+  uint16_t getPatch() const { return _patch; }
   /// @todo TODO rule of 3
+  /**
+   * @brief Операця порівняння \b <
+   */
   friend inline bool operator<(Version lhs, Version rhs) {
     if (lhs._major < rhs._major) return true;
     if (lhs._minor < rhs._minor) return true;
     return (lhs._patch < rhs._patch);
   }
+  /**
+   * @brief Операця порівняння \b >
+   */
   friend inline bool operator>(Version lhs, Version rhs) { return (rhs < lhs); }
+  /**
+   * @brief Операця порівняння \b <=
+   */
   friend inline bool operator<=(Version lhs, Version rhs) {
     return !(lhs > rhs);
   }
+  /**
+   * @brief Операця порівняння \b >=
+   */
   friend inline bool operator>=(Version lhs, Version rhs) {
     return !(lhs < rhs);
   }
+  /**
+   * @brief Операця порівняння \b ==
+   */
 
   friend inline bool operator==(Version lhs, Version rhs) {
     return (lhs._major == rhs._major) && (lhs._minor == rhs._minor) &&
            (lhs._patch == rhs._patch);
   }
+  /**
+   * @brief Операця порівняння \b !=
+   */
   friend inline bool operator!=(Version lhs, Version rhs) {
     return !(lhs == rhs);
   }
@@ -77,7 +110,7 @@ class Version {
   };
 
  private:
-  unsigned  //
+  uint16_t  //
       _major,  ///< приватне поле яке містить головну версію
       _minor,  ///< приватне поле яке містить мінорну версію
       _patch;  ///< приватне поле яке містить патч версію
