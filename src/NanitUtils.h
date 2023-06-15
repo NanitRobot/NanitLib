@@ -1,6 +1,11 @@
 #ifndef NANITUTILS_H_
 #define NANITUTILS_H_
 
+#ifndef NANITLIB_H_
+#  error "Include <NanitLib.h> instead of this file."
+#endif
+
+
 #include <Arduino.h>
 #include <Servo.h>
 #include <Adafruit_GFX.h>

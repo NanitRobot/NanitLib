@@ -15,9 +15,9 @@ String getSerialNumber() {
     //Запрошення на дисплей підключити до серійного порту
     START_NANIT.Display.setCursor(10, 100);
     START_NANIT.Display.setTextSize(0);
-#define WAIT_FIRST_RUN (30)
     START_NANIT.Display.print("Please open terminal");
   }
+  const long WAIT_FIRST_RUN{30};
   while (!checkSerialNum(getSerialNum())) {
     // допоки не отримаємо серійний номер нічого не вийде
     Serial.println("Please enter correct serial nummer");
@@ -195,10 +195,11 @@ void ::NanitRobot::Nanit::DrawBattGuage(
     GuageType type = GuageType::Simple) const {
   uint8_t Power{/*getBattaryPower()*/ 85};
   uint16_t color{};
-#define SIZE_Y (17)
 
-#define X ((160 - 15) - 2)
-#define Y (2)
+  const int SIZE_Y = (17);
+
+  const int X = ((160 - 15) - 2);
+  const int Y = (2);
 
   color = _guage_20_charge_color;
   if (Power > 20) color = _guage_40_charge_color;
@@ -339,13 +340,15 @@ void ::NanitRobot::Nanit::backlightSet(uint8_t brightness) {
 };
 
 uint8_t ::NanitRobot::Nanit::WireManipulate() const {
-  uint8_t result{0};
-  const uint16_t VCC{1 << ADC_BITRATE};
-  const uint16_t Near{20};
-  const uint16_t NearVCC{VCC - Near};
-  const uint16_t NearGND{Near};
+  uint8_t                                  //
+      result{0};                           //
+  const uint16_t                           //
+                                           // VCC{1 << ADC_BITRATE},  //
+      Near{20},                            //
+      NearVCC{(1 << ADC_BITRATE) - Near},  //
+      NearGND{Near};
 
-  // ПЕРША ЖИЛА 
+  // ПЕРША ЖИЛА
   {  // todo дописатииманіпуляцію жилами
     // маніпулюємо лінією П5_1
     pinMode(P5_1, OUTPUT);
