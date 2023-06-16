@@ -1,8 +1,8 @@
 #ifndef _SERIAL_NUMBER_H_
 #define _SERIAL_NUMBER_H_
 
-#define SERIAL_NUM (E2END - sizeof(uint32_t))
 #include "Offsets.hpp"
+// #define SERIAL_NUM (E2END - sizeof(uint32_t))
 /*
     XXXXXXXXXX
     ^ ^ ^ ^ ^
