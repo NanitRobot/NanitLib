@@ -49,20 +49,20 @@
 //
 
 // clang-format on
-#define SERIAL_NUM                                                             \
-  (E2END - sizeof(uint32_t)) ///< офсет збереження серійного номеру
+const uint16_t  //
+    SERIAL_NUM{EEPROM.length() -
+               sizeof(uint32_t)},  ///< офсет збереження серійного номер
+    E2_VERSION_BOARD{SERIAL_NUM -
+                     (sizeof(Version))},  //Резерв для визначення версії плтати
+    E2_SIZE_DISCOVERY_RESERVED{
+        0x1FF},  ///< Розмір резерву пам'яті з розрахунку на 100 модів цей
+                 ///< парамер критичний для працездатності прошивок. ЙОГО НЕ
+                 ///< ЗМІНЮВАТИ Розмір Резерву 511 байт.
 
-#define E2_VERSION_BOARD                                                       \
-  (SERIAL_NUM - (sizeof(Version))) //Резерв для визначення версії плтати
-
-#define SIZE_DISCOVERY_RESERVED                                                \
-  (0x1FF) ///< Розмір резерву пам'яті з розрахунку на 100 модів цей парамер
-          ///< критичний для працездатності прошивок. ЙОГО НЕ ЗМІНЮВАТИ Розмір
-          ///< Резерву 511 байт.
-
-#define E2_DISCOVERY_SETTINGS                                                  \
-  (E2_VERSION_BOARD -                                                          \
-   E2_SIZE_DISCOVERY_RESERVED) ///< офсет зарезервованої пам'яті Якщо дані
+    E2_DISCOVERY_SETTINGS{
+        E2_VERSION_BOARD -
+        E2_SIZE_DISCOVERY_RESERVED};  ///< офсет зарезервованої пам'яті Якщо
+                                      ///< дані
 ///< випадково користувачем буть записані  в цей
 ///< адресниq простір збереження працездатності
 ///< дефолтної  прошивки НЕ ГАРАНТУЄТЬСЯ
