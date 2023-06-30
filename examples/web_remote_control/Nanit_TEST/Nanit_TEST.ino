@@ -1,14 +1,12 @@
 #include <SoftwareSerial.h> // data transfer via UART
 #include <NanitLib.h>
 
-SoftwareSerial softSerial(P6_3, P6_2); // RX, TX
-
 void setup() {
   Nanit_Base_Start();
   //MOTOR & BUTTON
-  pinMode(MOTOR_ENABLE, OUTPUT);
-  pinMode(BUTTON, INPUT);
-  digitalWrite(MOTOR_ENABLE, 1);
+  pinMode(40, OUTPUT);
+  pinMode(3, INPUT);
+  digitalWrite(40, 1);
   //PORT 1
   pinMode(P1_1, INPUT);
   pinMode(P1_2, INPUT);
@@ -63,7 +61,7 @@ void setup() {
   pinMode(P12_4, OUTPUT);
 
   Serial.begin(9600);
-  softSerial.begin(9600); //serial port initialization
+  Serial3.begin(9600);
 }
 char   bufer_TX;
 String byfer_UART;
@@ -507,9 +505,9 @@ if (port10 == 1 && value == "/p10_3on") {
 }
 
 void loop() {
-  if (softSerial.available()) //if data is coming
+  if (Serial3.available()) //if data is coming
   {
-    bufer_TX = softSerial.read();
+    bufer_TX = Serial3.read();
     if (bufer_TX == ' ')
     {
       Comand_Nanit(Comand);
@@ -523,7 +521,7 @@ void loop() {
 
   if (byfer_UART != "") //if there is a need to send data
   {
-    softSerial.print(byfer_UART);
+    Serial3.print(byfer_UART);
     byfer_UART.remove(0);
   }
 }

@@ -32,7 +32,6 @@ int task_to_transfer = 0; //send task check box
 IPAddress apIP(192, 168, 1, 1);
 DNSServer dnsServer;
 ESP8266WebServer server(80); //
-SoftwareSerial softSerial(4, 5); // RX, TX
 
 String serialNumber = "0x0000000";
 
@@ -164,13 +163,12 @@ void setup(void)
 {
   EEPROM.begin(512); //initialization and allocation of memory from EEPROM
   Serial.begin(9600); //Data transfer speed
-  softSerial.begin(9600); //serial port initialization
 
   byfer_UART.remove(0);
   byfer_UART += " _SERNOM?  ";
   delay(100);
   if (serialNumber == "0x0000000") {
-    softSerial.print(byfer_UART);
+    Serial.print(byfer_UART);
     terminal += "<<OUTPUT<<:";
     terminal += byfer_UART;
     terminal += "\n";
@@ -180,9 +178,9 @@ void setup(void)
 
   while (1)
   {
-    if (softSerial.available()) //if data is coming
+    if (Serial.available()) //if data is coming
     {
-      bufer_TX = softSerial.read();
+      bufer_TX = Serial.read();
       if (bufer_TX == ' ')
       {
         Serial.print(Comand);
@@ -241,13 +239,13 @@ void setup(void)
 
   if (serialNumber == 0x0000000) {
     while (serialNumber != 0x0000000) {
-      if (softSerial.available()) //if data is coming
+      if (Serial.available()) //if data is coming
       {
-        serialNumber = softSerial.read();
+        serialNumber = Serial.read();
       }
       else
       {
-        softSerial.write("_SERNOM$?");
+        Serial.write("_SERNOM$?");
       }
     }
   }
@@ -325,9 +323,9 @@ void Comand_Nanit(String value) {
 
 void Nanit_UART()
 {
-  if (softSerial.available()) //if data is coming
+  if (Serial.available()) //if data is coming
   {
-    bufer_TX = softSerial.read();
+    bufer_TX = Serial.read();
     if (bufer_TX == ' ')
     {
       Comand_Nanit(Comand);
@@ -343,7 +341,7 @@ void Nanit_UART()
   }
   if (byfer_UART != "") //send data
   {
-    softSerial.print(byfer_UART);
+    Serial.print(byfer_UART);
     if (terminal.length() > 1000) {
       terminal.remove(0);
     }
