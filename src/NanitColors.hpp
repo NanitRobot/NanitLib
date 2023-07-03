@@ -19,7 +19,8 @@
  *
  * @details У макровизначення можна передавати 8 бітні беззнакові значення.
  * Макровизначення конвертує у 16-бітни колір
- * 
+ */
+/* 
  * |RRRRR|GGG GGG|BBBBB|
  * |HHHHH HHH|LLL LLLLL|
  * 
@@ -27,14 +28,16 @@
 #define COLOR565(RED, GREEN, BLUE)                                             \
   (((RED & 0xF8) << 8) | ((GREEN & 0xFC) << 3) | (BLUE >> 3))
 
+#define WHITE16        (0xFFFF)
+#define BLACK16        (0x0000)
 
-#define CYAN16         (COLOR565(0, 255, 255))
-#define YELLOW16       (COLOR565(255, 255, 0))
-#define MAGENTA16      (COLOR565(255, 0, 255))
-#define RED16          (COLOR565(255, 0, 0))
-#define GREEN16        (COLOR565(0, 255, 0))
-#define BLUE16         (COLOR565(0, 0, 255))
-#define ORANGE16       (COLOR565(255, 128, 0))
+#define CYAN16         (0x07FF)
+#define YELLOW16       (0xFFE0)
+#define MAGENTA16      (0xF81F)
+#define RED16          (0xF800)
+#define GREEN16        (0x07E0)
+#define BLUE16         (0x001F)
+#define ORANGE16       (0xFC00)
 #define DEEP_PINK16    (COLOR565(255, 0, 128))
 #define PURPLE16       (COLOR565(128, 0, 255))
 #define LIGHT_BLUE16   (COLOR565(0, 128, 255))

@@ -1,14 +1,42 @@
 #include "NanitLib.h"
 
 Version getBoardVersion() {
-  pinMode(39, INPUT_PULLUP);
-  if (digitalRead(39)) return Version(2);
-  if (!digitalRead(39)) return Version(3, 1);
+  pinMode(BOARD_DETECT_PIN, INPUT_PULLUP);
+  if (digitalRead(BOARD_DETECT_PIN)) return Version(2);
+  if (!digitalRead(BOARD_DETECT_PIN)) return Version(3, 1);
 }
 
 Version getLibVersion() {
   return Version(NANIT_MAJOR_VERSION, NANIT_MINOR_VERSION, NANIT_PATHC_VERSION);
 }
+
+inline bool digitalRead(const uint8_t pin, const uint16_t maxValue,
+                        const uint16_t minValue = 0) {
+  static bool PrevState[NUM_DIGITAL_PINS]{};
+  const uint16_t readedValue = analogRead(pin);
+  bool State;
+  if (!minValue or (minValue >= maxValue)) {
+    State = readedValue > maxValue;
+    return State;
+  }
+
+  if (PrevState[pin]) {
+    if (readedValue >= minValue)
+      return true;
+    else {
+      PrevState[pin] = false;
+      return false;
+    }
+  }
+  else {
+    if (readedValue <= minValue)
+      return false;
+    else {
+      PrevState[pin] = true;
+      return true;
+    }
+  }
+};
 
 String getSerialNumber() {
   if (!checkSerialNum(getSerialNum())) {
