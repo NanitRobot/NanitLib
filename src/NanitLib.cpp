@@ -10,7 +10,7 @@ Version getLibVersion() {
   return Version(NANIT_MAJOR_VERSION, NANIT_MINOR_VERSION, NANIT_PATHC_VERSION);
 }
 
-inline bool digitalRead(const uint8_t pin, const uint16_t maxValue,
+bool digitalRead(const uint8_t pin, const uint16_t maxValue,
                         const uint16_t minValue = 0) {
   static bool PrevState[NUM_DIGITAL_PINS]{};
   const uint16_t readedValue = analogRead(pin);

@@ -462,7 +462,7 @@ bool Nanit_Sound_IsSoundDetected(int sound_limit);
  * @return true
  * @return false
  */
-inline bool digitalRead(const uint8_t pin, const uint16_t maxValue,  //
+bool digitalRead(const uint8_t pin, const uint16_t maxValue,  //
                         const uint16_t minValue = 0                  // 10100000
 );
 
