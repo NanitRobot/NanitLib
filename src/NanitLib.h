@@ -941,10 +941,10 @@ class Nanit {
  public:
   Adafruit_ST7735  //
                    /**
-                    * @brief Вбудований дисплей `Nanit`a
+                    * @brief Вбудований дисплей `Nanit``a
                     *
                     * @details Перелік методів для керування дисплеєм модна прочитати тут
-                    * `Adafruit_ST7735.dox`
+                    * @ref Display
                     */
 
       //                    * |    |       |
