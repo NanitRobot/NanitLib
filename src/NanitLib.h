@@ -1,3 +1,12 @@
+/**
+ * @file NanitLib.h
+ * @author Nanit Robot (https://nanitrobot.com/)
+ * @authors Nanit Robot,Sam4uk
+ * @brief Головний файл бібіліотеки NanitLib
+ *
+ * @copyright Copyright (c) Nanit Robot
+ *
+ */
 #ifndef NANITLIB_H_
 #define NANITLIB_H_
 
@@ -21,7 +30,7 @@
  * @brief Пін підключення батареї вхід АЦП для перевірки стану батареї доступний
  * лише для читання
  */
-#define BATTARY_PIN (69)
+#define BATTERY_PIN (69)
 
 /**
  * @brief Пін підключення вбудованого адресного світлодіоду доступний лише для
@@ -200,31 +209,51 @@
 #define P3_3 (30)
 #define P3_2 (25)
 
-/**
- * @brief  Пін визначений у розширеному ядрі `MEGACORE`
+/** @defgroup MEGACORE MEGACORE
+ *
+ * @brief Про розширене ядро MEGACORE
  *
  * @details У стандарному інтерфейсі Arduino цей пін не доступний. На платах
- * Arduino на яких використовується мікроконтролер ATMega2560 цей виввід
- * контролера не розведений на платі. На платах Nanit цей пін розведений та
+ * Arduino на яких використовується мікроконтролер ATMega2560 цей вивід
+ * мікроконтролера не розведений на платі. На платах Nanit цей пін розведений та
  * доступний для використання. Щоб у повній мірі використовувати всі можлтвості
  * плати потрібно встановити мануально розширене ядро `MEGACORE`, або
  * скористатись менеджером плат
  *
- * Альтернативний спосіб викорстання виводу це звернення на апаратоному рівні до
+ * Альтернативний спосіб викорстання виводу це звернення рівні регістрів до
  * __PE6__
+ *
  */
-#define P3_1 (71)
 #ifdef MEGACORE
 
+/**
+ * @brief  Пін визначений у розширеному ядрі `MEGACORE`
+ *
+ * @details У стандарному інтерфейсі Arduino цей пін не доступний. На платах
+ * Arduino на яких використовується мікроконтролер ATMega2560 цей вивід
+ * мікроконтролера не розведений на платі. На платах Nanit цей пін розведений та
+ * доступний для використання. Дізнатись більше можна у розділі @ref MEGACORE
+ * цієї документації.
+ *
+ */
+#define P3_1 (71)
 #else
 #warning Install Nanit board manager
 #warning https://nanitrobot.github.io/package_NanitRobot_index.json
 #endif
 
+/** @}*/
+
 //Порт 4
 // #define P4_6 (46) // ШІМ, червоний світлодіод (стара версія)
+
+/** @brief Четвертий пін четвертого порту */
 #define P4_4 (46)  // ШІМ, червоний світлодіод
+
+/** @brief Третій пін четвертого порту */
 #define P4_3 (45)  // ШІМ, синій світлодіод
+
+/** @brief Другий пін четвертого порту */
 #define P4_2 (44)  // ШІМ, зелений світлодіод
 
 /**
@@ -234,11 +263,10 @@
 
 //Порт 5
 // #define P5_6 33 /// Стара версія
+/** @brief Четвертий пін п'ятого порту  */
 #define P5_4 (33)
 
-/**
- * @brief Третій пін п'ятого порту може використовувватися як вхід АЦП
- */
+/** @brief Третій пін п'ятого порту може використовувватися як вхід АЦП */
 #define P5_3 (A12)
 
 /**
@@ -301,9 +329,23 @@
  * призначення цього піна на адаптері.
  */
 #define P8_4                                                                   \
-#error "U can`t use this definision in code. This definision only for doxygen"
-#define P8_3 (5)  ///<
+#error                                                                       \
+      "U can`t use this definision in code. This definision only for doxygen. This is RESET pin ATMega2560"
+
+/** @brief Третій пін восьмого порту */
+#define P8_3 (5)
+
+/**
+ * @brief Другий пін восьмого порту
+ *
+ * @details На цей пін виведено `RX` `Serial`
+ */
 #define P8_2 (0)  ///<
+/**
+ * @brief Перший пін восьмого порту
+ *
+ * @details На цей пін виведено `TX` `Serial`
+ */
 #define P8_1 (1)  ///<
 
 //Порт 9
@@ -330,7 +372,21 @@
 // #define P11_6 (32)   /// Стара версія
 #define P11_4 (32)  ///< Четрвертий пін одинадцятого порту
 #define P11_3 (43)  ///< Третій пін одинадцятого порту
+/**
+ * @brief Другий пін одинадцьятого порту
+ * 
+ * 
+ * @details На цей пін виведено `RX` `Serial3`
+ * 
+ */
+#define P11_2 (15)
 
+/**
+ * @brief Третій пін одинадцятого порту
+ * 
+ * @details На цей пін виведено `TX` `Serial3`
+ */
+#define P11_1 (14)
 ///Порт 12
 // #define P12_6 (11)/// Мотор М2_А /// Стара версія
 /**
@@ -377,7 +433,6 @@
  */
 #define BAT_FULL_CHARGE (4.19f)
 
-// Яка батарея використовується
 /**
  * Визначає тип використаної батареї Визначення введене для випадок зміни типу
  * батареї в процесі розвитку проекту
@@ -463,7 +518,7 @@ bool Nanit_Sound_IsSoundDetected(int sound_limit);
  * @return false
  */
 bool digitalRead(const uint8_t pin, const uint16_t maxValue,  //
-                        const uint16_t minValue = 0                  // 10100000
+                 const uint16_t minValue = 0                  // 10100000
 );
 
 #define START_NANIT ::NanitRobot::Nanit::getNanit()
@@ -611,7 +666,6 @@ class Nanit {
     //   void Reverse() {}
     //   void Run(signed short speed1, signed short speed2) {}
   } DCMotors;  // // 2 & 11
-#endif
   // class Servos {
   // } Servo;
   // 3 color & PIR
@@ -624,6 +678,7 @@ class Nanit {
   // 8 interfase
   // 9 Gyro
   // 10 line
+#endif
 
   /**
    * @brief Визначення кольору світіння вбудованого світлодіода
@@ -885,11 +940,12 @@ class Nanit {
 
  public:
   Adafruit_ST7735  //
-  /**
-  * @brief Вбудований дисплей `Nanit`a
-  *
-  * @details Перелік методів для керування дисплеєм модна прочитати тут `Adafruit_ST7735.dox`
-  */
+                   /**
+                    * @brief Вбудований дисплей `Nanit`a
+                    *
+                    * @details Перелік методів для керування дисплеєм модна прочитати тут
+                    * `Adafruit_ST7735.dox`
+                    */
 
       //                    * |    |       |
       // * |-    |-       |

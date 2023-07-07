@@ -42,7 +42,7 @@ void PinTestSetup() {
         or pin_to_set_mode == TFT_MOSI // пін роботи з SD та дисплею
         or pin_to_set_mode == TFT_SCK // пін роботи з SD та дисплею
         or pin_to_set_mode == TFT_RES // пін роботи з SD та дисплею
-        or pin_to_set_mode == BATTARY_PIN // АЦП батареї
+        or pin_to_set_mode == BATTERY_PIN // АЦП батареї
     )
 
       continue;                       // пропускаємо

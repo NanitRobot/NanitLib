@@ -162,7 +162,7 @@ float NanitRobot::Map(float inputValue, float inputMin, float inputMax,
 }
 
 float NanitRobot::Nanit::getBataryVoltage() const {
-  return Map(analogRead(BATTARY_PIN), 0.f, 1 << ADC_BITRATE, 0.f, AVCC_REF);
+  return Map(analogRead(BATTERY_PIN), 0.f, 1 << ADC_BITRATE, 0.f, AVCC_REF);
 }
 
 float NanitRobot::Nanit::getBattaryPower() const {
@@ -221,7 +221,7 @@ float NanitRobot::Nanit::getBattaryPower() const {
 
 void ::NanitRobot::Nanit::DrawBattGuage(
     GuageType type = GuageType::Simple) const {
-  uint8_t Power{/*getBattaryPower()*/ 85};
+  uint8_t Power{getBattaryPower()};
   uint16_t color{};
 
   const int SIZE_Y = (17);
