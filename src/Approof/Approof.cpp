@@ -58,7 +58,11 @@ void PinTestLoop() {
   const uint8_t PinMap[k_port_count][k_pin_count]{
       {IGNORE_PIN, IGNORE_PIN, IGNORE_PIN, IGNORE_PIN}, // port 1
       {P2_1, P2_2, P2_3, P2_4},                         // port 2
+#ifdef P3_1      
       {P3_1, P3_2, P3_3, P3_4},                         // port 3
+#else
+      {71, P3_2, P3_3, P3_4},                           // port 3
+#endif
       {P4_1, P4_2, P4_3, P4_4},                         // port 4
       {P5_1, P5_2, P5_3, P5_4},                         // port 5
       {P6_1, P6_2, P6_3, P6_4},                         // port 6
