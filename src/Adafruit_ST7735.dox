@@ -19,20 +19,20 @@ size_t print(<ASCII>);
  * @param to_print перелічувальний тип
  * @param base основа
  *
- * |   ||
- * |:-:||
- * |   ||
- * |   ||
- * |   ||
- * |   ||
+ * | base|          Опис                 |
+ * |:---:|-------------------------------|
+ * | OCT | Вісімкова система числення    |
+ * | DEC | Десяткова система числення    |
+ * | HEX | Шіснадцяткова чистема числення|
+ * |     |                               |
  */
 size_t print(<any integer> to_print, int base = DEC);
 
 /**
  * @brief
  *
- * @param number
- * @param digits
+ * @param number число з плаваючою крапкою
+ * @param digits Кількість знаків після коми
  * @return size_t
  */
 size_t print(<any float> number, int digits = 2);
@@ -45,12 +45,12 @@ size_t println(<ASCII>);
  * @param to_print перелічувальний тип
  * @param base основа
  *
- * |   ||
- * |:-:||
- * |   ||
- * |   ||
- * |   ||
- * |   ||
+ * | base|          Опис                 |
+ * |:---:|-------------------------------|
+ * | OCT | Вісімкова система числення    |
+ * | DEC | Десяткова система числення    |
+ * | HEX | Шіснадцяткова чистема числення|
+ * |     |                               |
  */
 size_t println(<any integer> to_print, int base = DEC);
 

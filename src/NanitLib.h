@@ -737,6 +737,7 @@ class Nanit {
         Display.println("     ports              ");
         PinTestSetup();
         while (!digitalRead(J_7)) PinTestLoop();
+        Display.fillScreen(_background_color);
       }
 
       //------------------------------------------------------------------

@@ -26,6 +26,8 @@ const uint8_t k_pin_count = 4; ///< кількість пінів в роз'єм
  */
 #define IGNORE_PIN (0xFF)
 #define RESET_PIN (IGNORE_PIN)
+#define PORT1_MOTOR (0xF1)
+#define PORT12_MOTOR (0xF2)
 
 void check_1(bool);
 void check_12(bool);
@@ -59,9 +61,9 @@ void PinTestLoop() {
   // Карта пінів
   // clang-format off
   const uint8_t PinMap[k_port_count][k_pin_count]{
-      {IGNORE_PIN, IGNORE_PIN, IGNORE_PIN, IGNORE_PIN}, // port 1
+      {P1_1, P1_2, PORT1_MOTOR, IGNORE_PIN}, // port 1
       {P2_1, P2_2, P2_3, P2_4},                         // port 2
-#ifdef P3_1      
+#ifndef MEGACORE      
       {P3_1, P3_2, P3_3, P3_4},                         // port 3
 #else
       {71, P3_2, P3_3, P3_4},                           // port 3
@@ -74,12 +76,12 @@ void PinTestLoop() {
       {P9_1, P9_2, P9_3, P9_4},                         // port 9
       {P10_1, P10_2, P10_3, P10_4},                     // port 10
       {P11_1, P11_2, P11_3, P11_4},                     // port 11
-      {IGNORE_PIN, IGNORE_PIN, IGNORE_PIN, IGNORE_PIN}  // port 12
+      {P12_1, P12_2, PORT12_MOTOR, IGNORE_PIN}  // port 12
   };
   // clang-format on
-  check_1(drive);
   for (uint8_t port = 0; port < k_port_count; port++) // Перевіряємо кожен порт
     for (uint8_t pin = 0; pin < k_pin_count; pin++) { // Перевіряємо кожен пін
+      if(digitalRead(J_7)) break;
       switch (PinMap[port][pin]) {
 #ifndef MEGACORE
       case 71: // Перевірка піна без MegaGore
@@ -91,6 +93,12 @@ void PinTestLoop() {
 #endif
       case IGNORE_PIN: // Пропускаємо піни
         break;
+      case PORT1_MOTOR: // Реверс 1 мотору
+        check_1(drive);
+        break;
+      case PORT12_MOTOR: //Реверс 2 мотору
+        check_12(drive);
+        break;
       default: // Надсилаємо сигнал на піни для перевірки тестером
       {
         digitalWrite(PinMap[port][pin], HIGH);
@@ -100,8 +108,6 @@ void PinTestLoop() {
       } break;
       }
     }
-
-  check_12(drive);
 
   drive = !drive;
 }
@@ -116,26 +122,9 @@ void check_1(bool what) {
     digitalWrite(MOTOR1_A, TOGGLE);
     digitalWrite(MOTOR1_B, !TOGGLE);
   }
-
-  digitalWrite(P1_2, HIGH);
-  delay(k_blink_delay);
-  digitalWrite(P1_2, LOW);
-  delay(k_blink_delay);
-
-  digitalWrite(P1_1, HIGH);
-  delay(k_blink_delay);
-  digitalWrite(P1_1, LOW);
 }
 
 void check_12(bool what) {
-  digitalWrite(P12_1, HIGH);
-  delay(k_blink_delay);
-  digitalWrite(P12_1, LOW);
-
-  digitalWrite(P12_2, HIGH);
-  delay(k_blink_delay);
-  digitalWrite(P12_2, LOW);
-
   if (what) {
     digitalWrite(MOTOR2_A, !TOGGLE);
     digitalWrite(MOTOR2_B, TOGGLE);
