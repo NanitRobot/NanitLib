@@ -63,7 +63,7 @@ void PinTestLoop() {
   const uint8_t PinMap[k_port_count][k_pin_count]{
       {P1_1, P1_2, PORT1_MOTOR, IGNORE_PIN}, // port 1
       {P2_1, P2_2, P2_3, P2_4},                         // port 2
-#ifndef MEGACORE      
+#ifdef MEGACORE      
       {P3_1, P3_2, P3_3, P3_4},                         // port 3
 #else
       {71, P3_2, P3_3, P3_4},                           // port 3
