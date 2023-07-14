@@ -31,6 +31,9 @@
 | *    +------ Обов'язкова ознака порт-піна
 | *
 \******************************************************************************/
+
+#define BLINK_TIME 50
+FastLED_NeoPixel<15,BUTTON,NEO_GRB> RING;
 void setup() {
   /// Функці яка виводить на вбудований дисплей повідомлення "Hello Nanit"
   /// Версію апаратної частини (плати)
@@ -38,7 +41,17 @@ void setup() {
   /// Рівень зараяду батареї
   Serial.begin(NANIT_SERIAL_SPEED);
   NanitInfo();
+  RING.begin();
 }
 void loop() {
+  for(uint8_t l=0;l<15;l++){
+
+  	RING.setPixelColor(l, RING.Color(255, 255, 255));  // set pixel 0 to blue
+	RING.show();
+	delay(BLINK_TIME);
+
+	RING.setPixelColor(l-1, RING.Color(0, 0, 0));  // set pixel 0 to black
+	RING.show();
+	delay(BLINK_TIME);}
   /// Nanit ніякої корисної роботи не виконує
 }

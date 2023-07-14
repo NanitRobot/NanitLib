@@ -1,10 +1,10 @@
 /**
  * @file NanitLib.h
- * @author Nanit Robot (https://nanitrobot.com/)
- * @authors Nanit Robot,Sam4uk
+ * @author NanitRobots (https://nanitrobot.com/)
+ * @authors NanitRobots,Sam4uk
  * @brief Головний файл бібіліотеки NanitLib
  *
- * @copyright Copyright (c) Nanit Robot
+ * @copyright Copyright (c) NanitRobots
  *
  */
 #ifndef NANITLIB_H_
@@ -12,7 +12,7 @@
 
 #define NANIT_MAJOR_VERSION (1)  ///< Головна версія бібліотеки
 #define NANIT_MINOR_VERSION (3)  ///< Мінорна версія бібліотеки
-#define NANIT_PATHC_VERSION (4)  ///< Pathc версія бібілотеки
+#define NANIT_PATHC_VERSION (5)  ///< Pathc версія бібілотеки
 
 #define NANIT_SERIAL_SPEED (9600)  ///< Швидкість серійного порту
 
@@ -677,13 +677,13 @@ class Nanit {
    * @brief Визначення кольору світіння вбудованого світлодіода
    *
    * @param red[in] Рівень яскравості червоного кристалу
-   * @param grean[in] Рівень яскравості зеленого кристалу
+   * @param green[in] Рівень яскравості зеленого кристалу
    * @param blue[in] Рівень яскравості синього кристалу
    * @param brightness[in] Загальний рівень світіння кристалів
    *
    * @details Всі параметри можуть приймати значення від \b 0 до \b 255
    */
-  void BuildinRGB(uint8_t red, uint8_t grean, uint8_t blue,
+  void BuildinRGB(uint8_t red, uint8_t green, uint8_t blue,
                   uint8_t brightness = 255);
   /**
    * @brief Визначення кольору світіння вбудованого світлодіода
