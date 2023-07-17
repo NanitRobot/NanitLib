@@ -222,6 +222,8 @@
  *
  * Альтернативний спосіб викорстання виводу це звернення рівні регістрів до
  * __PE6__
+ * 
+ * @image html https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/MegaCorePinOut.jpg MegaCorePinout 
  *
  */
 #ifdef MEGACORE
