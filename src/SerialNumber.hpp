@@ -19,7 +19,7 @@
 */
 /*Прочитати серійний*/
 
-typedef unsigned long int serial_num;
+typedef uint32_t serial_num;
 
 /**
  * @brief Фукція читає серійний номер виробу з енергонезалежної пам'яті
