@@ -3,7 +3,6 @@
 This library is designed to work with Nanit boards: (Nanit Smart Home, Nanit Drone, Nanit Udron and Nanit Discovery). This library allows you to control the built-in display, two-channel DC motor driver. Monitor the state of the built-in Lithium-Ion battery.
 With this library, you can program all Nanit boards in the Arduino IDE.
 
-The board is based on Atmega2560. You are offered (unlike Arduino Mega) more pins for programming - we use an extended core that gives more functionality.
 
 The project is actively developing. Our whole team is working on the development of the board, adding new functionality so that you can learn programming with the help of Nanit boards.
 
@@ -16,7 +15,7 @@ To use this library
 #include <NanitLib.h>
 ```
 
-That's all you need to start learning the C/C++ programming language.
+That's all you need to start learning the C/C++ programming language with Nanit
 
 
 <center>
