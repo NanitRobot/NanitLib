@@ -325,7 +325,7 @@ void ::NanitRobot::Nanit::DrawBattGuage(
                          _background_color);
 
         Display.fillRect(X - 1 + map(Power, 0, 100, SIZE_Y - 1, 0) - 2, Y,
-                         map(Power, 100, 0, SIZE_Y - 1, 1), 10,
+                         map(Power, 100, 0, SIZE_Y , 1), 10,
                          color);  // cherged
 
         Display.drawLine(X - 4, Y + 3, X - 4, Y + 6, _guage_line_color);  // |1

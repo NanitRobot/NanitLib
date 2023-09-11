@@ -748,8 +748,6 @@ class Nanit {
   inline Nanit() : Display{Adafruit_ST7735(TFT_CS, TFT_DC, TFT_RES)} {
     if (!Serial) Serial.begin(NANIT_SERIAL_SPEED);
     Serial.println("Nanit initialise...");
-Serial.println(getSerialNum());
-
     _strip_led.begin();
 
     Display.initR(INITR_BLACKTAB);

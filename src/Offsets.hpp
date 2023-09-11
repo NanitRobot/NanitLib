@@ -49,7 +49,7 @@
 //
 
 // clang-format on
-const uint16_t  //
+const uint32_t  //
     SERIAL_NUM{EEPROM.length() -
                sizeof(uint32_t)},  ///< офсет збереження серійного номер
     E2_VERSION_BOARD{SERIAL_NUM -

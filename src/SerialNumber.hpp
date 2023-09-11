@@ -12,12 +12,12 @@
     | | +------2 цифри число місяця виготовлення (01--31)
     | +--------2 місяць виготовлеення (01--12)
     +----------1 тип виробу (1--9)
+                0 - Інший
                 1 - розумний будинок
                 2 - Дискавері
                 3 - Дискавері задод
                 4 - 
 */
-/*Прочитати серійний*/
 
 typedef uint32_t serial_num;
 
@@ -28,8 +28,22 @@ typedef uint32_t serial_num;
  * 
  */
 serial_num getSerialNum();
-/*Перевірити серійни на коректність*/
+
+/**
+ * @brief Перевірка коректності серійного номеру
+ * 
+ * @param num 
+ * @return true 
+ * @return false 
+ */
 bool checkSerialNum(serial_num num);
-/* Встановити серійний номер*/
+
+/**
+ * @brief Записати серйний номер в пам'ять
+ * 
+ * @param num 
+ * @return true 
+ * @return false 
+ */
 bool setSerialNum(const serial_num num) ;
 #endif

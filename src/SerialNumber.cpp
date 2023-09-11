@@ -14,23 +14,56 @@
 */
 /*Прочитати серійний*/
 
-serial_num getSerialNum() {
+#ifndef _UTIL_DELAY_H_
+#include <util/delay.h>
+#endif
 
+serial_num getSerialNum()
+{
   // 103172306
-  serial_num result;
-  EEPROM.get(SERIAL_NUM, result);
-  return result;
+  union
+  {
+    uint32_t number;
+    uint8_t bytes[sizeof(uint32_t)];
+  };
+
+  for (uint8_t i = 0; i < sizeof(number); i++)
+  {
+    bytes[i] = EEPROM.read(SERIAL_NUM + i);
+  }
+
+  return number;
 }
-/*Перевірити серійни на коректність*/
+
+
 bool checkSerialNum(serial_num num) {
   if (num >= 0xFFFFFFF0 or num <= 0x000F71E9 /**/)
     return false;
 
   return true;
 }
-bool setSerialNum(const serial_num num) {
-  if (checkSerialNum(num)) {
-    EEPROM.put(SERIAL_NUM, num);
+
+bool setSerialNum(const serial_num num)
+{
+  constexpr uint8_t k_tryConunt = 3;
+  union
+  {
+    uint32_t number;
+    uint8_t bytes[sizeof(uint32_t)];
+  };
+  number = num;
+  if (checkSerialNum(num))
+  {
+    for (uint8_t i = 0; i < sizeof(number); i++)
+    {
+      for (uint8_t tryes = 0; tryes < k_tryConunt; tryes++)
+      {
+        EEPROM.write(SERIAL_NUM + i, bytes[i]);
+        _delay_ms(10);
+        if (EEPROM.read(SERIAL_NUM + i) == bytes[i])
+          break;
+      };
+    }
     return true;
   }
   return false;
