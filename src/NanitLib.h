@@ -177,8 +177,8 @@
  */
 #define P1_1 (A7)
 
-//Порт 2
-// #define P2_6 A8
+// Порт 2
+//  #define P2_6 A8
 /**
  * @brief Четвертий пін другого порту може використовувватися як вхід АЦП
  *
@@ -203,7 +203,7 @@
  */
 #define P2_1 (A10)
 
-///Порт 3
+/// Порт 3
 // #define P3_6 31 /// Стара версія
 
 /**
@@ -258,13 +258,13 @@
 #define P3_1 (71)
 #else
 #warning Install Nanit board manager
-#warning https://nanitrobot.github.io/package_NanitRobot_index.json
+#warning https://nanitrobot.github.io/NanitLib/package_NanitCore_index.json
 #endif
 
 /** @}*/
 
-//Порт 4
-// #define P4_6 (46) // ШІМ, червоний світлодіод (стара версія)
+// Порт 4
+//  #define P4_6 (46) // ШІМ, червоний світлодіод (стара версія)
 
 /** @brief Четвертий пін четвертого порту */
 #define P4_4 (46)  // ШІМ, червоний світлодіод
@@ -280,8 +280,8 @@
  */
 #define P4_1 (A11)
 
-//Порт 5
-// #define P5_6 33 /// Стара версія
+// Порт 5
+//  #define P5_6 33 /// Стара версія
 /** @brief Четвертий пін п'ятого порту  */
 #define P5_4 (33)
 
@@ -300,8 +300,8 @@
  */
 #define P5_1 (2)
 
-//Порт 6
-// #define P6_6 22 /// Стара версія
+// Порт 6
+//  #define P6_6 22 /// Стара версія
 /**
  * @brief Четвертий пін шостого порту
  */
@@ -323,7 +323,7 @@
  */
 #define P6_1 (23)
 
-//Порт 7
+// Порт 7
 /**
  * @brief Третій пін сьомого порту
  */
@@ -339,7 +339,7 @@
  */
 #define P7_1 (A3)
 
-//Порт 8
+// Порт 8
 /**
  * @brief Пін до якого під'єднано вивід  \b RESET мікроконтроллера
  *
@@ -348,11 +348,9 @@
  * призначення цього піна на адаптері.
  */
 #define P8_4                                                                   \
-#error                                                                       \
-      "U can`t use this definision in code. This definision only for doxygen. This is RESET pin ATMega2560"
-
-// /** @brief Третій пін восьмого порту */
-// #define P8_3 (5)
+  #error                                                                       \
+      "U can`t use this definision in code. This definision only for "         \
+      "doxygen. This is RESET pin ATMega2560"
 
 /**
  * @brief Другий пін восьмого порту
@@ -367,7 +365,7 @@
  */
 #define P8_1 (1)
 
-//Порт 9
+// Порт 9
 /**
  * @brief Третій пін п'ятого порту може оброблювати переривання за вектором
  * INT.2 pin
@@ -384,8 +382,8 @@
  */
 #define P9_1 (21)
 
-//Порт 10
-// #define P10_6 (6)  /// Стара версія
+// Порт 10
+//  #define P10_6 (6)  /// Стара версія
 /**
  * @brief Четвертий пін десятого порту
  */
@@ -395,7 +393,7 @@
  * @brief Перший пін деятого порту, може використовувтись як вхід АЦП
  */
 #define P10_1 (A2)
-///Порт 11
+/// Порт 11
 // #define P11_6 (32)   /// Стара версія
 #define P11_4 (32)  ///< Четрвертий пін одинадцятого порту
 #define P11_3 (43)  ///< Третій пін одинадцятого порту
@@ -412,7 +410,7 @@
  * @details На цей пін виведено `TX` `Serial3`
  */
 #define P11_1 (14)
-///Порт 12
+/// Порт 12
 // #define P12_6 (11)/// Мотор М2_А /// Стара версія
 /**
  * @brief Четвертий пін дванадцятого порту (доступний тільки на виведення)
@@ -426,7 +424,7 @@
 #define P12_2 (34)  ///< Другий пін дванадцятого порту
 #define P12_1 (36)  ///< Перший пін дванадцятого порту
 
-//порти дисплею
+// порти дисплею
 
 #define TFT_CS   (48)  ///< Пін для роботи з картою пам'яті та дисплеєм
 #define TFT_RES  (37)  ///< Пін для роботи з картою пам'яті та дисплеєм
@@ -516,6 +514,45 @@ void NanitInfo();
  * яскравості обраного кристалу світодіоду.
  */
 void Nanit_RGB_Write(byte red, byte green, byte blue);
+
+/**
+ * @brief Функція детектидь гучний вигук, або плеск долонями
+ *
+ * @details У функції відфільтровуються всі сторонні звуки та визначається ріень
+ * звуку в стані спокою "тиша". Також задано умовний поріг сторонніх шумів
+ * (музика, розмова) поряд з датчиком. Датчик адаптується до них.
+ *
+ * @return true - зафікосовано вигук чи сплеск дольонями
+ * @return false - не зафіксовано вигуків
+ *
+ * @note Функція має гальмуючий ефект. Це зроблеблено для уникнення подвійного
+ * спрацювання від відлуння
+ */
+bool isClapping();
+
+/**
+ * @brief Функція детектить зміну освітлення в оточненні.
+ * 
+ * @return true - зафіксовано зниження рівня освітлення
+ * @return false - не зафіксовано зниження рівня освітлення
+ */
+
+bool isLight();
+
+/**
+ * @brief Датчик ліній правий
+ * 
+ * @return true 
+ * @return false 
+ */
+bool isRightLine();
+/** 
+ * @brief датчик ліній лівий 
+ * 
+ * @return true 
+ * @return false 
+ */
+bool isLeftLine();
 
 void Nanit_Servo_Rotate(byte angle);
 
@@ -967,58 +1004,40 @@ class Nanit {
 
   uint8_t                 //
       _guage_X_position,  //
-      _guage_Y_position;  //
+      uage_Y_position;    //
 
  public:
-  // struct {
-  void setAll(uint8_t red, uint8_t green, uint8_t blue) {
-    for (uint8_t i = 0; i < 15; i++) {
-      _strip_led.setPixelColor(i, red, green, blue);
-    }
-    _strip_led.show();
-  };
-  void colorWipe(byte red, byte green, byte blue, int SpeedDelay, bool *arr) {
-    // pinMode(J_7, OUTPUT);
-    for (uint16_t i = 0; i < 15; i++) {
-    //   if (!arr)
-    //     _strip_led.setPixelColor(i, red, green, blue);
-    //   else if (!arr[i])
-        _strip_led.setPixelColor(i, red, green, blue);
+  // structc{
+  (8 _led.setPixelColor(i, red, green, blue);
       _strip_led.show();
-      delay(SpeedDelay);
-    }
-  }  // } Ring;
-  FastLED_NeoPixel<15, BUILDIN_STRIP_LED, NEO_GRB> _strip_led;
-  /**
-   * @brief Вбудований дисплей `Nanit``a
-   *
-   * @details Перелік методів для керування дисплеєм модна прочитати тут
-   * @ref Display
-   */
-  Adafruit_ST7735
 
-      //                    * |    |       |
-      // * |-    |-       |
-      // * |drawRGBBitmap()    |       |
-      // * |initB()    |       |
-      // * |initR()    |       |
-      // * |setRotation()    |       |
-      // * |write()    |       |
-      // * |enableDisplay()    |       |
-      // * |invertDisplay()    |       |
-      // * |    |       |
-      // * |    |       |
-      // * |    |       |
-      Display;
-};
-}  // namespace NanitRobot
-
+} /
+}
+delay SpeedDeliyF;ap_LED.N)o
+}
+;
+o<15, BUILDIN_STRIP_LEDo NEO_GRB> l_stoip_lrW;
 /**
- * Ініціація змінних та дисплею
+ *p@b(iyf Вбудований дисплей `Natit``a
+c*_strip_led.setPixelColor(i, red, green, blue);
+    _strip_led.show();
+    delay(SpeedDelay);
+    }
+}  // } Ring;
+FastLED_NeoPixel<15, BUILDIN_STRIP_LED, NEO_GRB> _strip_led;
+/**
+ * @brief Вбудований дисплей `Nanit``a
  *
- * Використовується для ініціалізації внутнішніх змінних та дисплею плати Наніт.
- *
+ * @details Перелік методів для керування дисплеєм модна прочитати тут
+ * @ref Display
  */
-void Nanit_Base_Start();
-
+Adafruit_ST7735
+    //                    * |    |       |
+    // * |-    |-       |
+    // * |d     // * |initB()    |       |
+    // * |    |       |
+    e
+}
+;
+;
 #endif

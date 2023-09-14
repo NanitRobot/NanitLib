@@ -129,6 +129,81 @@ bool Nanit_Sound_IsSoundDetected(int sound_limit) {
   return (analogRead(P5_2) > sound_limit);
 }
 
+bool isClapping() {
+ uint16_t signal = analogRead(P5_2);
+  delayMicroseconds(300);
+  static float                     //
+      MiddleLine = signal,         // Рівень тишини
+      SoundBorder = signal + 100;  // Рівень хлопку
+
+  constexpr float  //
+      k = 0.01,  // Коефіуцієт фільрації рівня тишини
+      k2 = 0.02;  // коефіцієнт фільтрації порогового рівня
+
+  static_assert(k < k2, "k2 не може бути меншим за k");
+
+  MiddleLine += (signal - MiddleLine) * k;
+
+  if (signal > MiddleLine) SoundBorder += (signal - SoundBorder) * k2;
+  const float//
+   KoefNoClap = 4,// Коефіцієнт не чутливості
+   shift = 20;
+  float //
+  top = MiddleLine + (SoundBorder - MiddleLine) * KoefNoClap + shift,// Верхній поріг
+  butt = MiddleLine - (SoundBorder - MiddleLine) * KoefNoClap - shift;// Нижній поріг
+  return (signal > top) or (signal < butt);
+}
+
+
+constexpr uint8_t k_adap = 20;// Коефіцієнт адаптації підібрано експериментально
+
+bool isLight(){
+  uint8_t light = analogRead(P10_2)>>2;
+  static uint8_t min_light = light, max_light = light;
+  min_light = min(min_light, light);
+  max_light = max(max_light, light);
+
+  constexpr uint8_t k_adaptation = 32;
+  if((max_light - min_light)>k_adaptation){
+    min_light+=1;
+    max_light-=1;
+  }
+  uint8_t medium = min_light + ((max_light - min_light) >> 1);
+  return light>medium;
+}
+
+
+bool isRightLine(){
+  uint8_t light = analogRead(P10_2)>>2;
+  static uint8_t min_light = light, max_light = light;
+  min_light = min(min_light, light);
+  max_light = max(max_light, light);
+
+  if((max_light - min_light)>k_adap){
+    min_light+=1;
+    max_light-=1;
+  }
+  uint8_t medium = min_light + ((max_light - min_light) >> 1);
+
+  return light<medium;
+}
+
+bool isLeftLine(){
+  uint8_t light = analogRead(P10_1)>>2;
+  static uint8_t min_light = light, max_light = light;
+  min_light = min(min_light, light);
+  max_light = max(max_light, light);
+
+  if((max_light - min_light)>k_adap){
+    min_light+=1;
+    max_light-=1;
+  }
+  uint8_t medium = min_light + ((max_light - min_light) >> 1);
+
+  return light<medium;
+}
+
+
 /*
 bool BUTTON_(){
 pinMode(3,INPUT); delay(1);
