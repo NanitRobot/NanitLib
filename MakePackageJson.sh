@@ -4,8 +4,8 @@
 
 #sh ./MakePackageJson.sh  {{GITHUB_REPOSITORY}} $(sha256sum NanitCore.zip)
 
-EMAIL=""
-HELP_ONLINE=""
+EMAIL="sales@nanitrobot.com"
+HELP_ONLINE="https://nanitrobot.com/"
 
 GITHUB_OWNER_REPO=${1}
 SHA256=${2}
@@ -46,7 +46,7 @@ cat <<EOF > "${OUT_FILE}"
           "version": "0.1.2",
           "category": "Contributed",
           "help": {
-            "online": ""
+            "online": "${HELP_ONLINE}"
           },
           "url": "${HOST}/${FILE_PATH}${FILE_NAME}",
           "archiveFileName": "${FILE_NAME}",
@@ -77,7 +77,7 @@ cat <<EOF > "${OUT_FILE}"
           "category": "Contributed",
           "deprecated": "true",
           "help": {
-            "online": ""
+            "online": "${HELP_ONLINE}"
           },
           "url": "${HOST}/${FILE_PATH}${FILE_NAME}",
           "archiveFileName": "${FILE_NAME}",
