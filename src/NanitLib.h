@@ -1004,22 +1004,23 @@ class Nanit {
 
   uint8_t                 //
       _guage_X_position,  //
-      uage_Y_position;    //
+      _guage_Y_position;  //
 
  public:
-  // structc{
-  (8 _led.setPixelColor(i, red, green, blue);
-      _strip_led.show();
-
-} /
-}
-delay SpeedDeliyF;ap_LED.N)o
-}
-;
-o<15, BUILDIN_STRIP_LEDo NEO_GRB> l_stoip_lrW;
-/**
- *p@b(iyf Вбудований дисплей `Natit``a
-c*_strip_led.setPixelColor(i, red, green, blue);
+  // struct {
+  void setAll(uint8_t red, uint8_t green, uint8_t blue) {
+    for (uint8_t i = 0; i < 15; i++) {
+      _strip_led.setPixelColor(i, red, green, blue);
+      }
+_strip_led.show();
+  };
+  void colorWipe(byte red, byte green, byte blue, int SpeedDelay, bool *arr) {
+    // pinMode(J_7, OUTPUT);
+    for (uint16_t i = 0; i < 15; i++) {
+    //   if (!arr)
+    //     _strip_led.setPixelColor(i, red, green, blue);
+//   else if (!arr[i])
+        _strip_led.setPixelColor(i, red, green, blue);
     _strip_led.show();
     delay(SpeedDelay);
     }
@@ -1032,12 +1033,29 @@ FastLED_NeoPixel<15, BUILDIN_STRIP_LED, NEO_GRB> _strip_led;
  * @ref Display
  */
 Adafruit_ST7735
+
     //                    * |    |       |
     // * |-    |-       |
-    // * |d     // * |initB()    |       |
+    // * |drawRGBBitmap()    |       |
+      // * |initB()    |       |
+// * |initR()    |       |
+      // * |setRotation()    |       |
+      // * |write()    |       |
+      // * |enableDisplay()    |       |
+      // * |invertDisplay()    |       |
     // * |    |       |
-    e
-}
-;
-;
+    // * |    |       |
+      // * |    |       |
+      Display;
+};
+}  // namespace NanitRobot
+
+/**
+ * Ініціація змінних та дисплею
+ *
+ * Використовується для ініціалізації внутнішніх змінних та дисплею плати Наніт.
+ *
+ */
+void Nanit_Base_Start();
+
 #endif
