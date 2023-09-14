@@ -75,7 +75,7 @@ cat <<EOF > "${OUT_FILE}"
           "architecture": "avr",
           "version": "0.1.1",
           "category": "Contributed",
-          "deprecated": "true",
+          "deprecated": true,
           "help": {
             "online": "${HELP_ONLINE}"
           },
