@@ -155,8 +155,6 @@ bool isClapping() {
 }
 
 
-constexpr uint8_t k_adap = 20;// Коефіцієнт адаптації підібрано експериментально
-
 bool isLight(){
   uint8_t light = analogRead(P10_2)>>2;
   static uint8_t min_light = light, max_light = light;
@@ -173,13 +171,13 @@ bool isLight(){
 }
 
 
-bool isRightLine(){
+bool isRightLine(uint8_t sen=k_adap){
   uint8_t light = analogRead(P10_2)>>2;
   static uint8_t min_light = light, max_light = light;
   min_light = min(min_light, light);
   max_light = max(max_light, light);
 
-  if((max_light - min_light)>k_adap){
+  if((max_light - min_light)>sen){
     min_light+=1;
     max_light-=1;
   }
@@ -188,13 +186,13 @@ bool isRightLine(){
   return light<medium;
 }
 
-bool isLeftLine(){
+bool isLeftLine(uint8_t sen=k_adap){
   uint8_t light = analogRead(P10_1)>>2;
   static uint8_t min_light = light, max_light = light;
   min_light = min(min_light, light);
   max_light = max(max_light, light);
 
-  if((max_light - min_light)>k_adap){
+  if((max_light - min_light)>sen){
     min_light+=1;
     max_light-=1;
   }

@@ -545,14 +545,16 @@ bool isLight();
  * @return true 
  * @return false 
  */
-bool isRightLine();
+constexpr uint8_t k_adap = 20;// Коефіцієнт адаптації підібрано експериментально
+
+bool isRightLine(uint8_t sen=k_adap);
 /** 
  * @brief датчик ліній лівий 
  * 
  * @return true 
  * @return false 
  */
-bool isLeftLine();
+bool isLeftLine(uint8_t sen=k_adap);
 
 void Nanit_Servo_Rotate(byte angle);
 
@@ -784,7 +786,8 @@ class Nanit {
    */
   inline Nanit() : Display{Adafruit_ST7735(TFT_CS, TFT_DC, TFT_RES)} {
     if (!Serial) Serial.begin(NANIT_SERIAL_SPEED);
-    Serial.println("Nanit initialise...");
+    Serial.print("Nanit initialise...\nSerial number: ");
+    Serial.println(getSerialNum());
     _strip_led.begin();
 
     Display.initR(INITR_BLACKTAB);
@@ -962,6 +965,9 @@ class Nanit {
     }
 
     // APROOF_MODE;
+    Serial.print("Nanit started ");
+    Serial.print(millis());
+    Serial.print(" us OK");
   };
 
   /*
