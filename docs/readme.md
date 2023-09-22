@@ -20,7 +20,7 @@ That's all you need to start learning the C/C++ programming language with Nanit
 
 <center>
 
-# Our Nanite projects
+# Our Nanit projects
 
 ### Discovery KIT
 
