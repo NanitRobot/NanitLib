@@ -128,10 +128,6 @@ const char webpageHome[] PROGMEM = R"=====(
             <div class="wifi left1 ">
                 <span class="setting_img"></span><span><a href="/setting"><input type="button" name="" value="Setting" class="buttonWifi"></a></span>
             </div>
-
-            <div class="wifi right1 ">
-                <span class="info_img"></span><span><a href="https://nanitrobot.com/"><input type="button" name="" value="Info" class="buttonWifi"></a></span>
-            </div>
         </div>
 
 
@@ -148,10 +144,6 @@ const char webpageHome[] PROGMEM = R"=====(
         <div class="wifi cent">
             <span class="terminal_img"></span><span><a href="/terminal"><input type="button" name="" value="Terminal" class="buttonWifi"></a></span>
         </div>
-    </div>
-
-    <div class="outer">
-        <p style="position: absolute; bottom:10px; font-size: 23px; font-weight:normal; "><a href="https://nanitrobot.com/" style="color: #4cd8fb">nanitrobot.com</a></p>
     </div>
 
 </body>

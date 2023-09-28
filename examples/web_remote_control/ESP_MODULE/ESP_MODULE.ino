@@ -106,6 +106,15 @@ void outPage_terminal () {
   server.send(200, "text/plane", terminal); //send the page to the server
 }
 
+void term_text() {
+  // outputting text from the TextBox of the /terminal page !!!!!!!!!!!!!!!!!!
+  if (server.arg("command_textBox") != "") {
+    byfer_UART += server.arg("command_textBox");
+    byfer_UART += " ";
+  }
+  server.send(200, "text/plane", terminal);
+}
+
 void button_left() {                               //joystick buttons on the left
   if (server.arg("state_l") == "1") byfer_UART += "_LYRIGHT "; //_LYRIGHT
   else if (server.arg("state_l") == "2") byfer_UART += "_LXDOWN "; //_LXDOWN
@@ -119,12 +128,50 @@ void button_right() {                              //joystick buttons on the rig
   else if (server.arg("state_r") == "3")byfer_UART += "_RYLEFT ";//_RYLEFT
   else if (server.arg("state_r") == "4")byfer_UART += "_RXUP "; //_RXUP
 }
+int xValue = 0;
+int yValue = 0;
+bool openButtonState = false;
+int sliderValue = 150;
+int bValue = 0;
 
-void term_text() {                        //outputting text from the TextBox of the /terminal page
-  if (server.arg("command_textBox") != "") {
-    byfer_UART += server.arg("command_textBox");
-    byfer_UART += " ";
-  }
+void handleJoystick() {
+  xValue = server.arg("x").toInt();
+  yValue = server.arg("y").toInt();
+  Serial.print(xValue);
+  Serial.print(",");
+  Serial.print(yValue);
+  Serial.print(",");
+  Serial.print(sliderValue);
+  Serial.print(",");
+  Serial.println(bValue);
+  server.send(200, "text/plain", "OK");
+}
+
+
+void handleButton() {
+  bValue = server.arg("value").toInt();
+  /*Serial.print(xValue);
+  Serial.print(",");
+  Serial.print(yValue);
+  Serial.print(",");
+  Serial.print(sliderValue);
+  Serial.print(",");
+
+  Serial.print(bValue);
+  Serial.println(' ');*/
+  server.send(200, "text/plain", "OK");
+}
+
+void handleSlider() {
+  sliderValue = server.arg("value").toInt();
+  /* Serial.print(xValue);
+  Serial.print(",");
+  Serial.print(yValue);
+  Serial.print(",");
+  Serial.print(sliderValue);
+  Serial.print(",");
+  Serial.println(openButtonState);*/
+  server.send(200, "text/plain", "OK");
 }
 
 void re_name_ssid() {                         //ssid change
@@ -176,8 +223,13 @@ void setup(void)
     byfer_UART.remove(0);
   }
 
+
   while (1)
   {
+    if(millis()>30000){
+      serialNumber="XXXXXXXXXX";
+      break;
+    }
     if (Serial.available()) //if data is coming
     {
       bufer_TX = Serial.read();
@@ -271,6 +323,12 @@ void setup(void)
   server.on("/terminal", TerminalPage); //terminal page
   server.on("/config", ConfigPage); //peripheral connection page
 
+/*****************************************************************/
+  server.on("/joystick", handleJoystick);
+  server.on("/button", handleButton);  // Обробник для кнопок
+  server.on("/slider", handleSlider);  // Обробник для слайдера
+/*****************************************************************/
+
   server.on("/b_left", button_left); //control with the left joystick buttons
   server.on("/b_right", button_right); //control with the right joystick buttons
 
@@ -279,7 +337,11 @@ void setup(void)
   server.on("/textPage_wifi", outPage_wifi); //Wi-Fi output on the /setting page
   server.on("/textPage_ssid", outPage_ssid); //ssid output to the /setting page
   server.on("/textPage_password", outPage_password); //password output to the /setting page
+
+
+  /*Termianl*/
   server.on("/text_terminal", outPage_terminal); //text output to the /terminal page
+  server.on("/terminal_textBox", term_text); //Output of text from the text field of the /terminal page
 
   server.on("/b_right_y", right_y); //RIGHT BUTTON Y
   server.on("/b_right_x", right_x); //RIGHT BUTTON X
@@ -302,7 +364,6 @@ void setup(void)
   server.on("/ssid", re_name_ssid); //ssid
   server.on("/password", re_name_password); //password
 
-  server.on("/terminal_textBox", term_text); //Output of text from the text field of the /terminal page
 
   server.begin(); //Initialization of pages
 

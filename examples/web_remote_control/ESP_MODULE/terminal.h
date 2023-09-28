@@ -381,10 +381,6 @@ const char webpageTerminal[] PROGMEM = R"=====(
         </div>
 
         <div class="wifi">
-            <span class="info_img"></span><span><a href="https://nanitrobot.com/"><input type="button" name="" value="Information" class="buttonWifi"></a></span>
-        </div>
-
-        <div class="wifi">
             <span class="controller_img"></span><span><a href="/gamePad"><input type="button" name="" value="Controller" class="buttonWifi"></a></span>
         </div>
 
@@ -461,7 +457,12 @@ const char webpageTerminal[] PROGMEM = R"=====(
     <div class="center_text">
         <div><textarea style="font-size: 30px; margin-bottom: 10px; border-radius: 30px; padding: 10px;" readonly class="text_area" id="output_text"></textarea></div>
         <div>
-            <center><input type="text" class="size_text" style="border: 1px solid; border-radius: 30px; height: 30px;" id="send_text_term"> <button class="button_save" type="button" onclick="send()">Submit</button></center>
+            <form method="get" action="/terminal_textBox" onsubmit="send_command(); return false;">
+                    <input type="text" name="command_textBox" class="size_text" 
+                    style="border: 1px solid; border-radius: 30px; height: 30px;" id="send_text_term"> 
+                    <button class="button_save"  type="submit" >Submit</button>
+                    <!--input type="submit"/>-->
+            </form>
         </div>
     </div>
 
@@ -480,18 +481,34 @@ function output_text() {
   xhttp.open("GET", "text_terminal", true);
   xhttp.send();
 }
+/*
+State  Description
+0      The request is not initialized
+1      The request has been set up
+2      The request has been sent
+3      The request is in process
+4      The request is complete
+*/
 
-function send() {
-  var xhttp_password = new XMLHttpRequest();
-  xhttp_password.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("command_textBox").innerHTML = this.responseText;
-    }
-  };
-  xhttp_password.open("GET", "terminal_textBox?command_textBox="+ document.getElementById("send_text_term").value, true);
-  xhttp_password.send();
 
-  document.getElementById("send_text_term").value = "";
+function send_command() {
+  
+  if (document.getElementById("send_text_term").value !== "") {
+    var xhttp_password = new XMLHttpRequest();
+    
+    xhttp_password.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("command_textBox").innerHTML = this.responseText;
+      }
+    };
+    
+    xhttp_password.open("GET", "terminal_textBox?command_textBox=" + document.getElementById("send_text_term").value, true);
+    document.getElementById("send_text_term").value = "";
+    xhttp_password.send();
+    /* xhttp_password.cloce(); */
+    
+    isFunctionExecuted = true; // позначити, що функція була виконана
+  }
 }
 </script>
 </body>
