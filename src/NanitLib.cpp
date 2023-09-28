@@ -66,7 +66,11 @@ String getSerialNumber() {
       return String(SerialNumber);
     }
   }
-  return String(getSerialNum());
+  
+  String StringSerialNumber = String(getSerialNum());
+  while (StringSerialNumber.length() < 10) 
+  StringSerialNumber = "0" + StringSerialNumber;
+  return StringSerialNumber;
 };
 
 void NanitInfo() {

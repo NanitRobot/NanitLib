@@ -439,11 +439,17 @@ const char webpageGamePad[] PROGMEM
       xhttp.send();
     }
 
+var flag=true;
 
 function sendCoordinates(x, y) {
-   const xhttp = new XMLHttpRequest();
-   xhttp.open('GET', `/joystick?x=${x}&y=${y}`, true);
-   xhttp.send();
+  if(flag){
+    const xhttp = new XMLHttpRequest();
+    xhttp.open('GET', `/joystick?x=${x}&y=${y}`, true);
+    xhttp.send();
+    flag=false;
+  }else{
+    flag=true;
+  }
  }
 
     window.addEventListener('DOMContentLoaded', () => {

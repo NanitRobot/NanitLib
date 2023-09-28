@@ -31,6 +31,10 @@ That's all you need to start learning the C/C++ programming language with Nanit
 
 ![Smart Home KIT](https://nanitrobot.com/wp-content/uploads/2023/06/Frame-66-1.jpg)
 
+### Ground Drone KIT
+
+![](https://nanitrobot.github.io/Frame-66-1.jpg)
+
 # Your Nanite projects
 
 ### They start here
