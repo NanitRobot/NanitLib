@@ -244,7 +244,7 @@ void setup(void)
 {
   RED_ON();
   EEPROM.begin(512); //initialization and allocation of memory from EEPROM
-  Serial.begin(9600); //Data transfer speed
+  Serial.begin(57600); //Data transfer speed
 
   byfer_UART.remove(0);
   byfer_UART += " _SERNOM?  ";

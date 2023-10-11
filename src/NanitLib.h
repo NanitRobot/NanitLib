@@ -348,7 +348,7 @@
  * призначення цього піна на адаптері.
  */
 #define P8_4                                                                   \
-  #error                                                                       \
+#error                                                                       \
       "U can`t use this definision in code. This definision only for "         \
       "doxygen. This is RESET pin ATMega2560"
 
@@ -432,6 +432,14 @@
 #define TFT_BL   (4)  ///< Підсвідка дисплею пін доступний лише для запису
 #define TFT_SCK  (52)  ///< Пін для роботи з картою пам'яті та дисплеєм
 #define TFT_MOSI (51)  ///< Пін для роботи з картою пам'яті та дисплеєм
+
+// Перевизначення LED_BUILTIN
+#if defined(LED_BUILTIN) && (LED_BUILTIN == (13))
+#undef LED_BUILTIN  ///< Перевизначаємо макрос якщо він об'явлений
+#define LED_BUILTIN (TFT_BL)
+#elif !defined(LED_BUILTIN)
+#define LED_BUILTIN (TFT_BL)
+#endif
 
 /**
  * @brief Опорна напруга для вбулованого АЦП (5 вольт)
@@ -532,7 +540,7 @@ bool isClapping();
 
 /**
  * @brief Функція детектить зміну освітлення в оточненні.
- * 
+ *
  * @return true - зафіксовано зниження рівня освітлення
  * @return false - не зафіксовано зниження рівня освітлення
  */
@@ -541,20 +549,21 @@ bool isLight();
 
 /**
  * @brief Датчик ліній правий
- * 
- * @return true 
- * @return false 
+ *
+ * @return true
+ * @return false
  */
-constexpr uint8_t k_adap = 20;// Коефіцієнт адаптації підібрано експериментально
+constexpr uint8_t k_adap =
+    20;  // Коефіцієнт адаптації підібрано експериментально
 
-bool isRightLine(uint8_t sen=k_adap);
-/** 
- * @brief датчик ліній лівий 
- * 
- * @return true 
- * @return false 
+bool isRightLine(uint8_t sen = k_adap);
+/**
+ * @brief датчик ліній лівий
+ *
+ * @return true
+ * @return false
  */
-bool isLeftLine(uint8_t sen=k_adap);
+bool isLeftLine(uint8_t sen = k_adap);
 
 void Nanit_Servo_Rotate(byte angle);
 
@@ -1017,40 +1026,40 @@ class Nanit {
   void setAll(uint8_t red, uint8_t green, uint8_t blue) {
     for (uint8_t i = 0; i < 15; i++) {
       _strip_led.setPixelColor(i, red, green, blue);
-      }
-_strip_led.show();
+    }
+    _strip_led.show();
   };
   void colorWipe(byte red, byte green, byte blue, int SpeedDelay, bool *arr) {
     // pinMode(J_7, OUTPUT);
     for (uint16_t i = 0; i < 15; i++) {
-    //   if (!arr)
-    //     _strip_led.setPixelColor(i, red, green, blue);
-//   else if (!arr[i])
-        _strip_led.setPixelColor(i, red, green, blue);
-    _strip_led.show();
-    delay(SpeedDelay);
+      //   if (!arr)
+      //     _strip_led.setPixelColor(i, red, green, blue);
+      //   else if (!arr[i])
+      _strip_led.setPixelColor(i, red, green, blue);
+      _strip_led.show();
+      delay(SpeedDelay);
     }
-}  // } Ring;
-FastLED_NeoPixel<15, BUILDIN_STRIP_LED, NEO_GRB> _strip_led;
-/**
- * @brief Вбудований дисплей `Nanit``a
- *
- * @details Перелік методів для керування дисплеєм модна прочитати тут
- * @ref Display
- */
-Adafruit_ST7735
+  }  // } Ring;
+  FastLED_NeoPixel<15, BUILDIN_STRIP_LED, NEO_GRB> _strip_led;
+  /**
+   * @brief Вбудований дисплей `Nanit``a
+   *
+   * @details Перелік методів для керування дисплеєм модна прочитати тут
+   * @ref Display
+   */
+  Adafruit_ST7735
 
-    //                    * |    |       |
-    // * |-    |-       |
-    // * |drawRGBBitmap()    |       |
+      //                    * |    |       |
+      // * |-    |-       |
+      // * |drawRGBBitmap()    |       |
       // * |initB()    |       |
-// * |initR()    |       |
+      // * |initR()    |       |
       // * |setRotation()    |       |
       // * |write()    |       |
       // * |enableDisplay()    |       |
       // * |invertDisplay()    |       |
-    // * |    |       |
-    // * |    |       |
+      // * |    |       |
+      // * |    |       |
       // * |    |       |
       Display;
 };
