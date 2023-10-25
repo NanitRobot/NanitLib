@@ -1,5 +1,29 @@
 // clang-format off
 /**
+@if German
+Deutsche Kommentare
+
+Weitere Sprachen:
+- [Englisch](../English/index.html)
+- [Französisch](../French/index.html)
+
+@elseif English
+English comments
+
+Other languages:
+- [German](../German/index.html)
+- [French](../French/index.html)
+
+@elseif French
+Commentaires en français
+
+Autres langues:
+- [Allemand](../German/index.html)
+- [Anglais](../English/index.html)
+
+@else
+Unknown language
+@endif
  * @mainpage NanitLib
  * 
  * # NanitLib
