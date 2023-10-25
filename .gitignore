@@ -1,4 +1,31 @@
-.vscode
+# 
+# @file .gitignore
+# @author Sam4uk
+# @brief 
+# 
+# @copyright Copyright (c) 2023
+# 
+# 
 !.gitignore
+# Інструменти які лишають сміття
+.vscode
 TestDoxy/
+
+# Робочі білди
 [Bb]uild
+
+# Ігноруємо каталоги сторені doxygen'ом
+# i18n
+German/
+Ukrainian/
+English/
+
+# Ігноруємо всі файли які породить doxygen корінному каталозі
+/*.png
+/*.html
+/*.md5
+/*.map
+/*.css
+/*.js
+/*.svg
+/search/

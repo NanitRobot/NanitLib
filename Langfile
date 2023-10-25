@@ -3,12 +3,12 @@
 # - start a command shell
 # - setup the environment variables
 # - run Doxygen from command shell
-PROJECT_NAME           = "$(PROJECT_NAME) - $(LANGUAGE)"
+# PROJECT_NAME           = "$(PROJECT_NAME) - $(LANGUAGE)"
 OUTPUT_LANGUAGE        = $(LANGUAGE)
 ENABLED_SECTIONS      += $(LANGUAGE)
 
 # note on directories:
 # pre-create the directories sinse Doxygen seems not to be able to create
 # directory trees at whole!
-HTML_OUTPUT            = $(LANGUAGE)
+HTML_OUTPUT            = "./$(LANGUAGE)"
 # LATEX_OUTPUT           = latex/$(LANGUAGE)
