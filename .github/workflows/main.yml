@@ -39,7 +39,6 @@ jobs:
           LANGUAGE=English doxygen Doxyfile
           LANGUAGE=Ukrainian doxygen Doxyfile
           
-          doxygen Doxyfile
 
     # 3)
       - name: Setup Pages

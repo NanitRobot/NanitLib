@@ -1,38 +1,41 @@
 // clang-format off
 /**
- * <!--
- * @if German
- * Deutsche Kommentare
  * 
- * Weitere Sprachen:
- * - [Englisch](../English/index.html)
- * - [Französisch](../French/index.html)
- * 
- * @elseif English
- * English comments
- * 
- * Other languages:
- * - [German](../German/index.html)
- * - [French](../French/index.html)
- * 
- * @elseif French
- * Commentaires en français
- * 
- * Autres langues:
- * - [Allemand](../German/index.html)
- * - [Anglais](../English/index.html)
+ * @if English
+ *
+ * - [English]
+ * - [Перейти до документації Українською](../Ukrainian/index.html)
  * 
  * @else
+ *
+ * - [Go to documentation in English](../English/index.html)
+ * - [Українська]
  * @endif
- * Unknown language-->
  * @mainpage NanitLib
  * 
- * # NanitLib
+ *
  * 
- * ## Призначення 
+ * @if English
+ * ## Appointment
+ *
+ * The purpose of the library is to facilitate the study of the basics of ```C/C++``` programming for microcontrollers on ```Nanit``` boards
+ * @else
+ * ## Призначення
  * 
  * Призначення бібліотеки полегшити вивчення основ програмування на мові  ```C/C++``` для мікроконтролерів на платах ```Nanit```
+ * @endif
  * 
+ * @if English
+ *
+ * ## How to install
+ * 
+ * You can install ```NanitLib``` in several ways
+ *
+ * 1. Installing the library with a zip archive
+ * 2. Installing the library using the library manager
+ * 3. Installing the library using the board manager
+ *
+ * @else 
  * ## Як встановити
  * 
  * Встановити ```NanitLib``` можна кількома способами
@@ -40,6 +43,41 @@
  *  1. Встановлення бібліотеки zip-архівом
  *  2. Встановлення бібліотеки за допомогою менеджера бібліотек
  *  3. Встановлення бібліотеки за допомогою менеджера плат
+ * @endif
+ * 
+ * @if English
+ * 
+ * ### zip archive
+ *
+ * We recommend using this method only if your PC has no internet connection and you have no other way to install the library. Be prepared to download the libraries that ```NanitLib``` depends on in the same way yourself, if they are not already installed on your system. Because this method does not know how to load third-party libraries on its own.
+ *
+ * To download the ```zip``` of the library, you need to find it on the ```GitHub``` website
+ *
+ * ![GitHub](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/GitHub.png)
+ *
+ * Or follow one of the links
+ * - [NanitRobot](https://github.com/NanitRobot/) -- link to GitHub profile
+ * - [NanitLib](https://github.com/NanitRobot/NanitLib) -- direct link to the repository with the library
+ *
+ * ![Profile](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/NanitRobot.png)
+ *
+ * On the repository page, press the ```CODE``` button and select ```Download ZIP```.
+ *
+ * A window for saving the file will open before you. The file should be saved in a convenient location for you. It does not necessarily have to be a folder with library files.
+ *
+ * ![zip](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/zip_file.png)
+ *
+ * You can also download the file [at the link](https://github.com/NanitRobot/NanitLib/archive/refs/heads/main.zip)
+ *
+ * After downloading and saving the file, the Internet browser can be closed.
+ *
+ * If you have access to the Internet, we recommend using the methods described below.
+ *
+ * After that, you need to open the Arduino IDE
+ *
+ * Select the IDE version you are using
+ * 
+ * @else 
  * 
  * ### zip-архів
  * 
@@ -69,17 +107,37 @@
  * 
  * Після цього потрібно відкрити IDE Arduino
  * 
- * 
  * Обіріть версію IDE якою ви користуєтесь
+ * @endif
  * 
  * #### IDE 1.8.x
+ * 
+ * @if English
+ * 
+ * First you need to start the development environment
+ *
+ * ![IDE 1.8.x](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/IDE1_8.png)
+ *
+ * In the open environment window, select ```Sketch``` &rarr; ```Add Library``` &rarr; ```Add ZIP library```.
+ *
+ * ![IDE 1.8.x](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/IDE1_8_menu.png)
+ *
+ * A file selection window will open before you. You need to choose the file you want
+ * downloaded from the Internet
+ *
+ * ![IDE 1.8.x](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/IDE1_8_fileSelection.png)
+ *
+ * After clicking the confirmation button, the contents of the archive will be automatically
+ * unpacked into the necessary directories. And you can already start using it
+ * installed library
+ * 
+ * @else
  * 
  * Для початку вам потрібно запустити середовище розробки
  *
  * ![IDE 1.8.x](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/IDE1_8.png)
  *
- * У відкритому вікні середовища обираємо пункт `Скетч` --> `Додати бібілотеку`
- * --> `Додати ZIP-бібліотеку`.
+ * У відкритому вікні середовища обираємо пункт ```Скетч``` &rarr; ```Додати бібілотеку``` &rarr; ```Додати ZIP-бібліотеку```.
  *
  * ![IDE 1.8.x](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/IDE1_8_menu.png)
  *
@@ -92,15 +150,36 @@
  * розпаковано у необхідні каталоги. І ви вже можете почати користуватися
  * встановленою бібліотекою
  *
+ * @endif
+ * 
  * #### IDE 2.x
  *
+ * @if English
+ * 
+ * First you need to start the development environment
  *
+ * ![IDE 2.x](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/IDE2.png)
+ *
+ * In the open environment window, select ```Sketch``` &rarr; ```Add Library``` &rarr; ```Add ZIP library```.
+ *
+ * ![IDE 2.x](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/IDE2_menu.png)
+ *
+ * A file selection window will open before you. You need to choose the file you want
+ * downloaded from the Internet
+ *
+ * ![IDE 2.x](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/IDE2_fileSelection.png)
+ *
+ * After clicking the confirmation button, the contents of the archive will be automatically
+ * unpacked into the necessary directories. And you can already start using it
+ * installed library
+ * 
+ * @else
+ * 
  * Для початку вам потрібно запустити середовище розробки
  *
  * ![IDE 2.x](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/IDE2.png)
  *
- * У відкритому вікні середовища обираємо пункт `Скетч` --> `Додати бібілотеку`
- * --> `Додати ZIP-бібліотеку`.
+ * У відкритому вікні середовища обираємо пункт ```Скетч``` &rarr; ```Додати бібілотеку``` &rarr; ```Додати ZIP-бібліотеку```.
  *
  * ![IDE 2.x](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/IDE2_menu.png)
  *
@@ -113,6 +192,22 @@
  * розпаковано у необхідні каталоги. І ви вже можете почати користуватися
  * встановленою бібліотекою
  * 
+ * @endif
+ * 
+ * @if English
+ * 
+ * #### Known issues
+ *
+ * This installation method does not resolve library dependencies. During
+ * compiling the project you development environment will display errors about
+ * remoteness of certain libraries on which `NanitLib' depends. You will have to
+ * independently resolve these dependencies during project compilation.
+ *
+ * You can avoid this by downloading these libraries separately.
+ * The list of third-party libraries may change, so they are written in a [separate special file](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/src/DependsLib.h).
+ *
+ * @else
+ * 
  * #### Відомі проблеми
  *
  * Цей спосіб встановлення не розв'язує залежностей бібіліотеки. Під час
@@ -122,6 +217,22 @@
  *
  * Ви можете зазделегіть цього уникнути завантаживши ці бібліотеки окремо.
  * Список сторонніх бібліотек може змінюватись тому їх прописано в [окремому спеціальному файлі](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/src/DependsLib.h).
+ * 
+ * @endif
+ * 
+ * @if English
+ * 
+ * ### Library manager
+ *
+ * Downloading through the library manager allows you to automatically download third-party libraries that ```NanitLib``` depends on and get the latest versions of all necessary files
+ *
+ * In the process of installing the library, the library manager will analyze the library properties file and offer to install the necessary libraries. You only need to agree to the installation of additional files.
+ *
+ * The advantage of this method is that when starting the development environment (if there is an Internet connection), it checks for updates for the installed libraries and will offer to update them.
+ *
+ * We recommend that you agree to the update as you will always have the latest version of `NanitLib` with new functionality.
+ *
+ * @else
  * 
  * ### Менеджер бібліотек
  * 
@@ -133,25 +244,62 @@
  * 
  * Ми рекомендуємо погоджуватись на оновлення так як ви завжди матимете найновішу версію `NanitLib` з новим функціоналом.
  * 
+ * @endif
+ * 
+ * 
+ * @if English
+ * 
+ * ### Board manager
+ * 
+ * @else
+ * 
  * ### Менеджер плат
+ * 
+ * @endif
  * 
  * #### IDE 1.8.x
  * 
+ * @if English
+ * 
+ * Section under development
+ * 
+ * @else
+ * 
  * Розділ в розробці
+ * 
+ * @endif
  * 
  * #### IDE 2.x
  * 
+ * @if English
+ * 
+ * Section under development
+ * 
+ * @else
+ * 
  * Розділ в розробці
  * 
+ * @endif
+ * 
  *
+ * @if English
+ * 
+ * You can install the NanitLib library in any way (download
+ * archive, clone the repository or install through the library manager).
+ * 
+ * @else
+ * 
  * Ви можете встановити бібліотеку NanitLib будь яким способом (завантажити
  * архівом, клонувати репозиторій або встановити через менеджер бібліотек).
- *
+ * 
+ * @endif
+ */
+/*
  * PinOuts
  * =======
  *
  * 
- * |Nanitdef              |Analog |    PIN       | Напрямок роботи піна|
+ * |Nanitdef              |Analog |    PIN       |                     |
  * |:--------------------:|:-----:|:------------:|:-------------------:|
  * |      @ref P1_1       |  A7   |   61(IO)     |          IO         |
  * |      @ref P1_2       |  A6   |   60(IO)     |          IO         |
@@ -206,6 +354,19 @@
  * |   @ref MOTOR_FAIL    |       |     41(I)    |          I          |
  * |@ref BUILDIN_STRIP_LED|       |     27(0)    |          O          |
  *  
+ * 
+ * @if English
+ * 
+ * \b I -- pin can work only on input
+ *
+ * \b O -- The pin can only work on output pin
+ *
+ * \b IO -- The pin can be used for both input and output
+ *
+ * \b -- -- Pin information is in a separate section @ref DiffPin documentation
+ * 
+ * @else
+ * 
  *  \b I -- пін може працювати тільки на вхід
  * 
  *  \b O -- Пін може працювати тільки на вивід
@@ -213,6 +374,9 @@
  *  \b IO -- Пін може бути використаний як на вхід так і на вихід
  * 
  *  \b -- -- Інформація про пін знаходиться в окремому розділі  @ref DiffPin документації
+ * 
+ * @endif
+ * 
  * 
  * ![Arduino](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/PinOutArduino.jpg)
  *
