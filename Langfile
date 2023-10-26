@@ -4,9 +4,17 @@
 # - setup the environment variables
 # - run Doxygen from command shell
 # PROJECT_NAME           = "$(PROJECT_NAME) - $(LANGUAGE)"
+
 OUTPUT_LANGUAGE        = $(LANGUAGE)
 ENABLED_SECTIONS      += $(LANGUAGE)
 
+
+@if OUTPUT_LANGUAGE != ""
+  # Ваш код, який виконується, коли STR_VAR не порожній
+OUTPUT_LANGUAGE        = "Ukrainian"
+@else 
+OUTPUT_LANGUAGE        = $(LANGUAGE)
+@endif
 # note on directories:
 # pre-create the directories sinse Doxygen seems not to be able to create
 # directory trees at whole!
