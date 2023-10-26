@@ -297,10 +297,6 @@ const char webpageConfig[] PROGMEM = R"=====(
         </div>
 
         <div class="frame_text">
-            <span class="info_img"></span><span><a href="https://nanitrobot.com/"><input type="button" name="" value="Information" class="font_type"></a></span>
-        </div>
-
-        <div class="frame_text">
             <span class="controller_img"></span><span><a href="/gamePad"><input type="button" name="" value="Controller" class="font_type"></a></span>
         </div>
 

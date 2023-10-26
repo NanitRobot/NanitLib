@@ -13,6 +13,8 @@
 // ----------------------------------------------
 #include <SoftwareSerial.h> //data transfer via UART
 // ----------------------------------------------
+
+#include "esp_buildin.h"
 char bufer_TX;
 char bufer_RX;
 String Comand;
@@ -48,62 +50,97 @@ String serialNumber = "0x0000000";
 int i;
 void HomePage()
 {
+  BLUE_ON();
   server.send(200, "text/html", webpageHome);   //Main page
+  BLUE_OFF();
 }
 
 void SettingPage()
 {
+    BLUE_ON();
   server.send(200, "text/html", webpageSetting);   //settings page
+  BLUE_OFF();
 }
 
 void GamePadPage()
 {
+    BLUE_ON();
   server.send(200, "text/html", webpageGamePad);   //joystick page
+  BLUE_OFF();
 }
 
 void GamePadSimple()
 {
+    BLUE_ON();
   server.send(200, "text/html", webpageGamePadSimple);   //simple joystick page
+  BLUE_OFF();
 }
 
 void TerminalPage()
 {
+    BLUE_ON();
   server.send(200, "text/html", webpageTerminal);   //terminal page
+  BLUE_OFF();
 }
 
 void ConfigPage()
 {
+    BLUE_ON();
   server.send(200, "text/html", webpageConfig);   //peripheral connection page
+  BLUE_OFF();
 }
 
 
 void  outPage_serial () {              //output of the serial number to the /setting page
+  BLUE_ON();
   String serial = serialNumber;
   server.send(200, "text/plane", serial); //send the page to the server
+  BLUE_OFF();
 }
 
 void  outPage_ip () {              //ip output to the /setting page
+  BLUE_ON();
   String ip = WiFi.localIP().toString();
   server.send(200, "text/plane", ip); //send the page to the server
+  BLUE_OFF();
 }
 
 void  outPage_wifi () {              //Wi-Fi hotspot output on the /setting page
+  BLUE_ON();
   String wifi = String("Nanit_" + serialNumber);
   server.send(200, "text/plane", wifi); //send the page to the server
+  BLUE_OFF();
 }
 
 void  outPage_ssid () {              //displaying the SSID on the /setting page
+  BLUE_ON();
   String ss = String(ssid);
   server.send(200, "text/plane", ss); //send the page to the server
+  BLUE_OFF();
 }
 
 void  outPage_password () {              //output PASSWORD to the /setting page
+  BLUE_ON();
   String pass = String(password);
   server.send(200, "text/plane", pass); //send the page to the server
+  BLUE_OFF();
 }
 
 void outPage_terminal () {
+    BLUE_ON();
   server.send(200, "text/plane", terminal); //send the page to the server
+  BLUE_OFF();
+}
+
+void term_text() {
+    BLUE_ON();
+  // outputting text from the TextBox of the /terminal page !!!!!!!!!!!!!!!!!!
+  if (server.arg("command_textBox") != "") {
+    byfer_UART += server.arg("command_textBox");
+    byfer_UART += " ";
+  }
+  server.send(200, "text/plane", terminal);
+  BLUE_OFF();
 }
 
 void button_left() {                               //joystick buttons on the left
@@ -119,12 +156,56 @@ void button_right() {                              //joystick buttons on the rig
   else if (server.arg("state_r") == "3")byfer_UART += "_RYLEFT ";//_RYLEFT
   else if (server.arg("state_r") == "4")byfer_UART += "_RXUP "; //_RXUP
 }
+int xValue = 0;
+int yValue = 0;
+bool openButtonState = false;
+int sliderValue = 150;
+int bValue = 0;
 
-void term_text() {                        //outputting text from the TextBox of the /terminal page
-  if (server.arg("command_textBox") != "") {
-    byfer_UART += server.arg("command_textBox");
-    byfer_UART += " ";
-  }
+void handleJoystick() {
+  BLUE_ON();
+  xValue = server.arg("x").toInt();
+  yValue = server.arg("y").toInt();
+  Serial.print(xValue);
+  Serial.print(",");
+  Serial.print(yValue);
+  Serial.print(",");
+  Serial.print(sliderValue);
+  Serial.print(",");
+  Serial.println(bValue);
+  server.send(200, "text/plain", "OK");
+  BLUE_OFF();
+}
+
+
+void handleButton() {
+    BLUE_ON();
+  bValue = server.arg("value").toInt();
+  /*Serial.print(xValue);
+  Serial.print(",");
+  Serial.print(yValue);
+  Serial.print(",");
+  Serial.print(sliderValue);
+  Serial.print(",");
+
+  Serial.print(bValue);
+  Serial.println(' ');*/
+  server.send(200, "text/plain", "OK");
+  BLUE_OFF();
+}
+
+void handleSlider() {
+    BLUE_ON();
+  sliderValue = server.arg("value").toInt();
+  /* Serial.print(xValue);
+  Serial.print(",");
+  Serial.print(yValue);
+  Serial.print(",");
+  Serial.print(sliderValue);
+  Serial.print(",");
+  Serial.println(openButtonState);*/
+  server.send(200, "text/plain", "OK");
+  BLUE_OFF();
 }
 
 void re_name_ssid() {                         //ssid change
@@ -158,11 +239,12 @@ void re_name_password() {           //password change
   }
   else if (server.arg("rename_password") == "")Serial.println("Not select_password");
 }
-
+constexpr uint8_t PushButton= 4;
 void setup(void)
 {
+  RED_ON();
   EEPROM.begin(512); //initialization and allocation of memory from EEPROM
-  Serial.begin(9600); //Data transfer speed
+  Serial.begin(57600); //Data transfer speed
 
   byfer_UART.remove(0);
   byfer_UART += " _SERNOM?  ";
@@ -176,8 +258,13 @@ void setup(void)
     byfer_UART.remove(0);
   }
 
+  pinMode(PushButton,INPUT_PULLUP);
   while (1)
   {
+    if(millis()>30000 or ! digitalRead(PushButton)){
+      serialNumber="XXXXXXXXXX";
+      break;
+    }
     if (Serial.available()) //if data is coming
     {
       bufer_TX = Serial.read();
@@ -235,7 +322,7 @@ void setup(void)
     delay(500);
   }
 
-
+  RED_OFF();
 
   if (serialNumber == 0x0000000) {
     while (serialNumber != 0x0000000) {
@@ -271,6 +358,12 @@ void setup(void)
   server.on("/terminal", TerminalPage); //terminal page
   server.on("/config", ConfigPage); //peripheral connection page
 
+/*****************************************************************/
+  server.on("/joystick", handleJoystick);
+  server.on("/button", handleButton);  // Обробник для кнопок
+  server.on("/slider", handleSlider);  // Обробник для слайдера
+/*****************************************************************/
+
   server.on("/b_left", button_left); //control with the left joystick buttons
   server.on("/b_right", button_right); //control with the right joystick buttons
 
@@ -279,7 +372,11 @@ void setup(void)
   server.on("/textPage_wifi", outPage_wifi); //Wi-Fi output on the /setting page
   server.on("/textPage_ssid", outPage_ssid); //ssid output to the /setting page
   server.on("/textPage_password", outPage_password); //password output to the /setting page
+
+
+  /*Termianl*/
   server.on("/text_terminal", outPage_terminal); //text output to the /terminal page
+  server.on("/terminal_textBox", term_text); //Output of text from the text field of the /terminal page
 
   server.on("/b_right_y", right_y); //RIGHT BUTTON Y
   server.on("/b_right_x", right_x); //RIGHT BUTTON X
@@ -302,7 +399,6 @@ void setup(void)
   server.on("/ssid", re_name_ssid); //ssid
   server.on("/password", re_name_password); //password
 
-  server.on("/terminal_textBox", term_text); //Output of text from the text field of the /terminal page
 
   server.begin(); //Initialization of pages
 

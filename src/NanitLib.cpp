@@ -66,7 +66,11 @@ String getSerialNumber() {
       return String(SerialNumber);
     }
   }
-  return String(getSerialNum());
+  
+  String StringSerialNumber = String(getSerialNum());
+  while (StringSerialNumber.length() < 10) 
+  StringSerialNumber = "0" + StringSerialNumber;
+  return StringSerialNumber;
 };
 
 void NanitInfo() {
@@ -128,6 +132,79 @@ void Nanit_ActiveBuzz_Scream(byte times, int duration) {
 bool Nanit_Sound_IsSoundDetected(int sound_limit) {
   return (analogRead(P5_2) > sound_limit);
 }
+
+bool isClapping() {
+ uint16_t signal = analogRead(P5_2);
+  delayMicroseconds(300);
+  static float                     //
+      MiddleLine = signal,         // Рівень тишини
+      SoundBorder = signal + 100;  // Рівень хлопку
+
+  constexpr float  //
+      k = 0.01,  // Коефіуцієт фільрації рівня тишини
+      k2 = 0.02;  // коефіцієнт фільтрації порогового рівня
+
+  static_assert(k < k2, "k2 не може бути меншим за k");
+
+  MiddleLine += (signal - MiddleLine) * k;
+
+  if (signal > MiddleLine) SoundBorder += (signal - SoundBorder) * k2;
+  const float//
+   KoefNoClap = 4,// Коефіцієнт не чутливості
+   shift = 20;
+  float //
+  top = MiddleLine + (SoundBorder - MiddleLine) * KoefNoClap + shift,// Верхній поріг
+  butt = MiddleLine - (SoundBorder - MiddleLine) * KoefNoClap - shift;// Нижній поріг
+  return (signal > top) or (signal < butt);
+}
+
+
+bool isLight(){
+  uint8_t light = analogRead(P10_2)>>2;
+  static uint8_t min_light = light, max_light = light;
+  min_light = min(min_light, light);
+  max_light = max(max_light, light);
+
+  constexpr uint8_t k_adaptation = 32;
+  if((max_light - min_light)>k_adaptation){
+    min_light+=1;
+    max_light-=1;
+  }
+  uint8_t medium = min_light + ((max_light - min_light) >> 1);
+  return light>medium;
+}
+
+
+bool isRightLine(uint8_t sen=k_adap){
+  uint8_t light = analogRead(P10_2)>>2;
+  static uint8_t min_light = light, max_light = light;
+  min_light = min(min_light, light);
+  max_light = max(max_light, light);
+
+  if((max_light - min_light)>sen){
+    min_light+=1;
+    max_light-=1;
+  }
+  uint8_t medium = min_light + ((max_light - min_light) >> 1);
+
+  return light<medium;
+}
+
+bool isLeftLine(uint8_t sen=k_adap){
+  uint8_t light = analogRead(P10_1)>>2;
+  static uint8_t min_light = light, max_light = light;
+  min_light = min(min_light, light);
+  max_light = max(max_light, light);
+
+  if((max_light - min_light)>sen){
+    min_light+=1;
+    max_light-=1;
+  }
+  uint8_t medium = min_light + ((max_light - min_light) >> 1);
+
+  return light<medium;
+}
+
 
 /*
 bool BUTTON_(){
@@ -325,7 +402,7 @@ void ::NanitRobot::Nanit::DrawBattGuage(
                          _background_color);
 
         Display.fillRect(X - 1 + map(Power, 0, 100, SIZE_Y - 1, 0) - 2, Y,
-                         map(Power, 100, 0, SIZE_Y - 1, 1), 10,
+                         map(Power, 100, 0, SIZE_Y , 1), 10,
                          color);  // cherged
 
         Display.drawLine(X - 4, Y + 3, X - 4, Y + 6, _guage_line_color);  // |1
