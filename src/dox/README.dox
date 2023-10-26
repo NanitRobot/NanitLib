@@ -18,11 +18,13 @@
  * @if English
  * ## Appointment
  *
- * The purpose of the library is to facilitate the study of the basics of ```C/C++``` programming for microcontrollers on ```Nanit``` boards
+ * The purpose of the library is to facilitate the study of the basics of 
+ * ```C/C++``` programming for microcontrollers on ```Nanit``` boards
  * @else
  * ## Призначення
  * 
- * Призначення бібліотеки полегшити вивчення основ програмування на мові  ```C/C++``` для мікроконтролерів на платах ```Nanit```
+ * Призначення бібліотеки полегшити вивчення основ програмування на мові  
+ * ```C/C++``` для мікроконтролерів на платах ```Nanit```.
  * @endif
  * 
  * @if English
@@ -38,24 +40,27 @@
  * @else 
  * ## Як встановити
  * 
- * Встановити ```NanitLib``` можна кількома способами
+ * Встановити ```NanitLib``` можна кількома способами:
  * 
- *  1. Встановлення бібліотеки zip-архівом
- *  2. Встановлення бібліотеки за допомогою менеджера бібліотек
- *  3. Встановлення бібліотеки за допомогою менеджера плат
+ *  1. Встановлення бібліотеки ZIP-архівом.
+ *  2. Встановлення бібліотеки за допомогою менеджера бібліотек.
+ *  3. Встановлення бібліотеки за допомогою менеджера плат.
  * @endif
  * 
  * @if English
  * 
- * ### zip archive
+ * ### ZIP archive
  *
- * We recommend using this method only if your PC has no internet connection and you have no other way to install the library. Be prepared to download the libraries that ```NanitLib``` depends on in the same way yourself, if they are not already installed on your system. Because this method does not know how to load third-party libraries on its own.
+ * We recommend using this method only if your PC has no internet connection and you have no 
+ * other way to install the library. Be prepared to download the libraries, that ```NanitLib```
+ * depends on, in the same way, if they are not already installed on your system. This 
+ * method is not capable of downloading third-party libraries independently.
  *
- * To download the ```zip``` of the library, you need to find it on the ```GitHub``` website
+ * To download the ```ZIP``` of the library, you need to find it on the ```GitHub``` website
  *
  * ![GitHub](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/GitHub.png)
  *
- * Or follow one of the links
+ * Or follow one of the links:
  * - [NanitRobot](https://github.com/NanitRobot/) -- link to GitHub profile
  * - [NanitLib](https://github.com/NanitRobot/NanitLib) -- direct link to the repository with the library
  *
@@ -63,31 +68,32 @@
  *
  * On the repository page, press the ```CODE``` button and select ```Download ZIP```.
  *
- * A window for saving the file will open before you. The file should be saved in a convenient location for you. It does not necessarily have to be a folder with library files.
+ * The file-saving window will open. Save the file in a place convenient for you. It doesn't have to be in the library files folder.
+ * 
+ * You can also download the file at [this link](https://github.com/NanitRobot/NanitLib/archive/refs/heads/main.zip)
  *
  * ![zip](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/zip_file.png)
  *
- * You can also download the file [at the link](https://github.com/NanitRobot/NanitLib/archive/refs/heads/main.zip)
- *
- * After downloading and saving the file, the Internet browser can be closed.
+ * After downloading and saving the file, you can close your Internet browser.
  *
  * If you have access to the Internet, we recommend using the methods described below.
  *
- * After that, you need to open the Arduino IDE
- *
- * Select the IDE version you are using
+ * Open the Arduino IDE. Select the IDE version that you are using.
  * 
  * @else 
  * 
- * ### zip-архів
+ * ### ZIP-архів
  * 
- * Ми рекомендуємо використовувати цей спосіб лище за умови повної відсутнотності інтернетз'єднання у вашого ПК і іншого способу встановити бібліотеку у вас нема. Будьте готові самостійно завантажувати у такий же спосіб бібліотеки від яких залежить ```NanitLib```, якщо вони ще не встановлені у вашій системі. Оскільки цей спосіб не вміє самостійно завантажувати бібліотеки третіх сторін.
- * 
- * Для завантаження `zip` бібліотеки потрібно її знайти на сайті ```GitHub```
+ * Ми рекомендуємо використовувати цей спосіб лище за умови повної відсутнотності інтернетз'єднання 
+ * у вашого ПК, або якщо іншого способу встановити бібліотеку у вас немає. Будьте готові самостійно з
+ * авантажувати бібліотеки, від яких залежить ```NanitLib```, якщо вони ще не встановлені у вашій 
+ * системі, оскільки цей спосіб не вміє самостійно завантажувати бібліотеки третіх сторін.
+ *
+ * Для завантаження `ZIP` бібліотеки потрібно її знайти на сайті ```GitHub```
  * 
  * ![GitHub](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/GitHub.png)
  * 
- * Або перейти за одним з посилань
+ * або перейти за одним з посилань
  *  - [NanitRobot](https://github.com/NanitRobot/) -- посилання на ГітХаб профіль
  *  - [NanitLib](https://github.com/NanitRobot/NanitLib) -- пряме посилання на репозиторій з бібліотекою
  * 
@@ -95,17 +101,18 @@
  * 
  * На сторінці репозиторію натиснути кнопку ```CODE``` та обрати ```Download ZIP```.
  * 
- * Перед вами відкриється вікно збереження файлу. Файл потрібно зберегти у зручному для вас місці. Не обов'язково це має бути тека з бібліотечними файлами.
- * 
- * ![zip](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/zip_file.png)
+ * Перед вами відкриється вікно збереження файлу. Файл потрібно зберегти у зручному для вас місці. 
+ * Не обов'язково це має бути тека з бібліотечними файлами.
  * 
  * Завантажити файл можна також [за посиланням](https://github.com/NanitRobot/NanitLib/archive/refs/heads/main.zip)
+ * 
+ * ![zip](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/zip_file.png)
  * 
  * Після завантаження та збереження файлу інтернет браузер можна закрити.
  * 
  * Якщо ви ж маєте доступ до інтернет рекомендуємо скористатись способами  які описані нижче.
  * 
- * Після цього потрібно відкрити IDE Arduino
+ * Потрібно відкрити Arduino IDE. Оберіть версію IDE, якою ви користуєтесь.
  * 
  * Обіріть версію IDE якою ви користуєтесь
  * @endif
@@ -114,7 +121,7 @@
  * 
  * @if English
  * 
- * First you need to start the development environment
+ * First you need to start the development environment.
  *
  * ![IDE 1.8.x](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/IDE1_8.png)
  *
@@ -122,18 +129,16 @@
  *
  * ![IDE 1.8.x](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/IDE1_8_menu.png)
  *
- * A file selection window will open before you. You need to choose the file you want
- * downloaded from the Internet
+ * A file selection window will appear. Select the file you downloaded from the Internet.
  *
  * ![IDE 1.8.x](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/IDE1_8_fileSelection.png)
  *
- * After clicking the confirmation button, the contents of the archive will be automatically
- * unpacked into the necessary directories. And you can already start using it
- * installed library
+ * After you click the confirmation button, the contents of the archive will be automatically 
+ * extracted to the necessary directories. And you can start using the installed library.
  * 
  * @else
  * 
- * Для початку вам потрібно запустити середовище розробки
+ * Для початку вам потрібно запустити середовище розробки.
  *
  * ![IDE 1.8.x](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/IDE1_8.png)
  *
@@ -141,14 +146,14 @@
  *
  * ![IDE 1.8.x](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/IDE1_8_menu.png)
  *
- * Перед вами вікриється вікно вибору файлу. Потрібно обрати файл який ви
- * завантажили з мережі інтернет
+ * Перед вами відкриється вікно вибору файлу. Потрібно обрати файл, який ви
+ * завантажили з мережі інтернет.
  *
  * ![IDE 1.8.x](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/IDE1_8_fileSelection.png)
  *
  * Після натиснення кнопки підтвердження вміст архіву буде автоматично
  * розпаковано у необхідні каталоги. І ви вже можете почати користуватися
- * встановленою бібліотекою
+ * встановленою бібліотекою.
  *
  * @endif
  * 
@@ -156,7 +161,7 @@
  *
  * @if English
  * 
- * First you need to start the development environment
+ * First you need to start the development environment.
  *
  * ![IDE 2.x](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/IDE2.png)
  *
@@ -164,18 +169,16 @@
  *
  * ![IDE 2.x](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/IDE2_menu.png)
  *
- * A file selection window will open before you. You need to choose the file you want
- * downloaded from the Internet
+ * A file selection window will appear. Select the file you downloaded from the Internet.
  *
  * ![IDE 2.x](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/IDE2_fileSelection.png)
  *
- * After clicking the confirmation button, the contents of the archive will be automatically
- * unpacked into the necessary directories. And you can already start using it
- * installed library
+ * After you click the confirmation button, the contents of the archive will be automatically 
+ * extracted to the necessary directories. And you can start using the installed library.
  * 
  * @else
  * 
- * Для початку вам потрібно запустити середовище розробки
+ * Для початку вам потрібно запустити середовище розробки.
  *
  * ![IDE 2.x](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/IDE2.png)
  *
@@ -183,14 +186,14 @@
  *
  * ![IDE 2.x](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/IDE2_menu.png)
  *
- * Перед вами вікриється вікно вибору файлу. Потрібно обрати файл який ви
+ * Перед вами вікриється вікно вибору файлу. Потрібно обрати файл, який ви
  * завантажили з мережі інтернет
  *
  * ![IDE 2.x](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/IDE2_fileSelection.png)
  *
  * Після натиснення кнопки підтвердження вміст архіву буде автоматично
  * розпаковано у необхідні каталоги. І ви вже можете почати користуватися
- * встановленою бібліотекою
+ * встановленою бібліотекою.
  * 
  * @endif
  * 
@@ -198,25 +201,34 @@
  * 
  * #### Known issues
  *
- * This installation method does not resolve library dependencies. During
- * compiling the project you development environment will display errors about
- * remoteness of certain libraries on which `NanitLib' depends. You will have to
- * independently resolve these dependencies during project compilation.
+ * This installation method does not resolve library dependencies. During the compilation of 
+ * the project, the development environment will display errors about the absence of certain 
+ * libraries that ```NanitLib``` depends on. You will have to resolve these dependencies yourself 
+ * when compiling the project.
  *
- * You can avoid this by downloading these libraries separately.
- * The list of third-party libraries may change, so they are written in a [separate special file](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/src/DependsLib.h).
+ * You can avoid this in advance by downloading these libraries separately. The list of 
+ * third-party libraries may change, so they are listed in a 
+ * [separate special file](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/src/DependsLib.h).
  *
  * @else
  * 
  * #### Відомі проблеми
  *
- * Цей спосіб встановлення не розв'язує залежностей бібіліотеки. Під час
+ * Цей спосіб встановлення не розв'язує залежностей бібліотеки. Під час
  * компіляції проекту вам середовище розробки буде виводити помилки про
  * відстуність певних бібліотек від яких залежить `NanitLib`. Вам доведеться
  * самостійно розв'язувати ці залежності у процесі компіляції проекту.
  *
  * Ви можете зазделегіть цього уникнути завантаживши ці бібліотеки окремо.
- * Список сторонніх бібліотек може змінюватись тому їх прописано в [окремому спеціальному файлі](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/src/DependsLib.h).
+ * Список сторонніх бібліотек може змінюватись тому їх прописано в Цей спосіб 
+ * встановлення не розв'язує залежностей бібліотеки. Під час компіляції проекту 
+ * середовище розробки буде виводити помилки про відсутність певних бібліотек, 
+ * від яких залежить `NanitLib`. Вам доведеться самостійно розв'язувати ці залежності 
+ * у процесі компіляції проекту.
+ * 
+ * Ви можете заздалегідь цього уникнути, завантаживши ці бібліотеки окремо. Список 
+ * сторонніх бібліотек може змінюватись, тому їх прописано в окремому 
+ * [окремому спеціальному файлі](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/src/DependsLib.h).
  * 
  * @endif
  * 
@@ -224,25 +236,36 @@
  * 
  * ### Library manager
  *
- * Downloading through the library manager allows you to automatically download third-party libraries that ```NanitLib``` depends on and get the latest versions of all necessary files
+ * Downloading through the library manager allows you to automatically download third-party 
+ * libraries that NanitLib depends on, and get the latest versions of all the necessary files.
  *
- * In the process of installing the library, the library manager will analyze the library properties file and offer to install the necessary libraries. You only need to agree to the installation of additional files.
+ * During the library installation process, the library manager will analyze the library 
+ * property file and offer to install the necessary third-party libraries. You only have to 
+ * agree to install the additional files.
  *
- * The advantage of this method is that when starting the development environment (if there is an Internet connection), it checks for updates for the installed libraries and will offer to update them.
+ * The advantage of this method is that when you start the development environment (if you 
+ * have an Internet connection) checks for updates to installed libraries and offers to update 
+ * them.
  *
- * We recommend that you agree to the update as you will always have the latest version of `NanitLib` with new functionality.
+ * We recommend agreeing to the update, as you will always have the latest version of 
+ * ```NanitLib``` with new functionality.
  *
  * @else
  * 
  * ### Менеджер бібліотек
  * 
- * Завантаження через менеджер бібліотек дозволяє автоматично завантажити бібліотеки третіх сторін від яких залежить `NanitLib` і отримати найновіші версії всіх необхідних файлів
+ * Завантаження через менеджер бібліотек дозволяє автоматично завантажити бібліотеки 
+ * третіх сторін, від яких залежить `NanitLib`, і отримати найновіші версії всіх необхідних файлів.
  * 
- * В процесі встановлення бібліотеки менеджер бібліотек проаналізує файл властивостей бібліотеки та запропонує встановити необхідні стороні бібліотеки. Вам потрібно лише погодитись на встановлення додаткових файлів.
+ * В процесі встановлення бібліотеки менеджер бібліотек проаналізує файл властивостей бібліотеки 
+ * та запропонує встановити необхідні сторонні бібліотеки. Вам потрібно лише погодитись на 
+ * встановлення додаткових файлів.
  * 
- * Перевага цього способу в тому, що при запуску середовища розробки (при наявності інтернетзвязку) перевіряє наявність оновлень для встановлених бібліотек і пропонуватиме їх оновити.
+ * Перевага цього способу в тому, що при запуску середовище розробки (при наявності інтернет 
+ * зв'язку) перевіряє наявність оновлень для встановлених бібліотек і пропонує їх оновити.
  * 
- * Ми рекомендуємо погоджуватись на оновлення так як ви завжди матимете найновішу версію `NanitLib` з новим функціоналом.
+ * Ми рекомендуємо погоджуватись на оновлення, так як ви завжди матимете найновішу версію ```NanitLib``` 
+ * з новим функціоналом.
  * 
  * @endif
  * 
@@ -289,7 +312,7 @@
  * 
  * @else
  * 
- * Ви можете встановити бібліотеку NanitLib будь яким способом (завантажити
+ * Ви можете встановити бібліотеку NanitLib будь-яким способом (завантажити
  * архівом, клонувати репозиторій або встановити через менеджер бібліотек).
  * 
  * @endif
