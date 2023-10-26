@@ -56,17 +56,17 @@
  * визначається в _RunTime_ - мікроконтролер апаратно чи програмно визначає
  * версію лати
  *
- * | Макровизначення |<3.1|>=3.1|
- * |:----------------|:--:|:---:|
- * | MOTOR1_A        |  7 |  10 |
- * | MOTOR1_B        |  8 |  9  |
- * | P1_4            |  7 |  10 |
- * | P1_3            |  8 |  9  |
- * | P8_3            |  5 |  54 |
- * | P10_3           | 24 |  5  |
- * | P10_2           | 54 |  24 |
- * | P7_4            |  9 |  7  |
- * | P9_4            | 10 |  8  |
+ * |   Макровизначення    |<3.1|>=3.1|
+ * |:---------------------|:--:|:---:|
+ * | @ref MOTOR1_A        |  7 |  10 |
+ * | @ref MOTOR1_B        |  8 |  9  |
+ * | @ref P1_4            |  7 |  10 |
+ * | @ref P1_3            |  8 |  9  |
+ * | @ref P7_4            |  9 |  7  |
+ * | @ref P8_3            |  5 |  54 |
+ * | @ref P9_4            | 10 |  8  |
+ * | @ref P10_3           | 24 |  5  |
+ * | @ref P10_2           | 54 |  24 |
  * @{
  */
 /**
@@ -180,7 +180,7 @@
 //Порт 2
 // #define P2_6 A8
 /**
- * @brief Четвертий пін другого потру може використовувватися як вхід АЦП
+ * @brief Четвертий пін другого порту може використовувватися як вхід АЦП
  *
  */
 #define P2_4 (A8)
@@ -192,21 +192,36 @@
 #define P2_3 (42)
 
 /**
- * @brief Другий пін другого потру може використовувватися як вхід АЦП
+ * @brief Другий пін другого порту може використовувватися як вхід АЦП
  *
  */
 #define P2_2 (A9)
 
 /**
- * @brief Перший пін другого потру може використовувватися як вхід АЦП
+ * @brief Перший пін другого порту може використовувватися як вхід АЦП
  *
  */
 #define P2_1 (A10)
 
 ///Порт 3
 // #define P3_6 31 /// Стара версія
+
+/**
+ * @brief Четвертий пін третього порту
+ *
+ */
 #define P3_4 (31)
+
+/**
+ * @brief Третій пін третього порту
+ *
+ */
 #define P3_3 (30)
+
+/**
+ * @brief Другий пін третього порту
+ *
+ */
 #define P3_2 (25)
 
 /** @defgroup MEGACORE MEGACORE
@@ -220,10 +235,12 @@
  * плати потрібно встановити мануально розширене ядро `MEGACORE`, або
  * скористатись менеджером плат
  *
+ * @image html
+ * https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/MegaCorePinOut.png
+ * MegaCore Pinout width=50%
+ *
  * Альтернативний спосіб викорстання виводу це звернення рівні регістрів до
  * __PE6__
- * 
- * @image html https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/MegaCorePinOut.jpg MegaCorePinout 
  *
  */
 #ifdef MEGACORE
@@ -318,7 +335,7 @@
 #define P7_2 (A4)
 
 /**
- * @brief Перший пін сьомого потру, може використовуватись як вхід АЦП
+ * @brief Перший пін сьомого порту, може використовуватись як вхід АЦП
  */
 #define P7_1 (A3)
 
@@ -334,21 +351,21 @@
 #error                                                                       \
       "U can`t use this definision in code. This definision only for doxygen. This is RESET pin ATMega2560"
 
-/** @brief Третій пін восьмого порту */
-#define P8_3 (5)
+// /** @brief Третій пін восьмого порту */
+// #define P8_3 (5)
 
 /**
  * @brief Другий пін восьмого порту
  *
  * @details На цей пін виведено `RX` `Serial`
  */
-#define P8_2 (0)  ///<
+#define P8_2 (0)
 /**
  * @brief Перший пін восьмого порту
  *
  * @details На цей пін виведено `TX` `Serial`
  */
-#define P8_1 (1)  ///<
+#define P8_1 (1)
 
 //Порт 9
 /**
@@ -356,8 +373,16 @@
  * INT.2 pin
  */
 #define P9_3 (19)
-#define P9_2 (20)  ///< SDA
-#define P9_1 (21)  ///< SCL
+/**
+ * @brief  Другий пін дев'ятого порту може. Має апартану пітримку лінії даних
+ * (SDA) пртоколу IIC
+ */
+#define P9_2 (20)
+/**
+ * @brief  Перший пін дев'ятого порту може. Має апартану пітримку лінії
+ * тактування (SDL) пртоколу IIC
+ */
+#define P9_1 (21)
 
 //Порт 10
 // #define P10_6 (6)  /// Стара версія
@@ -376,16 +401,14 @@
 #define P11_3 (43)  ///< Третій пін одинадцятого порту
 /**
  * @brief Другий пін одинадцьятого порту
- * 
- * 
+ *
  * @details На цей пін виведено `RX` `Serial3`
- * 
  */
 #define P11_2 (15)
 
 /**
  * @brief Третій пін одинадцятого порту
- * 
+ *
  * @details На цей пін виведено `TX` `Serial3`
  */
 #define P11_1 (14)
@@ -476,9 +499,9 @@ void NanitInfo();
  * Таблиця підключення світлодіода
  * |Пін|Макровизначення|Вивід світлодіода|
  * |:-:|:-------------:|:---------------:|
- * | 2 |  ```P4_2```   |        G        |
- * | 3 |  ```P4_3```   |        B        |
- * | 4 |  ```P4_4```   |        R        |
+ * | 2 |  @ref P4_2    |        G        |
+ * | 3 |  @ref P4_3    |        B        |
+ * | 4 |  @ref P4_4    |        R        |
  * | - |     НЕМА      |       GND       |
  *
  * Якщо світлодіод підключено до іншого порту та за іншою схемою працездатність
@@ -520,6 +543,19 @@ bool digitalRead(const uint8_t pin, const uint16_t maxValue,  //
                  const uint16_t minValue = 0                  // 10100000
 );
 
+/**
+ * @brief Виклик функції генерації ШІМ сигналу на пін
+ *
+ * @note Зверніть увагу на можливість викорисатння уього макросу.
+ * Не всі виводи однаково генерують ШІМ. На деяких виводах мікроконтроллера ШІМ
+ * генерується апаратно, а на деяких можливе додаткове навантаження на процесор
+ *
+ * @param  PIN номер піна
+ * @param  VALUE значення
+ *
+ */
+#define PWM(PIN, VALUE) analogWrite(PIN, VALUE)
+
 #define START_NANIT ::NanitRobot::Nanit::getNanit()
 #define GET_NANIT   ::NanitRobot::Nanit::getNanit()
 
@@ -548,7 +584,7 @@ bool digitalRead(const uint8_t pin, const uint16_t maxValue,  //
  *  8. За потреби протестувати інший кабель перейти до кроку 4.
  *  9. Вимкнути головний блок.
  *  10. Відключити від головного блоку кабель активації тежиму тестування
- *  11. Діагностика кабелів завершена    
+ *  11. Діагностика кабелів завершена
  * @}*/
 
 /** @namespace NanitRobot Простір імен та функцій які підтримуються платами
@@ -911,7 +947,6 @@ class Nanit {
   Nanit(const Nanit &) = delete;  // rule of three
   Nanit &operator=(const Nanit &) = delete;
   inline ~Nanit() = default;
-  FastLED_NeoPixel<1, BUILDIN_STRIP_LED, NEO_GRB> _strip_led;
   //
   uint16_t  //
       _background_color{
@@ -935,13 +970,32 @@ class Nanit {
       _guage_Y_position;  //
 
  public:
-  Adafruit_ST7735  //
-                   /**
-                    * @brief Вбудований дисплей `Nanit``a
-                    *
-                    * @details Перелік методів для керування дисплеєм модна прочитати тут
-                    * @ref Display
-                    */
+  // struct {
+  void setAll(uint8_t red, uint8_t green, uint8_t blue) {
+    for (uint8_t i = 0; i < 15; i++) {
+      _strip_led.setPixelColor(i, red, green, blue);
+    }
+    _strip_led.show();
+  };
+  void colorWipe(byte red, byte green, byte blue, int SpeedDelay, bool *arr) {
+    // pinMode(J_7, OUTPUT);
+    for (uint16_t i = 0; i < 15; i++) {
+    //   if (!arr)
+    //     _strip_led.setPixelColor(i, red, green, blue);
+    //   else if (!arr[i])
+        _strip_led.setPixelColor(i, red, green, blue);
+      _strip_led.show();
+      delay(SpeedDelay);
+    }
+  }  // } Ring;
+  FastLED_NeoPixel<15, BUILDIN_STRIP_LED, NEO_GRB> _strip_led;
+  /**
+   * @brief Вбудований дисплей `Nanit``a
+   *
+   * @details Перелік методів для керування дисплеєм модна прочитати тут
+   * @ref Display
+   */
+  Adafruit_ST7735
 
       //                    * |    |       |
       // * |-    |-       |
