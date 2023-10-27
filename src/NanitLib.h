@@ -1078,7 +1078,7 @@ bool digitalRead(const uint8_t pin, const uint16_t maxValue,  //
  * @else
  * @defgroup ServiceMode Тестування цілісності кабелів
  * 
- * @brief Інструкція як перевірити цілісність кабелі з роз'ємами _RJ-12_
+ * @brief Інструкція як перевірити цілісність кабелів з роз'ємами _RJ-12_
  * @endif
  *
  * @{
@@ -1092,30 +1092,31 @@ bool digitalRead(const uint8_t pin, const uint16_t maxValue,  //
  *
  * @if English
  * In the new library version, self-diagnosis of the kit is provided as follows:
- *  1. Turn off the main unit.
- *  2. Connect any cable to the main unit, bridging ports __1__ and __12__.
- *  3. Turn on the main unit. The main unit will enter cable diagnostics mode.
- *  4. Connect the ports __5__ and __6__ of the cable being tested with each other to check its integrity.
+ *  1. Turn off the main block.
+ *  2. Connect any cable to the main block, bridging ports __1__ and __12__.
+ *  3. Turn on the main block. The main block will switch cable diagnostics mode.
+ *  4. Connect the ports __5__ and __6__ of the cable being tested with each 
+ * other to check its integrity.
  *  5. Read the test results from the display.
  *  6. Disconnect the cable that has been tested.
  *  7. If necessary, test another cable and return to step _4_.
- *  8. Turn off the main unit.
- *  9. Disconnect the activation cable from the main unit, ending the testing process.
+ *  8. Turn off the main block.
+ *  9. Disconnect the activation cable from the main block, ending the testing process.
  *  10. Cable diagnostics are complete.
  * @else
  * У новій версії бібліотеки передбачена можливість самодіагностики набору.
  *  1. Вимкнути головний блок.
- *  2. Підключити будь-яки кабель до головного блоку з'єднавши між собою __1__
+ *  2. Підключити будь-який кабель до головного блоку з'єднавши між собою __1__
  * та __12__ порти.
- *  3. Увімкнути головни блок. Головний блок перейде в режим тестування
+ *  3. Увімкнути головний блок. Головний блок перейде в режим тестування
  * комплектних кабелів.
- *  4. З'днати між собою кабелем який тестується порти __5__ та __6__ для перевірки його
+ *  4. З'єднати між собою кабелем, який тестується порти __5__ та __6__ для перевірки його
  * цілісності.
  *  5. Зчитати з дисплею результат тестування.
  *  6. Від'єднати кабель, що протестовано.
  *  7. За потреби протестувати інший кабель перейти до кроку _4_.
  *  8. Вимкнути головний блок.
- *  9. Відключити від головного блоку кабель активації тежиму тестування.
+ *  9. Відключити від головного блоку кабель активації режиму тестування.
  *  10. Діагностика кабелів завершена.
  * @endif
  * @}*/
