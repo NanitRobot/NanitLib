@@ -2,7 +2,11 @@
  * @file NanitLib.h
  * @author NanitRobots (https://nanitrobot.com/)
  * @authors NanitRobots,Sam4uk
- * @brief Головний файл бібіліотеки NanitLib
+ * @if English
+ * @brief The main file of the NanitLib library.
+ *@else
+ * @brief Головний файл бібіліотеки NanitLib.
+ * @endif
  *
  * @copyright Copyright (c) NanitRobots
  *
@@ -10,11 +14,38 @@
 #ifndef NANITLIB_H_
 #define NANITLIB_H_
 
-#define NANIT_MAJOR_VERSION (1)  ///< Головна версія бібліотеки
-#define NANIT_MINOR_VERSION (3)  ///< Мінорна версія бібліотеки
-#define NANIT_PATHC_VERSION (6)  ///< Pathc версія бібілотеки
+/** @if English
+ * @brief The main version of the library.
+ *@else
+ * @brief Головна версія бібліотеки.
+ * @endif
+ */
 
-#define NANIT_SERIAL_SPEED (9600)  ///< Швидкість серійного порту
+#define NANIT_MAJOR_VERSION (1)
+
+/** @if English
+ * @brief The minor version of the library.
+ *@else
+ * @brief Мінорна версія бібліотеки.
+ * @endif
+ */
+#define NANIT_MINOR_VERSION (3)
+
+/** @if English
+ * @brief Pathc версія бібілотеки.
+ *@else
+ * @brief Patch version of the library.
+ * @endif
+ */
+#define NANIT_PATHC_VERSION (7)
+
+/** @if English
+ * @brief Serial port baud rate.
+ *@else
+ * @brief Швидкість серійного порту.
+ * @endif
+ */
+#define NANIT_SERIAL_SPEED (9600)
 
 #include "Approof/Approof.hpp"
 #include "DependsLib.h"  ///< Залежності від бібліотек третіх сторін
@@ -24,24 +55,63 @@
 #include "Version.hpp"
 
 #ifdef __AVR_ATmega2560__
-// Пін апаратної перевірки версії плати
+
+/** @if English
+ * @brief Hardware version checking pin.
+ * @details Used to determine the board versions greater than or equal to `3.1`.
+ *@else
+ * @brief Використовується для визначення плат версій старших  або рівних від
+ *`3.1`.
+ * @details
+ * @endif
+ */
 #define BOARD_DETECT_PIN (39)
-/**
+
+/** @if English
+ * @brief Hardware version checking pin.
+ * @details The battery status check ADC input pin is read-only.
+ *@else
  * @brief Пін підключення батареї вхід АЦП для перевірки стану батареї доступний
  * лише для читання
+ * @details
+ * @endif
  */
 #define BATTERY_PIN (69)
 
-/**
+/** @if English
+ * @brief Hardware version checking pin.
+ * @details The built-in addressable LED pin is write-only.
+ *@else
  * @brief Пін підключення вбудованого адресного світлодіоду доступний лише для
  * запису
+ * @details
+ * @endif
  */
 #define BUILDIN_STRIP_LED (27)
 // /**
 //  * Піни які відрізняються в різних версіях плати
 //  */
 
-/** @defgroup DiffPin Ремапінг пінів
+/**
+ * @if English
+ * @defgroup DiffPin Pin remapping
+ *
+ * @brief This is a group of pins with different internal connections in other
+ * board versions.
+ *
+ * @details
+ *
+ * This is a group of pins that had different macros defined in board versions
+ * older than `3.1`. In the process of improving the board, we made some changes
+ * to the internal layout and board schematics.
+ *
+ * To maintain compatibility with new boards, the values of these macros are
+ * determined at runtime, with the microcontroller hardware or software
+ * detecting the board version.
+ *
+ * @else
+ *
+ * @defgroup DiffPin Ремапінг пінів
  *
  * @brief Це група пінів які мають різне внутрішнє підключення в інших версія
  * плати
@@ -56,18 +126,9 @@
  * визначається в _RunTime_ - мікроконтролер апаратно чи програмно визначає
  * версію лати
  *
- * |   Макровизначення    |<3.1|>=3.1|
- * |:---------------------|:--:|:---:|
- * | @ref MOTOR1_A        |  7 |  10 |
- * | @ref MOTOR1_B        |  8 |  9  |
- * | @ref P1_4            |  7 |  10 |
- * | @ref P1_3            |  8 |  9  |
- * | @ref P7_4            |  9 |  7  |
- * | @ref P8_3            |  5 |  54 |
- * | @ref P9_4            | 10 |  8  |
- * | @ref P10_3           | 24 |  5  |
- * | @ref P10_2           | 54 |  24 |
- * |   Макровизначення    |<3.1|>=3.1|
+ * @endif
+ *
+ * |        MACRO         |<3.1|>=3.1|
  * |:---------------------|:--:|:---:|
  * | @ref MOTOR1_A        |  7 |  10 |
  * | @ref MOTOR1_B        |  8 |  9  |
@@ -80,189 +141,256 @@
  * | @ref P10_2           | 54 |  24 |
  * @{
  */
-/**
+
+/** @if English
+ * @brief The pin for controlling the built-in motor driver, which is connected
+ * to the output __A__ of motor 1.
+ *
+ * @details Due to the internal board routing specifics, this pin is available
+ * for write-only operations (outputting information).
+ *
+ *@else
  * @brief Пін керування вбудованим драйвером двигуна, яки підключено
  * до виводу __А__ двигуна 1.
  *
  * @details В силу специфіки внутрішного розведення плати пін доступний лише на
  * запис (виведення інформації)
- *
+ * @endif
  */
 #define MOTOR1_A ((getBoardVersion() >= Version(3, 1)) ? (7) : (10))
 
-/**
- * @brief Пін керування вбудованим драйвером двигуна, який підключено до виводу
- * __B__ двигуна 1.
+/** @if English
+ * @brief The pin for controlling the built-in motor driver, which is connected
+ * to the output __B__ of motor 1.
  *
- * @details В силу специфіки внутрішного розведення плати пін доступний лише
- * на запис (виведення інформації)
+ * @details Due to the internal board routing specifics, this pin is available
+ * for write-only operations (outputting information).
  *
+ *@else
+ * @brief Пін керування вбудованим драйвером двигуна, яки підключено
+ * до виводу __B__ двигуна 1.
+ *
+ * @details В силу специфіки внутрішного розведення плати пін доступний лише на
+ * запис (виведення інформації)
+ * @endif
  */
 #define MOTOR1_B ((getBoardVersion() >= Version(3, 1)) ? (8) : (9))
 
-/**
- * @brief Четвертий пін першого порту
+/** @if English
+ * @brief The fourth pin of the first port.
+ *@else
+ * @brief Четвертий пін першого порту.
+ * @endif
  */
 #define P1_4 ((getBoardVersion() >= Version(3, 1)) ? (7) : (10))
 
-/**
- * @brief Третій пін першого порту
- *
+/** @if English
+ * @brief The fourth pin of the first port.
+ *@else
+ * @brief Третій пін першого порту.
+ * @endif
  */
 #define P1_3 ((getBoardVersion() >= Version(3, 1)) ? (8) : (9))
 
-/**
- * @brief Третій пін восьмого порту
+/** @if English
+ * @brief The fourth pin of the first port.
+ *@else
+ * @brief Третій пін восьмого порту.
+ * @endif
  */
 #define P8_3 ((getBoardVersion() >= Version(3, 1)) ? (5) : (54))
 
-/**
- * @brief Третій пін десятого порту
+/** @if English
+ * @brief The third pin  of the tenth port.
+ *@else
+ * @brief Третій пін десятого порту.
+ * @endif
  */
 #define P10_3 ((getBoardVersion() >= Version(3, 1)) ? (24) : (5))
 
-/**
- * @brief Другий пін десятого порту
- *
+/** @if English
+ * @brief The second pin of the first port.
+ *@else
+ * @brief Другий пін десятого порту.
+ * @endif
  */
 #define P10_2 ((getBoardVersion() >= Version(3, 1)) ? (54) : (24))
 
-/**
- * @brief Четвертий пін сьомого порту
+/** @if English
+ * @brief The fourth pin of the seventh port.
+ *@else
+ * @brief Четвертий пін сьомого порту.
+ * @endif
  */
 #define P7_4 ((getBoardVersion() >= Version(3, 1)) ? (9) : (7))
 
-/**
- * @brief Четветрий пін дев'ятого порту
- *
+/** @if English
+ * @brief The fourth pin of the ninth port.
+ *@else
+ * @brief Четветрий пін дев'ятого порту.
+ * @endif
  */
 #define P9_4 ((getBoardVersion() >= Version(3, 1)) ? (10) : (8))
 
 /** @}*/
 
-/**
+/** @if English
+ * @brief Motor driver enable pin.
+ *
+ * @details To enable motor rotation, this pin must have a high level. It is
+ * available for write-only operations.
+ *@else
  * @brief Пін запуску драйверу моторів
  *
  * @details для дозволу обертання двигунів цей пін має мати високий рівень
  * доступний лише для запису
- *
+ * @endif
  */
 #define MOTOR_ENABLE (40)
 
-/**
- * @brief Перевірка стану драйверу моторів
+/** @if English
+ * @brief Check the state of the motor driver.
+ * @details Available for read-only operations.
+ *@else
+ * @brief Перевірка стану драйверу моторів.
  *
- * @details Доступний лише для читання
+ * @details Доступний лише для читання.
+ * @endif
  */
 #define MOTOR_FAIL (41)
 
-/**
- * @brief Пін А другого двигуна (доступний тільки на виведення)
+/** @if English
+ * @brief Pin __A__ of the second motor (available for output only).
+ *@else
+ * @brief Пін __А__ другого двигуна (доступний тільки на виведення).
+ * @endif
  */
 #define MOTOR2_A (11)
 
-/**
- * @brief Пін B другого двигуна (доступний тільки на виведення)
+/** @if English
+ * @brief Pin __B__ of the second motor (available for output only).
+ *@else
+ * @brief Пін __B__ другого двигуна (доступний тільки на виведення).
+ * @endif
  */
 #define MOTOR2_B (12)
 
-/**
- * @brief Сенсорна кнопка підключена до роз'єму \b J3
+/** @if English
+ * @brief A touch button is connected to connector \b J3.
+ *@else
+ * @brief Сенсорна кнопка підключена до роз'єму \b J3.
+ * @endif
  */
 #define BUTTON (3)
 
-/**
- * @brief Роз'єм на платі \b J7
+/** @if English
+ * @brief Connector on the board \b J7.
+ *@else
+ * @brief Роз'єм на платі \b J7.
+ * @endif
  */
 #define J_7 (18)
 
-//
-/**
- * @brief Другий пін першого порту може використовуватися як вхід АЦП
+/** @if English
+ * @brief The second pin of the first port can be used as an ADC input.
+ *@else
+ * @brief Другий пін першого порту може використовуватися як вхід АЦП.
+ * @endif
  */
 #define P1_2 (A6)
 
-/**
- * @brief Перший пін Першого порту може використовуватися як вхід АЦП
- *
+/** @if English
+ * @brief The first pin of the first port can be used as an ADC input.
+ *@else
+ * @brief Перший пін Першого порту може використовуватися як вхід АЦП.
+ * @endif
  */
 #define P1_1 (A7)
 
-// Порт 2
-//  #define P2_6 A8
-/**
- * @brief Четвертий пін другого порту може використовувватися як вхід АЦП
- * @brief Четвертий пін другого порту може використовувватися як вхід АЦП
- *
+/** @if English
+ * @brief The fourth pin of the second port can be used as an ADC input.
+ *@else
+ * @brief Четвертий пін другого порту може використовувватися як вхід АЦП.
+ * @endif
  */
 #define P2_4 (A8)
 
-/**
- * @brief Третій пін другого порту
- *
+/** @if English
+ * @brief The third pin of the second port.
+ *@else
+ * @brief Третій пін другого порту.
+ * @endif
  */
 #define P2_3 (42)
 
-/**
- * @brief Другий пін другого порту може використовувватися як вхід АЦП
- * @brief Другий пін другого порту може використовувватися як вхід АЦП
- *
+/** @if English
+ * @brief The second pin of the second port can be used as an ADC input.
+ *@else
+ * @brief Другий пін другого порту може використовувватися як вхід АЦП.
+ * @endif
  */
 #define P2_2 (A9)
 
-/**
- * @brief Перший пін другого порту може використовувватися як вхід АЦП
- * @brief Перший пін другого порту може використовувватися як вхід АЦП
- *
+/** @if English
+ * @brief The first pin of the second port can be used as an ADC input.
+ *@else
+ * @brief Перший пін другого порту може використовувватися як вхід АЦП.
+ * @endif
  */
 #define P2_1 (A10)
 
 /// Порт 3
 // #define P3_6 31 /// Стара версія
 
-/**
- * @brief Четвертий пін третього порту
- *
- */
-
-/**
- * @brief Четвертий пін третього порту
- *
+/** @if English
+ * @brief The fourth pin of the third port.
+ *@else
+ * @brief Четвертий пін третього порту.
+ * @endif
  */
 #define P3_4 (31)
 
-/**
- * @brief Третій пін третього порту
- *
- */
-
-/**
- * @brief Третій пін третього порту
- *
+/** @if English
+ * @brief The third pin of the third port.
+ *@else
+ * @brief Третій пін третього порту.
+ * @endif
  */
 #define P3_3 (30)
 
-/**
- * @brief Другий пін третього порту
- *
- */
-
-/**
- * @brief Другий пін третього порту
- *
+/** @if English
+ * @brief The second pin of the third port.
+ *@else
+ * @brief Другий пін третього порту.
+ * @endif
  */
 #define P3_2 (25)
 
 /** @defgroup MEGACORE MEGACORE
  *
- * @brief Про розширене ядро MEGACORE
  *
+ * @brief The second pin of the third port.
+ * @brief About the advanced core MEGACORE.
+ *@else
+ * @brief Про розширене ядро MEGACORE.
+ * @endif
+ *
+ *
+ * @brief The second pin of the third port.
+ * @details In the standard Arduino interface, this pin is not available.
+ * On Arduino boards that use the ATMega2560 microcontroller, this
+ *microcontroller pin is not routed on the board. On ```Nanit``` boards, this
+ *pin is routed and available for use. To fully utilize all the capabilities of
+ *the board, you need to manually install the ```MEGACORE``` advanced core or
+ *use the board manager.
+ *@else
  * @details У стандарному інтерфейсі Arduino цей пін не доступний. На платах
  * Arduino на яких використовується мікроконтролер ATMega2560 цей вивід
  * мікроконтролера не розведений на платі. На платах Nanit цей пін розведений та
  * доступний для використання. Щоб у повній мірі використовувати всі можлтвості
- * плати потрібно встановити мануально розширене ядро `MEGACORE`, або
- * скористатись менеджером плат
+ * плати потрібно встановити мануально розширене ядро ```MEGACORE```, або
+ * скористатись менеджером плат.
+ * @endif
  *
  * @image html
  * https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/MegaCorePinOut.png
@@ -271,22 +399,35 @@
  * @image html
  * https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/MegaCorePinOut.png
  * MegaCore Pinout width=50%
- *
+ * @if English
+ * An alternative way to use the output is by accessing the level registers
+ * of __PE6__.
+ *@else
  * Альтернативний спосіб викорстання виводу це звернення рівні регістрів до
- * __PE6__
+ * __PE6__.
+ * @endif
  *
  */
 #ifdef MEGACORE
 
-/**
- * @brief  Пін визначений у розширеному ядрі `MEGACORE`
+/** @if English
+ * @brief The pin is defined in the `MEGACORE` advanced core.
+ *
+ * @details In the standard Arduino interface, this pin is not available.
+ * On Arduino boards that use the ATMega2560 microcontroller, this
+ * microcontroller pin is not routed on the board. On `Nanit` boards,
+ * this pin is routed and available for use. To learn more, refer to the
+ * @ref MEGACORE section of this documentation.
+ *@else
+ *
+ * @brief  Пін визначений у розширеному ядрі `MEGACORE`.
  *
  * @details У стандарному інтерфейсі Arduino цей пін не доступний. На платах
  * Arduino на яких використовується мікроконтролер ATMega2560 цей вивід
  * мікроконтролера не розведений на платі. На платах Nanit цей пін розведений та
  * доступний для використання. Дізнатись більше можна у розділі @ref MEGACORE
  * цієї документації.
- *
+ * @endif
  */
 #define P3_1 (71)
 #else
@@ -299,186 +440,362 @@
 // Порт 4
 //  #define P4_6 (46) // ШІМ, червоний світлодіод (стара версія)
 
-/** @brief Четвертий пін четвертого порту */
+/** @if English
+ * @brief The fourth pin of the fourth port.
+ *@else
+ * @brief Четвертий пін четвертого порту.
+ * @endif
+ */
 #define P4_4 (46)  // ШІМ, червоний світлодіод
 
-/** @brief Третій пін четвертого порту */
+/** @if English
+ * @brief The third pin of the fourth port.
+ *@else
+ * @brief Третій пін четвертого порту.
+ * @endif
+ */
 #define P4_3 (45)  // ШІМ, синій світлодіод
 
-/** @brief Другий пін четвертого порту */
+/** @if English
+ * @brief The second pin of the fourth port.
+ *@else
+ * @brief Другий пін четвертого порту.
+ * @endif
+ */
 #define P4_2 (44)  // ШІМ, зелений світлодіод
 
-/**
- * @brief Перший пін четвертого порту може використовувватися як вхід АЦП
+/** @if English
+ * @brief The first pin of the fourth port can be used as an ADC input.
+ *@else
+ * @brief Перший пін четвертого порту може використовувватися як вхід АЦП.
+ * @endif
  */
 #define P4_1 (A11)
 
 // Порт 5
 //  #define P5_6 33 /// Стара версія
-/** @brief Четвертий пін п'ятого порту  */
+/** @if English
+ * @brief The fourth pin of the fifth port.
+ *@else
+ * @brief Четвертий пін п'ятого порту.
+ * @endif
+ */
 #define P5_4 (33)
 
-/** @brief Третій пін п'ятого порту може використовувватися як вхід АЦП */
+/** @if English
+ * @brief The third pin of the fifth port can be used as an ADC input.
+ *@else
+ * @brief Третій пін п'ятого порту може використовувватися як вхід АЦП.
+ * @endif
+ */
 #define P5_3 (A12)
 
-/**
- * @brief Другий пін п'ятого порту може використовувватися як вхід АЦП
+/** @if English
+ * @brief The second pin of the fifth port can be used as an ADC input.
+ *@else
+ * @brief Другий пін п'ятого порту може використовувватися як вхід АЦП.
+ * @endif
  */
 #define P5_2 (A1)
 
-/**
- * @brief Перший пін п'ятого порту може оброблювати переривання за вектором
+/** @if English
+ * @brief The first pin of the fifth port can handle interrupts by vector
  *
  * INT.0
+ *@else
+ * @brief Перший пін п'ятого порту може оброблювати переривання за вектором.
+ *
+ * INT.0.
+ * @endif
  */
 #define P5_1 (2)
 
 // Порт 6
 //  #define P6_6 22 /// Стара версія
-/**
- * @brief Четвертий пін шостого порту
+/** @if English
+ * @brief The fourth pin of the sixth port.
+ *@else
+ * @brief Четвертий пін шостого порту.
+ * @endif
  */
 #define P6_4 (22)
 
-/**
- * @brief Третій пін шостого порту, може використовуватись як вхід АЦП
+/** @if English
+ * @brief The third pin of the sixth port can be used as an ADC input.
+ *@else
+ * @brief Третій пін шостого порту, може використовуватись як вхід АЦП.
+ * @endif
  */
 #define P6_3 (A13)
 
-/**
- * @brief Другий пін шостого порту, може використовуватись як вхід АЦП
+/** @if English
+ * @brief The second pin of the sixth port can be used as an ADC input.
+ *@else
+ * @brief Другий пін шостого порту, може використовуватись як вхід АЦП.
+ * @endif
  */
 #define P6_2 (A14)
 
-/**
- * @brief Перший пін шостого порту
- *
+/** @if English
+ * @brief The first pin of the sixth port.
+ *@else
+ * @brief Перший пін шостого порту.
+ * @endif
  */
 #define P6_1 (23)
 
 // Порт 7
-/**
- * @brief Третій пін сьомого порту
+/** @if English
+ * @brief The third pin of the seventh port.
+ *@else
+ * @brief Третій пін сьомого порту.
+ * @endif
  */
 #define P7_3 (28)
 
-/**
- * @brief Другий пін сьомого порту, може викорстовуватись як вхід АЦП
+/** @if English
+ * @brief The second pin of the seventh port can be used as an ADC input.
+ *@else
+ * @brief Другий пін сьомого порту, може викорстовуватись як вхід АЦП.
+ * @endif
  */
 #define P7_2 (A4)
 
-/**
- * @brief Перший пін сьомого порту, може використовуватись як вхід АЦП
- * @brief Перший пін сьомого порту, може використовуватись як вхід АЦП
+/** @if English
+ * @brief The first pin of the seventh port can be used as an ADC input.
+ *@else
+ * @brief Перший пін сьомого порту, може використовуватись як вхід АЦП.
+ * @endif
  */
 #define P7_1 (A3)
 
 // Порт 8
-/**
- * @brief Пін до якого під'єднано вивід  \b RESET мікроконтроллера
+/** @if English
+ * @brief The pin to which the \b RESET output of the microcontroller is
+ * connected.
+ *
+ * @details You cannot use this macro definition in your sketch code.
+ * This macro definition is for documentation purposes only to explain the
+ * purpose of this pin on the adapter.
+ *@else
+ * @brief Пін до якого під'єднано вивід  \b RESET мікроконтроллера.
  *
  * @details Ви не можете фикористовувати це макровизначення в коді ваших
  * скетчів. Це макровизначення лише для генератора документації, щоб пояснити
  * призначення цього піна на адаптері.
+ * @endif
  */
 #define P8_4                                                                   \
-#error                                                                       \
+  #error                                                                       \
       "U can`t use this definision in code. This definision only for "         \
       "doxygen. This is RESET pin ATMega2560"
 
-/**
- * @brief Другий пін восьмого порту
+/** @if English
+ * @brief The second pin of the eighth port.
  *
- * @details На цей пін виведено `RX` `Serial`
+ * @details The `RX` of the `Serial` is routed to this pin.
+ *@else
+ * @brief Другий пін восьмого порту.
+ *
+ * @details На цей пін виведено `RX` `Serial`.
+ * @endif
  */
 #define P8_2 (0)
+
 /**
- * @brief Перший пін восьмого порту
- *
- * @details На цей пін виведено `TX` `Serial`
+
  */
-#define P8_1 (1)
+/** @if English
+ * @brief The first pin of the eighth port.
+ *
+ * @details The `TX` of the `Serial` is routed to this pin.
+ *@else
+ * @brief Перший пін восьмого порту.
+ *
+ * @details На цей пін виведено `TX` `Serial`.
+ * @endif
+ */
 #define P8_1 (1)
 
 // Порт 9
-/**
- * @brief Третій пін п'ятого порту може оброблювати переривання за вектором
- * INT.2 pin
+/** @if English
+ * @brief The third pin of the fifth port can handle interrupts by vector
+ *
+ * INT.2.
+ *@else
+ * @brief Третій пін дев'ятого порту може оброблювати переривання за вектором
+ *
+ * INT.2.
+ * @endif
  */
 #define P9_3 (19)
-/**
+
+/** @if English
+ * @brief The second pin of the ninth port can. It has built-in support for the
+ * data line (SDA) of the I2C protocol.
+ *@else
  * @brief  Другий пін дев'ятого порту може. Має апартану пітримку лінії даних
- * (SDA) пртоколу IIC
+ * (SDA) пртоколу IIC.
+ * @endif
  */
 #define P9_2 (20)
-/**
+
+/** @if English
+ * @brief The first pin of the ninth port can. It has built-in support for the
+ * clock line (SCL) of the I2C protocol.
+ *@else
  * @brief  Перший пін дев'ятого порту може. Має апартану пітримку лінії
- * тактування (SDL) пртоколу IIC
+ * тактування (SDL) пртоколу IIC.
+ * @endif
  */
-#define P9_1 (21)
-/**
- * @brief  Другий пін дев'ятого порту може. Має апартану пітримку лінії даних
- * (SDA) пртоколу IIC
- */
-#define P9_2 (20)
-/**
- * @brief  Перший пін дев'ятого порту може. Має апартану пітримку лінії
- * тактування (SDL) пртоколу IIC
- */
-#define P9_1 (21)
 
 // Порт 10
 //  #define P10_6 (6)  /// Стара версія
-/**
- * @brief Четвертий пін десятого порту
+/** @if English
+ * @brief The fourth pin of the tenth port.
+ *@else
+ * @brief Четвертий пін десятого порту.
+ * @endif
  */
 #define P10_4 (6)
 
-/**
- * @brief Перший пін деятого порту, може використовувтись як вхід АЦП
+/** @if English
+ * @brief The first pin of the tenth port can be used as an ADC input.
+ *@else
+ * @brief Перший пін деятого порту, може використовувтись як вхід АЦП.
+ * @endif
  */
 #define P10_1 (A2)
 /// Порт 11
 // #define P11_6 (32)   /// Стара версія
-#define P11_4 (32)  ///< Четрвертий пін одинадцятого порту
-#define P11_3 (43)  ///< Третій пін одинадцятого порту
-/**
- * @brief Другий пін одинадцьятого порту
+
+/** @if English
+ * @brief The fourth pin of the eleventh port.
+ *@else
+ * @brief Четрвертий пін одинадцятого порту.
+ * @endif
+ */
+#define P11_4 (32)
+
+/** @if English
+ * @brief The third pin of the eleventh port.
+ *@else
+ * @brief Третій пін одинадцятого порту.
+ * @endif
+ */
+#define P11_3 (43)
+
+/** @if English
+ * @brief The second pin of the eleventh port.
  *
+ * @details The `RX` of `Serial3` is routed to this pin.
+ *@else
+ * @brief Другий пін одинадцьятого порту.
  *
- * @details На цей пін виведено `RX` `Serial3`
+ * @details На цей пін виведено `RX` `Serial3`.
+ * @endif
  */
 #define P11_2 (15)
 
 /**
- * @brief Третій пін одинадцятого порту
+
+ */
+/** @if English
+ * @brief The third pin of the eleventh port.
+ *
+ * @details The `TX` of `Serial3` is routed to this pin.
+ *@else
+ * @brief Третій пін одинадцятого порту.
  *
  *
- * @details На цей пін виведено `TX` `Serial3`
+ * @details На цей пін виведено `TX` `Serial3`.
+ * @endif
  */
 #define P11_1 (14)
 /// Порт 12
 // #define P12_6 (11)/// Мотор М2_А /// Стара версія
-/**
- * @brief Четвертий пін дванадцятого порту (доступний тільки на виведення)
+
+/** @if English
+ * @brief The fourth pin of the twelfth port. (available for output only).
+ *@else
+ * @brief Четвертий пін дванадцятого порту (доступний тільки на виведення).
+ * @endif
  */
 #define P12_4 (MOTOR2_A)
 
-/**
- * @brief Третій пін дванадцятого порту (доступний тільки на виведення)
+/** @if English
+ * @brief The third pin of the twelfth port. (available for output only).
+ *@else
+ * @brief Третій пін дванадцятого порту (доступний тільки на виведення).
+ * @endif
  */
 #define P12_3 (MOTOR2_B)
-#define P12_2 (34)  ///< Другий пін дванадцятого порту
-#define P12_1 (36)  ///< Перший пін дванадцятого порту
+
+/** @if English
+ * @brief The second pin of the twelfth port.
+ *@else
+ * @brief Другий пін дванадцятого порту.
+ * @endif
+ */
+#define P12_2 (34)
+
+/** @if English
+ * @brief The first pin of the twelfth port.
+ *@else
+ * @brief Перший пін дванадцятого порту.
+ * @endif
+ */
+#define P12_1 (36)
 
 // порти дисплею
 
-#define TFT_CS   (48)  ///< Пін для роботи з картою пам'яті та дисплеєм
-#define TFT_RES  (37)  ///< Пін для роботи з картою пам'яті та дисплеєм
-#define TFT_DC   (49)  ///< Пін для роботи з картою пам'яті та дисплеєм
-#define TFT_BL   (4)  ///< Підсвідка дисплею пін доступний лише для запису
-#define TFT_SCK  (52)  ///< Пін для роботи з картою пам'яті та дисплеєм
-#define TFT_MOSI (51)  ///< Пін для роботи з картою пам'яті та дисплеєм
+/** @if English
+ * @brief Pin for working with memory card and display.
+ *@else
+ * @brief Пін для роботи з картою пам'яті та дисплеєм.
+ * @endif
+ */
+#define TFT_CS (48)
+
+/** @if English
+ * @brief Pin for working with memory card and display.
+ *@else
+ * @brief Пін для роботи з картою пам'яті та дисплеєм.
+ * @endif
+ */
+#define TFT_RES (37)
+
+/** @if English
+ * @brief Pin for working with memory card and display.
+ *@else
+ * @brief Пін для роботи з картою пам'яті та дисплеєм.
+ * @endif
+ */
+#define TFT_DC (49)
+
+/** @if English
+ * @brief Display backlight pin (write-only).
+ *@else
+ * @brief Підсвідка дисплею пін доступний лише для запису.
+ * @endif
+ */
+#define TFT_BL (4)
+
+/** @if English
+ * @brief Pin for working with memory card and display.
+ *@else
+ * @brief Пін для роботи з картою пам'яті та дисплеєм.
+ * @endif
+ */
+#define TFT_SCK (52)
+
+/** @if English
+ * @brief Pin for working with memory card and display.
+ *@else
+ * @brief Пін для роботи з картою пам'яті та дисплеєм.
+ * @endif
+ */
+#define TFT_MOSI (51)
 
 // Перевизначення LED_BUILTIN
 #if defined(LED_BUILTIN) && (LED_BUILTIN == (13))
@@ -488,29 +805,56 @@
 #define LED_BUILTIN (TFT_BL)
 #endif
 
-/**
- * @brief Опорна напруга для вбулованого АЦП (5 вольт)
+/** @if English
+ * @brief Reference voltage for the embedded ADC (5 volts).
+ *@else
+ * @brief Опорна напруга для вбулованого АЦП (5 вольт).
+ * @endif
  */
 #define AVCC_REF (5.f)
 
 /**
- * @brief Визначення розміру бітрейту АЦП
+
  *
- * @details ATMega2560 має 10 розрядний перетворювач
+ */
+/** @if English
+ * @brief Definition of the ADC bit rate.
  *
+ * @details The ATMega2560 has a 10-bit converter.
+ *@else
+ * @brief Визначення розміру бітрейту АЦП.
+ *
+ * @details ATMega2560 має 10 розрядний перетворювач.
+ * @endif
  */
 #define ADC_BITRATE (10)
 
 /**
+
+ */
+/** @if English
+ * @brief Definition of the level of the full charge of the used battery in the
+ *unit.
+ * @details The variable is introduced in case the type of the battery is
+ *changed in future board upgrades.
+ *@else
  * @brief Визначення рівня повного рівня заряду викорисатної батареї а блоці.
  * Змінна введена на випадок, якщо в подальшому модернізації плати буде замінено
- * тип батареї
+ * тип батареї.
+ * @endif
  */
 #define BAT_FULL_CHARGE (4.19f)
 
 /**
+
+ */
+/** @if English
+ * Determines the type of battery used. This definition is introduced in case
+ * the battery type changes during the project's development.
+ *@else
  * Визначає тип використаної батареї Визначення введене для випадок зміни типу
  * батареї в процесі розвитку проекту
+ * @endif
  */
 #define LI_ION
 
@@ -523,79 +867,132 @@
 #warning Check the project settings. Invalid microcontroller selected. This project cannot be built for this processor
 #endif
 
-/**
- * @brief Отримати версію плати
+/** @if English
+ * @brief Get the board version.
+ *@else
+ * @brief Отримати версію плати.
+ * @endif
  */
 Version getBoardVersion();
 
-/**
- * @brief Отримати версію бібліотеки
+/** @if English
+ * @brief Get the library version.
+ *@else
+ * @brief Отримати версію бібліотеки.
+ * @endif
  */
 Version getLibVersion();
 
-/**
- * @brief Отримати серійний номер плати
+/** @if English
+ * @brief Get the board's serial number.
  *
- * Серійний номер плати читається з вбудованої пам'яті
+ * The board's serial number is read from the built-in memory.
+ *@else
+ * @brief Отримати серійний номер плати.
+ *
+ * Серійний номер плати читається з вбудованої пам'яті.
+ * @endif
  */
 String getSerialNumber();
 
-/**
- * Вивести на дисплей інформацію про \b Nanit
+/** @if English
+ * @brief Display information about \b Nanit on the screen.
+ *@else
+ * @brief Вивести на дисплей інформацію про \b Nanit
+ * @endif
  */
 void NanitInfo();
 
-/**
+/** @if English
+ * @brief Control the RGB LED.
+ *
+ * This function controls the operating modes of the LED connected to port 4.
+ * LED connection table:
+ *@else
  * @brief Керування RGB-світлодіодом.
  *
  * Функція керує режимами роботи світлодіода що підключено до порту 4
  * Таблиця підключення світлодіода
- * |Пін|Макровизначення|Вивід світлодіода|
+ * @endif
+ * |Pin|      MACRO    |      COLOR      |
  * |:-:|:-------------:|:---------------:|
  * | 2 |  @ref P4_2    |        G        |
  * | 3 |  @ref P4_3    |        B        |
  * | 4 |  @ref P4_4    |        R        |
- * | 2 |  @ref P4_2    |        G        |
- * | 3 |  @ref P4_3    |        B        |
- * | 4 |  @ref P4_4    |        R        |
- * | - |     НЕМА      |       GND       |
- *
+ * | - |     ---       |       GND       |
+ *@if English
+ * If the LED is connected to a different port and operates under a different
+ * scheme, the method's functionality is NOT GUARANTEED.
+ * @param [in] red the brightness level of the red LED crystal.
+ * @param [in] green the brightness level of the green LED crystal.
+ * @param [in] blue the brightness level of the blue LED crystal.
+ *@else
  * Якщо світлодіод підключено до іншого порту та за іншою схемою працездатність
- * методу НЕ ҐАРАНТУЄТЬСЯ
- * @param red рівень яскравості червоного кристалу світодіода
- * @param green рівень яскравості зеленого кристалу світодіода
- * @param blue рівень яскравості синьго кристалу світодіода
+ * методу НЕ ҐАРАНТУЄТЬСЯ.
+ * @param [in] red рівень яскравості червоного кристалу світодіода.
+ * @param [in] green рівень яскравості зеленого кристалу світодіода.
+ * @param [in] blue рівень яскравості синьго кристалу світодіода.
+ * @endif
  *
- * В рівні яскравості можга записувати значення від 0 до 255, де 0 -- вказує, що
- * обраний кристал світлодіода вимкнено, а 255 -- кристал світиться максимальною
- * яскравістю. Інші значення, що лежать в межах від 0 до 255 вказують ступінь
- * яскравості обраного кристалу світодіоду.
+ * @if English
+ * Brightness levels can be set from `0` to `255`, where `0` indicates that the
+ * selected LED crystal is off, and `255` indicates maximum brightness. Other
+ * values within the range of `0` to `255` indicate the brightness level of the
+ * selected LED crystal.
+ *@else
+ * В рівні яскравості можга записувати значення від `0` до `255`, де `0` --
+ *вказує, що обраний кристал світлодіода вимкнено, а `255` -- кристал світиться
+ *максимальною яскравістю. Інші значення, що лежать в межах від `0` до `255`
+ *вказують ступінь яскравості обраного кристалу світодіоду.
+ * @endif
  */
 void Nanit_RGB_Write(byte red, byte green, byte blue);
 
-/**
- * @brief Функція детектидь гучний вигук, або плеск долонями
+/** @if English
+ * @brief The function detects loud shouting or clapping.
+ *
+ * @details The function filters out any external sounds and determines the
+ * level of silence. It also sets a threshold for external noises (music,
+ * conversations) near the sensor. The sensor adapts to them.
+ *
+ * @return true - shouting or clapping detected
+ * @return false - no shouts detected
+ *
+ * @note The function has a damping effect to avoid double triggering from
+ * echoes.
+ * @else
+ * @brief Функція детектидь гучний вигук, або плеск долонями.
  *
  * @details У функції відфільтровуються всі сторонні звуки та визначається ріень
  * звуку в стані спокою "тиша". Також задано умовний поріг сторонніх шумів
  * (музика, розмова) поряд з датчиком. Датчик адаптується до них.
  *
- * @return true - зафікосовано вигук чи сплеск дольонями
- * @return false - не зафіксовано вигуків
+ * @return true - зафікосовано вигук чи сплеск дольонями.
+ * @return false - не зафіксовано вигуків.
  *
  * @note Функція має гальмуючий ефект. Це зроблеблено для уникнення подвійного
- * спрацювання від відлуння
+ * спрацювання від відлуння.
+ * @endif
  */
 bool isClapping();
 
-/**
+/** @if English
+ * @brief The function detects changes in ambient lighting.
+ * 
+ * @return true - a decrease in the light level has been detected.
+ * @return false - no decrease in the light level has been detected.
+ * @else
  * @brief Функція детектить зміну освітлення в оточненні.
  *
- * @return true - зафіксовано зниження рівня освітлення
- * @return false - не зафіксовано зниження рівня освітлення
+ * @return true - зафіксовано зниження рівня освітлення.
+ * @return false - не зафіксовано зниження рівня освітлення.
+ * @endif
  */
 
 bool isLight();
+
+constexpr uint8_t k_adap =
+    20;  // Коефіцієнт адаптації підібрано експериментально
 
 /**
  * @brief Датчик ліній правий
@@ -603,9 +1000,6 @@ bool isLight();
  * @return true
  * @return false
  */
-constexpr uint8_t k_adap =
-    20;  // Коефіцієнт адаптації підібрано експериментально
-
 bool isRightLine(uint8_t sen = k_adap);
 /**
  * @brief датчик ліній лівий
@@ -621,27 +1015,47 @@ void Nanit_ActiveBuzz_Scream(byte times, int duration);
 
 bool Nanit_Sound_IsSoundDetected(int sound_limit);
 
-/**
- * @brief  Використання аналогового входу як цифровий
+/** @if English
+ * @brief Using an analog input as a digital one.
+ * @details The function returns true if the read value from the analog input 
+ * exceeds a certain threshold. If hysteresis is needed, the third parameter 
+ * specifies the value at which the function returns to the previous state. 
+ * If the \b minValue is zero, hysteresis is not applied.
+ * @param [in] pin The pin from which to read the value.
+ * @param [in] maxValue When this value is exceeded, the function will return true.
+ * @param [in] minValue If the previous value returned by the function was true, 
+ * it will return false only after the analog input drops below this level.
+ * @return true
+ * @return false
+ * @else
+ * @brief  Використання аналогового входу як цифровий.
  *
  * @details Функція повертає істуину якщопрочитане значення з аналогового входу
  * перевищує певне порогове значення. Якщо потрібен гістерезис то третім
  * параметром вказується значення при якому функція пермкнеться на попереднє
- * значення. Якщо значення \b minValue рівне нулю гістерезис не застосовується
+ * значення. Якщо значення \b minValue рівне нулю гістерезис не застосовується.
  *
- * @param pin[in] Пін з якого потрібно прочитати значення
- * @param maxValue[in] При перевищенні цього значення функція поверне істину
- * @param minValue[in] Якщо попереднє значення повернуте функцією було істина то
+ * @param [in] pin Пін з якого потрібно прочитати значення.
+ * @param [in] maxValue При перевищенні цього значення функція поверне істину.
+ * @param [in] minValue Якщо попереднє значення повернуте функцією було істина то
  * поверне хибу тільки після того як аналоговий вхід опуститься нижче цього
- * рівня
+ * рівня.
  * @return true
  * @return false
+ * @endif
  */
 bool digitalRead(const uint8_t pin, const uint16_t maxValue,  //
                  const uint16_t minValue = 0                  // 10100000
 );
 
-/**
+/** @if English
+ * @brief Calling the PWM signal generation function on a pin.
+ * @note Pay attention to the possibility of using this macro. Not all pins 
+ * generate PWM signals in the same way. PWM is generated hardware on some 
+ * microcontroller pins, while on others, it may add additional load to the processor.
+ * @param  PIN pin number
+ * @param  VALUE value
+ * @else
  * @brief Виклик функції генерації ШІМ сигналу на пін
  *
  * @note Зверніть увагу на можливість викорисатння уього макросу.
@@ -650,20 +1064,7 @@ bool digitalRead(const uint8_t pin, const uint16_t maxValue,  //
  *
  * @param  PIN номер піна
  * @param  VALUE значення
- *
- */
-#define PWM(PIN, VALUE) analogWrite(PIN, VALUE)
-
-/**
- * @brief Виклик функції генерації ШІМ сигналу на пін
- *
- * @note Зверніть увагу на можливість викорисатння уього макросу.
- * Не всі виводи однаково генерують ШІМ. На деяких виводах мікроконтроллера ШІМ
- * генерується апаратно, а на деяких можливе додаткове навантаження на процесор
- *
- * @param  PIN номер піна
- * @param  VALUE значення
- *
+ * @endif
  */
 #define PWM(PIN, VALUE) analogWrite(PIN, VALUE)
 
@@ -673,94 +1074,163 @@ bool digitalRead(const uint8_t pin, const uint16_t maxValue,  //
 #define NANIT_BEGIN(X)                                                         \
   ::NanitRobot::Nanit &X { START_NANIT }
 
-/**
+/** @if English
+ * @defgroup ServiceMode Testing cable integrity
+ * 
+ * @brief Instructions on how to check the integrity of cables with _RJ-12_
+ * connectors
+ * @else
  * @defgroup ServiceMode Тестування цілісності кабелів
- *
+ * 
  * @brief Інструкція як перевірити цілісність кабелі з роз'ємами _RJ-12_
+ * @endif
+ *
  * @{
+ * @if English
+ * Activation of diagnostic mode.
+ * ==============================
+ * @else
+ * Активація режиму діагностики.
+ * =============================
+ * @endif
  *
- * Активація режиму діагностики
- * ============================
- *
+ * @if English
+ * In the new library version, self-diagnosis of the kit is provided as follows:
+ *  1. Turn off the main unit.
+ *  2. Connect any cable to the main unit, bridging ports __1__ and __12__.
+ *  3. Turn on the main unit. The main unit will enter cable diagnostics mode.
+ *  4. Connect the ports __5__ and __6__ of the cable being tested with each other to check its integrity.
+ *  5. Read the test results from the display.
+ *  6. Disconnect the cable that has been tested.
+ *  7. If necessary, test another cable and return to step _4_.
+ *  8. Turn off the main unit.
+ *  9. Disconnect the activation cable from the main unit, ending the testing process.
+ *  10. Cable diagnostics are complete.
+ * @else
  * У новій версії бібліотеки передбачена можливість самодіагностики набору.
- *  1. Вимкнути головний блок
+ *  1. Вимкнути головний блок.
  *  2. Підключити будь-яки кабель до головного блоку з'єднавши між собою __1__
- * та __12__ порти
+ * та __12__ порти.
  *  3. Увімкнути головни блок. Головний блок перейде в режим тестування
- * комплектних кабелів
- *  4. З'днати між собою кабелем який тестується порти 5 та 6 для перевірки його
- * цілісності
- *  6. Зчитати з дисплею результат тестування
- *  7. Від'єднати кабель, що протестовано.
- *  8. За потреби протестувати інший кабель перейти до кроку 4.
- *  9. Вимкнути головний блок.
- *  10. Відключити від головного блоку кабель активації тежиму тестування
- *  11. Діагностика кабелів завершена
- *  11. Діагностика кабелів завершена
+ * комплектних кабелів.
+ *  4. З'днати між собою кабелем який тестується порти __5__ та __6__ для перевірки його
+ * цілісності.
+ *  5. Зчитати з дисплею результат тестування.
+ *  6. Від'єднати кабель, що протестовано.
+ *  7. За потреби протестувати інший кабель перейти до кроку _4_.
+ *  8. Вимкнути головний блок.
+ *  9. Відключити від головного блоку кабель активації тежиму тестування.
+ *  10. Діагностика кабелів завершена.
+ * @endif
  * @}*/
 
-/** @namespace NanitRobot Простір імен та функцій які підтримуються платами
- * Nanit */
+/** @if English
+ * @namespace NanitRobot is a namespace and a set of functions supported by 
+ * Nanit boards.
+ * @else
+ *  @namespace NanitRobot Простір імен та функцій які підтримуються платами
+ * Nanit 
+ * @endif
+ * */
 namespace NanitRobot {
-/**
- * @brief Мапінг функція для чисел з плаваючою крапкою
- *
- * @param inputValue[in] значення яке потрібно промаштабувати
- * @param inputMin[in] Нижній поріг значань які потрібно промаштабувати
- * @param inputMax[in] Верхній поріг значень, які потрібно промаштвабувати
- * @param rangeMin[in] Нижня межа значень діапазону вихідних значень
- * @param rangeMax[in] Верхня межа значень діапазону вихідних значень
+
+/** @if English
+ * @brief Mapping function for floating-point numbers.
+ * @else
+ * @brief Мапінг функція для чисел з плаваючою крапкою.
+ * @endif
+ * 
+ * @if English
+ * @param [in] inputValue the value to be scaled
+ * @param [in] inputMin the lower threshold of the values to be scaled
+ * @param [in] inputMax the upper threshold of the values to be scaled
+ * @param [in] rangeMin the lower boundary of the output value range
+ * @param [in] rangeMax the upper boundary of the output value range
+ * @return returns the scaled value
+ * @else
+ * @param [in] inputValue значення яке потрібно промаштабувати
+ * @param [in] inputMin Нижній поріг значань які потрібно промаштабувати
+ * @param [in] inputMax Верхній поріг значень, які потрібно промаштвабувати
+ * @param [in] rangeMin Нижня межа значень діапазону вихідних значень
+ * @param [in] rangeMax Верхня межа значень діапазону вихідних значень
  * @return повертає маштабоване значення
+ * @endif
  */
 float Map(float inputValue, float inputMin, float inputMax, float rangeMin,
           float rangeMax);
 
-/**
- * @brief Клас яки дозволяє легко керувати будь-якою платою Nanit
+/** @if English
+ * @brief A class that allows easy control of any Nanit board.
+ * 
+ * @details The class contains public fields and methods that allow control of 
+ * the Nanit board to obtain information from the outside world (read data from 
+ * sensors) and display it (on the built-in display or connected modules).
+ * @else
+ * @brief Клас яки дозволяє легко керувати будь-якою платою Nanit.
  *
  * @details В класі є публічні поля та методи які дозволяють керувати платою
  * Наніт для отримання інформації з зовнішноього світу (читати дані з дачиків),
- * та виводити її (вбудований дисплей чи підключені модулі)
- *
+ * та виводити її (вбудований дисплей чи підключені модулі).
+ * @endif
  */
 class Nanit {
  public:
-  /**
-   * @brief Типи індикторів батареї
-   */
+  // /** @if English
+  //  * @brief Типи індикторів батареї
+  //  */
   enum class GuageType {
-    SmileBatt,  ///< індикатор батареї у вигляді "емоційної батарейки"
-    Simple,     ///< простий індикатор батарейки
+    SmileBatt,  //< індикатор батареї у вигляді "емоційної батарейки"
+    Simple,     //< простий індикатор батарейки
     LAST
   };
-  /**
-   * Отримати адресу розміщення створеного об'єкту класу Nanit
+  /** @if English
+   * @brief Get the memory address of the created Nanit class object.
+   * @else
+   * @brief Отримати адресу розміщення створеного об'єкту класу Nanit.
+   * @endif
    */
   inline static Nanit &getNanit() {
     static Nanit instance;
     return instance;
   }
 
-  /**
-   * @brief Увімкнути підсвідку дисплея
-   *
+  /** @if English
+   * @brief Turn on the display backlight.
+   * @else
+   * @brief Увімкнути підсвідку дисплея.
+   * @endif
    */
   void backlightOn();
 
-  /**
-   * @brief Вимкнути підсвідку дисплея
-   *
+  /** @if English
+   * @brief Turn off the display backlight.
+   * @else
+   * @brief Вимкнути підсвідку дисплея.
+   * @endif
    */
   void backlightOff();
 
-  /**
-   * @brief Встановити рівень яскравості підсвідки
+  /** @if English
+   * @brief Turn off the display backlight.
+   * @else
+   * @brief Встановити рівень яскравості підсвідки.
+   * @endif
    *
-   * @param brightness[in] Рівень яскравості
+   * @if English
+   * @param [in] brightness Brightness level.
+   * @else
+   * @param [in] brightness Рівень яскравості.
+   * @endif
    *
-   * @details При яскравості рівній  0 робота методу тотожна  backlightOff()
-   * Максимальна можлива яскаравість  255 . Будьте обережні з числами що
-   * перевищують значення 255 (переповнення)
+   * @if English
+   * @details At a brightness level of `0`, the method's operation is identical 
+   * to `backlightOff()`. The maximum possible brightness is `255`. Be cautious 
+   * with values exceeding `255` (overflow).
+   * @else
+   * @details При яскравості рівній  `0` робота методу тотожна  `backlightOff()`
+   * Максимальна можлива яскаравість  `255` . Будьте обережні з числами що
+   * перевищують значення `255` (переповнення).
+   * @endif
    */
   void backlightSet(uint8_t brightness);
 
@@ -773,8 +1243,13 @@ class Nanit {
   /**
    * @brief Get the Battary Power object
    *
+   * @if English
+   * @details The method returns the battery charge level in percentage for the 
+   * Li-Ion battery.
+   * @else
    * @details  Метод повертає значення рівня зараду ІонЛітієвої батареї у
-   * відсотках
+   * відсотках.
+   * @endif
    *
    *   | # |     Volts    |       %       |
    *   |:-:|:------------:|:-------------:|
@@ -823,39 +1298,68 @@ class Nanit {
   // 10 line
 #endif
 
-  /**
-   * @brief Визначення кольору світіння вбудованого світлодіода
+  /** @if English
+   * @brief Determining the color of the built-in LED.
+   * @else
+   * @brief Визначення кольору світіння вбудованого світлодіода.
+   * @endif
    *
-   * @param red[in] Рівень яскравості червоного кристалу
-   * @param green[in] Рівень яскравості зеленого кристалу
-   * @param blue[in] Рівень яскравості синього кристалу
-   * @param brightness[in] Загальний рівень світіння кристалів
+   * @if English
+   * @param [in] red Red crystal brightness level.
+   * @param [in] green Green crystal brightness level.
+   * @param [in] blue Blue crystal brightness level.
+   * @param [in] brightness Total crystal illumination level.
+   * 
+   * @details All parameters can take values from `0` to `255`.
+   * @else
+   * @param [in] red Рівень яскравості червоного кристалу
+   * @param [in] green Рівень яскравості зеленого кристалу
+   * @param [in] blue Рівень яскравості синього кристалу
+   * @param [in] brightness Загальний рівень світіння кристалів
    *
-   * @details Всі параметри можуть приймати значення від \b 0 до \b 255
+   * @details Всі параметри можуть приймати значення від `0` до `255`
+   * @endif
    */
   void BuildinRGB(uint8_t red, uint8_t green, uint8_t blue,
                   uint8_t brightness = 255);
-  /**
+  /** @if English
+   * @brief Determining the color of the built-in LED.
+   * @param [in] color Determining the color of the illumination of all three 
+   * crystals. The number can take a 32-bit value. The first byte corresponds to 
+   * red, the second to green, and the third to blue.
+   * @param [in] brightness Determines the brightness level of the illumination 
+   * of all crystals simultaneously.
+   * @else
+
    * @brief Визначення кольору світіння вбудованого світлодіода
    *
-   * @param color[in] Визначення кольору світіння всіх трьох кристалів. Число
+   * @param [in] color Визначення кольору світіння всіх трьох кристалів. Число
    * може примати 32бітне значення. Перший байт відповідає за червоний кристал,
-   * другий -- зелений, третій -- синій
-   * @param brightness[in] Визначає рівень яскравості світіння всіх кристалів
-   * одночасно
+   * другий -- зелений, третій -- синій.
+   * @param [in] brightness Визначає рівень яскравості світіння всіх кристалів
+   * одночасно.
+   * @endif
    */
   void BuildinRGB(uint32_t color, uint8_t brightness = 255);
   Servo ServoMotor;
 
  private:
-  /**
+  /** @if English
+   * @brief An object of the Nanit class is a singleton object.
+   * 
+   * @details If the object has not been created in memory, we create it. If the
+   * object already existed in memory, we obtain its memory address. This method
+   * does not allow creating objects indefinitely and only allows initializing 
+   * the necessary variables for subsequent use once.
+   * @else
    * @brief Об'єк ткласу Nanit є об'єктом одинаком.
    *
    * @details Якщо об'єкт не був створений у оперативній пам'яті ми його
    * створюєм. Якщо об'єкт вже існував в пам'яті то ми отримаємо адресу
    * розміщення. Такий спосіб не дозволяє не обмежено створювати об'єкти і
    * дозволяє лише один раз ініціювати необхідні змінні для подальшого
-   * використання
+   * використання.
+   * @endif
    */
   inline Nanit() : Display{Adafruit_ST7735(TFT_CS, TFT_DC, TFT_RES)} {
     if (!Serial) Serial.begin(NANIT_SERIAL_SPEED);
@@ -1100,32 +1604,6 @@ class Nanit {
       //     _strip_led.setPixelColor(i, red, green, blue);
       //   else if (!arr[i])
       _strip_led.setPixelColor(i, red, green, blue);
-      _strip_led.show();
-      delay(SpeedDelay);
-    }
-  }  // } Ring;
-  FastLED_NeoPixel<15, BUILDIN_STRIP_LED, NEO_GRB> _strip_led;
-  /**
-   * @brief Вбудований дисплей `Nanit``a
-   *
-   * @details Перелік методів для керування дисплеєм модна прочитати тут
-   * @ref Display
-   */
-  Adafruit_ST7735
-  // struct {
-  void setAll(uint8_t red, uint8_t green, uint8_t blue) {
-    for (uint8_t i = 0; i < 15; i++) {
-      _strip_led.setPixelColor(i, red, green, blue);
-    }
-    _strip_led.show();
-  };
-  void colorWipe(byte red, byte green, byte blue, int SpeedDelay, bool *arr) {
-    // pinMode(J_7, OUTPUT);
-    for (uint16_t i = 0; i < 15; i++) {
-    //   if (!arr)
-    //     _strip_led.setPixelColor(i, red, green, blue);
-    //   else if (!arr[i])
-        _strip_led.setPixelColor(i, red, green, blue);
       _strip_led.show();
       delay(SpeedDelay);
     }
