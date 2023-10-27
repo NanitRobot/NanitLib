@@ -4,7 +4,7 @@
  * @authors NanitRobots,Sam4uk
  * @if English
  * @brief The main file of the NanitLib library.
- *@else
+ * @else
  * @brief Головний файл бібіліотеки NanitLib.
  * @endif
  *
@@ -16,7 +16,7 @@
 
 /** @if English
  * @brief The main version of the library.
- *@else
+ * @else
  * @brief Головна версія бібліотеки.
  * @endif
  */
@@ -25,7 +25,7 @@
 
 /** @if English
  * @brief The minor version of the library.
- *@else
+ * @else
  * @brief Мінорна версія бібліотеки.
  * @endif
  */
@@ -33,7 +33,7 @@
 
 /** @if English
  * @brief Pathc версія бібілотеки.
- *@else
+ * @else
  * @brief Patch version of the library.
  * @endif
  */
@@ -41,7 +41,7 @@
 
 /** @if English
  * @brief Serial port baud rate.
- *@else
+ * @else
  * @brief Швидкість серійного порту.
  * @endif
  */
@@ -59,7 +59,7 @@
 /** @if English
  * @brief Hardware version checking pin.
  * @details Used to determine the board versions greater than or equal to `3.1`.
- *@else
+ * @else
  * @brief Використовується для визначення плат версій старших  або рівних від
  *`3.1`.
  * @details
@@ -70,7 +70,7 @@
 /** @if English
  * @brief Hardware version checking pin.
  * @details The battery status check ADC input pin is read-only.
- *@else
+ * @else
  * @brief Пін підключення батареї вхід АЦП для перевірки стану батареї доступний
  * лише для читання
  * @details
@@ -81,7 +81,7 @@
 /** @if English
  * @brief Hardware version checking pin.
  * @details The built-in addressable LED pin is write-only.
- *@else
+ * @else
  * @brief Пін підключення вбудованого адресного світлодіоду доступний лише для
  * запису
  * @details
@@ -149,7 +149,7 @@
  * @details Due to the internal board routing specifics, this pin is available
  * for write-only operations (outputting information).
  *
- *@else
+ * @else
  * @brief Пін керування вбудованим драйвером двигуна, яки підключено
  * до виводу __А__ двигуна 1.
  *
@@ -166,7 +166,7 @@
  * @details Due to the internal board routing specifics, this pin is available
  * for write-only operations (outputting information).
  *
- *@else
+ * @else
  * @brief Пін керування вбудованим драйвером двигуна, яки підключено
  * до виводу __B__ двигуна 1.
  *
@@ -178,7 +178,7 @@
 
 /** @if English
  * @brief The fourth pin of the first port.
- *@else
+ * @else
  * @brief Четвертий пін першого порту.
  * @endif
  */
@@ -186,7 +186,7 @@
 
 /** @if English
  * @brief The fourth pin of the first port.
- *@else
+ * @else
  * @brief Третій пін першого порту.
  * @endif
  */
@@ -194,7 +194,7 @@
 
 /** @if English
  * @brief The fourth pin of the first port.
- *@else
+ * @else
  * @brief Третій пін восьмого порту.
  * @endif
  */
@@ -202,7 +202,7 @@
 
 /** @if English
  * @brief The third pin  of the tenth port.
- *@else
+ * @else
  * @brief Третій пін десятого порту.
  * @endif
  */
@@ -210,7 +210,7 @@
 
 /** @if English
  * @brief The second pin of the first port.
- *@else
+ * @else
  * @brief Другий пін десятого порту.
  * @endif
  */
@@ -218,7 +218,7 @@
 
 /** @if English
  * @brief The fourth pin of the seventh port.
- *@else
+ * @else
  * @brief Четвертий пін сьомого порту.
  * @endif
  */
@@ -226,7 +226,7 @@
 
 /** @if English
  * @brief The fourth pin of the ninth port.
- *@else
+ * @else
  * @brief Четветрий пін дев'ятого порту.
  * @endif
  */
@@ -239,7 +239,7 @@
  *
  * @details To enable motor rotation, this pin must have a high level. It is
  * available for write-only operations.
- *@else
+ * @else
  * @brief Пін запуску драйверу моторів
  *
  * @details для дозволу обертання двигунів цей пін має мати високий рівень
@@ -251,7 +251,7 @@
 /** @if English
  * @brief Check the state of the motor driver.
  * @details Available for read-only operations.
- *@else
+ * @else
  * @brief Перевірка стану драйверу моторів.
  *
  * @details Доступний лише для читання.
@@ -261,7 +261,7 @@
 
 /** @if English
  * @brief Pin __A__ of the second motor (available for output only).
- *@else
+ * @else
  * @brief Пін __А__ другого двигуна (доступний тільки на виведення).
  * @endif
  */
@@ -269,7 +269,7 @@
 
 /** @if English
  * @brief Pin __B__ of the second motor (available for output only).
- *@else
+ * @else
  * @brief Пін __B__ другого двигуна (доступний тільки на виведення).
  * @endif
  */
@@ -277,7 +277,7 @@
 
 /** @if English
  * @brief A touch button is connected to connector \b J3.
- *@else
+ * @else
  * @brief Сенсорна кнопка підключена до роз'єму \b J3.
  * @endif
  */
@@ -285,7 +285,7 @@
 
 /** @if English
  * @brief Connector on the board \b J7.
- *@else
+ * @else
  * @brief Роз'єм на платі \b J7.
  * @endif
  */
@@ -293,7 +293,7 @@
 
 /** @if English
  * @brief The second pin of the first port can be used as an ADC input.
- *@else
+ * @else
  * @brief Другий пін першого порту може використовуватися як вхід АЦП.
  * @endif
  */
@@ -301,7 +301,7 @@
 
 /** @if English
  * @brief The first pin of the first port can be used as an ADC input.
- *@else
+ * @else
  * @brief Перший пін Першого порту може використовуватися як вхід АЦП.
  * @endif
  */
@@ -309,7 +309,7 @@
 
 /** @if English
  * @brief The fourth pin of the second port can be used as an ADC input.
- *@else
+ * @else
  * @brief Четвертий пін другого порту може використовувватися як вхід АЦП.
  * @endif
  */
@@ -317,7 +317,7 @@
 
 /** @if English
  * @brief The third pin of the second port.
- *@else
+ * @else
  * @brief Третій пін другого порту.
  * @endif
  */
@@ -325,7 +325,7 @@
 
 /** @if English
  * @brief The second pin of the second port can be used as an ADC input.
- *@else
+ * @else
  * @brief Другий пін другого порту може використовувватися як вхід АЦП.
  * @endif
  */
@@ -333,7 +333,7 @@
 
 /** @if English
  * @brief The first pin of the second port can be used as an ADC input.
- *@else
+ * @else
  * @brief Перший пін другого порту може використовувватися як вхід АЦП.
  * @endif
  */
@@ -344,7 +344,7 @@
 
 /** @if English
  * @brief The fourth pin of the third port.
- *@else
+ * @else
  * @brief Четвертий пін третього порту.
  * @endif
  */
@@ -352,7 +352,7 @@
 
 /** @if English
  * @brief The third pin of the third port.
- *@else
+ * @else
  * @brief Третій пін третього порту.
  * @endif
  */
@@ -360,7 +360,7 @@
 
 /** @if English
  * @brief The second pin of the third port.
- *@else
+ * @else
  * @brief Другий пін третього порту.
  * @endif
  */
@@ -368,22 +368,22 @@
 
 /** @defgroup MEGACORE MEGACORE
  *
- *
- * @brief The second pin of the third port.
+ * 
+ * @if English
  * @brief About the advanced core MEGACORE.
- *@else
+ * @else
  * @brief Про розширене ядро MEGACORE.
  * @endif
  *
  *
- * @brief The second pin of the third port.
+ * @if English
  * @details In the standard Arduino interface, this pin is not available.
  * On Arduino boards that use the ATMega2560 microcontroller, this
- *microcontroller pin is not routed on the board. On ```Nanit``` boards, this
- *pin is routed and available for use. To fully utilize all the capabilities of
- *the board, you need to manually install the ```MEGACORE``` advanced core or
- *use the board manager.
- *@else
+ * microcontroller pin is not routed on the board. On ```Nanit``` boards, this
+ * pin is routed and available for use. To fully utilize all the capabilities of
+ * the board, you need to manually install the ```MEGACORE``` advanced core or
+ * use the board manager.
+ * @else
  * @details У стандарному інтерфейсі Arduino цей пін не доступний. На платах
  * Arduino на яких використовується мікроконтролер ATMega2560 цей вивід
  * мікроконтролера не розведений на платі. На платах Nanit цей пін розведений та
@@ -392,17 +392,12 @@
  * скористатись менеджером плат.
  * @endif
  *
- * @image html
- * https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/MegaCorePinOut.png
- * MegaCore Pinout width=50%
- *
- * @image html
- * https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/MegaCorePinOut.png
- * MegaCore Pinout width=50%
+ * @image html https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/MegaCorePinOut.png "MegaCore Pinout" width=50%
+ * 
  * @if English
  * An alternative way to use the output is by accessing the level registers
  * of __PE6__.
- *@else
+ * @else
  * Альтернативний спосіб викорстання виводу це звернення рівні регістрів до
  * __PE6__.
  * @endif
@@ -418,7 +413,7 @@
  * microcontroller pin is not routed on the board. On `Nanit` boards,
  * this pin is routed and available for use. To learn more, refer to the
  * @ref MEGACORE section of this documentation.
- *@else
+ * @else
  *
  * @brief  Пін визначений у розширеному ядрі `MEGACORE`.
  *
@@ -442,7 +437,7 @@
 
 /** @if English
  * @brief The fourth pin of the fourth port.
- *@else
+ * @else
  * @brief Четвертий пін четвертого порту.
  * @endif
  */
@@ -450,7 +445,7 @@
 
 /** @if English
  * @brief The third pin of the fourth port.
- *@else
+ * @else
  * @brief Третій пін четвертого порту.
  * @endif
  */
@@ -458,7 +453,7 @@
 
 /** @if English
  * @brief The second pin of the fourth port.
- *@else
+ * @else
  * @brief Другий пін четвертого порту.
  * @endif
  */
@@ -466,7 +461,7 @@
 
 /** @if English
  * @brief The first pin of the fourth port can be used as an ADC input.
- *@else
+ * @else
  * @brief Перший пін четвертого порту може використовувватися як вхід АЦП.
  * @endif
  */
@@ -476,7 +471,7 @@
 //  #define P5_6 33 /// Стара версія
 /** @if English
  * @brief The fourth pin of the fifth port.
- *@else
+ * @else
  * @brief Четвертий пін п'ятого порту.
  * @endif
  */
@@ -484,7 +479,7 @@
 
 /** @if English
  * @brief The third pin of the fifth port can be used as an ADC input.
- *@else
+ * @else
  * @brief Третій пін п'ятого порту може використовувватися як вхід АЦП.
  * @endif
  */
@@ -492,7 +487,7 @@
 
 /** @if English
  * @brief The second pin of the fifth port can be used as an ADC input.
- *@else
+ * @else
  * @brief Другий пін п'ятого порту може використовувватися як вхід АЦП.
  * @endif
  */
@@ -502,7 +497,7 @@
  * @brief The first pin of the fifth port can handle interrupts by vector
  *
  * INT.0
- *@else
+ * @else
  * @brief Перший пін п'ятого порту може оброблювати переривання за вектором.
  *
  * INT.0.
@@ -514,7 +509,7 @@
 //  #define P6_6 22 /// Стара версія
 /** @if English
  * @brief The fourth pin of the sixth port.
- *@else
+ * @else
  * @brief Четвертий пін шостого порту.
  * @endif
  */
@@ -522,7 +517,7 @@
 
 /** @if English
  * @brief The third pin of the sixth port can be used as an ADC input.
- *@else
+ * @else
  * @brief Третій пін шостого порту, може використовуватись як вхід АЦП.
  * @endif
  */
@@ -530,7 +525,7 @@
 
 /** @if English
  * @brief The second pin of the sixth port can be used as an ADC input.
- *@else
+ * @else
  * @brief Другий пін шостого порту, може використовуватись як вхід АЦП.
  * @endif
  */
@@ -538,7 +533,7 @@
 
 /** @if English
  * @brief The first pin of the sixth port.
- *@else
+ * @else
  * @brief Перший пін шостого порту.
  * @endif
  */
@@ -547,7 +542,7 @@
 // Порт 7
 /** @if English
  * @brief The third pin of the seventh port.
- *@else
+ * @else
  * @brief Третій пін сьомого порту.
  * @endif
  */
@@ -555,7 +550,7 @@
 
 /** @if English
  * @brief The second pin of the seventh port can be used as an ADC input.
- *@else
+ * @else
  * @brief Другий пін сьомого порту, може викорстовуватись як вхід АЦП.
  * @endif
  */
@@ -563,7 +558,7 @@
 
 /** @if English
  * @brief The first pin of the seventh port can be used as an ADC input.
- *@else
+ * @else
  * @brief Перший пін сьомого порту, може використовуватись як вхід АЦП.
  * @endif
  */
@@ -577,7 +572,7 @@
  * @details You cannot use this macro definition in your sketch code.
  * This macro definition is for documentation purposes only to explain the
  * purpose of this pin on the adapter.
- *@else
+ * @else
  * @brief Пін до якого під'єднано вивід  \b RESET мікроконтроллера.
  *
  * @details Ви не можете фикористовувати це макровизначення в коді ваших
@@ -594,7 +589,7 @@
  * @brief The second pin of the eighth port.
  *
  * @details The `RX` of the `Serial` is routed to this pin.
- *@else
+ * @else
  * @brief Другий пін восьмого порту.
  *
  * @details На цей пін виведено `RX` `Serial`.
@@ -609,7 +604,7 @@
  * @brief The first pin of the eighth port.
  *
  * @details The `TX` of the `Serial` is routed to this pin.
- *@else
+ * @else
  * @brief Перший пін восьмого порту.
  *
  * @details На цей пін виведено `TX` `Serial`.
@@ -622,7 +617,7 @@
  * @brief The third pin of the fifth port can handle interrupts by vector
  *
  * INT.2.
- *@else
+ * @else
  * @brief Третій пін дев'ятого порту може оброблювати переривання за вектором
  *
  * INT.2.
@@ -633,7 +628,7 @@
 /** @if English
  * @brief The second pin of the ninth port can. It has built-in support for the
  * data line (SDA) of the I2C protocol.
- *@else
+ * @else
  * @brief  Другий пін дев'ятого порту може. Має апартану пітримку лінії даних
  * (SDA) пртоколу IIC.
  * @endif
@@ -643,17 +638,18 @@
 /** @if English
  * @brief The first pin of the ninth port can. It has built-in support for the
  * clock line (SCL) of the I2C protocol.
- *@else
+ * @else
  * @brief  Перший пін дев'ятого порту може. Має апартану пітримку лінії
  * тактування (SDL) пртоколу IIC.
  * @endif
  */
+#define P9_1 (21)
 
 // Порт 10
 //  #define P10_6 (6)  /// Стара версія
 /** @if English
  * @brief The fourth pin of the tenth port.
- *@else
+ * @else
  * @brief Четвертий пін десятого порту.
  * @endif
  */
@@ -661,7 +657,7 @@
 
 /** @if English
  * @brief The first pin of the tenth port can be used as an ADC input.
- *@else
+ * @else
  * @brief Перший пін деятого порту, може використовувтись як вхід АЦП.
  * @endif
  */
@@ -671,7 +667,7 @@
 
 /** @if English
  * @brief The fourth pin of the eleventh port.
- *@else
+ * @else
  * @brief Четрвертий пін одинадцятого порту.
  * @endif
  */
@@ -679,7 +675,7 @@
 
 /** @if English
  * @brief The third pin of the eleventh port.
- *@else
+ * @else
  * @brief Третій пін одинадцятого порту.
  * @endif
  */
@@ -689,7 +685,7 @@
  * @brief The second pin of the eleventh port.
  *
  * @details The `RX` of `Serial3` is routed to this pin.
- *@else
+ * @else
  * @brief Другий пін одинадцьятого порту.
  *
  * @details На цей пін виведено `RX` `Serial3`.
@@ -704,7 +700,7 @@
  * @brief The third pin of the eleventh port.
  *
  * @details The `TX` of `Serial3` is routed to this pin.
- *@else
+ * @else
  * @brief Третій пін одинадцятого порту.
  *
  *
@@ -717,7 +713,7 @@
 
 /** @if English
  * @brief The fourth pin of the twelfth port. (available for output only).
- *@else
+ * @else
  * @brief Четвертий пін дванадцятого порту (доступний тільки на виведення).
  * @endif
  */
@@ -725,7 +721,7 @@
 
 /** @if English
  * @brief The third pin of the twelfth port. (available for output only).
- *@else
+ * @else
  * @brief Третій пін дванадцятого порту (доступний тільки на виведення).
  * @endif
  */
@@ -733,7 +729,7 @@
 
 /** @if English
  * @brief The second pin of the twelfth port.
- *@else
+ * @else
  * @brief Другий пін дванадцятого порту.
  * @endif
  */
@@ -741,7 +737,7 @@
 
 /** @if English
  * @brief The first pin of the twelfth port.
- *@else
+ * @else
  * @brief Перший пін дванадцятого порту.
  * @endif
  */
@@ -751,7 +747,7 @@
 
 /** @if English
  * @brief Pin for working with memory card and display.
- *@else
+ * @else
  * @brief Пін для роботи з картою пам'яті та дисплеєм.
  * @endif
  */
@@ -759,7 +755,7 @@
 
 /** @if English
  * @brief Pin for working with memory card and display.
- *@else
+ * @else
  * @brief Пін для роботи з картою пам'яті та дисплеєм.
  * @endif
  */
@@ -767,7 +763,7 @@
 
 /** @if English
  * @brief Pin for working with memory card and display.
- *@else
+ * @else
  * @brief Пін для роботи з картою пам'яті та дисплеєм.
  * @endif
  */
@@ -775,7 +771,7 @@
 
 /** @if English
  * @brief Display backlight pin (write-only).
- *@else
+ * @else
  * @brief Підсвідка дисплею пін доступний лише для запису.
  * @endif
  */
@@ -783,7 +779,7 @@
 
 /** @if English
  * @brief Pin for working with memory card and display.
- *@else
+ * @else
  * @brief Пін для роботи з картою пам'яті та дисплеєм.
  * @endif
  */
@@ -791,7 +787,7 @@
 
 /** @if English
  * @brief Pin for working with memory card and display.
- *@else
+ * @else
  * @brief Пін для роботи з картою пам'яті та дисплеєм.
  * @endif
  */
@@ -807,7 +803,7 @@
 
 /** @if English
  * @brief Reference voltage for the embedded ADC (5 volts).
- *@else
+ * @else
  * @brief Опорна напруга для вбулованого АЦП (5 вольт).
  * @endif
  */
@@ -821,7 +817,7 @@
  * @brief Definition of the ADC bit rate.
  *
  * @details The ATMega2560 has a 10-bit converter.
- *@else
+ * @else
  * @brief Визначення розміру бітрейту АЦП.
  *
  * @details ATMega2560 має 10 розрядний перетворювач.
@@ -837,7 +833,7 @@
  *unit.
  * @details The variable is introduced in case the type of the battery is
  *changed in future board upgrades.
- *@else
+ * @else
  * @brief Визначення рівня повного рівня заряду викорисатної батареї а блоці.
  * Змінна введена на випадок, якщо в подальшому модернізації плати буде замінено
  * тип батареї.
@@ -851,7 +847,7 @@
 /** @if English
  * Determines the type of battery used. This definition is introduced in case
  * the battery type changes during the project's development.
- *@else
+ * @else
  * Визначає тип використаної батареї Визначення введене для випадок зміни типу
  * батареї в процесі розвитку проекту
  * @endif
@@ -869,7 +865,7 @@
 
 /** @if English
  * @brief Get the board version.
- *@else
+ * @else
  * @brief Отримати версію плати.
  * @endif
  */
@@ -877,7 +873,7 @@ Version getBoardVersion();
 
 /** @if English
  * @brief Get the library version.
- *@else
+ * @else
  * @brief Отримати версію бібліотеки.
  * @endif
  */
@@ -887,7 +883,7 @@ Version getLibVersion();
  * @brief Get the board's serial number.
  *
  * The board's serial number is read from the built-in memory.
- *@else
+ * @else
  * @brief Отримати серійний номер плати.
  *
  * Серійний номер плати читається з вбудованої пам'яті.
@@ -897,7 +893,7 @@ String getSerialNumber();
 
 /** @if English
  * @brief Display information about \b Nanit on the screen.
- *@else
+ * @else
  * @brief Вивести на дисплей інформацію про \b Nanit
  * @endif
  */
@@ -908,7 +904,7 @@ void NanitInfo();
  *
  * This function controls the operating modes of the LED connected to port 4.
  * LED connection table:
- *@else
+ * @else
  * @brief Керування RGB-світлодіодом.
  *
  * Функція керує режимами роботи світлодіода що підключено до порту 4
@@ -926,7 +922,7 @@ void NanitInfo();
  * @param [in] red the brightness level of the red LED crystal.
  * @param [in] green the brightness level of the green LED crystal.
  * @param [in] blue the brightness level of the blue LED crystal.
- *@else
+ * @else
  * Якщо світлодіод підключено до іншого порту та за іншою схемою працездатність
  * методу НЕ ҐАРАНТУЄТЬСЯ.
  * @param [in] red рівень яскравості червоного кристалу світодіода.
@@ -939,7 +935,7 @@ void NanitInfo();
  * selected LED crystal is off, and `255` indicates maximum brightness. Other
  * values within the range of `0` to `255` indicate the brightness level of the
  * selected LED crystal.
- *@else
+ * @else
  * В рівні яскравості можга записувати значення від `0` до `255`, де `0` --
  *вказує, що обраний кристал світлодіода вимкнено, а `255` -- кристал світиться
  *максимальною яскравістю. Інші значення, що лежать в межах від `0` до `255`

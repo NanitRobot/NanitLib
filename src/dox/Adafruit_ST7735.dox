@@ -1,5 +1,9 @@
-/**
- * @defgroup Display Методи для роботи з дисплеєм
+/** @if English
+ * @defgroup Display Methods for Working with the Display.
+ * @else
+ * @defgroup Display Методи для роботи з дисплеєм.
+ * @endif
+ * 
  *
  * @brief 
  * @{
