@@ -1,7 +1,11 @@
 /**
  * @file NanitColors.hpp
  * @author Sam4uk
- * @brief Містить макровизначення деяких кольорів
+ * @if English
+ * @brief Contains macro definitions for some colors.
+ * @else
+ * @brief Містить макровизначення деяких кольорів.
+ * @endif
  * @version 0.1
  * @date 2023-06-20
  *
@@ -12,6 +16,15 @@
 #define _NANIT_COLORS_HPP_
 
 /**
+ * @brief  * @if English
+ * @brief Macro for converting color to 565 color format.
+ * @param RED Red level
+ * @param GREEN Green level
+ * @param BLUE Blue level
+ * 
+ * @details You can pass 8-bit unsigned values to the macro definition. The macro
+ * converts it into a 16-bit color format.
+ * @else
  * @brief Макрос перетворення перетворення у колір 565
  * @param RED Рівень червоного
  * @param GREEN Рівень зеленого
@@ -19,6 +32,7 @@
  *
  * @details У макровизначення можна передавати 8 бітні беззнакові значення.
  * Макровизначення конвертує у 16-бітни колір
+ * @endif
  */
 /* 
  * |RRRRR|GGG GGG|BBBBB|

@@ -1,4 +1,17 @@
-#ifndef _SERIAL_NUMBER_H_
+/**
+ * @file SerialNumber.hpp
+ * @author Sam4uk
+ * @if English
+ * @brief Methods for working with board serial numbers.
+ * @else
+ * @brief Методи для роботи з серійними номерами плат.
+ * @endif
+ * @version 0.1
+ * @date  2023-04-04
+ * 
+ * @copyright Copyright (c) 2023
+ * 
+ */
 #define _SERIAL_NUMBER_H_
 
 #include "Offsets.hpp"

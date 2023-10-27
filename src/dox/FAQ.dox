@@ -1,0 +1,96 @@
+/**
+ * @page FAQ
+ * 
+ * @if English
+ * Why doesn't the program work after turning on the Nanit main unit?
+ * ------------------------------------------------------------------
+ * 
+ * 1. Check the correct connection of sensors to the corresponding ports and follow the instructions.
+ * 2. Reboot the main unit after connecting all sensors.
+ * 3. Check the battery level of the main unit; it should be at least 20%.
+ * @else
+ * Чому програма не працює після включення головного блоку Nanit?
+ * --------------------------------------------------------------
+ * 
+ *  1. Перевірте правильність підключення датчиків до відповідних портів та інструкції.
+ *  2. Перезавантажте головний блок після підключення всіх датчиків.
+ *  3. Перевірте рівень заряду головного блоку, він має бути не менше ніж 20%.
+ * @endif
+ * 
+ * @if English
+ * Why is the device's battery life decreasing?
+ * --------------------------------------------
+ * 
+ * 1. The power unit uses a lithium-ion battery, and multiple charge and discharge cycles can gradually reduce the battery's lifespan.
+ * 2. Contact customer support if the device is still under warranty.
+ * @else
+ * Чому зменшується час автономної роботи пристрою?
+ * ------------------------------------------------
+ * 
+ *  1. Блок живлення використовує літій-іонну батарею, багаторазові заряджання та розряджання можуть поступово зменшувати термін служби батареї.
+ *  2. Зверніться до служби підтримки, якщо пристрій ще відповідає гарантійним вимогам
+ * @endif
+ * 
+ * @if English
+ * What should I do if I've lost the software for the main unit?
+ * -------------------------------------------------------------
+ * 
+ *  1. Contact customer support for further instructions on how to recover it.
+ * @else
+ * Що робити, якщо втрачена програмне забезпечення головного блоку?
+ * ----------------------------------------------------------------
+ * 
+ *  1. Зверніться до служби підтримки для отримання подальших інструкції по відновленню
+ * @endif
+ * 
+ * @if English
+ * Why doesn't the screen and indicator light up when powered on?
+ * --------------------------------------------------------------
+ * 
+ * Possible cause: the battery is discharged.
+ * Solution: charge the device.
+ * @else
+ * Чому при вмиканні екран та індикатор не світяться?
+ * --------------------------------------------------
+ * Можлива причина: розрядилася батарея
+ * Необхідно: зарядити пристрій
+ * @endif
+ * 
+ * @if English
+ * A connected module (sensor) is not working.
+ * -------------------------------------------
+ * 
+ * 1. Possible cause: poor contact in the connector.
+ *    Solution: disconnect the cable from the main unit and the module, then reconnect it with a characteristic click.
+ * 2. Possible cause: damaged cable.
+ *    Solution: replace the cable with another one from the kit. Test the potentially damaged cable  @ref ServiceMode.
+ * @else
+ * Не працює підключений модуль (датчик)
+ * -------------------------------------
+ * 
+ *  1. Можлива причина: відсутній контакт в роз’ємі. Необхідно: відключити кабель з роз’ємів головного блоку та модуля та повторно підключити до характерного клацання
+ *  2. Можлива причина: кабель пошкоджено. Необхідно: замінити кабель іншим з набору. Потенційно пошкоджений @ref ServiceMode.
+ * @endif
+ * 
+ * @if English
+ * What should I do if moisture gets into the main unit's housing?
+ * ---------------------------------------------------------------
+ * 
+ * 1. Turn off the main unit.
+ * 2. Place it horizontally for 3-6 hours to neutralize excess moisture.
+ * 3. Do not turn on or charge it independently.
+ * 4. Transfer it to a service center. Note that this situation is not covered by the warranty!
+ * @else
+ * Що робити, якщо до корпусу головного блоку потрапила волога?
+ * ------------------------------------------------------------
+ *  1. Вимкнути головний блок
+ *  2. Поставити в горизонтальне положення на 3-6 годин, для нейтралізації надлишку вологи
+ *  3. Не вмикати та не заряджати самостійно
+ *  4. Передати в сервісний центр. Важливо, даний випадок не є гарантійним!
+ * @endif
+ * 
+ * @if English
+ * @else
+ * @endif
+ * 
+ */ 

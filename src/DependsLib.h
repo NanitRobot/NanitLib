@@ -1,7 +1,11 @@
 /**
  * @file DependsLib.h
  * @author Sam4uk
- * @brief Інклюди бібілотек третіх сторін
+ * @if English
+ * @brief Include third-party library headers.
+ * @else
+ * @brief Інклюди бібілотек третіх сторін.
+ * @endif
  * @version 0.1
  * @date 2023-03-23
  * 
