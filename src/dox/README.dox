@@ -1,5 +1,7 @@
 // clang-format off
 /**
+ * @mainpage NanitLib
+ * 
  * 
  * @if English
  *
@@ -11,7 +13,6 @@
  * - [Go to documentation in English](../English/index.html)
  * - [Українська]
  * @endif
- * @mainpage NanitLib
  * 
  *
  * 
@@ -19,12 +20,12 @@
  * ## Appointment
  *
  * The purpose of the library is to facilitate the study of the basics of 
- * ```C/C++``` programming for microcontrollers on ```Nanit``` boards
+ * `C/C++` programming for microcontrollers on `Nanit` boards
  * @else
  * ## Призначення
  * 
  * Призначення бібліотеки полегшити вивчення основ програмування на мові  
- * ```C/C++``` для мікроконтролерів на платах ```Nanit```.
+ * `C/C++` для мікроконтролерів на платах `Nanit`.
  * @endif
  * 
  * @if English
@@ -40,7 +41,7 @@
  * @else 
  * ## Як встановити
  * 
- * Встановити ```NanitLib``` можна кількома способами:
+ * Встановити `NanitLib` можна кількома способами:
  * 
  *  1. Встановлення бібліотеки ZIP-архівом.
  *  2. Встановлення бібліотеки за допомогою менеджера бібліотек.
@@ -52,7 +53,7 @@
  * ### ZIP archive
  *
  * We recommend using this method only if your PC has no internet connection and you have no 
- * other way to install the library. Be prepared to download the libraries, that ```NanitLib```
+ * other way to install the library. Be prepared to download the libraries, that `NanitLib`
  * depends on, in the same way, if they are not already installed on your system. This 
  * method is not capable of downloading third-party libraries independently.
  *
@@ -66,7 +67,7 @@
  *
  * ![Profile](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/NanitRobot.png)
  *
- * On the repository page, press the ```CODE``` button and select ```Download ZIP```.
+ * On the repository page, press the `CODE` button and select `Download ZIP`.
  *
  * The file-saving window will open. Save the file in a place convenient for you. It doesn't have to be in the library files folder.
  * 
@@ -86,10 +87,10 @@
  * 
  * Ми рекомендуємо використовувати цей спосіб лище за умови повної відсутнотності інтернетз'єднання 
  * у вашого ПК, або якщо іншого способу встановити бібліотеку у вас немає. Будьте готові самостійно з
- * авантажувати бібліотеки, від яких залежить ```NanitLib```, якщо вони ще не встановлені у вашій 
+ * авантажувати бібліотеки, від яких залежить `NanitLib`, якщо вони ще не встановлені у вашій 
  * системі, оскільки цей спосіб не вміє самостійно завантажувати бібліотеки третіх сторін.
  *
- * Для завантаження `ZIP` бібліотеки потрібно її знайти на сайті ```GitHub```
+ * Для завантаження `ZIP` бібліотеки потрібно її знайти на сайті `GitHub`
  * 
  * ![GitHub](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/GitHub.png)
  * 
@@ -248,7 +249,7 @@
  * them.
  *
  * We recommend agreeing to the update, as you will always have the latest version of 
- * ```NanitLib``` with new functionality.
+ * `NanitLib` with new functionality.
  *
  * @else
  * 
