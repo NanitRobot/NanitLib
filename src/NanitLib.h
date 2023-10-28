@@ -2,6 +2,7 @@
  * @file NanitLib.h
  * @author NanitRobots (https://nanitrobot.com/)
  * @authors NanitRobots,Sam4uk
+ * 
  * @if English
  * @brief The main file of the NanitLib library.
  * @else
@@ -825,9 +826,6 @@
  */
 #define ADC_BITRATE (10)
 
-/**
-
- */
 /** @if English
  * @brief Definition of the level of the full charge of the used battery in the
  *unit.

@@ -34,10 +34,16 @@ jobs:
       - name: Doxygen action
         # uses: mattnotmitt/doxygen-action@v1.9.4
         run: |
+          git submodule add https://github.com/jothepro/doxygen-awesome-css.git doxygen-awesome-css
+
+          git submodule update --init --recursive
+
           sudo apt-get install -y doxygen
 
           LANGUAGE=English doxygen Doxyfile
           LANGUAGE=Ukrainian doxygen Doxyfile
+
+          git submodule deinit -f doxygen-awesome-css
           
 
     # 3)
