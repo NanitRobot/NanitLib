@@ -151,8 +151,12 @@ void PinTestLoop() {
   drive = !drive;
 }
 
-/** @todo Переписати функції check_1 та check_2 таким чином щоб максимально
- * перемістити перевірку пінів у `PinTestLoop`*/
+/** @if English
+ * @else
+ *  @todo Переписати функції check_1 та check_2 таким чином щоб максимально
+ * перемістити перевірку пінів у `PinTestLoop`
+ * @endif
+ */
 void check_1(bool what) {
   if (what) {
     digitalWrite(MOTOR1_A, !TOGGLE);

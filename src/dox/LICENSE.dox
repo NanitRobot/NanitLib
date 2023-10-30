@@ -2,7 +2,7 @@
  * @if English
  * @page LICENSE
  * @else
- * @page ЛІЦЕНЗІЯ
+ * @page LICENSE "ЛІЦЕНЗІЯ"
  * @endif
  * 
  * Copyright (c) 2021 NanitRobots

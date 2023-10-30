@@ -48,7 +48,11 @@ class Version {
    * @return uint16_t
    */
   uint16_t getPatch() const { return _patch; }
-  /// @todo TODO rule of 3
+  /** @if English
+   * @else
+   * @todo TODO rule of 3
+   * @endif
+   */
   /**
    * @brief Операця порівняння \b <
    */
