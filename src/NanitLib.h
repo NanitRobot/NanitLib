@@ -125,7 +125,8 @@
  * версію лати
  *
  * @endif
- *
+ * 
+ * <center>
  * |        MACRO         |<3.1|>=3.1|
  * |:---------------------|:--:|:---:|
  * | @ref MOTOR1_A        |  7 |  10 |
@@ -137,6 +138,8 @@
  * | @ref P9_4            | 10 |  8  |
  * | @ref P10_3           | 24 |  5  |
  * | @ref P10_2           | 54 |  24 |
+ * </center>
+ * 
  * @{
  */
 
@@ -1086,10 +1089,12 @@ bool digitalRead(const uint8_t pin, const uint16_t maxValue,  //
  *
  * @brief Instructions on how to check the integrity of cables with _RJ-12_
  * connectors
+ * 
  * @else
  * @defgroup ServiceMode Тестування цілісності кабелів
  *
  * @brief Інструкція як перевірити цілісність кабелів з роз'ємами _RJ-12_
+ * 
  * @endif
  *
  * @{
