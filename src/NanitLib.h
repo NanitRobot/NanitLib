@@ -38,7 +38,7 @@
  * @brief Pathc версія бібілотеки
  * @endif
  */
-#define NANIT_PATHC_VERSION (7)
+#define NANIT_PATCH_VERSION (7)
 
 /** @if English
  * @brief Serial port baud rate
@@ -80,12 +80,10 @@
 #define BATTERY_PIN (69)
 
 /** @if English
- * @brief Hardware version checking pin
- * @details The built-in addressable LED pin is write-only
+ * @brief  The built-in addressable LED pin is write-only.
  * @else
  * @brief Пін підключення вбудованого адресного світлодіоду доступний лише для
  * запису
- * @details
  * @endif
  */
 #define BUILDIN_STRIP_LED (27)
@@ -186,7 +184,7 @@
 #define P1_4 ((getBoardVersion() >= Version(3, 1)) ? (7) : (10))
 
 /** @if English
- * @brief The fourth pin of the first port
+ * @brief The third pin of the first port
  * @else
  * @brief Третій пін першого порту
  * @endif
@@ -194,7 +192,7 @@
 #define P1_3 ((getBoardVersion() >= Version(3, 1)) ? (8) : (9))
 
 /** @if English
- * @brief The fourth pin of the first port
+ * @brief The third pin of the eighth port
  * @else
  * @brief Третій пін восьмого порту
  * @endif
@@ -210,7 +208,7 @@
 #define P10_3 ((getBoardVersion() >= Version(3, 1)) ? (24) : (5))
 
 /** @if English
- * @brief The second pin of the first port
+ * @brief The second pin of the tenth port
  * @else
  * @brief Другий пін десятого порту
  * @endif
@@ -239,12 +237,12 @@
  * @brief Motor driver enable pin
  *
  * @details To enable motor rotation, this pin must have a high level. It is
- * available for write-only operations
+ * available for write-only operations.
  * @else
  * @brief Пін запуску драйверу моторів
  *
  * @details для дозволу обертання двигунів цей пін має мати високий рівень
- * доступний лише для запису
+ * доступний лише для запису.
  * @endif
  */
 #define MOTOR_ENABLE (40)
@@ -409,7 +407,9 @@
 #ifdef MEGACORE
 
 /** @if English
- * @brief The pin is defined in the `MEGACORE` advanced core
+ * @brief The first pin of the third port
+ * 
+ * @note The pin is defined in the `MEGACORE` advanced core
  *
  * @details In the standard Arduino interface, this pin is not available
  * On Arduino boards that use the ATMega2560 microcontroller, this
@@ -418,7 +418,9 @@
  * @ref MEGACORE section of this documentation.
  * @else
  *
- * @brief  Пін визначений у розширеному ядрі `MEGACORE`
+ * @brief Перший пін третього порту
+ * 
+ * @note  Пін визначений у розширеному ядрі `MEGACORE`
  *
  * @details У стандарному інтерфейсі Arduino цей пін не доступний. На платах
  * Arduino на яких використовується мікроконтролер ATMega2560 цей вивід
@@ -570,7 +572,7 @@
  * @brief The pin to which the \b RESET output of the microcontroller is
  * connected
  *
- * @details You cannot use this macro definition in your sketch code
+ * @details You cannot use this macro definition in your sketch code.
  * This macro definition is for documentation purposes only to explain the
  * purpose of this pin on the adapter.
  * @else
@@ -615,7 +617,7 @@
 
 // Порт 9
 /** @if English
- * @brief The third pin of the fifth port can handle interrupts by vector
+ * @brief The third pin of the ninth port can handle interrupts by vector
  * `INT.2`
  * @else
  * @brief Третій пін дев'ятого порту може оброблювати переривання за вектором
@@ -635,10 +637,10 @@
 #define P9_2 (20)
 
 /** @if English
- * @brief The first pin of the ninth port can. It has built-in support for the
+ * @brief The first pin of the ninth port. It has built-in support for the
  * clock line (SCL) of the I2C protocol
  * @else
- * @brief  Перший пін дев'ятого порту може. Має апартану пітримку лінії
+ * @brief  Перший пін дев'ятого порту. Має апартану пітримку лінії
  * тактування (SDL) пртоколу IIC
  * @endif
  */
@@ -661,7 +663,7 @@
  * @endif
  */
 #define P10_1 (A2)
-/// Порт 11
+// Порт 11
 // #define P11_6 (32)   /// Стара версія
 
 /** @if English
@@ -696,22 +698,22 @@
 
  */
 /** @if English
- * @brief The third pin of the eleventh port
+ * @brief The first pin of the eleventh port
  *
  * @details The `TX` of `Serial3` is routed to this pin.
  * @else
- * @brief Третій пін одинадцятого порту
+ * @brief Перший пін одинадцятого порту
  *
  *
  * @details На цей пін виведено `TX` `Serial3`.
  * @endif
  */
 #define P11_1 (14)
-/// Порт 12
+// Порт 12
 // #define P12_6 (11)/// Мотор М2_А /// Стара версія
 
 /** @if English
- * @brief The fourth pin of the twelfth port. (available for output only)
+ * @brief The first pin of the twelfth port. (available for output only)
  * @else
  * @brief Четвертий пін дванадцятого порту (доступний тільки на виведення)
  * @endif
@@ -769,7 +771,7 @@
 #define TFT_DC (49)
 
 /** @if English
- * @brief Display backlight pin (write-only)
+ * @brief Display backlight pin (write-only).
  * @else
  * @brief Підсвідка дисплею пін доступний лише для запису
  * @endif
@@ -794,7 +796,7 @@
 
 // Перевизначення LED_BUILTIN
 #if defined(LED_BUILTIN) && (LED_BUILTIN == (13))
-#undef LED_BUILTIN  ///< Перевизначаємо макрос якщо він об'явлений
+#undef LED_BUILTIN  //< Перевизначаємо макрос якщо він об'явлений
 #define LED_BUILTIN (TFT_BL)
 #elif !defined(LED_BUILTIN)
 #define LED_BUILTIN (TFT_BL)
@@ -811,7 +813,7 @@
 /** @if English
  * @brief Definition of the ADC bit rate
  *
- * @details The `ATMega2560` has a 10-bit converter
+ * @details The `ATMega2560` has a 10-bit converter.
  * @else
  * @brief Визначення розміру бітрейту АЦП
  *
@@ -823,11 +825,13 @@
 /** @if English
  * @brief Definition of the level of the full charge of the used battery in the
  * unit
+ * 
  * @details The variable is introduced in case the type of the battery is
- * changed in future board upgrades
+ * changed in future board upgrades.
  * @else
  * @brief Визначення рівня повного рівня заряду викорисатної батареї а блоці
- * Змінна введена на випадок, якщо в подальшому модернізації плати буде замінено
+ * 
+ * @details Змінна введена на випадок, якщо в подальшому модернізації плати буде замінено
  * тип батареї
  * @endif
  */
@@ -910,7 +914,7 @@ void NanitInfo();
  *@if English
 
  * If the LED is connected to a different port and operates under a different
- * scheme, the method's functionality is NOT GUARANTEED
+ * scheme, the method's functionality is NOT GUARANTEED.
  * @param [in] red the brightness level of the red LED crystal
  * @param [in] green the brightness level of the green LED crystal
  * @param [in] blue the brightness level of the blue LED crystal
@@ -918,7 +922,7 @@ void NanitInfo();
  * @else
  *
  * Якщо світлодіод підключено до іншого порту та за іншою схемою працездатність
- * методу НЕ ҐАРАНТУЄТЬСЯ
+ * методу НЕ ҐАРАНТУЄТЬСЯ.
  * @param [in] red рівень яскравості червоного кристалу світодіода
  * @param [in] green рівень яскравості зеленого кристалу світодіода
  * @param [in] blue рівень яскравості синьго кристалу світодіода
@@ -929,12 +933,12 @@ void NanitInfo();
  * Brightness levels can be set from `0` to `255`, where `0` indicates that the
  * selected LED crystal is off, and `255` indicates maximum brightness. Other
  * values within the range of `0` to `255` indicate the brightness level of the
- * selected LED crystal
+ * selected LED crystal.
  * @else
  * В рівні яскравості можга записувати значення від `0` до `255`, де `0` --
  * вказує, що обраний кристал світлодіода вимкнено, а `255` -- кристал світиться
  * максимальною яскравістю. Інші значення, що лежать в межах від `0` до `255`
- * вказують ступінь яскравості обраного кристалу світодіоду
+ * вказують ступінь яскравості обраного кристалу світодіоду.
  * @endif
  */
 void Nanit_RGB_Write(byte red, byte green, byte blue);
@@ -944,25 +948,25 @@ void Nanit_RGB_Write(byte red, byte green, byte blue);
  *
  * @details The function filters out any external sounds and determines the
  * level of silence. It also sets a threshold for external noises (music,
- * conversations) near the sensor. The sensor adapts to them
+ * conversations) near the sensor. The sensor adapts to them.
  *
  * @return true - shouting or clapping detected
  * @return false - no shouts detected
  *
  * @note The function has a damping effect to avoid double triggering from
- * echoes
+ * echoes.
  * @else
  * @brief Функція детектидь гучний вигук, або плеск долонями
  *
  * @details У функції відфільтровуються всі сторонні звуки та визначається ріень
  * звуку в стані спокою "тиша". Також задано умовний поріг сторонніх шумів
- * (музика, розмова) поряд з датчиком. Датчик адаптується до них
+ * (музика, розмова) поряд з датчиком. Датчик адаптується до них.
  *
  * @return true - зафікосовано вигук чи сплеск дольонями
  * @return false - не зафіксовано вигуків
  *
  * @note Функція має гальмуючий ефект. Це зроблеблено для уникнення подвійного
- * спрацювання від відлуння
+ * спрацювання від відлуння.
  * @endif
  */
 bool isClapping();
@@ -1017,7 +1021,7 @@ bool Nanit_Sound_IsSoundDetected(int sound_limit);
  * @details The function returns true if the read value from the analog input
  * exceeds a certain threshold. If hysteresis is needed, the third parameter
  * specifies the value at which the function returns to the previous state.
- * If the \b minValue is zero, hysteresis is not applied
+ * If the \b minValue is zero, hysteresis is not applied.
  *
  * @param [in] pin The pin from which to read the value
  * @param [in] maxValue When this value is exceeded, the function will return
@@ -1059,7 +1063,7 @@ bool digitalRead(const uint8_t pin, const uint16_t maxValue,  //
  * @note Pay attention to the possibility of using this macro. Not all pins
  * generate PWM signals in the same way. PWM is generated hardware on some
  * microcontroller pins, while on others, it may add additional load to the
- * processor
+ * processor.
  *
  * @param  PIN pin number
  * @param  VALUE value
@@ -1070,7 +1074,7 @@ bool digitalRead(const uint8_t pin, const uint16_t maxValue,  //
  *
  * @note Зверніть увагу на можливість викорисатння уього макросу
  * Не всі виводи однаково генерують ШІМ. На деяких виводах мікроконтроллера ШІМ
- * генерується апаратно, а на деяких можливе додаткове навантаження на процесор
+ * генерується апаратно, а на деяких можливе додаткове навантаження на процесор.
  *
  * @param  PIN номер піна
  * @param  VALUE значення
@@ -1182,13 +1186,13 @@ float Map(float inputValue, float inputMin, float inputMax, float rangeMin,
  *
  * @details The class contains public fields and methods that allow control of
  * the Nanit board to obtain information from the outside world (read data from
- * sensors) and display it (on the built-in display or connected modules)
+ * sensors) and display it (on the built-in display or connected modules).
  * @else
  * @brief Клас яки дозволяє легко керувати будь-якою платою Nanit
  *
  * @details В класі є публічні поля та методи які дозволяють керувати платою
  * Наніт для отримання інформації з зовнішноього світу (читати дані з дачиків),
- * та виводити її (вбудований дисплей чи підключені модулі)
+ * та виводити її (вбудований дисплей чи підключені модулі).
  * @endif
  */
 class Nanit {
@@ -1243,11 +1247,11 @@ class Nanit {
    * @if English
    * @details At a brightness level of `0`, the method's operation is identical
    * to `backlightOff()`. The maximum possible brightness is `255`. Be cautious
-   * with values exceeding `255` (overflow)
+   * with values exceeding `255` (overflow).
    * @else
    * @details При яскравості рівній  `0` робота методу тотожна  `backlightOff()`
    * Максимальна можлива яскаравість  `255` . Будьте обережні з числами що
-   * перевищують значення `255` (переповнення)
+   * перевищують значення `255` (переповнення).
    * @endif
    */
   void backlightSet(uint8_t brightness);
@@ -1257,16 +1261,16 @@ class Nanit {
    *
    * @return float
    */
-  float getBataryVoltage() const;
+  float getBatteryVoltage() const;
   /**
-   * @brief Get the Battary Power object
+   * @brief Get the Battery Voltage object
    *
    * @if English
    * @details The method returns the battery charge level in percentage for the
-   * Li-Ion battery
+   * Li-Ion battery.
    * @else
    * @details  Метод повертає значення рівня зараду ІонЛітієвої батареї у
-   * відсотках
+   * відсотках.
    * @endif
    * <center>
    *   | # |     Volts    |       %       |
@@ -1344,18 +1348,18 @@ class Nanit {
    * @brief Determining the color of the built-in LED
    * @param [in] color Determining the color of the illumination of all three
    * crystals. The number can take a 32-bit value. The first byte corresponds to
-   * red, the second to green, and the third to blue
+   * red, the second to green, and the third to blue.
    * @param [in] brightness Determines the brightness level of the illumination
-   * of all crystals simultaneously
+   * of all crystals simultaneously.
    * @else
 
    * @brief Визначення кольору світіння вбудованого світлодіода
    *
    * @param [in] color Визначення кольору світіння всіх трьох кристалів. Число
    * може примати 32бітне значення. Перший байт відповідає за червоний кристал,
-   * другий -- зелений, третій -- синій
+   * другий -- зелений, третій -- синій.
    * @param [in] brightness Визначає рівень яскравості світіння всіх кристалів
-   * одночасно
+   * одночасно.
    * @endif
    */
   void BuildinRGB(uint32_t color, uint8_t brightness = 255);

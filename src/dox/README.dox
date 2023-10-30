@@ -34,9 +34,9 @@
  * 
  * You can install ```NanitLib``` in several ways:
  *
- * 1. Installing the library with a zip archive
- * 2. Installing the library using the library manager
- * 3. Installing the library using the board manager
+ * 1. Installing the library with a zip archive.
+ * 2. Installing the library using the library manager.
+ * 3. Installing the library using the board manager.
  *
  * @else 
  * ## Як встановити
@@ -62,8 +62,8 @@
  * ![GitHub](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/GitHub.png)
  *
  * Or follow one of the links:
- * - [NanitRobot](https://github.com/NanitRobot/) -- link to GitHub profile
- * - [NanitLib](https://github.com/NanitRobot/NanitLib) -- direct link to the repository with the library
+ * - [NanitRobot](https://github.com/NanitRobot/) -- link to GitHub profile.
+ * - [NanitLib](https://github.com/NanitRobot/NanitLib) -- direct link to the repository with the library.
  *
  * ![Profile](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/NanitRobot.png)
  *
@@ -95,8 +95,8 @@
  * ![GitHub](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/GitHub.png)
  * 
  * або перейти за одним з посилань
- *  - [NanitRobot](https://github.com/NanitRobot/) -- посилання на ГітХаб профіль
- *  - [NanitLib](https://github.com/NanitRobot/NanitLib) -- пряме посилання на репозиторій з бібліотекою
+ *  - [NanitRobot](https://github.com/NanitRobot/) -- посилання на ГітХаб профіль.
+ *  - [NanitLib](https://github.com/NanitRobot/NanitLib) -- пряме посилання на репозиторій з бібліотекою.
  * 
  * ![Profile](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/NanitRobot.png)
  * 
@@ -115,7 +115,7 @@
  * 
  * Потрібно відкрити Arduino IDE. Оберіть версію IDE, якою ви користуєтесь.
  * 
- * Обіріть версію IDE якою ви користуєтесь
+ * Обіріть версію IDE якою ви користуєтесь.
  * @endif
  * 
  * #### IDE 1.8.x

@@ -238,12 +238,12 @@ float NanitRobot::Map(float inputValue, float inputMin, float inputMax,
          rangeMin;
 }
 
-float NanitRobot::Nanit::getBataryVoltage() const {
+float NanitRobot::Nanit::getBatteryVoltage() const {
   return Map(analogRead(BATTERY_PIN), 0.f, 1 << ADC_BITRATE, 0.f, AVCC_REF);
 }
 
 float NanitRobot::Nanit::getBatteryPower() const {
-  float voltage{getBataryVoltage()};
+  float voltage{getBatteryVoltage()};
 #if defined(LI_ION)
   /*
   +---+-----------+----------+

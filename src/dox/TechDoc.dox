@@ -14,9 +14,9 @@
  * @endif
  *
  * @if English
- * Nanit (hereinafter referred to as the device) is designed for studying the 
- * fundamentals of designing and programming automated or robotic automated 
- * systems based on microcontrollers.
+ * Nanit (hereinafter referred to as the device) is designed to study the 
+ * fundamentals of designing and programming automated or robotic systems 
+ * based on microcontrollers.
  * @else
  * Nanit (далі по тексту -- пристрій) призначений для вивчення основ проектування 
  * та програмування автоматизованих чи роботизованих автоматичних систем на 
