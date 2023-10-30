@@ -1,32 +1,71 @@
 /**
  * @file Approof.cpp
  * @author Sam4uk
- * @brief Реалізація функцій які допомогають оцінити працездатність набору Nanit
+ *
+ * @if English
+ * @brief Implementation of functions that help assess the operability of the
+ * `Nanit` kit.
+ * @else
+ * @brief Реалізація функцій які допомогають оцінити працездатність набору
+ * `Nanit`.
+ * @endif
  * @version 0.1
  * @date 2023-05-05
- * 
+ *
  * @copyright Copyright (c) 2023
- * 
+ *
  */
 #include "Approof.hpp"
+
 #include "../NanitLib.h"
 
-const uint8_t k_blink_delay = 80; ///< Затримка між перемиканнями
-const uint8_t k_port_count = 12; ///< Кількість зовнішніх портів
-const uint8_t k_pin_count = 4; ///< кількість пінів в роз'ємах як ввикористовуються
-                              /// для обміну даними з перефірійними пристроями
+const uint8_t  //
+    /** @if English
+     * @brief Delay between switching
+     * @else
+     * @brief Затримка між перемиканнями
+     * @endif
+     */
+    k_blink_delay = 80,
+    /** @if English
+     * @brief Number of external ports
+     * @else
+     * @brief Кількість зовнішніх портів
+     * @endif
+     */
+    k_port_count = 12,
+    /** @if English
+     * @brief The number of pins used for data exchange with peripheral devices
+     * @else
+     * @brief кількість пінів в роз'ємах як ввикористовуються для обміну даними
+     * з перефірійними пристроями
+     * @endif
+     */
+    k_pin_count = 4;
 
 // #define APROOF_MODE                                                            \
 
 
 #define TOGGLE HIGH
-/**
+
+/** @if English
+ * @brief The macro definition you provided is for labeling and ignoring a pin 
+ * for pin-checking purposes, and it suggests that the pin's behavior is
+ * checked in a different way, not using the standard method.
+ * @else
  * @brief Макровизначення мітка ігнорування піна. Перевірка роботи піна
- * визначено у інший спосіб
+ * визначено у інший спосіб.
+ * @endif
  */
-#define IGNORE_PIN (0xFF)
-#define RESET_PIN (IGNORE_PIN)
-#define PORT1_MOTOR (0xF1)
+#define IGNORE_PIN   (0xFF)
+/** @if English
+ * @brief Controller Reset Pin.
+ * @else
+ * @brief Пін перезавантаження контроллера.
+ * @endif
+ */
+#define RESET_PIN    (IGNORE_PIN)
+#define PORT1_MOTOR  (0xF1)
 #define PORT12_MOTOR (0xF2)
 
 void check_1(bool);
@@ -38,24 +77,24 @@ void PinTestSetup() {
   Serial.end();
 
   for (uint8_t pin_to_set_mode = 0; pin_to_set_mode < NUM_DIGITAL_PINS;
-       pin_to_set_mode++) // Всі піни
+       pin_to_set_mode++)  // Всі піни
   {
-    if (pin_to_set_mode == TFT_BL // окрім підсітки дисплею
-        or pin_to_set_mode == TFT_CS //  пін роботи з SD та дисплею
-        or pin_to_set_mode == TFT_DC // пін роботи з SD та дисплею
-        or pin_to_set_mode == TFT_MOSI // пін роботи з SD та дисплею
-        or pin_to_set_mode == TFT_SCK // пін роботи з SD та дисплею
-        or pin_to_set_mode == TFT_RES // пін роботи з SD та дисплею
-        or pin_to_set_mode == BATTERY_PIN // АЦП батареї
+    if (pin_to_set_mode == TFT_BL  // окрім підсітки дисплею
+        or pin_to_set_mode == TFT_CS  //  пін роботи з SD та дисплею
+        or pin_to_set_mode == TFT_DC  // пін роботи з SD та дисплею
+        or pin_to_set_mode == TFT_MOSI  // пін роботи з SD та дисплею
+        or pin_to_set_mode == TFT_SCK  // пін роботи з SD та дисплею
+        or pin_to_set_mode == TFT_RES  // пін роботи з SD та дисплею
+        or pin_to_set_mode == BATTERY_PIN  // АЦП батареї
     )
 
-      continue;                       // пропускаємо
-    pinMode(pin_to_set_mode, OUTPUT); // інші переводимо на виведення
+      continue;                        // пропускаємо
+    pinMode(pin_to_set_mode, OUTPUT);  // інші переводимо на виведення
   }
-#ifndef MEGACORE     // якщо не викостовується MEGACORE
-  DDRE |= 1 << DDE6; // 71 пін висавляємо на виведення
+#ifndef MEGACORE      // якщо не викостовується MEGACORE
+  DDRE |= 1 << DDE6;  // 71 пін висавляємо на виведення
 #endif
-  digitalWrite(MOTOR_ENABLE, HIGH); // вмикаємо драйвер DC двигунів
+  digitalWrite(MOTOR_ENABLE, HIGH);  // вмикаємо драйвер DC двигунів
 }
 void PinTestLoop() {
   // Карта пінів
@@ -79,33 +118,33 @@ void PinTestLoop() {
       {P12_1, P12_2, PORT12_MOTOR, IGNORE_PIN}  // port 12
   };
   // clang-format on
-  for (uint8_t port = 0; port < k_port_count; port++) // Перевіряємо кожен порт
-    for (uint8_t pin = 0; pin < k_pin_count; pin++) { // Перевіряємо кожен пін
-      if(digitalRead(J_7)) break;
+  for (uint8_t port = 0; port < k_port_count; port++)  // Перевіряємо кожен порт
+    for (uint8_t pin = 0; pin < k_pin_count; pin++) {  // Перевіряємо кожен пін
+      if (digitalRead(J_7)) break;
       switch (PinMap[port][pin]) {
 #ifndef MEGACORE
-      case 71: // Перевірка піна без MegaGore
-        PORTE |= 1 << PORTE6;
-        delay(k_blink_delay);
-        PORTE &= ~(1 << PORTE6);
-        delay(k_blink_delay);
-        break;
+        case 71:  // Перевірка піна без MegaGore
+          PORTE |= 1 << PORTE6;
+          delay(k_blink_delay);
+          PORTE &= ~(1 << PORTE6);
+          delay(k_blink_delay);
+          break;
 #endif
-      case IGNORE_PIN: // Пропускаємо піни
-        break;
-      case PORT1_MOTOR: // Реверс 1 мотору
-        check_1(drive);
-        break;
-      case PORT12_MOTOR: //Реверс 2 мотору
-        check_12(drive);
-        break;
-      default: // Надсилаємо сигнал на піни для перевірки тестером
-      {
-        digitalWrite(PinMap[port][pin], HIGH);
-        delay(k_blink_delay);
-        digitalWrite(PinMap[port][pin], LOW);
-        delay(k_blink_delay);
-      } break;
+        case IGNORE_PIN:  // Пропускаємо піни
+          break;
+        case PORT1_MOTOR:  // Реверс 1 мотору
+          check_1(drive);
+          break;
+        case PORT12_MOTOR:  // Реверс 2 мотору
+          check_12(drive);
+          break;
+        default:  // Надсилаємо сигнал на піни для перевірки тестером
+        {
+          digitalWrite(PinMap[port][pin], HIGH);
+          delay(k_blink_delay);
+          digitalWrite(PinMap[port][pin], LOW);
+          delay(k_blink_delay);
+        } break;
       }
     }
 

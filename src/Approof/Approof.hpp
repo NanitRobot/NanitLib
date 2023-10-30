@@ -1,7 +1,11 @@
 /**
  * @file Approof.hpp
  * @author Sam4uk
- * @brief Колекція функцій які допомогають оцінити працездатність набору Nanit
+ * @if English
+ * @brief A collection of functions to assess the operability of the `Nanit` kit.
+ * @else
+ * @brief Колекція функцій які допомогають оцінити працездатність набору `Nanit`.
+ * @endif
  * @version 0.1
  * @date 2023-05-05
  *

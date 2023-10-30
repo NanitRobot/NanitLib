@@ -20,7 +20,7 @@
  * ## Appointment
  *
  * The purpose of the library is to facilitate the study of the basics of 
- * `C/C++` programming for microcontrollers on `Nanit` boards
+ * `C/C++` programming for microcontrollers on `Nanit` boards.
  * @else
  * ## Призначення
  * 
@@ -32,7 +32,7 @@
  *
  * ## How to install
  * 
- * You can install ```NanitLib``` in several ways
+ * You can install ```NanitLib``` in several ways:
  *
  * 1. Installing the library with a zip archive
  * 2. Installing the library using the library manager
@@ -57,7 +57,7 @@
  * depends on, in the same way, if they are not already installed on your system. This 
  * method is not capable of downloading third-party libraries independently.
  *
- * To download the ```ZIP``` of the library, you need to find it on the ```GitHub``` website
+ * To download the `ZIP` of the library, you need to find it on the `GitHub` website
  *
  * ![GitHub](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/GitHub.png)
  *
