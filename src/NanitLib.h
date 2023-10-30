@@ -1283,7 +1283,7 @@ class Nanit {
    *   | 10| 3.00 -- 3.32 |  0.5 --   2.1 |
    *   | 11| 2.50 -- 3.00 |  0.0 --   0.5 |
    */
-  float getBattaryPower() const;
+  float getBatteryPower() const;
 
   /**
    * @brief

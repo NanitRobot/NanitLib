@@ -83,7 +83,7 @@ void NanitInfo() {
   START_NANIT.Display.setCursor(10, 50);
   START_NANIT.Display.print("Lib v" + StrVersion(getLibVersion()));
   START_NANIT.Display.setCursor(10, 70);
-  START_NANIT.Display.print("Bat. " + String(START_NANIT.getBattaryPower()) +
+  START_NANIT.Display.print("Bat. " + String(START_NANIT.getBatteryPower()) +
                             "%");
   START_NANIT.Display.setCursor(10, 120);
   START_NANIT.Display.setTextSize(0);
@@ -242,7 +242,7 @@ float NanitRobot::Nanit::getBataryVoltage() const {
   return Map(analogRead(BATTERY_PIN), 0.f, 1 << ADC_BITRATE, 0.f, AVCC_REF);
 }
 
-float NanitRobot::Nanit::getBattaryPower() const {
+float NanitRobot::Nanit::getBatteryPower() const {
   float voltage{getBataryVoltage()};
 #if defined(LI_ION)
   /*
@@ -298,7 +298,7 @@ float NanitRobot::Nanit::getBattaryPower() const {
 
 void ::NanitRobot::Nanit::DrawBattGuage(
     GuageType type = GuageType::Simple) const {
-  uint8_t Power{getBattaryPower()};
+  uint8_t Power{getBatteryPower()};
   uint16_t color{};
 
   const int SIZE_Y = (17);
