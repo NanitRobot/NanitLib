@@ -8,10 +8,18 @@
  * @brief Інструкція як встановити набір плат Nanit з розширеним ядром MegaCore
  * @endif
  * 
+ * 
+ * 
  * @if English
+ * Instructions on how to install a set of Nanit boards
+ * ====================================================
+ * 
  * Select the IDE version that you are using.
  * @else
- * Обіріть версію IDE якою ви користуєтесь.
+ * Інструкція як встановити набір плат Nanit
+ * =========================================
+ * 
+ * Оберіть версію IDE якою ви користуєтесь.
  * @endif
  * 
  * <div class="tabbed">
