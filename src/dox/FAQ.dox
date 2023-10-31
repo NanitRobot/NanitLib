@@ -1,5 +1,10 @@
 /**
  * @page FAQ
+ * @if English
+ * @brief Questions and answers you may have
+ * @else
+ * @brief Питання та відповіді, які у вас можуть виникнути
+ * @endif
  * 
  * @if English
  * Why doesn't the program work after turning on the Nanit main block?

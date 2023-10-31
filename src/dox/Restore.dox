@@ -1,0 +1,9 @@
+/**
+ * @if English
+ * @page Restore Restore programm
+ * @brief
+ * @else
+ * @page Restore Відновлення програми
+ * @brief
+ * @endif
+ */

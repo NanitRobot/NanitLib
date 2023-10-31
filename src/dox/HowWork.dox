@@ -2,8 +2,10 @@
  * 
  * @if English
  * @page HowWork How to Use the Library
+ * @brief 
  * @else
  * @page HowWork Як працювати з бібліотекою
+ * @brief 
  * @endif
  * 
  * 

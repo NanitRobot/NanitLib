@@ -80,7 +80,7 @@
 #define BATTERY_PIN (69)
 
 /** @if English
- * @brief  The built-in addressable LED pin is write-only.
+ * @brief  The built-in addressable LED pin is write-only
  * @else
  * @brief Пін підключення вбудованого адресного світлодіоду доступний лише для
  * запису

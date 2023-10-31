@@ -6,9 +6,13 @@
  * @endif
  * 
  * @if English
+ * @brief Technical capabilities
+ * 
  * Technical capabilities
  * ----------------------
  * @else
+ * @brief Технічні можливості
+ * 
  * Технічні можливості
  * -------------------
  * @endif

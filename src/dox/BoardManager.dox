@@ -1,8 +1,11 @@
 /**
  * @if English
  * @page BoardManager Board manager
+ * @brief Instructions on how to install a set of Nanit boards with an extended 
+ * MegaCore core
  * @else
  * @page BoardManager Менеджер плат
+ * @brief Інструкція як встановити набір плат Nanit з розширеним ядром MegaCore
  * @endif
  * 
  * @if English
@@ -13,6 +16,8 @@
  * ![](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/1.IDE1.8_File_Preference.png)
  * 
  * ![](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/2.IDE1.8_Window_pref.png)
+ * 
+ * [https://nanitrobot.github.io/NanitLib/package_NanitCore_index.json](https://nanitrobot.github.io/NanitLib/package_NanitCore_index.json)
  * 
  * ![](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/3.IDE1.8_Tools_Boards.png)
  * 
@@ -38,6 +43,8 @@
  * ![](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/1.IDE2.X_File_Preference.png)
  * 
  * ![](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/2.IDE2.X_Winow_pref.png)
+ * 
+ * [https://nanitrobot.github.io/NanitLib/package_NanitCore_index.json](https://nanitrobot.github.io/NanitLib/package_NanitCore_index.json)
  * 
  * ![](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/3.IDE2.XTools_Boards.png)
  * 
