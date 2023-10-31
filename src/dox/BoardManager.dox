@@ -9,10 +9,14 @@
  * @endif
  * 
  * @if English
+ * Select the IDE version that you are using.
  * @else
- * Встановлення менеджер плат Arduino 1.8
- * ======================================
+ * Обіріть версію IDE якою ви користуєтесь.
  * @endif
+ * 
+ * <div class="tabbed">
+ * <ul>
+ *  <li> <b class="tab-title">IDE 1.8.x</b>
  * ![](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/1.IDE1.8_File_Preference.png)
  * 
  * ![](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/2.IDE1.8_Window_pref.png)
@@ -32,14 +36,8 @@
  * ![](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/7.IDE1.8.Boards_loading.png)
  * 
  * ![](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/9.IDE.1.8_Nanit.png)
- * 
- * 
- * @if English
- * @else
- * Встановлення менеджер плат Arduino 2.0
- * ======================================
- * @endif
- * 
+ *  </li>
+ *  <li> <b class="tab-title">IDE 2.x</b> 
  * ![](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/1.IDE2.X_File_Preference.png)
  * 
  * ![](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/2.IDE2.X_Winow_pref.png)
@@ -55,7 +53,7 @@
  * ![](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/6.IDE2.XBoardInstall.png)
  * 
  * ![](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/7.IDE2.XBoardManager_Nanit.png)
- * 
- * 
- * 
+ *  </li>
+ *  </ul>
+ * </div> 
  */

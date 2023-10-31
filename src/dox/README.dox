@@ -118,85 +118,82 @@
  * Обіріть версію IDE якою ви користуєтесь.
  * @endif
  * 
- * #### IDE 1.8.x
+ * <div class="tabbed">
+ * <ul>
+ *  <li> <b class="tab-title">IDE 1.8.x</b>
+ *  @if English
+ *  First you need to start the development environment.
+ *  @else
+ *  Для початку вам потрібно запустити середовище розробки.
+ *  @endif
  * 
- * @if English
+ *  ![IDE 1.8.x](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/IDE1_8.png)
  * 
- * First you need to start the development environment.
- *
- * ![IDE 1.8.x](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/IDE1_8.png)
- *
- * In the open environment window, select ```Sketch``` &rarr; ```Add Library``` &rarr; ```Add ZIP library```.
- *
- * ![IDE 1.8.x](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/IDE1_8_menu.png)
- *
- * A file selection window will appear. Select the file you downloaded from the Internet.
- *
- * ![IDE 1.8.x](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/IDE1_8_fileSelection.png)
- *
- * After you click the confirmation button, the contents of the archive will be automatically 
- * extracted to the necessary directories. And you can start using the installed library.
+ *  @if English
+ *  In the open environment window, select `Sketch` &rarr; `Add Library` &rarr; `Add ZIP library`.
+ *  @else
+ *  У відкритому вікні середовища обираємо пункт `Скетч` &rarr; `Додати бібілотеку` &rarr; `Додати ZIP-бібліотеку`.
+ *  @endif
  * 
- * @else
+ *  ![IDE 1.8.x](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/IDE1_8_menu.png)
  * 
- * Для початку вам потрібно запустити середовище розробки.
- *
- * ![IDE 1.8.x](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/IDE1_8.png)
- *
- * У відкритому вікні середовища обираємо пункт ```Скетч``` &rarr; ```Додати бібілотеку``` &rarr; ```Додати ZIP-бібліотеку```.
- *
- * ![IDE 1.8.x](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/IDE1_8_menu.png)
- *
- * Перед вами відкриється вікно вибору файлу. Потрібно обрати файл, який ви
- * завантажили з мережі інтернет.
- *
- * ![IDE 1.8.x](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/IDE1_8_fileSelection.png)
- *
- * Після натиснення кнопки підтвердження вміст архіву буде автоматично
- * розпаковано у необхідні каталоги. І ви вже можете почати користуватися
- * встановленою бібліотекою.
- *
- * @endif
+ *  @if English
+ *  A file selection window will appear. Select the file you downloaded from the Internet.
+ *  @else
+ *  Перед вами відкриється вікно вибору файлу. Потрібно обрати файл, який ви
+ *  завантажили з мережі інтернет.
+ *  @endif
  * 
- * #### IDE 2.x
- *
- * @if English
+ *  ![IDE 1.8.x](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/IDE1_8_fileSelection.png)
  * 
- * First you need to start the development environment.
- *
- * ![IDE 2.x](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/IDE2.png)
- *
- * In the open environment window, select ```Sketch``` &rarr; ```Add Library``` &rarr; ```Add ZIP library```.
- *
- * ![IDE 2.x](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/IDE2_menu.png)
- *
- * A file selection window will appear. Select the file you downloaded from the Internet.
- *
- * ![IDE 2.x](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/IDE2_fileSelection.png)
- *
- * After you click the confirmation button, the contents of the archive will be automatically 
- * extracted to the necessary directories. And you can start using the installed library.
+ *  @if English
+ *  After you click the confirmation button, the contents of the archive will be automatically 
+ *  extracted to the necessary directories. And you can start using the installed library.
+ *  @else
+ *  Після натиснення кнопки підтвердження вміст архіву буде автоматично
+ *  розпаковано у необхідні каталоги. І ви вже можете почати користуватися
+ *  встановленою бібліотекою.
+ *  @endif
  * 
- * @else
+ *  </li>
+ *  <li> <b class="tab-title">IDE 2.x</b>
+ *  @if English
+ *  First you need to start the development environment.
+ *  @else
+ *  Для початку вам потрібно запустити середовище розробки.
+ *  @endif
  * 
- * Для початку вам потрібно запустити середовище розробки.
- *
- * ![IDE 2.x](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/IDE2.png)
- *
- * У відкритому вікні середовища обираємо пункт ```Скетч``` &rarr; ```Додати бібілотеку``` &rarr; ```Додати ZIP-бібліотеку```.
- *
- * ![IDE 2.x](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/IDE2_menu.png)
- *
- * Перед вами вікриється вікно вибору файлу. Потрібно обрати файл, який ви
- * завантажили з мережі інтернет
- *
- * ![IDE 2.x](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/IDE2_fileSelection.png)
- *
- * Після натиснення кнопки підтвердження вміст архіву буде автоматично
- * розпаковано у необхідні каталоги. І ви вже можете почати користуватися
- * встановленою бібліотекою.
+ *  ![IDE 2.x](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/IDE2.png)
  * 
- * @endif
+ *  @if English
+ *  In the open environment window, select `Sketch` &rarr; `Add Library` &rarr; `Add ZIP library`.
+ *  @else
+ *  У відкритому вікні середовища обираємо пункт `Скетч` &rarr; `Додати бібілотеку` &rarr; `Додати ZIP-бібліотеку`.
+ *  @endif
+ * 
+ *  ![IDE 2.x](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/IDE2_menu.png)
+ * 
+ *  @if English
+ *  A file selection window will appear. Select the file you downloaded from the Internet.
+ *  @else
+ *  Перед вами вікриється вікно вибору файлу. Потрібно обрати файл, який ви
+ *  завантажили з мережі інтернет
+ *  @endif
+ * 
+ *  ![IDE 2.x](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/IDE2_fileSelection.png)
+ * 
+ *  @if English
+ *  After you click the confirmation button, the contents of the archive will be automatically 
+ *  extracted to the necessary directories. And you can start using the installed library.
+ *  @else
+ *  Після натиснення кнопки підтвердження вміст архіву буде автоматично
+ *  розпаковано у необхідні каталоги. І ви вже можете почати користуватися
+ *  встановленою бібліотекою.
+ *  @endif
+ *  </li>
+ * </ul>
+
+ * </div>
  * 
  * @if English
  * 
