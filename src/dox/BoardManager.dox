@@ -1,0 +1,54 @@
+/**
+ * @if English
+ * @page BoardManager Board manager
+ * @else
+ * @page BoardManager Менеджер плат
+ * @endif
+ * 
+ * @if English
+ * @else
+ * Встановлення менеджер плат Arduino 1.8
+ * ======================================
+ * @endif
+ * ![](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/1.IDE1.8_File_Preference.png)
+ * 
+ * ![](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/2.IDE1.8_Window_pref.png)
+ * 
+ * ![](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/3.IDE1.8_Tools_Boards.png)
+ * 
+ * ![](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/4.IDE1.8_Tools_boards_manager.png)
+ * 
+ * ![](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/5.IDE1.8.BoardManager_Nanit_select.png)
+ * 
+ * ![](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/6.IDE1.8_Board_Install.png)
+ * 
+ * ![](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/8.IDE1.8_Board_Nanit.png) 
+ * 
+ * ![](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/7.IDE1.8.Boards_loading.png)
+ * 
+ * ![](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/9.IDE.1.8_Nanit.png)
+ * 
+ * 
+ * @if English
+ * @else
+ * Встановлення менеджер плат Arduino 2.0
+ * ======================================
+ * @endif
+ * 
+ * ![](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/1.IDE2.X_File_Preference.png)
+ * 
+ * ![](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/2.IDE2.X_Winow_pref.png)
+ * 
+ * ![](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/3.IDE2.XTools_Boards.png)
+ * 
+ * ![](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/4.IDE2.X_Tools_boards_managerpng )
+ * 
+ * ![](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/5.IDE2.X_Board_load.png)
+ * 
+ * ![](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/6.IDE2.XBoardInstall.png)
+ * 
+ * ![](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/7.IDE2.XBoardManager_Nanit.png)
+ * 
+ * 
+ * 
+ */
