@@ -86,7 +86,9 @@
  * <br />
  * 
  * #### PinOut
- * |Nanitdef               |Analog |    PIN       | Напрямок роботи піна|
+ * 
+ * ![Arduino](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/PinOutArduino.jpg)
+ * |Nanitdef               |Analog |    PIN       |                     |
  * |:---------------------:|:-----:|:------------:|:-------------------:|
  * |      @ref P1_1        |  A7   |   61(IO)     |          IO         |
  * |      @ref P1_2        |  A6   |   60(IO)     |          IO         |
@@ -142,4 +144,22 @@
  * | @ref BUILDIN_STRIP_LED|       |     27(0)    |          O          |
  * 
  * </center>
+ * @if English
+ * 
+ * \b I -- pin can work only on input
+ *
+ * \b O -- The pin can only work on output pin
+ *
+ * \b IO -- The pin can be used for both input and output
+ *
+ * 
+ * @else
+ * 
+ *  \b I -- пін може працювати тільки на вхід
+ * 
+ *  \b O -- Пін може працювати тільки на вивід
+ * 
+ *  \b IO -- Пін може бути використаний як на вхід так і на вихід
+ * 
+ * @endif
  */

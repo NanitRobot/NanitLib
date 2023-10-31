@@ -123,7 +123,7 @@
  * версію лати
  *
  * @endif
- * 
+ *
  * <center>
  * |        MACRO         |<3.1|>=3.1|
  * |:---------------------|:--:|:---:|
@@ -137,7 +137,7 @@
  * | @ref P10_3           | 24 |  5  |
  * | @ref P10_2           | 54 |  24 |
  * </center>
- * 
+ *
  * @{
  */
 
@@ -364,7 +364,7 @@
  * @endif
  */
 #define P3_2 (25)
-
+// clang-format off
 /** @defgroup MEGACORE MEGACORE
  *
  *
@@ -390,10 +390,8 @@
  * плати потрібно встановити мануально розширене ядро `MEGACORE`, або
  * скористатись менеджером плат
  * @endif
- *
- * @image html
- * https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/MegaCorePinOut.png
- * "MegaCore Pinout" width=50%
+ * 
+ * @image html https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/MegaCorePinOut.png "MegaCore Pinout" width=50%
  *
  * @if English
  * An alternative way to use the output is by accessing the level registers
@@ -404,11 +402,12 @@
  * @endif
  *
  */
+// clang-format on
 #ifdef MEGACORE
 
 /** @if English
  * @brief The first pin of the third port
- * 
+ *
  * @note The pin is defined in the `MEGACORE` advanced core
  *
  * @details In the standard Arduino interface, this pin is not available
@@ -419,7 +418,7 @@
  * @else
  *
  * @brief Перший пін третього порту
- * 
+ *
  * @note  Пін визначений у розширеному ядрі `MEGACORE`
  *
  * @details У стандарному інтерфейсі Arduino цей пін не доступний. На платах
@@ -710,7 +709,7 @@
  */
 #define P11_1 (14)
 // Порт 12
-// #define P12_6 (11)/// Мотор М2_А /// Стара версія
+// #define P12_6 (11)// Мотор М2_А //Стара версія
 
 /** @if English
  * @brief The first pin of the twelfth port. (available for output only)
@@ -799,6 +798,24 @@
 #undef LED_BUILTIN  //< Перевизначаємо макрос якщо він об'явлений
 #define LED_BUILTIN (TFT_BL)
 #elif !defined(LED_BUILTIN)
+
+/** @if English
+ * @brief We will consider `LED_BUILTIN` as the display backlight in the 
+ * context of the Nanit board. This means you can use `LED_BUILTIN` to control 
+ * the backlight of the Nanit's display.
+ * 
+ * @note In the library, the `LED_BUILTIN` value has been redefined to ensure 
+ * compatibility between Arduino sketches and the Nanit board. This allows you 
+ * to use `LED_BUILTIN` in your Arduino sketches, and it will work with the 
+ * `Nanit` board, making it easier to switch between different Arduino-compatible 
+ * boards and maintain compatibility. 
+ * @else
+ * @brief Будемо вважати, що `LED_BUILTIN` це підсвідка дисплею.
+ * 
+ * @note В бібліотеці ми перевизначили значення `LED_BUILTIN` для збереження 
+ * сумісності скетчів Ардуїно з нашою платою і навпаки (`Nanit` зі сакетчами `Arduino`) 
+ * @endif
+ */
 #define LED_BUILTIN (TFT_BL)
 #endif
 
@@ -825,14 +842,14 @@
 /** @if English
  * @brief Definition of the level of the full charge of the used battery in the
  * unit
- * 
+ *
  * @details The variable is introduced in case the type of the battery is
  * changed in future board upgrades.
  * @else
  * @brief Визначення рівня повного рівня заряду викорисатної батареї а блоці
- * 
- * @details Змінна введена на випадок, якщо в подальшому модернізації плати буде замінено
- * тип батареї
+ *
+ * @details Змінна введена на випадок, якщо в подальшому модернізації плати буде
+ * замінено тип батареї
  * @endif
  */
 #define BAT_FULL_CHARGE (4.19f)
@@ -984,6 +1001,8 @@ bool isClapping();
  * @endif
  */
 
+/** @cond */
+
 bool isLight();
 
 // Коефіцієнт адаптації підібрано експериментально
@@ -1014,7 +1033,7 @@ void Nanit_Servo_Rotate(byte angle);
 void Nanit_ActiveBuzz_Scream(byte times, int duration);
 
 bool Nanit_Sound_IsSoundDetected(int sound_limit);
-
+/** @endcond */
 /** @if English
  * @brief Using an analog input as a digital one
  *
@@ -1082,23 +1101,25 @@ bool digitalRead(const uint8_t pin, const uint16_t maxValue,  //
  */
 #define PWM(PIN, VALUE) analogWrite(PIN, VALUE)
 
+/** @cond */
 #define START_NANIT ::NanitRobot::Nanit::getNanit()
 #define GET_NANIT   ::NanitRobot::Nanit::getNanit()
 
 #define NANIT_BEGIN(X)                                                         \
   ::NanitRobot::Nanit &X { START_NANIT }
+/** @endcond */
 
 /** @if English
  * @defgroup ServiceMode Testing cable integrity
  *
  * @brief Instructions on how to check the integrity of cables with _RJ-12_
  * connectors
- * 
+ *
  * @else
  * @defgroup ServiceMode Тестування цілісності кабелів
  *
  * @brief Інструкція як перевірити цілісність кабелів з роз'ємами _RJ-12_
- * 
+ *
  * @endif
  *
  * @{
@@ -1148,8 +1169,13 @@ bool digitalRead(const uint8_t pin, const uint16_t maxValue,  //
 /** @if English
  * @namespace NanitRobot is a namespace and a set of functions supported by
  * Nanit boards
+ * 
+ * @brief NanitRobot is a namespace and a set of functions supported by
+ * Nanit boards
  * @else
  *  @namespace NanitRobot Простір імен та функцій які підтримуються платами
+ * 
+ *  @brief NanitRobot Простір імен та функцій які підтримуються платами
  * Nanit
  * @endif
  * */
@@ -1290,6 +1316,7 @@ class Nanit {
   float getBatteryPower() const;
 
   /**
+   * @cond
    * @brief
    *
    * @param type
@@ -1320,7 +1347,9 @@ class Nanit {
   // 10 line
 #endif
 
-  /** @if English
+  /**
+   * @endcond
+   * 
    * @brief Determining the color of the built-in LED
    * @else
    * @brief Визначення кольору світіння вбудованого світлодіода
@@ -1424,10 +1453,11 @@ class Nanit {
       pinMode(P12_2, INPUT_PULLUP);
       if (!digitalRead(P1_2) and !digitalRead(P12_2)) {
         Display.fillScreen(0xFFFF);
-
+/** @cond */
 #define PIN_COUNT  (6)
 #define NO_CABLE   ((1 << PIN_COUNT) - 1)  ///< мітка
 #define GOOD_CABLE (0)  ///< Мітка успішного тесту кабелю
+/** @endcond */
         // Конфігурування  відображення
         const uint16_t               // Кольори
             TextColor{0x0},          // тексту
@@ -1661,6 +1691,7 @@ class Nanit {
 };
 }  // namespace NanitRobot
 
+/** @cond */
 /*
  * Ініціація змінних та дисплею
  *
@@ -1668,5 +1699,5 @@ class Nanit {
  *
  */
 void Nanit_Base_Start();
-
+/** @endcond */
 #endif

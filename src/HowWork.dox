@@ -1,0 +1,142 @@
+/**
+ * 
+ * @if English
+ * @page HowWork How to Use the Library
+ * @else
+ * @page HowWork Як працювати з бібліотекою
+ * @endif
+ * 
+ * 
+ * 
+ * @if English
+ * How to Use the Library
+ * ======================
+ * @else
+ * Як працювати з бібліотекою
+ * ==========================
+ * @endif
+ * 
+ * 
+ * @if English
+ * To begin working with the library, you just need to include the header file 
+ * `NanitLib.h`. This will give you access to the functions, classes, and macros
+ * that make it easier to interact with the input and output ports on the Nanit 
+ * board.
+ * @else
+ * Для початку роботи з бібліотекою достатньо підключити файл заголовків 
+ * `NanitLib.h`, вам будуть доступні функції, класи та макроси, які полегшують 
+ * звернення до портів введення виведення в платі `Nanit`.
+ * @endif
+ * 
+ * @if English
+ * This is an example that does nothing.
+ * @else
+ * Приклад,який нічого не робить.
+ * @endif
+ * 
+ * ```cpp
+ * #include<NanitLib.h>
+ * void setup(){}
+ * void loop(){}
+ * ```
+ * @if English
+ * The following code is set by default on `Nanit` boards:
+ * @else
+ * Наступний код встановлено по замовчуванню в платах `Nanit`:
+ * @endif 
+ *
+ * ```cpp
+ * #include<NanitLib.h>
+ * void setup(){
+ *  NanitInfo();
+ * }
+ * void loop(){}
+ * ```
+ * @if English
+ * The \b NanitInfo() function displays information about the Nanit board, including:
+ * @note Please note that this information may vary depending on the library version.
+ * 
+ * - Board version (determined hardware-wise).
+ * - Library version used during sketch compilation.
+ * - Battery status.
+ * - Serial number.
+ * 
+ * @else
+ * \b NanitInfo() функція яка виводить інформацію стан плати Nanit:
+ *  @note __*Інформація може змінюватись залежно від версії бібліотеки*__
+ * 
+ *  - Версія плати (визначається апаратно)
+ *  - Версія бібліотеки яка використовувалася під час компіляції скетчу
+ *  - Стан батареї
+ *  - Серійний номер
+ * @endif 
+ * 
+ * @if English
+ * Here is the simplest code to make the display backlight flash.
+ * @else
+ * Найпростіший код яким можна поморгатигати підсвідкою дисплею.
+ * @endif
+ * 
+ * ```cpp
+ * #include <NanitLib.h>
+ * void setup(){
+ *     pinMode(TFT_BL,OUTPUT);///< До цього піна підключена підсвідка дисплею
+ *                            ///< тому ми можемо лише писати цей пін.
+ *                            ///< Читати цей пін безглуздо
+ * }
+ * const short OneSec{1000};
+ * void loop(){
+ *     digitalWrite(TFT_BL,HIGH);///< Вмикаємо
+ *     delay(OneSec);
+ *     digitalWrite(TFT_BL,LOW); ///< Вимикаємо
+ *     delay(OneSec);
+ * }
+ * ```
+ * @if English
+ * Or.
+ * @else
+ * Або.
+ * @endif
+ * 
+ * 
+ * ```cpp
+ * #include<NanitLib.h>
+ * 
+ * void setup() {
+ *   pinMode(LED_BUILTIN, OUTPUT);
+ * }
+ * 
+ * void loop() {
+ *   digitalWrite(LED_BUILTIN, HIGH);  ///< turn the LED on (HIGH is the voltage level)
+ *   delay(1000);                      ///< wait for a second
+ *   digitalWrite(LED_BUILTIN, LOW);   ///< turn the LED off by making the voltage LOW
+ *   delay(1000);                      ///< wait for a second
+ * }
+ * ```
+ * @if English
+ * You can also control the backlight by adjusting the brightness.
+ * @else
+ * Керувати підсідкою можна також через зміну яскравості.
+ * @endif
+ * 
+ * 
+ * ```cpp
+ * #include <NanitLib.h>
+ * void setup() {
+ *   pinMode(TFT_BL, OUTPUT);  ///< До цього піна підключена підсвідка дисплею
+ *                             ///< тому ми можемо лише писати цей пін.
+ *                             ///< Читати цей пін безглуздо
+ * }
+ * const short _delay{3};
+ * void loop() {
+ *   for (short rizing{0}; rizing < 255; rizing += 1) {
+ *     analogWrite(TFT_BL, rizing); ///< Поступово засвічуємо
+ *     delay(_delay);
+ *   }
+ *   for (short folding{255}; folding > 0; folding -= 1) {
+ *     analogWrite(TFT_BL, folding); ///< Поступово гасимо
+ *     delay(_delay);
+ *   }
+ * }
+ * ```
+ */ 
