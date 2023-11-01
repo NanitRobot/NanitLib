@@ -25,42 +25,129 @@
  * <div class="tabbed">
  * <ul>
  *  <li> <b class="tab-title">IDE 1.8.x</b>
+ * @if English
+ * @else
+ * Запустіть Arduino IDE на своєму комп'ютері. У меню Arduino IDE перейдіть до 
+ * `File` (Файл) &rarr; `Preferences` (Параметри).
+ * @endif
+ * 
  * ![](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/1.IDE1.8_File_Preference.png)
+ * 
+ * @if English
+ * @else
+ * У вікні "Настройки" (Preferences) знайдіть поле "Additional Boards Manager 
+ * URLs" (Додаткові URL менеджера плат) і вставте
+ * @endif 
+ * [https://nanitrobot.github.io/NanitLib/package_NanitCore_index.json](https://nanitrobot.github.io/NanitLib/package_NanitCore_index.json) 
+ * @if English
+ * @else
+ * для плати, яку ви хочете додати.
+ * @endif
  * 
  * ![](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/2.IDE1.8_Window_pref.png)
  * 
- * [https://nanitrobot.github.io/NanitLib/package_NanitCore_index.json](https://nanitrobot.github.io/NanitLib/package_NanitCore_index.json)
+ * @if English
+ * @else
+ * Після вставлення URL, натисніть `OK` або `Зберегти` (Save) для збереження змін.
  * 
- * ![](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/3.IDE1.8_Tools_Boards.png)
+ * Перейдіть до меню `Tools` (Засоби) &rarr; `Board` (Плата) &rarr; `Boards Manager` (Менеджер плат).
+ * @endif
  * 
  * ![](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/4.IDE1.8_Tools_boards_manager.png)
- * 
- * ![](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/5.IDE1.8.BoardManager_Nanit_select.png)
- * 
- * ![](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/6.IDE1.8_Board_Install.png)
- * 
- * ![](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/8.IDE1.8_Board_Nanit.png) 
+ *
+ * @if English
+ * @else 
+ * У Менеджері плат введіть назву плати або ідентифікатор плати, яку ви хочете 
+ * встановити, у поле пошуку. 
+ * @endif
  * 
  * ![](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/7.IDE1.8.Boards_loading.png)
  * 
- * ![](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/9.IDE.1.8_Nanit.png)
+ * @if English
+ * @else 
+ * З'являться доступні опції. Натисніть `Install` (Встановити) біля потрібної плати.
+ * @endif
+ * 
+ * ![](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/5.IDE1.8.BoardManager_Nanit_select.png)
+ * 
+ * @if English
+ * @else 
+ * Arduino IDE автоматично завантажить та встановить необхідні файли для плати.
+ * @endif
+ * 
+ * ![](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/6.IDE1.8_Board_Install.png)
+ * 
+ * @if English
+ * @else 
+ * Після встановлення плати, перейдіть до меню `Tools` (Засоби) &rarr; `Board` (Плата)
+ * і виберіть нову плату зі списку, яка з'явилася після встановлення.
+ * @endif
+ * 
+ * ![](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/8.IDE1.8_Board_Nanit.png) 
+ * 
  *  </li>
  *  <li> <b class="tab-title">IDE 2.x</b> 
+ * 
+ * @if English
+ * @else
+ * Запустіть Arduino IDE на своєму комп'ютері. У меню Arduino IDE перейдіть до 
+ * `File` (Файл) &rarr; `Preferences` (Параметри).
+ * @endif
+ * 
  * ![](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/1.IDE2.X_File_Preference.png)
+ * 
+ * @if English
+ * @else
+ * У вікні `Настройки` (Preferences) знайдіть поле `Additional Boards Manager 
+ * URLs` (Додаткові URL менеджера плат) і вставте
+ * @endif 
+ * [https://nanitrobot.github.io/NanitLib/package_NanitCore_index.json](https://nanitrobot.github.io/NanitLib/package_NanitCore_index.json)
+ * @if English
+ * @else
+ * для плати, яку ви хочете додати.
+ * @endif
  * 
  * ![](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/2.IDE2.X_Winow_pref.png)
  * 
- * [https://nanitrobot.github.io/NanitLib/package_NanitCore_index.json](https://nanitrobot.github.io/NanitLib/package_NanitCore_index.json)
+ * @if English
+ * @else
+ * Після вставлення URL, натисніть `OK` або `Зберегти` (Save) для збереження змін.
+ * 
+ * Перейдіть до меню `Tools` (Засоби) &rarr; `Board` (Плата) &rarr; `Boards Manager` (Менеджер плат).
+ * @endif
  * 
  * ![](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/3.IDE2.XTools_Boards.png)
  * 
+ * @if English
+ * @else 
+ * У Менеджері плат введіть назву плати або ідентифікатор плати, яку ви хочете 
+ * встановити, у поле пошуку. 
+ * @endif
+ *  
  * ![](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/4.IDE2.X_Tools_boards_managerpng )
+ * 
+ * @if English
+ * @else 
+ * З'являться доступні опції. Натисніть `Install` (Встановити) біля потрібної плати.
+ * @endif
  * 
  * ![](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/5.IDE2.X_Board_load.png)
  * 
+ * @if English
+ * @else 
+ * Arduino IDE автоматично завантажить та встановить необхідні файли для плати.
+ * @endif
+ * 
  * ![](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/6.IDE2.XBoardInstall.png)
  * 
+ * @if English
+ * @else 
+ * Після встановлення плати, перейдіть до меню `Tools` (Засоби) &rarr; `Board` 
+ * (Плата) і виберіть нову плату зі списку, яка з'явилася після встановлення.
+ * @endif
+ * 
  * ![](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/7.IDE2.XBoardManager_Nanit.png)
+ * 
  *  </li>
  *  </ul>
  * </div> 
