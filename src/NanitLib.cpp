@@ -7,7 +7,7 @@ Version getBoardVersion() {
 }
 
 Version getLibVersion() {
-  return Version(NANIT_MAJOR_VERSION, NANIT_MINOR_VERSION, NANIT_PATHC_VERSION);
+  return Version(NANIT_MAJOR_VERSION, NANIT_MINOR_VERSION, NANIT_PATCH_VERSION);
 }
 
 bool digitalRead(const uint8_t pin, const uint16_t maxValue,

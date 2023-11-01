@@ -26,7 +26,7 @@ void Nanit_Display_Init()
   #define HELLO "Hello Nanit      "
   tft.print(String(HELLO "ver ") + StrVersion(getBoardVersion()) +
             "   Batt Power       " +
-            ::NanitRobot::Nanit::getNanit().getBattaryPower() + "%");
+            ::NanitRobot::Nanit::getNanit().getBatteryPower() + "%");
 }
 
 

@@ -12,6 +12,7 @@
  * @copyright Copyright (c) 2023
  * 
  */
+#ifndef _SERIAL_NUMBER_H_
 #define _SERIAL_NUMBER_H_
 
 #include "Offsets.hpp"
