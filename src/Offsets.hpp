@@ -1,8 +1,13 @@
 /**
  * @file Offsets.hpp
  * @author Sam4uk
+ * 
+ * @if English
+ * @brief  Offset in non-volatile memory where important data is stored
+ * @else
  * @brief  Зміщення в енерогонезалежній пам'яті де зберігаються важливі дані
  * Необхідні налаштування для роботи Nanit
+ * @endif
  * @version 0.1
  * @date 2023-05-18
  *

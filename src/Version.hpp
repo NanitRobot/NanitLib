@@ -1,12 +1,17 @@
 /**
  * @file Version.hpp
  * @author Sam4uk
+ * 
+ * @if English
+ * @brief Classes that allow tracking the versions of libraries and boards.
+ * @else
  * @brief Класи які дозволяють відслідковувати версії бібіліотеки та плати
+ * @endif
  * @version 0.1
  *
  * @date 27-03-23
  * @copyright Copyright (c) 2023
- *
+ * @cond
  */
 
 #ifndef _VERSION_H_
@@ -118,5 +123,6 @@ class Version {
       _major,  ///< приватне поле яке містить головну версію
       _minor,  ///< приватне поле яке містить мінорну версію
       _patch;  ///< приватне поле яке містить патч версію
+  /// @endcond
 };
 #endif

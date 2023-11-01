@@ -1,4 +1,5 @@
 /**
+ * @cond
  * @if English
  * @page Restore Restore programm
  * @brief
@@ -6,4 +7,5 @@
  * @page Restore Відновлення програми
  * @brief
  * @endif
+ * @endcond
  */
