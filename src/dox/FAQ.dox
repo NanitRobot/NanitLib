@@ -6,6 +6,7 @@
  * @brief Питання та відповіді, які у вас можуть виникнути
  * @endif
  * 
+ * 
  * @if English
  * Why doesn't the program work after turning on the Nanit main block?
  * ------------------------------------------------------------------
@@ -104,6 +105,32 @@
  *  3. Не вмикати та не заряджати самостійно.
  *  4. Передати в сервісний центр. Важливо, даний випадок не є гарантійним!
  * @endif
+ * 
+ * @cond
+ * @if English
+ * Як встановити драйвер?
+ * ----------------------
+ * @else
+ * Як встановити драйвер?
+ * ----------------------
+ * @endif
+ * <div class="tabbed">
+ * <ul>
+ *  <li> <b class="tab-title">Windows (exe)</b>
+ * [CH341SER.EXE](https://cdn.sparkfun.com/assets/learn_tutorials/8/4/4/CH341SER.EXE)
+ *  </li>
+ *  <li> <b class="tab-title">Windows (ZIP)</b>
+ * [Windows-CH340-Driver.zip](https://cdn.sparkfun.com/assets/learn_tutorials/5/9/7/Windows-CH340-Driver.zip)
+ *  </li>
+ *  <li> <b class="tab-title">Mac (ZIP)</b>
+ * [CH341SER_MAC.ZIP](https://cdn.sparkfun.com/assets/learn_tutorials/8/4/4/CH341SER_MAC.ZIP)
+ *  </li>
+ *  <li> <b class="tab-title">Linux (ZIP)</b>
+ * [CH341SER_LINUX.ZIP](https://cdn.sparkfun.com/assets/learn_tutorials/8/4/4/CH341SER_LINUX.ZIP)
+ * </li>
+ * </ul>
+ * </div>
+ * @endcond
  * 
  * @if English
  * @else

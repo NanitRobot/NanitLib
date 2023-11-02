@@ -2,10 +2,10 @@
  * 
  * @if English
  * @page HowWork How to Use the Library
- * @brief 
+ * @brief Simple examples
  * @else
  * @page HowWork Як працювати з бібліотекою
- * @brief 
+ * @brief Прості приклади
  * @endif
  * 
  * 

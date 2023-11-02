@@ -1,4 +1,5 @@
-/** @if English
+/**
+ * @cond
  * @defgroup Display Methods for Working with the Display.
  * @else
  * @defgroup Display Методи для роботи з дисплеєм.
@@ -289,4 +290,5 @@ int16_t getCursorY(void) const;
 
 /**
  * @}
+ * @endcond
  */

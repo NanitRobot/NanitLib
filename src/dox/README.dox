@@ -265,43 +265,7 @@
  * Ми рекомендуємо погоджуватись на оновлення, так як ви завжди матимете найновішу версію `NanitLib` 
  * з новим функціоналом.
  * 
- * @endif
- * 
- * 
- * @if English
- * 
- * ### Board manager
- * 
- * @else
- * 
- * ### Менеджер плат
- * 
- * @endif
- * 
- * #### IDE 1.8.x
- * 
- * @if English
- * 
- * Section under development
- * 
- * @else
- * 
- * Розділ в розробці
- * 
- * @endif
- * 
- * #### IDE 2.x
- * 
- * @if English
- * 
- * Section under development
- * 
- * @else
- * 
- * Розділ в розробці
- * 
- * @endif
- * 
+ * @endif 
  *
  * @if English
  * 
