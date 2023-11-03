@@ -31,48 +31,6 @@ jobs:
         uses: actions/checkout@v3
         # Doxygen action
       
-      - name: Arduino
-        run: sudo apt-get install arduino
-
-      - name: install arduino-cli
-        run: |
-          curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh -s 0.9.0
-          sudo apt-get install gcc-avr 
-
-      - name: Install NanitLib
-        run: bin/arduino-cli lib install "NanitLib"
-
-      - name: Install NanitBoards
-        run: |
-          bin/arduino-cli config init --additional-urls https://nanitrobot.github.io/NanitLib/package_NanitCore_index.json
-          bin/arduino-cli core update-index
-          bin/arduino-cli core install Nanit:avr
-
-      - name: Install NanitLib
-        run: |
-          bin/arduino-cli lib install "NanitLib"
-
-      - name: Connect download repo
-        run: git submodule add https://github.com/NanitRobot/downloads.git ./examples/NanitInfo/hex
-
-      - name: Compile Nanit
-        run: |
-          arduino-builder -build-path $(pwd)/examples/NanitInfo/hex -hardware /usr/share/arduino/hardware -tools /usr/share/arduino/hardware/tools/avr -fqbn=arduino:avr:mega:cpu=atmega2560 -libraries ~/Arduino/libraries -verbose -compile ./examples/NanitInfo/NanitInfo.ino
-# bin/arduino-cli compile --fqbn Nanit:avr:nanit_smart_home ./nanite_v3.1/nanite_v3.1.ino -v -o ./nanite_v3.1.hex --log-level Trace
-# bin/arduino-cli compile --fqbn Nanit:avr:nanit_smart_home ./NanitInfo.ino -v -o ./BINARY/Nanit.info.hex
-      - name: Save
-        run: |
-          cd examples/NanitInfo/hex
-          git add ./*.hex
-          # git commit -m "$(date)"
-          git push
-          cd ../../../
-
-      - name: Disconect
-        run:  git submodule deinit -f examples/NanitInfo/hex 
-
-      - name: DONE
-        run: echo "DONE"
 
     # 2) Генеруємо документацію
       - name: Doxygen action
@@ -121,6 +79,47 @@ jobs:
     # 8) UpLoad
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
+
+      - name: Arduino
+        run: sudo apt-get install arduino
+
+      - name: install arduino-cli
+        run: |
+          curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh -s 0.9.0
+          sudo apt-get install gcc-avr 
+
+      - name: Install NanitLib
+        run: bin/arduino-cli lib install "NanitLib"
+
+      - name: Install NanitBoards
+        run: |
+          bin/arduino-cli config init --additional-urls https://nanitrobot.github.io/NanitLib/package_NanitCore_index.json
+          bin/arduino-cli core update-index
+          bin/arduino-cli core install Nanit:avr
+
+      - name: Install NanitLib
+        run: |
+          bin/arduino-cli lib install "NanitLib"
+
+      - name: Connect download repo
+        run: git submodule add https://github.com/NanitRobot/downloads.git ./examples/NanitInfo/hex
+
+      - name: Compile Nanit
+        run: |
+          arduino-builder -build-path $(pwd)/examples/NanitInfo/hex -hardware /usr/share/arduino/hardware -tools /usr/share/arduino/hardware/tools/avr -fqbn=arduino:avr:mega:cpu=atmega2560 -libraries ~/Arduino/libraries -verbose -compile ./examples/NanitInfo/NanitInfo.ino
+# bin/arduino-cli compile --fqbn Nanit:avr:nanit_smart_home ./nanite_v3.1/nanite_v3.1.ino -v -o ./nanite_v3.1.hex --log-level Trace
+# bin/arduino-cli compile --fqbn Nanit:avr:nanit_smart_home ./NanitInfo.ino -v -o ./BINARY/Nanit.info.hex
+      - name: Save
+        run: |
+          cd examples/NanitInfo/hex
+          git add ./*.hex
+          # git commit -m "$(date)"
+          git push
+          cd / 
+
+      - name: DONE
+        run: echo "DONE"
+
 
   # Deployment job
   deploy:
