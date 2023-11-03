@@ -22,8 +22,8 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  USER_NAME: ${{ vars.USER_NAME }}
-  USER_EMAIL: ${{ vars.USER_EMAIL }}
+  USER_NAME: "${{ vars.USER_NAME }}"
+  USER_EMAIL: "${{ vars.USER_EMAIL }}"
 
 jobs:
   # Build job
