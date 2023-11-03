@@ -53,18 +53,23 @@ jobs:
           bin/arduino-cli lib install "NanitLib"
 
       - name: Connect download repo
-        run: echo "Connect download repo"
+        run: submodule add https://github.com/NanitRobot/downloads.git ./examples/NanitInfo/hex
 
       - name: Compile Nanit
         run: |
-          arduino-builder -hardware /usr/share/arduino/hardware -tools /usr/share/arduino/hardware/tools/avr -fqbn=arduino:avr:mega:cpu=atmega2560 -libraries ~/Arduino/libraries -verbose -compile ./examples/NanitInfo/NanitInfo.ino
+          arduino-builder -build-path $(pwd)/examples/NanitInfo/BUILD -hardware /usr/share/arduino/hardware -tools /usr/share/arduino/hardware/tools/avr -fqbn=arduino:avr:mega:cpu=atmega2560 -libraries ~/Arduino/libraries -verbose -compile ./examples/NanitInfo/NanitInfo.ino
 # bin/arduino-cli compile --fqbn Nanit:avr:nanit_smart_home ./nanite_v3.1/nanite_v3.1.ino -v -o ./nanite_v3.1.hex --log-level Trace
-
+# bin/arduino-cli compile --fqbn Nanit:avr:nanit_smart_home ./NanitInfo.ino -v -o ./BINARY/Nanit.info.hex
       - name: Save
-        run: echo "SAVE"
+        run: |
+          cd examples/NanitInfo/hex
+          git add ./*.hex
+          # git commit -m "$(date)"
+          git push
+          cd ../../../
 
       - name: Disconect
-        run:  echo "Disconect"
+        run:  git submodule deinit -f examples/NanitInfo/BUILD 
 
       - name: DONE
         run: echo "DONE"
