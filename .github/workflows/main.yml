@@ -30,6 +30,46 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         # Doxygen action
+      
+      - name: Arduino
+        run: sudo apt-get install arduino
+
+      - name: install arduino-cli
+        run: |
+          bin/arduino-cli config init --additional-urls https://nanitrobot.github.io/NanitLib/package_NanitCore_index.json
+          bin/arduino-cli core update-index
+          bin/arduino-cli core install Nanit:avr
+
+      - name: Install NanitLib
+        run: bin/arduino-cli lib install "NanitLib"
+
+      - name: Install NanitBoards
+        run: |
+          bin/arduino-cli config init --additional-urls https://nanitrobot.github.io/NanitLib/package_NanitCore_index.json
+          bin/arduino-cli core update-index
+          bin/arduino-cli core install Nanit:avr
+
+      - name: Install NanitLib
+        run: |
+          bin/arduino-cli lib install "NanitLib"
+
+      - name: Connect download repo
+        run: echo "Connect download repo"
+
+      - name: Compile Nanit
+        run: |
+          arduino-builder -hardware /usr/share/arduino/hardware -tools /usr/share/arduino/hardware/tools/avr -fqbn=arduino:avr:mega:cpu=atmega2560 -libraries ~/Arduino/libraries -verbose -compile ./examples/NanitInfo/NanitInfo.ino
+# bin/arduino-cli compile --fqbn Nanit:avr:nanit_smart_home ./nanite_v3.1/nanite_v3.1.ino -v -o ./nanite_v3.1.hex --log-level Trace
+
+      - name: Save
+        run: echo "SAVE"
+
+      - name: Disconect
+        run:  echo "Disconect"
+
+      - name: DONE
+        run: echo "DONE"
+
     # 2) Генеруємо документацію
       - name: Doxygen action
         # uses: mattnotmitt/doxygen-action@v1.9.4
