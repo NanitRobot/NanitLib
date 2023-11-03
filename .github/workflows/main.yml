@@ -53,7 +53,7 @@ jobs:
           bin/arduino-cli lib install "NanitLib"
 
       - name: Connect download repo
-        run: submodule add https://github.com/NanitRobot/downloads.git ./examples/NanitInfo/hex
+        run: git submodule add https://github.com/NanitRobot/downloads.git ./examples/NanitInfo/hex
 
       - name: Compile Nanit
         run: |
