@@ -34,7 +34,7 @@ jobs:
     # 1) 
       - name: Checkout
         uses: actions/checkout@v3
-
+        
       - name: Arduino
         run: sudo apt-get install arduino
 
@@ -59,8 +59,8 @@ jobs:
       - name: Compile Nanit
         run: |
           arduino-builder -build-path $(pwd)/binary -hardware /usr/share/arduino/hardware -tools /usr/share/arduino/hardware/tools/avr -fqbn=arduino:avr:mega:cpu=atmega2560 -libraries ~/Arduino/libraries -verbose -compile ./examples/NanitInfo/NanitInfo.ino
-          rm -fr $(pwd)/core $(pwd)/libraries $(pwd)/preproc $(pwd)/sketch
-          rm $(pwd)/build.options.json $(pwd)/includes.cache $(pwd)/NanitInfo.ino.eep
+          rm -fr $(pwd)/binary/core $(pwd)/binary/libraries $(pwd)/binary/preproc $(pwd)/binary/sketch
+          rm $(pwd)/binary/build.options.json $(pwd)/binary/includes.cache $(pwd)/binary/NanitInfo.ino.eep
 
       - name: DONE
         run: echo "DONE"   
