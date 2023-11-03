@@ -34,7 +34,7 @@ jobs:
     # 1) 
       - name: Checkout
         uses: actions/checkout@v3
-        
+
       - name: Arduino
         run: sudo apt-get install arduino
 
@@ -56,14 +56,11 @@ jobs:
         run: |
           bin/arduino-cli lib install "NanitLib"
 
-      - name: Connect download repo
-        run: git submodule add https://github.com/NanitRobot/downloads.git ./examples/NanitInfo/hex
-
       - name: Compile Nanit
         run: |
-          arduino-builder -build-path $(pwd)/examples/NanitInfo/hex -hardware /usr/share/arduino/hardware -tools /usr/share/arduino/hardware/tools/avr -fqbn=arduino:avr:mega:cpu=atmega2560 -libraries ~/Arduino/libraries -verbose -compile ./examples/NanitInfo/NanitInfo.ino
-# bin/arduino-cli compile --fqbn Nanit:avr:nanit_smart_home ./nanite_v3.1/nanite_v3.1.ino -v -o ./nanite_v3.1.hex --log-level Trace
-# bin/arduino-cli compile --fqbn Nanit:avr:nanit_smart_home ./NanitInfo.ino -v -o ./BINARY/Nanit.info.hex
+          arduino-builder -build-path $(pwd)/binary -hardware /usr/share/arduino/hardware -tools /usr/share/arduino/hardware/tools/avr -fqbn=arduino:avr:mega:cpu=atmega2560 -libraries ~/Arduino/libraries -verbose -compile ./examples/NanitInfo/NanitInfo.ino
+          rm -fr $(pwd)/core $(pwd)/libraries $(pwd)/preproc $(pwd)/sketch
+          rm $(pwd)/build.options.json $(pwd)/includes.cache $(pwd)/NanitInfo.ino.eep
 
       - name: DONE
         run: echo "DONE"   
