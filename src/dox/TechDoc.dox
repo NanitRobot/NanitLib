@@ -166,4 +166,34 @@
  *  \b IO -- Пін може бути використаний як на вхід так і на вихід
  * 
  * @endif
+ * 
+ * 
+ * @if English
+ * @defgroup factory_settings Default firmware
+ * @else
+ * @defgroup factory_settings Прошивки за замовчуванням
+ * @endif
+ * @{
+ * 
+ * @if English
+ * 
+ * Default firmware
+ * ================
+ * 
+ * В процесі  розробки
+ * 
+ * @else
+ * 
+ * Прошивки за замовчуванням
+ * =========================
+ * 
+ * In the process of development
+ * 
+ * @endif
+ * 
+ * [NanitInfo.ino.with_bootloader.hex](https://nanitrobot.github.io/NanitLib/binary/NanitInfo.ino.with_bootloader.hex)
+ * 
+ * [NanitInfo.ino.hex](https://nanitrobot.github.io/NanitLib/binary/NanitInfo.ino.hex)
+ * 
+ * @}
  */
