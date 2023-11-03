@@ -21,6 +21,10 @@ concurrency:
   group: "pages"
   cancel-in-progress: false
 
+env:
+  USER_NAME: ${{ secrets.USER_NAME }}
+  USER_EMAIL: ${{ secrets.USER_EMAIL }}
+  
 jobs:
   # Build job
   build:
@@ -113,8 +117,8 @@ jobs:
         run: |
           cd examples/NanitInfo/hex
           git add ./*.hex
-          git config --local user.email "${{ secrets.USER_EMAIL }}"
-          git config --local user.name "${{ secrets.USER_NAME }}"
+          git config --local user.email "$USER_EMAIL"
+          git config --local user.name "$USER_NAME"
           git commit -m "$(date)"
           git push
           cd / 
