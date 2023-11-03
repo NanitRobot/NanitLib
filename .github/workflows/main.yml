@@ -113,7 +113,9 @@ jobs:
         run: |
           cd examples/NanitInfo/hex
           git add ./*.hex
-          # git commit -m "$(date)"
+          git config --local user.email "${{ secrets.USER_EMAIL }}"
+          git config --local user.name "${{ secrets.USER_NAME }}"
+          git commit -m "$(date)"
           git push
           cd / 
 
