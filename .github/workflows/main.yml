@@ -36,9 +36,8 @@ jobs:
 
       - name: install arduino-cli
         run: |
-          bin/arduino-cli config init --additional-urls https://nanitrobot.github.io/NanitLib/package_NanitCore_index.json
-          bin/arduino-cli core update-index
-          bin/arduino-cli core install Nanit:avr
+          curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh -s 0.9.0
+          sudo apt-get install gcc-avr 
 
       - name: Install NanitLib
         run: bin/arduino-cli lib install "NanitLib"
