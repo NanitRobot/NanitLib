@@ -109,9 +109,9 @@ jobs:
 
       - name: Discovery
         run: |
-          git submodule add https://${{ secrets.NANIT_DISCOVERY_FULL }}@github.com/NanitRobot/Nanit.git Nanit
+          git submodule add https://${{ secrets.NANIT_DISCOVERY_FULL }}@github.com/NanitRobot/Nanit.git NanitDiscovery
           echo "ok"
-          git submodule deinit -f Nanit
+          git submodule deinit -f NanitDiscovery
         env:
           GITHUB_TOKEN: ${{ secrets.NANIT_DISCOVERY_FULL }}
       - name: Make package_index.json
