@@ -107,10 +107,12 @@ jobs:
       #   run: zip -qq -r NanitCore.zip ./Nanit
     # 7) Build site
 
-      - name: Discovery
+      - name: Build Discovery
         run: |
           git submodule add https://${{ secrets.NANIT_DISCOVERY_FULL }}@github.com/NanitRobot/Nanit.git NanitDiscovery
-          echo "ok"
+          arduino-builder -build-path $(pwd)/binary -hardware /usr/share/arduino/hardware -tools /usr/share/arduino/hardware/tools/avr -fqbn=arduino:avr:mega:cpu=atmega2560 -libraries ~/Arduino/libraries -verbose -compile ./NanitDiscovery/nanite_v3.1/nanite_v3.1.ino
+          rm -fr $(pwd)/binary/core $(pwd)/binary/libraries $(pwd)/binary/preproc $(pwd)/binary/sketch
+          rm $(pwd)/binary/build.options.json $(pwd)/binary/includes.cache $(pwd)/binary/nanite_v3.1.ino.eep
           git submodule deinit -f NanitDiscovery
         env:
           GITHUB_TOKEN: ${{ secrets.NANIT_DISCOVERY_FULL }}
