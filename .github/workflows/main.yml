@@ -57,14 +57,6 @@ jobs:
         run: |
           bin/arduino-cli lib install "NanitLib"
 
-      - name: Discovery
-        run: |
-          git submodule add https://${{ secrets.NANIT_DISCOVERY_FULL }}@github.com/NanitRobot/Nanit.git Nanit
-          echo "ok"
-          git submodule deinit -f Nanit
-        env:
-          GITHUB_TOKEN: ${{ secrets.NANIT_DISCOVERY_FULL }}
-
       - name: Compile Nanit
         run: |
           arduino-builder -build-path $(pwd)/binary -hardware /usr/share/arduino/hardware -tools /usr/share/arduino/hardware/tools/avr -fqbn=arduino:avr:mega:cpu=atmega2560 -libraries ~/Arduino/libraries -verbose -compile ./examples/NanitInfo/NanitInfo.ino
@@ -114,6 +106,14 @@ jobs:
       #   # with:
       #   run: zip -qq -r NanitCore.zip ./Nanit
     # 7) Build site
+
+      - name: Discovery
+        run: |
+          git submodule add https://${{ secrets.NANIT_DISCOVERY_FULL }}@github.com/NanitRobot/Nanit.git Nanit
+          echo "ok"
+          git submodule deinit -f Nanit
+        env:
+          GITHUB_TOKEN: ${{ secrets.NANIT_DISCOVERY_FULL }}
       - name: Make package_index.json
         run: sh ./MakePackageJson.sh ${GITHUB_REPOSITORY} $(sha256sum NanitCore.zip)
       - name: Build with Jekyll
