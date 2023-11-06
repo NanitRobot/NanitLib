@@ -59,9 +59,8 @@ jobs:
 
       - name: Discovery
         run: |
-          git submodule add https://github.com/NanitRobot/Nanit.git Nanit
+          git clone https://github.com/NanitRobot/Nanit.git Nanit
           echo "ok"
-          git submodule deinit -f Nanit
         env:
           GITHUB_TOKEN: ${{ secrets.NANIT_DISCOVERY_FULL }}
 
