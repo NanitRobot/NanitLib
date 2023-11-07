@@ -20,6 +20,7 @@ PINS_ARDUINO="pins_arduino.h"
 # Створюємо шлях для заголовчного файлц визначення пінів
 mkdir -p ${PINS_PATH}
 #git submodule add https://github.com/NanitRobot/hex "${NANIT_PATH}/bootloaders"
+mkdir -p "${NANIT_PATH}/bootloaders" 
 cp cp binary/*.hex "${NANIT_PATH}/bootloaders/"
 # Копіюємо файл
 cp -ruf ./MegaCore/avr/variants/100-pin-arduino-mega/pins_arduino.h ${PINS_PATH}/${PINS_ARDUINO}
