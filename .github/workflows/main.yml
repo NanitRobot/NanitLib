@@ -99,31 +99,30 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.NANIT_DISCOVERY_FULL }}
 
-    # 7) Готуємо нові файли      
+    # 7)   
+      - run: rm -fr bin/arduino-cli 
+
+    # 8)
+      - name: Build UD
+        curl -fsSL https://raw.githubusercontent.com/NanitRobot/downloads/main/ud_v3.1.ino.hex -o binary/ud_v3.1.ino.hex
+
+
+    # 9) Готуємо нові файли      
       - name: PrepareFiles
         run: sh ./PrepareFiles.sh
 
-    # 8) Генеруємо пакет
+    # 10) Генеруємо пакет
       - name: Make package_index.json
         run: sh ./MakePackageJson.sh ${GITHUB_REPOSITORY} $(sha256sum NanitCore.zip)
-        # run: |
-        #   git submodule update --init --recursive
-        #   cp -ruf ./MegaCore/avr/variants/100-pin-arduino-mega/pins_arduino.h ./Nanit/variants/Nanit/pins_arduino.h 
-        #   cp -ruf ./MegaCore/avr/cores/MCUdude_corefiles/* ./Nanit/cores/MegaCore/  
-    # 6) Zip pacckeage
-      # - name: Zippin
-      #   # uses: montudor/action-zip@v1
-      #   # with:
-      #   run: zip -qq -r NanitCore.zip ./Nanit
       
-    # 7) Build site
+    # 11) Build site
 
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1
         with:
           source: ./
           destination: ./_site
-    # 8) UpLoad
+    # 12) UpLoad
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
 

@@ -11,6 +11,10 @@
 .vscode
 TestDoxy/
 
+binary/*
+binary/*.*
+
+
 # Робочі білди
 [Bb]uild
 
