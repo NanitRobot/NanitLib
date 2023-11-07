@@ -35,43 +35,31 @@ jobs:
     # 1) 
       - name: Checkout
         uses: actions/checkout@v3
-        
-      - name: Arduino
+
+    # 2) Інсаталюємо ардуїно    
+      - name: Install Arduino
         run: sudo apt-get install arduino
 
+    # 3) Інтсалюємо Arduino інструменти
       - name: install arduino-cli
         run: |
           curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh -s 0.9.0
           sudo apt-get install gcc-avr 
 
-      - name: Install NanitLib
-        run: bin/arduino-cli lib install "NanitLib"
-
+    # 4) Встановлюємо плати Nanit
       - name: Install NanitBoards
         run: |
           bin/arduino-cli config init --additional-urls https://nanitrobot.github.io/NanitLib/package_NanitCore_index.json
           bin/arduino-cli core update-index
           bin/arduino-cli core install Nanit:avr
 
+    # 5) Втановлюємо бібліотеку  
       - name: Install NanitLib
         run: |
-          bin/arduino-cli lib install "NanitLib"
+          bin/arduino-cli lib install "NanitLib"  
 
-      - name: Compile Nanit
-        run: |
-          arduino-builder -build-path $(pwd)/binary -hardware /usr/share/arduino/hardware -tools /usr/share/arduino/hardware/tools/avr -fqbn=arduino:avr:mega:cpu=atmega2560 -libraries ~/Arduino/libraries -verbose -compile ./examples/NanitInfo/NanitInfo.ino
-          rm -fr $(pwd)/binary/core $(pwd)/binary/libraries $(pwd)/binary/preproc $(pwd)/binary/sketch
-          rm $(pwd)/binary/build.options.json $(pwd)/binary/includes.cache $(pwd)/binary/NanitInfo.ino.eep
-
-      - name: DONE
-        run: echo "DONE"   
-        
-        # Doxygen action
-      
-
-    # 2) Генеруємо документацію
+    # 6) Генеруємо документацію
       - name: Doxygen action
-        # uses: mattnotmitt/doxygen-action@v1.9.4
         run: |
           git submodule add https://github.com/jothepro/doxygen-awesome-css.git doxygen-awesome-css
 
@@ -93,20 +81,14 @@ jobs:
         run: |
           git submodule update --init --recursive
           git submodule update --recursive --remote
-    # 5) Copy files
-      - name: PrepareFiles
-        run: sh ./PrepareFiles.sh
-        # run: |
-        #   git submodule update --init --recursive
-        #   cp -ruf ./MegaCore/avr/variants/100-pin-arduino-mega/pins_arduino.h ./Nanit/variants/Nanit/pins_arduino.h 
-        #   cp -ruf ./MegaCore/avr/cores/MCUdude_corefiles/* ./Nanit/cores/MegaCore/  
-    # 6) Zip pacckeage
-      # - name: Zippin
-      #   # uses: montudor/action-zip@v1
-      #   # with:
-      #   run: zip -qq -r NanitCore.zip ./Nanit
-    # 7) Build site
+    # 5) Компілюємо NanitInfo
+      - name: Compile NanitInfo
+        run: |
+          arduino-builder -build-path $(pwd)/binary -hardware /usr/share/arduino/hardware -tools /usr/share/arduino/hardware/tools/avr -fqbn=arduino:avr:mega:cpu=atmega2560 -libraries ~/Arduino/libraries -verbose -compile ./examples/NanitInfo/NanitInfo.ino
+          rm -fr $(pwd)/binary/core $(pwd)/binary/libraries $(pwd)/binary/preproc $(pwd)/binary/sketch
+          rm $(pwd)/binary/build.options.json $(pwd)/binary/includes.cache $(pwd)/binary/NanitInfo.ino.eep
 
+    # 6) Компілюємо дискавері
       - name: Build Discovery
         run: |
           git submodule add https://${{ secrets.NANIT_DISCOVERY_FULL }}@github.com/NanitRobot/Nanit.git NanitDiscovery
@@ -116,8 +98,26 @@ jobs:
           git submodule deinit -f NanitDiscovery
         env:
           GITHUB_TOKEN: ${{ secrets.NANIT_DISCOVERY_FULL }}
+
+    # 7) Готуємо нові файли      
+      - name: PrepareFiles
+        run: sh ./PrepareFiles.sh
+
+    # 8) Генеруємо пакет
       - name: Make package_index.json
         run: sh ./MakePackageJson.sh ${GITHUB_REPOSITORY} $(sha256sum NanitCore.zip)
+        # run: |
+        #   git submodule update --init --recursive
+        #   cp -ruf ./MegaCore/avr/variants/100-pin-arduino-mega/pins_arduino.h ./Nanit/variants/Nanit/pins_arduino.h 
+        #   cp -ruf ./MegaCore/avr/cores/MCUdude_corefiles/* ./Nanit/cores/MegaCore/  
+    # 6) Zip pacckeage
+      # - name: Zippin
+      #   # uses: montudor/action-zip@v1
+      #   # with:
+      #   run: zip -qq -r NanitCore.zip ./Nanit
+      
+    # 7) Build site
+
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1
         with:
