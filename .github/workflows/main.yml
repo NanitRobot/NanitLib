@@ -104,7 +104,7 @@ jobs:
 
     # 8)
       - name: Build UD
-        curl -fsSL https://raw.githubusercontent.com/NanitRobot/downloads/main/ud_v3.1.ino.hex -o binary/ud_v3.1.ino.hex
+        run: curl -fsSL https://raw.githubusercontent.com/NanitRobot/downloads/main/ud_v3.1.ino.hex -o binary/ud_v3.1.ino.hex
 
 
     # 9) Готуємо нові файли      
