@@ -84,7 +84,6 @@ jobs:
     # 5) Компілюємо NanitInfo
       - name: Compile NanitInfo
         run: |
-          # #if def
           ./bin/arduino-cli compile -b arduino:avr:mega ./examples/NanitInfo --build-properties "build.extra_flags=-DVERSION=1" -o "./binary/NanitInfoV1.ino"
           
           arduino-builder -build-path $(pwd)/binary -hardware /usr/share/arduino/hardware -tools /usr/share/arduino/hardware/tools/avr -fqbn=arduino:avr:mega:cpu=atmega2560 -libraries ~/Arduino/libraries -verbose -compile ./examples/NanitInfo/NanitInfo.ino
