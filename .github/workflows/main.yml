@@ -90,6 +90,7 @@ jobs:
           rm -fr $(pwd)/binary/core $(pwd)/binary/libraries $(pwd)/binary/preproc $(pwd)/binary/sketch
           rm $(pwd)/binary/build.options.json $(pwd)/binary/includes.cache $(pwd)/binary/NanitInfo.ino.eep
       - run: |
+          bin/arduino-cli core install arduino:avr
           bin/arduino-cli compile -b arduino:avr:mega ./examples/NanitInfo --build-properties "build.extra_flags=-DVERSION=1" -o "./binary/NanitInfoV1.ino"
 
     # 6) Компілюємо дискавері
