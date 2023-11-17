@@ -87,10 +87,10 @@ jobs:
       - run: |
           bin/arduino-cli compile -b arduino:avr:mega ./examples/NanitInfo --build-properties "build.extra_flags=-DVERSION=1" -o "./binary/NanitInfo.ino"
         name: Compile NanitInfo
-        
+
       - run: |
-          rm -fr $(pwd)/binary/core $(pwd)/binary/libraries $(pwd)/binary/preproc $(pwd)/binary/sketch
-          rm $(pwd)/binary/build.options.json $(pwd)/binary/includes.cache $(pwd)/binary/NanitInfo.ino.eep $(pwd)/binary/*.elf
+          rm -fr $(pwd)/binary/core $(pwd)/binary/libraries $(pwd)/binary/preproc $(pwd)/binary/sketch || echo "NO PATH"
+          rm $(pwd)/binary/build.options.json $(pwd)/binary/includes.cache $(pwd)/binary/NanitInfo.ino.eep $(pwd)/binary/*.elf || echo "NO PATH"
 
     # 6) Компілюємо дискавері
       - name: Build Discovery
