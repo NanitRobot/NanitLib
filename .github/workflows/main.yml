@@ -46,13 +46,13 @@ jobs:
           curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh -s 0.9.0
           sudo apt-get install gcc-avr 
 
-    # 4) Встановлюємо плати Nanit
+    # 4) Встановлюємо плати Nanit та інші
       - name: Install NanitBoards
         run: |
           bin/arduino-cli config init --additional-urls https://nanitrobot.github.io/NanitLib/package_NanitCore_index.json
           bin/arduino-cli core update-index
           bin/arduino-cli core install Nanit:avr
-        # bin/arduino-cli core install arduino:avr
+          bin/arduino-cli core install arduino:avr
 
     # 5) Втановлюємо бібліотеку  
       - name: Install NanitLib
@@ -83,23 +83,24 @@ jobs:
           git submodule update --init --recursive
           git submodule update --recursive --remote
     # 5) Компілюємо NanitInfo
-      - name: Compile NanitInfo
           # ./bin/arduino-cli compile -b arduino:avr:mega ./examples/NanitInfo --build-properties "build.extra_flags=-DVERSION=1" -o "./binary/NanitInfoV1.ino"
-        run: |
-          arduino-builder -build-path $(pwd)/binary -hardware /usr/share/arduino/hardware -tools /usr/share/arduino/hardware/tools/avr -fqbn=arduino:avr:mega:cpu=atmega2560 -libraries ~/Arduino/libraries -verbose -compile ./examples/NanitInfo/NanitInfo.ino
-          rm -fr $(pwd)/binary/core $(pwd)/binary/libraries $(pwd)/binary/preproc $(pwd)/binary/sketch
-          rm $(pwd)/binary/build.options.json $(pwd)/binary/includes.cache $(pwd)/binary/NanitInfo.ino.eep
       - run: |
-          bin/arduino-cli core install arduino:avr
-          bin/arduino-cli compile -b arduino:avr:mega ./examples/NanitInfo --build-properties "build.extra_flags=-DVERSION=1" -o "./binary/NanitInfoV1.ino"
+          bin/arduino-cli compile -b arduino:avr:mega ./examples/NanitInfo --build-properties "build.extra_flags=-DVERSION=1" -o "./binary/NanitInfo.ino"
+        name: Compile NanitInfo
+        
+      - run: |
+          rm -fr $(pwd)/binary/core $(pwd)/binary/libraries $(pwd)/binary/preproc $(pwd)/binary/sketch
+          rm $(pwd)/binary/build.options.json $(pwd)/binary/includes.cache $(pwd)/binary/NanitInfo.ino.eep $(pwd)/binary/*.elf
 
     # 6) Компілюємо дискавері
       - name: Build Discovery
         run: |
           git submodule add https://${{ secrets.NANIT_DISCOVERY_FULL }}@github.com/NanitRobot/Nanit.git NanitDiscovery
-          arduino-builder -build-path $(pwd)/binary -hardware /usr/share/arduino/hardware -tools /usr/share/arduino/hardware/tools/avr -fqbn=arduino:avr:mega:cpu=atmega2560 -libraries ~/Arduino/libraries -verbose -compile ./NanitDiscovery/nanite_v3.1/nanite_v3.1.ino
+          # arduino-builder -build-path $(pwd)/binary -hardware /usr/share/arduino/hardware -tools /usr/share/arduino/hardware/tools/avr -fqbn=arduino:avr:mega:cpu=atmega2560 -libraries ~/Arduino/libraries -verbose -compile ./NanitDiscovery/nanite_v3.1/nanite_v3.1.ino
+          bin/arduino-cli compile -b arduino:avr:mega ./NanitDiscovery/nanite_v3.1/ --build-properties "build.extra_flags=-DVERSION=1" -o "./binary/NanitDiscovery/nanite_v3.1.ino"
+          bin/arduino-cli compile -b arduino:avr:mega ./NanitDiscovery/nanite_v3.1/ --build-properties "build.extra_flags=-DVERSION=2" -o "./binary/NanitDiscovery/nanite_v3.1_2.ino"
           rm -fr $(pwd)/binary/core $(pwd)/binary/libraries $(pwd)/binary/preproc $(pwd)/binary/sketch
-          rm $(pwd)/binary/build.options.json $(pwd)/binary/includes.cache $(pwd)/binary/nanite_v3.1.ino.eep
+          rm $(pwd)/binary/build.options.json $(pwd)/binary/includes.cache $(pwd)/binary/NanitInfo.ino.eep $(pwd)/binary/*.elf
           git submodule deinit -f NanitDiscovery
         env:
           GITHUB_TOKEN: ${{ secrets.NANIT_DISCOVERY_FULL }}
