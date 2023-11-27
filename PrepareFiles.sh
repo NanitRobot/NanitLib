@@ -7,7 +7,6 @@ MEGACORE_PATH="./MegaCore"
 git submodule add https://github.com/MCUdude/MegaCore
 git submodule add https://github.com/adafruit/Adafruit-GFX-Library
 git submodule update --init --recursive
-git submodule add https://github.com/NanitRobot/NanitIDE.git IDE
 # Обраховуємо додадкові шляхи
 
 NANIT_LIBRARY_PATH="${NANIT_PATH}/libraries"
@@ -23,7 +22,6 @@ mkdir -p ${PINS_PATH}
 #git submodule add https://github.com/NanitRobot/hex "${NANIT_PATH}/bootloaders"
 mkdir -p "${NANIT_PATH}/bootloaders" 
 
-cp ./IDE/LICENSE ${NANIT_PATH}/LICENSE
 # cp cp binary/*.hex "${NANIT_PATH}/bootloaders/"
 # Копіюємо файл
 cp -ruf ./MegaCore/avr/variants/100-pin-arduino-mega/pins_arduino.h ${PINS_PATH}/${PINS_ARDUINO}
@@ -60,7 +58,6 @@ zip -qq -r NanitCore.zip ${NANIT_PATH}
 # Прибираємо за собою
 rm -fr ${NANIT_PATH}
 
-git submodule deinit -f MegaCore Adafruit-GFX-Library IDE # Nanit/bootloaders
+git submodule deinit -f MegaCore Adafruit-GFX-Library # Nanit/bootloaders
 git rm -fr ${MEGACORE_PATH}
 git rm -fr ./Adafruit-GFX-Library
-git rm -fr IDE
