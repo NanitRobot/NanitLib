@@ -117,9 +117,10 @@ jobs:
       - name: PrepareFiles
         run: | 
           git submodule add https://${{ secrets.NANIT_DISCOVERY_FULL }}@github.com/NanitRobot/NanitIDE.git IDE
+          mkdir ./Nanit
           cp ./IDE/LICENSE ./Nanit/LICENSE
           sh ./PrepareFiles.sh
-          git submodule deinit -f MegaCore Adafruit-GFX-Library IDE
+          git submodule deinit -f IDE
           git rm -fr IDE
 
     # 10) Генеруємо пакет
