@@ -88,6 +88,10 @@
  */
 #define BUILDIN_STRIP_LED (27)
 
+/**
+ * Обмежений тираж Лед кільце отримувало сигнал з вбудованого світлодіоду
+*/
+#ifndef LED_RING_LIMIT_EDITION
 /** 
  * @if English
  * @brief The pins through which Nanit transmits commands to the LED ring 
@@ -95,7 +99,6 @@
  * @brief Піни через які `Nanit` передає команди для Лед кільця
  * @endif
  */
-#if 0
 #define LED_RING_TX (13)
 #else
 #define LED_RING_TX (BUILDIN_STRIP_LED)
