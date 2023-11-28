@@ -128,7 +128,7 @@ jobs:
           # Megacore треба зробити форк
           git submodule add https://github.com/MCUdude/MegaCore
           git submodule add https://github.com/adafruit/Adafruit-GFX-Library
-          git submodule update --init --recursive
+          #git submodule update --init --recursive
           # Обраховуємо додадкові шляхи
 
           NANIT_LIBRARY_PATH="${NANIT_PATH}/libraries"
