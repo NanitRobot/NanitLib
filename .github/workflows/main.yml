@@ -118,7 +118,7 @@ jobs:
         run: | 
           git submodule add https://${{ secrets.NANIT_DISCOVERY_FULL }}@github.com/NanitRobot/NanitIDE.git IDE
           mkdir ./Nanit
-          cp ./IDE/*.txt  ./Nanit/*.txt 
+          cp ./IDE/*.txt  ./Nanit/
           sh ./PrepareFiles.sh
           git submodule deinit -f IDE
           git rm -fr IDE
