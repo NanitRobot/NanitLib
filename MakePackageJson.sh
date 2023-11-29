@@ -43,6 +43,39 @@ cat <<EOF > "${OUT_FILE}"
         {
           "name": "Nanit",
           "architecture": "avr",
+          "version": "0.9.1",
+          "category": "Contributed",
+          "help": {
+            "online": "${HELP_ONLINE}"
+          },
+          "url": "${HOST}/${FILE_PATH}${FILE_NAME}",
+          "archiveFileName": "${FILE_NAME}",
+          "checksum" : "SHA-256:${SHA256}",
+          "size" : "${FILE_SIZE}",
+          "boards": [
+            {
+              "name": "Nanit Discovery 2.0"
+            },
+            {
+              "name": "Nanit Discovery 3"
+            },
+            {
+              "name": "Nanit Discovery 3.1"
+            },
+            {
+              "name": "Nanit Discovery 3.5"
+            },
+            {
+              "name": "Nanit Smart Home (Nanit 3.1 based)"
+            },
+            {
+              "name": "Nanit Advanced (Nanit 3.5 based)"
+            } 
+          ]
+        },
+        {
+          "name": "Nanit",
+          "architecture": "avr",
           "version": "0.9",
           "category": "Contributed",
           "help": {
