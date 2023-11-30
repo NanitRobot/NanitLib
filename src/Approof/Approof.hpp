@@ -20,7 +20,9 @@
     Display.println("Pin test mode");                                          \
     PinTestSetup();                                                            \
   }                                                                            \
-  while (!digitalRead(J_7)) PinTestLoop();
+  while (!digitalRead(J_7)) PinTestLoop();\
+  PinDown();
+
 
 /*
 Підготовка до тестування пінів
@@ -30,3 +32,5 @@ void PinTestSetup();
 Цикл тестування пінів
 */
 void PinTestLoop();
+
+void PinDown();

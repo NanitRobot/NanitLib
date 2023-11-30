@@ -49,7 +49,7 @@ const uint8_t  //
 #define TOGGLE HIGH
 
 /** @if English
- * @brief The macro definition you provided is for labeling and ignoring a pin 
+ * @brief The macro definition you provided is for labeling and ignoring a pin
  * for pin-checking purposes, and it suggests that the pin's behavior is
  * checked in a different way, not using the standard method.
  * @else
@@ -57,7 +57,7 @@ const uint8_t  //
  * визначено у інший спосіб.
  * @endif
  */
-#define IGNORE_PIN   (0xFF)
+#define IGNORE_PIN (0xFF)
 /** @if English
  * @brief Controller Reset Pin.
  * @else
@@ -118,6 +118,59 @@ void PinTestLoop() {
       {P12_1, P12_2, PORT12_MOTOR, IGNORE_PIN}  // port 12
   };
   // clang-format on
+
+#if 1
+  /* Піни піднімаються групами */
+  for (uint8_t pin = 0; pin < k_pin_count; pin++)  // Перевіряємо кожен пін
+  {
+    for (uint8_t port = 0; port < k_port_count; port++) {
+      if (digitalRead(J_7)) break;
+      switch (PinMap[port][pin]) {
+#ifndef MEGACORE
+        case 71:  // Перевірка піна без MegaGore
+          PORTE |= 1 << PORTE6;
+          break;
+#endif
+        case IGNORE_PIN:  // Пропускаємо піни
+          break;
+        case PORT1_MOTOR:  // Реверс 1 мотору
+          check_1(drive);
+          break;
+        case PORT12_MOTOR:  // Реверс 2 мотору
+          check_12(drive);
+          break;
+        default:
+          digitalWrite(PinMap[port][pin], HIGH);
+          break;
+      }
+    }
+
+    delay(k_blink_delay);
+
+    for (uint8_t port = 0; port < k_port_count; port++) {
+      if (digitalRead(J_7)) break;
+      switch (PinMap[port][pin]) {
+#ifndef MEGACORE
+        case 71:  // Перевірка піна без MegaGore
+          PORTE &= ~(1 << PORTE6);
+          break;
+#endif
+        case IGNORE_PIN:  // Пропускаємо піни
+          break;
+        case PORT1_MOTOR:  // Реверс 1 мотору
+          break;
+        case PORT12_MOTOR:  // Реверс 2 мотору
+          break;
+        default:
+          digitalWrite(PinMap[port][pin], LOW);
+          break;
+      }
+    }
+
+    delay(k_blink_delay);
+  }
+#else
+  /* Піни піднімаються послідовно по колу */
   for (uint8_t port = 0; port < k_port_count; port++)  // Перевіряємо кожен порт
     for (uint8_t pin = 0; pin < k_pin_count; pin++) {  // Перевіряємо кожен пін
       if (digitalRead(J_7)) break;
@@ -147,10 +200,28 @@ void PinTestLoop() {
         } break;
       }
     }
+#endif
 
   drive = !drive;
 }
 
+void PinDown() {
+  for (uint8_t pin_to_set_mode = 0; pin_to_set_mode < NUM_DIGITAL_PINS;
+       pin_to_set_mode++)  // Всі піни
+  {
+    if (pin_to_set_mode == TFT_BL  // окрім підсітки дисплею
+        or pin_to_set_mode == TFT_CS  //  пін роботи з SD та дисплею
+        or pin_to_set_mode == TFT_DC  // пін роботи з SD та дисплею
+        or pin_to_set_mode == TFT_MOSI  // пін роботи з SD та дисплею
+        or pin_to_set_mode == TFT_SCK  // пін роботи з SD та дисплею
+        or pin_to_set_mode == TFT_RES  // пін роботи з SD та дисплею
+        or pin_to_set_mode == BATTERY_PIN  // АЦП батареї
+    )
+
+      continue;                        // пропускаємо
+    pinMode(pin_to_set_mode, INPUT);  // інші переводимо у високоімпедансний стан
+  }
+}
 /** @if English
  * @else
  *  @todo Переписати функції check_1 та check_2 таким чином щоб максимально
