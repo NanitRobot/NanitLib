@@ -48,7 +48,7 @@ String getSerialNumber() {
   const long WAIT_FIRST_RUN{30};
   while (!checkSerialNum(getSerialNum())) {
     // допоки не отримаємо серійний номер нічого не вийде
-    Serial.println("Please enter correct serial nummer");
+    Serial.println("Please enter correct serial nummer\n");
     unsigned long unlock{millis() + (WAIT_FIRST_RUN * 1000)};
     while (Serial.available() == 0) {
       if (millis() > unlock) {

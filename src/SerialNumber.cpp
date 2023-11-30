@@ -37,7 +37,10 @@ serial_num getSerialNum()
 
 
 bool checkSerialNum(serial_num num) {
-  if (num >= 0xFFFFFFF0 or num <= 0x000F71E9 /**/)
+  const uint32_t//
+   EEPROM_no_data=-1,//
+   EEPROM_err_data=0x9A7311;
+  if (num >= EEPROM_no_data or num <= EEPROM_err_data /**/)
     return false;
 
   return true;
