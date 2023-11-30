@@ -38,7 +38,7 @@ jobs:
 
     # 2) Інсаталюємо ардуїно    
       - name: Install Arduino
-        run: sudo apt-get install arduino
+        run: sudo apt-get --fix-missing install arduino
 
     # 3) Інтсалюємо Arduino інструменти
       - name: install arduino-cli
