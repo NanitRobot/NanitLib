@@ -107,6 +107,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.NANIT_DISCOVERY_FULL }}
 
+      - name: All in one file
+        run: zip -qq binary/AllNanit.zip binary/*.hex binary/*.eep 
+
     # 7)   
       - run: rm -fr bin/arduino-cli 
 
