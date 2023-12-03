@@ -193,6 +193,7 @@ jobs:
           echo "========================================================"
           echo "ESP BEGIN"
           echo "========================================================"
+          mkdir -p ./Nanit/
           #ESP8866
           #bootloaders
           cp -ruf ./ESP8266/bootloaders ./Nanit/bootloaders
