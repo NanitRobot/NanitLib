@@ -188,7 +188,7 @@ jobs:
           #docs
           cp -ruf ./ESP8266/doc Nanit/doc
           #libraries
-          cp -ruf ./ESP8266/libraries Nanit/libraries
+          # cp -ruf ./ESP8266/libraries/ Nanit/libraries
           #package
           cp -ruf ./ESP8266/package Nanit/package
           #tests
