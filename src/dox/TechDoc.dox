@@ -92,60 +92,61 @@
  * #### PinOut
  * 
  * ![Arduino](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/PinOutArduino.jpg)
- * |Nanitdef               |Analog |    PIN       |                     |
- * |:---------------------:|:-----:|:------------:|:-------------------:|
- * |      @ref P1_1        |  A7   |   61(IO)     |          IO         |
- * |      @ref P1_2        |  A6   |   60(IO)     |          IO         |
- * |      @ref P1_3        |    @ref DiffPin      ||         O          |
- * |      @ref P1_4        |    @ref DiffPin      ||         O          |
- * |      @ref P2_1        |  A10  |   64(IO)     |          IO         |
- * |      @ref P2_2        |  A9   |   63(IO)     |          IO         |
- * |      @ref P2_3        |       |   42(IO)     |          IO         |
- * |      @ref P2_4        |  A8   |   62(IO)     |          IO         |
- * |      @ref P3_1        |     @ref MEGACORE    ||          IO        |
- * |      @ref P3_2        |       |    25(IO)    |          IO         |
- * |      @ref P3_3        |       |    30(IO)    |          IO         |
- * |      @ref P3_4        |       |    31(IO)    |          IO         |
- * |      @ref P4_1        |  A11  |    65(IO)    |          IO         |
- * |      @ref P4_2        |       |    44(IO)    |          IO         |
- * |      @ref P4_3        |       |    45(IO)    |          IO         |
- * |      @ref P4_4        |       |    46(IO)    |          IO         |
- * |      @ref P5_1        |       |    2(IO)     |          IO         |
- * |      @ref P5_2        |  A1   |    54(IO)    |          IO         |
- * |      @ref P5_3        |  A12  |    66(IO)    |          IO         |
- * |      @ref P5_4        |       |    33(IO)    |          IO         |
- * |      @ref P6_1        |       |    23(IO)    |          IO         |
- * |      @ref P6_2        |  A14  |    67(IO)    |          IO         |
- * |      @ref P6_3        |  A13  |    67(IO)    |          IO         |
- * |      @ref P6_4        |       |    22(IO)    |          IO         |
- * |      @ref P7_1        |   A3  |    57(IO)    |          IO         |
- * |      @ref P7_2        |   A4  |    58(IO)    |          IO         |
- * |      @ref P7_3        |       |    25(IO)    |          IO         |
- * |      @ref P7_4        |    @ref DiffPin      ||         IO         |
- * |      @ref P8_1        |       |      1       |          IO         |
- * |      @ref P8_2        |       |      0       |          IO         |
- * |      @ref P8_3        |       |      5       |          IO         |
- * |      @ref P8_4        |                 RESET                     |||
- * |      @ref P9_1        |       |    21(IO)    |          IO         |
- * |      @ref P9_2        |       |    20(IO)    |          IO         |
- * |      @ref P9_3        |       |    19(IO)    |          IO         |
- * |      @ref P9_4        |    @ref DiffPin      ||         IO         |
- * |     @ref P10_1        |   A2  |    56(IO)    |          IO         |
- * |     @ref P10_2        |    @ref DiffPin      ||         IO         |
- * |     @ref P10_3        |    @ref DiffPin      ||         IO         |
- * |     @ref P10_4        |       |    6(IO)     |          IO         |
- * |     @ref P11_1        |       |              |          O          |
- * |     @ref P11_2        |       |              |          O          |
- * |     @ref P11_3        |       |    43(IO)    |          IO         |
- * |     @ref P11_4        |       |    32(IO)    |          IO         |
- * |     @ref P12_1        |       |    36(IO)    |          IO         |
- * |     @ref P12_2        |       |    34(IO)    |          IO         |
- * |     @ref P12_3        |       |     12(O)    |          O          |
- * |     @ref P12_4        |       |     11(O)    |          O          |
- * |   @ref BATTERY_PIN    |  A15  |      --      |          I          |
- * |  @ref MOTOR_ENABLE    |       |     40(0)    |          O          |
- * |   @ref MOTOR_FAIL     |       |     41(I)    |          I          |
- * | @ref BUILDIN_STRIP_LED|       |     27(0)    |          O          |
+ * |Nanitdef               |Analog |    PIN       |        |        |
+ * |:---------------------:|:-----:|:------------:|:------:|:------:|
+ * |      @ref P1_1        |  A7   |   61(IO)     |  *PF7* |   IO   |
+ * |      @ref P1_2        |  A6   |   60(IO)     |  *PF6* |   IO   |
+ * |      @ref P1_3        |    @ref DiffPin              ||| O    |
+ * |      @ref P1_4        |    @ref DiffPin              ||| O    |
+ * |      @ref P2_1        |  A10  |   64(IO)     |  *PK2* |   IO   |
+ * |      @ref P2_2        |  A9   |   63(IO)     |  *PK1* |   IO   |
+ * |      @ref P2_3        |       |   42(IO)     |  *PL7* |   IO   |
+ * |      @ref P2_4        |  A8   |   62(IO)     |  *PK0* |   IO   |
+ * |      @ref P3_1        |     @ref MEGACORE             |||  IO  |
+ * |      @ref P3_2        |       |    25(IO)    |  *PA3* |   IO   |
+ * |      @ref P3_3        |       |    30(IO)    |  *PC7* |   IO   |
+ * |      @ref P3_4        |       |    31(IO)    |  *PC6* |   IO   |
+ * |      @ref P4_1        |  A11  |    65(IO)    |  *PK3* |   IO   |
+ * |      @ref P4_2        |       |    44(IO)    |  *PL5* |   IO   |
+ * |      @ref P4_3        |       |    45(IO)    |  *PL4* |   IO   |
+ * |      @ref P4_4        |       |    46(IO)    |  *PL3* |   IO   |
+ * |      @ref P5_1        |       |    2(IO)     |  *PE4* |   IO   |
+ * |      @ref P5_2        |  A1   |    54(IO)    |  *PF0* |   IO   |
+ * |      @ref P5_3        |  A12  |    66(IO)    |  *PK4* |   IO   |
+ * |      @ref P5_4        |       |    33(IO)    |  *PC4* |   IO   |
+ * |      @ref P6_1        |       |    23(IO)    |  *PA1* |   IO   |
+ * |      @ref P6_2        |  A14  |    67(IO)    |  *PK6* |   IO   |
+ * |      @ref P6_3        |  A13  |    67(IO)    |  *PK5* |   IO   |
+ * |      @ref P6_4        |       |    22(IO)    |  *PA0* |   IO   |
+ * |      @ref P7_1        |   A3  |    57(IO)    |  *PF3* |   IO   |
+ * |      @ref P7_2        |   A4  |    58(IO)    |  *PF4* |   IO   |
+ * |      @ref P7_3        |       |    25(IO)    |  *PA3* |   IO   |
+ * |      @ref P7_4        |    @ref DiffPin              |||  IO   |
+ * |      @ref P8_1        |       |      1       |  *PE1* |   IO   |
+ * |      @ref P8_2        |       |      0       |  *PE0* |   IO   |
+ * |      @ref P8_3        |       |      5       |  *PE3* |   IO   |
+ * |      @ref P8_4        |                 RESET                 ||||
+ * |      @ref P9_1        |       |    21(IO)    |  *PD0* |   IO   |
+ * |      @ref P9_2        |       |    20(IO)    |  *PD1* |   IO   |
+ * |      @ref P9_3        |       |    19(IO)    |  *PD2* |   IO   |
+ * |      @ref P9_4        |    @ref DiffPin              |||  IO   |
+ * |     @ref P10_1        |   A2  |    56(IO)    |  *PF2* |   IO   |
+ * |     @ref P10_2        |    @ref DiffPin              |||  IO   |
+ * |     @ref P10_3        |    @ref DiffPin              |||  IO   |
+ * |     @ref P10_4        |       |    6(IO)     |  *PH3* |   IO   |
+ * |     @ref P11_1        |       |                      ||   O    |
+ * |     @ref P11_2        |       |                      ||   O    |
+ * |     @ref P11_3        |       |    43(IO)    |  *PL6* |   IO   |
+ * |     @ref P11_4        |       |    32(IO)    |  *PC5* |   IO   |
+ * |     @ref P12_1        |       |    36(IO)    |  *PC1* |   IO   |
+ * |     @ref P12_2        |       |    34(IO)    |  *PC3* |   IO   |
+ * |     @ref P12_3        |       |     12(O)    |  *PB6* |   O    |
+ * |     @ref P12_4        |       |     11(O)    |  *PB5* |   O    |
+ * |   @ref BATTERY_PIN    |  A15  |      --      |   I    |        |
+ * |  @ref MOTOR_ENABLE    |       |     40(O)    |   O    |        |
+ * |   @ref MOTOR_FAIL     |       |     41(I)    |   I    |        |
+ * | @ref BUILDIN_STRIP_LED|       |     27(O)    |   O    |        |
+ * | @ref LED_BUILTIN      |       |      4(O)    |        |        |
  * 
  * </center>
  * @if English
