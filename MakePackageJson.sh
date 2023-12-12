@@ -10,8 +10,11 @@ HELP_ONLINE="https://nanitrobot.com/"
 GITHUB_OWNER_REPO=${1}
 SHA256=${2}
 FILE_NAME=${3}
+SHA256_2=${4}
+FILE_NAME_2=${5}
 OUT_FILE="package_NanitCore_index.json"
 FILE_SIZE=$(stat -c %s ${FILE_NAME})
+FILE_SIZE_2=$(stat -c %s ${FILE_NAME_2})
 OWNER=$(echo "${GITHUB_OWNER_REPO}" | cut -d '/' -f 1)
 REPO=$(echo "${GITHUB_OWNER_REPO}" | cut -d '/' -f 2)
 
@@ -40,6 +43,24 @@ cat <<EOF > "${OUT_FILE}"
         "online": "${HELP_ONLINE}"
       },
       "platforms": [
+        {
+          "name": "esp8266",
+          "architecture": "esp8266",
+          "version": "0.0.1",
+          "category": "Contributed",
+          "help": {
+            "online": "${HELP_ONLINE}"
+          },
+          "url": "${HOST}/${FILE_PATH}${FILE_NAME_2}",
+          "archiveFileName": "${FILE_NAME_2}",
+          "checksum" : "SHA-256:${SHA256_2}",
+          "size" : "${FILE_SIZE_2}",
+          "boards": [
+            {
+              "name": "FlyN 1.0"
+            }
+          ]
+        },
         {
           "name": "Nanit",
           "architecture": "avr",
@@ -104,67 +125,6 @@ cat <<EOF > "${OUT_FILE}"
             {
               "name": "Nanit Advanced"
             } 
-          ]
-        },
-        {
-          "name": "Nanit",
-          "architecture": "avr",
-          "version": "0.1.2",
-          "category": "Contributed",
-          "help": {
-            "online": "${HELP_ONLINE}"
-          },
-          "url": "${HOST}/${FILE_PATH}${FILE_NAME}",
-          "archiveFileName": "${FILE_NAME}",
-          "checksum" : "SHA-256:${SHA256}",
-          "size" : "${FILE_SIZE}",
-          "boards": [
-            {
-              "name": "Nanit Discovery 2.0"
-            },
-            {
-              "name": "Nanit Discovery 3"
-            },
-            {
-              "name": "Nanit Discovery 3.1"
-            },
-            {
-              "name": "Nanit Smart Home (Nanit 3.1 based)"
-            },
-            {
-              "name": "Nanit Smart Home (Nanit 3.3 based)"
-            }
-          ]
-        },
-        {
-          "name": "Nanit",
-          "architecture": "avr",
-          "version": "0.1.1",
-          "category": "Contributed",
-          "deprecated": true,
-          "help": {
-            "online": "${HELP_ONLINE}"
-          },
-          "url": "${HOST}/${FILE_PATH}${FILE_NAME}",
-          "archiveFileName": "${FILE_NAME}",
-          "checksum" : "SHA-256:${SHA256}",
-          "size" : "${FILE_SIZE}",
-          "boards": [
-            {
-              "name": "Nanit Discovery 2.0"
-            },
-            {
-              "name": "Nanit Discovery 3"
-            },
-            {
-              "name": "Nanit Discovery 3.1"
-            },
-            {
-              "name": "Nanit Smart Home (Nanit 3.1 based)"
-            },
-            {
-              "name": "Nanit Smart Home (Nanit 3.3 based)"
-            }
           ]
         }
       ]

@@ -132,6 +132,7 @@ jobs:
           # Megacore треба зробити форк
           git submodule add https://github.com/MCUdude/MegaCore
           git submodule add https://github.com/adafruit/Adafruit-GFX-Library
+          git submodule add https://github.com/esp8266/Arduino.git ESP8266
           #git submodule update --init --recursive
           # Обраховуємо додадкові шляхи
 
@@ -142,15 +143,20 @@ jobs:
           MEGACORE_CORE_PATH="${MEGACORE_PATH}/avr/cores/MCUdude_corefiles"
 
           PINS_PATH="./Nanit/variants/Nanit"
+          FlyN_PATH="./Nanit/variants/FlyN"
           PINS_ARDUINO="pins_arduino.h"
           # Створюємо шлях для заголовчного файлц визначення пінів
           mkdir -p ${PINS_PATH}
+          mkdir -p ${FlyN_PATH}
           #git submodule add https://github.com/NanitRobot/hex "${NANIT_PATH}/bootloaders"
           mkdir -p "${NANIT_PATH}/bootloaders" 
+          # boot loaders ESP
 
           cp binary/*.hex "${NANIT_PATH}/bootloaders/"
-          # Копіюємо файл
-          cp -ruf ./MegaCore/avr/variants/100-pin-arduino-mega/pins_arduino.h ${PINS_PATH}/${PINS_ARDUINO}
+          # Копіюємо файл MegaCore
+          cp -ruf ./MegaCore/avr/variants/100-pin-arduino-mega/${PINS_ARDUINO} ${PINS_PATH}/${PINS_ARDUINO}
+
+          cp -ruf ./ESP8266/variants/nodemcu/${PINS_ARDUINO} ${FlyN_PATH}/${PINS_ARDUINO}
           # Бібліотеки 
           # TODO зробити красиво в циклі
           mkdir -p ${NANIT_LIBRARY_PATH}
@@ -184,9 +190,37 @@ jobs:
           # Прибираємо за собою
           rm -fr ${NANIT_PATH}
 
-          git submodule deinit -f MegaCore Adafruit-GFX-Library # Nanit/bootloaders
+          echo "========================================================"
+          echo "ESP BEGIN"
+          echo "========================================================"
+          mkdir -p ./Nanit/
+          #ESP8866
+          #bootloaders
+          cp -ruf ./ESP8266/bootloaders ./Nanit/bootloaders
+          #core
+          cp -ruf ./ESP8266/cores/esp8266/ ./Nanit/cores
+          #docs
+          cp -ruf ./ESP8266/doc ./Nanit/doc
+          #libraries
+          # cp -ruf ./ESP8266/libraries/ ./Nanit/libraries
+          #package
+          cp -ruf ./ESP8266/package ./Nanit/package
+          #tests
+          cp -ruf ./ESP8266/tests ./Nanit/tests
+          #tools
+          cp -ruf ./ESP8266/tools ./Nanit/tools
+          echo "========================================================"
+          echo "ESP END"
+          echo "========================================================"
+
+          zip -qq -r NanitESP.zip ${NANIT_PATH}
+
+          rm -fr ${NANIT_PATH}
+
+          git submodule deinit -f MegaCore Adafruit-GFX-Library ESP8266 # Nanit/bootloaders
           git rm -fr ${MEGACORE_PATH}
           git rm -fr ./Adafruit-GFX-Library
+          git rm -fr ./ESP8266
 
 
           git submodule deinit -f IDE
@@ -194,7 +228,7 @@ jobs:
 
     # 10) Генеруємо пакет
       - name: Make package_index.json
-        run: sh ./MakePackageJson.sh ${GITHUB_REPOSITORY} $(sha256sum NanitCore.zip)
+        run: sh ./MakePackageJson.sh ${GITHUB_REPOSITORY} $(sha256sum NanitCore.zip) $(sha256sum NanitESP.zip)
       
     # 11) Build site
 
