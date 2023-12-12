@@ -191,6 +191,182 @@
  * 
  * @endif
  * 
+ * 
+ * @if English
+ * 
+ * @else
+ * Тут знаходяться прошивки для ```Nanit``` які йдуть по замовчуванню.
+ * Якщо, в процесі вивчення програмування, ви не змогли самостійно написати алгоритми поведінки, які реалізовано нами і вам хочеться погратися з режимами які для вас написали творці та автори, `Nanit` ви можете відновити їх за допомомогю функцій IDE Arduino, або скориставшись спеціальною утилітою
+ * @endif 
+ * 
+ * @if English
+ * 
+ * @else
+ * - [Дискавері](./nanite_v3.1.ino.hex)
+ * - [Розумний будинок](./ud_v3.1.ino.hex) 
+ * @endif 
+ * 
+ * <div class="tabbed">
+ * <ul>
+ *  <li> <b class="tab-title">IDE 1.8.x</b>
+ * IDE OLD
+ *  </li>
+ *  <li> <b class="tab-title">IDE 2.x</b>
+ * IDE NEW
+ *  </li>
+ *  <li> <b class="tab-title">CLI</b>
+ *  Для відновлення прошивки за-замовчуванням без використання IDE Arduino на вашому ПК має бути встановлений додаток ```avrdude``` і налаштовані всі драйвери та залежності
+ *  
+ *  __УВАГА ця комада валідна тільки для ```LinuxOS```__
+ * 
+ * ```zsh
+ * avrdude -c wiring -p m2560  -U flash:w:./NanitInfo.ino.hex:i -P /dev/ttyUSB0
+ * ```
+ *  __Пояснення__
+ * 
+ *  Запускаємо `avrdude` з використанням вбудованого програматора (`wiring`) для мікроконтроллера __ATmega2560__ запису у флеш пам'ять вмісту файлу [NanitInfo.ino.hex](./NanitInfo.ino.hex), який містить виконуваний код у форматі  IntelHex `:i` через порт 
+ * 
+ * Запис бутлоадера
+ * 
+ * __УВАГА__ не намагайтеся записати мікропрограму завантажувача через вбудований програматор. Для запису бутлоедера потрібен доступ до шини `ISP` через будь-який сторонній програматор.
+ * 
+ * ![ISP](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/ISP_Nanit.png)
+ * 
+ * Для запису мікропрограми завантажувача потрібен один з файлів
+ * 
+ * [Дискавері з бутлоадером](./nanite_v3.1.with_bootloader.hex)
+ * [NanitInfo з бутлоадером](./NanitInfo.ino.with_bootloader.hex)
+ *
+ * 
+ * Для запису програми на плату `Nanit` потрібно використовути утиліту `avrdude`.
+
+```zsh
+ avrdude -c usbtiny -p m2560 -Ulock:w:0x3F:m  -U efuse:w:0xFD:m  -U hfuse:w:0xD8:m  -U lfuse:w:0xFF:m  -U flash:w:NanitInfo.ino.with_bootloader.hex:i -b 152000
+ ```
+
+ В даному прикладі використовується `usbtiny`. Разом з прогрмамуванням бутлоадера втсановлюються необхідні ф'юзбіти
+
+
+|   Fuse  | Value|
+|:-------:|:----:|
+| lock    | 0x3F |
+| hfuse   | 0xD8 |
+| lfuse   | 0xFF |
+| efuse   | 0xFD |
+
+Підтримувані програматори
+
+
+Щоб дізнатися пітримувані програматори вашою утилітою для запису бутлоадера потрібно  ввести команду
+
+```zsh
+ avrdude -c what
+```
+
+<!--
+Ф'ЮЗ-БІТИ для лед кільця
+========================
+
+|   Fuse  | Value|
+|:-------:|:----:|
+| lock    | 0x3F |
+| hfuse   | 0xDC |
+| lfuse   | 0xE1 |
+| efuse   | 0xFE |
+
+-->
+ *```zsh
+ *  avrdude -c usbtiny -p m2560 -Ulock:w:0x3F:m -U efuse:w:0xFE:m -U hfuse:w:0xDC:m -U lfuse:w:0xE1:m -U flash:w:LedRing_v0.9.ino.hex:i
+ * ```
+ * 
+ * </li>
+ * </ul>
+ * </div>
+ * 
+ * @if English
+ * 
+ * @else
+ * 
+ * @endif 
+ * 
+ * @if English
+ * 
+ * @else
+ * 
+ * @endif 
+ * 
+ * @if English
+ * 
+ * @else
+ * 
+ * @endif 
+ * 
+ * @if English
+ * 
+ * @else
+ * 
+ * @endif 
+ * 
+ * @if English
+ * 
+ * @else
+ * 
+ * @endif 
+ * 
+ * @if English
+ * 
+ * @else
+ * 
+ * @endif 
+ * 
+ * @if English
+ * 
+ * @else
+ * 
+ * @endif 
+ * 
+ * @if English
+ * 
+ * @else
+ * 
+ * @endif 
+ * 
+ * @if English
+ * 
+ * @else
+ * 
+ * @endif 
+ * 
+ * @if English
+ * 
+ * @else
+ * 
+ * @endif 
+ * 
+ * @if English
+ * 
+ * @else
+ * 
+ * @endif 
+ * 
+ * @if English
+ * 
+ * @else
+ * 
+ * @endif 
+ * 
+ * @if English
+ * 
+ * @else
+ * 
+ * @endif 
+ * 
+ * @if English
+ * 
+ * @else
+ * 
+ * @endif
+ * 
  * [NanitInfo.ino.with_bootloader.hex](https://nanitrobot.github.io/NanitLib/binary/NanitInfo.ino.with_bootloader.hex)
  * 
  * [NanitInfo.ino.hex](https://nanitrobot.github.io/NanitLib/binary/NanitInfo.ino.hex)

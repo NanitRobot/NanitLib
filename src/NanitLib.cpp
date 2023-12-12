@@ -85,7 +85,12 @@ void NanitInfo() {
   START_NANIT.Display.setCursor(10, 70);
   START_NANIT.Display.print("Bat. " + String(START_NANIT.getBatteryPower()) +
                             "%");
-  START_NANIT.Display.setCursor(10, 120);
+
+  START_NANIT.Display.setCursor(5, 120);
+  START_NANIT.Display.setTextSize(0);
+  START_NANIT.Display.print(__DATE__ " " __TIME__);
+
+  START_NANIT.Display.setCursor(15, 110);
   START_NANIT.Display.setTextSize(0);
   START_NANIT.Display.print("SN " + getSerialNumber());
   START_NANIT.BuildinRGB(0xff);

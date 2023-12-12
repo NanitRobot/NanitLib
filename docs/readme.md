@@ -1,4 +1,4 @@
-# NanitLib Library
+# NanitLib
 
 This library is designed to work with Nanit boards: (Nanit Smart Home, Nanit Drone, Nanit Udron and Nanit Discovery). This library allows you to control the built-in display, two-channel DC motor driver. Monitor the state of the built-in Lithium-Ion battery.
 With this library, you can program all Nanit boards in the Arduino IDE.
