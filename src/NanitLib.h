@@ -90,11 +90,11 @@
 
 /**
  * Обмежений тираж Лед кільце отримувало сигнал з вбудованого світлодіоду
-*/
+ */
 #ifndef LED_RING_LIMIT_EDITION
-/** 
+/**
  * @if English
- * @brief The pins through which Nanit transmits commands to the LED ring 
+ * @brief The pins through which Nanit transmits commands to the LED ring
  * @else
  * @brief Піни через які `Nanit` передає команди для Лед кільця
  * @endif
@@ -104,17 +104,16 @@
 #define LED_RING_TX (BUILDIN_STRIP_LED)
 #endif
 
-/** 
+/**
  * @if English
  * @brief The pins through which Nanit receives data from the LED ring
  * @else
- * @brief Піни через які `Nanit` отримує дані з лед кільця 
+ * @brief Піни через які `Nanit` отримує дані з лед кільця
  * @endif
  */
 #define LED_RING_RX (38)
 
-
-/** 
+/**
  * @if English
  * @brief Data exchange speed between the LED ring and `Nanit`
  * @details The LED ring operates on an external `RC` oscillator. The stability
@@ -479,8 +478,7 @@
  */
 #define P3_1 (71)
 #else
-#warning Install Nanit board manager
-#warning https://nanitrobot.github.io/NanitLib/package_NanitCore_index.json
+#warning Install Nanit board manager https://nanitrobot.github.io/NanitLib/package_NanitCore_index.json
 #endif
 
 /** @}*/
@@ -849,20 +847,21 @@
 #elif !defined(LED_BUILTIN)
 
 /** @if English
- * @brief We will consider `LED_BUILTIN` as the display backlight in the 
- * context of the Nanit board. This means you can use `LED_BUILTIN` to control 
+ * @brief We will consider `LED_BUILTIN` as the display backlight in the
+ * context of the Nanit board. This means you can use `LED_BUILTIN` to control
  * the backlight of the Nanit's display.
- * 
- * @note In the library, the `LED_BUILTIN` value has been redefined to ensure 
- * compatibility between Arduino sketches and the Nanit board. This allows you 
- * to use `LED_BUILTIN` in your Arduino sketches, and it will work with the 
- * `Nanit` board, making it easier to switch between different Arduino-compatible 
- * boards and maintain compatibility. 
+ *
+ * @note In the library, the `LED_BUILTIN` value has been redefined to ensure
+ * compatibility between Arduino sketches and the Nanit board. This allows you
+ * to use `LED_BUILTIN` in your Arduino sketches, and it will work with the
+ * `Nanit` board, making it easier to switch between different
+ * Arduino-compatible boards and maintain compatibility.
  * @else
  * @brief Будемо вважати, що `LED_BUILTIN` це підсвідка дисплею.
- * 
- * @note В бібліотеці ми перевизначили значення `LED_BUILTIN` для збереження 
- * сумісності скетчів Ардуїно з нашою платою і навпаки (`Nanit` зі сакетчами `Arduino`) 
+ *
+ * @note В бібліотеці ми перевизначили значення `LED_BUILTIN` для збереження
+ * сумісності скетчів Ардуїно з нашою платою і навпаки (`Nanit` зі сакетчами
+ * `Arduino`)
  * @endif
  */
 #define LED_BUILTIN (TFT_BL)
@@ -1218,12 +1217,12 @@ bool digitalRead(const uint8_t pin, const uint16_t maxValue,  //
 /** @if English
  * @namespace NanitRobot is a namespace and a set of functions supported by
  * Nanit boards
- * 
+ *
  * @brief NanitRobot is a namespace and a set of functions supported by
  * Nanit boards
  * @else
  *  @namespace NanitRobot Простір імен та функцій які підтримуються платами
- * 
+ *
  *  @brief NanitRobot Простір імен та функцій які підтримуються платами
  * Nanit
  * @endif
@@ -1283,7 +1282,7 @@ class Nanit {
   };
   /**
    * @endcond
-   * 
+   *
    * @brief Get the memory address of the created Nanit class object
    * @else
    * @brief Отримати адресу розміщення створеного об'єкту класу Nanit
@@ -1401,7 +1400,7 @@ class Nanit {
 
   /**
    * @endcond
-   * 
+   *
    * @brief Determining the color of the built-in LED
    * @else
    * @brief Визначення кольору світіння вбудованого світлодіода
@@ -1468,12 +1467,12 @@ class Nanit {
     if (!Serial) Serial.begin(NANIT_SERIAL_SPEED);
     Serial.print("Nanit initialise...\nSerial number: ");
     {
-      const uint32_t _s_n_=getSerialNum();
-      if(_s_n_==0xFFFFFFFF)
-    Serial.println("TMMDDYYNNN");
-    else 
-    Serial.println(_s_n_);
-      }
+      const uint32_t _s_n_ = getSerialNum();
+      if (_s_n_ == 0xFFFFFFFF)
+        Serial.println("TMMDDYYNNN");
+      else
+        Serial.println(_s_n_);
+    }
     _strip_led.begin();
 
     Display.initR(INITR_BLACKTAB);
@@ -1515,7 +1514,7 @@ class Nanit {
 #define PIN_COUNT  (6)
 #define NO_CABLE   ((1 << PIN_COUNT) - 1)  ///< мітка
 #define GOOD_CABLE (0)  ///< Мітка успішного тесту кабелю
-/** @endcond */
+                        /** @endcond */
         // Конфігурування  відображення
         const uint16_t               // Кольори
             TextColor{0x0},          // тексту
@@ -1542,9 +1541,9 @@ class Nanit {
 
         Display.setCursor(0, 0);
         Display.print(CHAR);
-        const char CharWitdh{Display.getCursorX()};
+        const auto CharWitdh{Display.getCursorX()};
         Display.println();
-        const char CharHeiht{Display.getCursorY()};
+        const auto CharHeiht{Display.getCursorY()};
 
         Display.fillRect(0, 0, CharWitdh * 2, CharHeiht, _background_color);
         Display.setCursor(0, 0);
