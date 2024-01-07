@@ -1076,6 +1076,21 @@ bool isRightLine(uint8_t sen = k_adap);
  */
 bool isLeftLine(uint8_t sen = k_adap);
 
+/**
+ * @if English
+ * 
+ * @else 
+ * 
+ * @param pulse  Пін який генерує пульсацію
+ * @param listen Пін на якому очікуємо пульсацію
+ * @param repeat Кількість пульсацій
+ * @param wait Затримка в мікросекундах
+ * @return true Успішно отримані пульси
+ * @return false Пульсацію не отримано
+ * @endif
+ */
+bool pulseAndListen(uint8_t pulse, uint8_t listen, uint8_t repeat=0xF, uint16_t wait=500);
+
 void Nanit_Servo_Rotate(byte angle);
 
 void Nanit_ActiveBuzz_Scream(byte times, int duration);
@@ -1339,7 +1354,7 @@ class Nanit {
    * @return float
    */
   float getBatteryVoltage() const;
-  /**
+  /**repeat & 0b1
    * @brief Get the Battery Voltage object
    *
    * @if English
@@ -1444,6 +1459,11 @@ class Nanit {
    */
   void BuildinRGB(uint32_t color, uint8_t brightness = 255);
   Servo ServoMotor;
+enum{
+  NO_SUB_PROG=0,
+  CABLE_SUB_PROG,
+  PIN_SUB_PROG
+};
 
  private:
   /** @if English
@@ -1669,6 +1689,13 @@ class Nanit {
    */
 
   uint8_t WireManipulate() const;
+
+/**
+ * @brief 
+ * 
+ * @return int8_t 
+ */
+  int8_t ApproofMode();
   /*
    * @brief Destroy the Nanit object
    *

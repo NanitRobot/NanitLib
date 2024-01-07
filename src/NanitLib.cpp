@@ -11,7 +11,7 @@ Version getLibVersion() {
 }
 
 bool digitalRead(const uint8_t pin, const uint16_t maxValue,
-                        const uint16_t minValue = 0) {
+                 const uint16_t minValue = 0) {
   static bool PrevState[NUM_DIGITAL_PINS]{};
   const uint16_t readedValue = analogRead(pin);
   bool State;
@@ -27,8 +27,7 @@ bool digitalRead(const uint8_t pin, const uint16_t maxValue,
       PrevState[pin] = false;
       return false;
     }
-  }
-  else {
+  } else {
     if (readedValue <= minValue)
       return false;
     else {
@@ -40,7 +39,7 @@ bool digitalRead(const uint8_t pin, const uint16_t maxValue,
 
 String getSerialNumber() {
   if (!checkSerialNum(getSerialNum())) {
-    //Запрошення на дисплей підключити до серійного порту
+    // Запрошення на дисплей підключити до серійного порту
     START_NANIT.Display.setCursor(10, 100);
     START_NANIT.Display.setTextSize(0);
     START_NANIT.Display.print("Please open terminal");
@@ -66,10 +65,10 @@ String getSerialNumber() {
       return String(SerialNumber);
     }
   }
-  
+
   String StringSerialNumber = String(getSerialNum());
-  while (StringSerialNumber.length() < 10) 
-  StringSerialNumber = "0" + StringSerialNumber;
+  while (StringSerialNumber.length() < 10)
+    StringSerialNumber = "0" + StringSerialNumber;
   return StringSerialNumber;
 };
 
@@ -139,7 +138,7 @@ bool Nanit_Sound_IsSoundDetected(int sound_limit) {
 }
 
 bool isClapping() {
- uint16_t signal = analogRead(P5_2);
+  uint16_t signal = analogRead(P5_2);
   delayMicroseconds(300);
   static float                     //
       MiddleLine = signal,         // Рівень тишини
@@ -154,62 +153,61 @@ bool isClapping() {
   MiddleLine += (signal - MiddleLine) * k;
 
   if (signal > MiddleLine) SoundBorder += (signal - SoundBorder) * k2;
-  const float//
-   KoefNoClap = 4,// Коефіцієнт не чутливості
-   shift = 20;
-  float //
-  top = MiddleLine + (SoundBorder - MiddleLine) * KoefNoClap + shift,// Верхній поріг
-  butt = MiddleLine - (SoundBorder - MiddleLine) * KoefNoClap - shift;// Нижній поріг
+  const float          //
+      KoefNoClap = 4,  // Коефіцієнт не чутливості
+      shift = 20;
+  float  //
+      top = MiddleLine + (SoundBorder - MiddleLine) * KoefNoClap +
+            shift,  // Верхній поріг
+      butt = MiddleLine - (SoundBorder - MiddleLine) * KoefNoClap -
+             shift;  // Нижній поріг
   return (signal > top) or (signal < butt);
 }
 
-
-bool isLight(){
-  uint8_t light = analogRead(P10_2)>>2;
+bool isLight() {
+  uint8_t light = analogRead(P10_2) >> 2;
   static uint8_t min_light = light, max_light = light;
   min_light = min(min_light, light);
   max_light = max(max_light, light);
 
   constexpr uint8_t k_adaptation = 32;
-  if((max_light - min_light)>k_adaptation){
-    min_light+=1;
-    max_light-=1;
+  if ((max_light - min_light) > k_adaptation) {
+    min_light += 1;
+    max_light -= 1;
   }
   uint8_t medium = min_light + ((max_light - min_light) >> 1);
-  return light>medium;
+  return light > medium;
 }
 
-
-bool isRightLine(uint8_t sen=k_adap){
-  uint8_t light = analogRead(P10_2)>>2;
+bool isRightLine(uint8_t sen = k_adap) {
+  uint8_t light = analogRead(P10_2) >> 2;
   static uint8_t min_light = light, max_light = light;
   min_light = min(min_light, light);
   max_light = max(max_light, light);
 
-  if((max_light - min_light)>sen){
-    min_light+=1;
-    max_light-=1;
+  if ((max_light - min_light) > sen) {
+    min_light += 1;
+    max_light -= 1;
   }
   uint8_t medium = min_light + ((max_light - min_light) >> 1);
 
-  return light<medium;
+  return light < medium;
 }
 
-bool isLeftLine(uint8_t sen=k_adap){
-  uint8_t light = analogRead(P10_1)>>2;
+bool isLeftLine(uint8_t sen = k_adap) {
+  uint8_t light = analogRead(P10_1) >> 2;
   static uint8_t min_light = light, max_light = light;
   min_light = min(min_light, light);
   max_light = max(max_light, light);
 
-  if((max_light - min_light)>sen){
-    min_light+=1;
-    max_light-=1;
+  if ((max_light - min_light) > sen) {
+    min_light += 1;
+    max_light -= 1;
   }
   uint8_t medium = min_light + ((max_light - min_light) >> 1);
 
-  return light<medium;
+  return light < medium;
 }
-
 
 /*
 bool BUTTON_(){
@@ -407,7 +405,7 @@ void ::NanitRobot::Nanit::DrawBattGuage(
                          _background_color);
 
         Display.fillRect(X - 1 + map(Power, 0, 100, SIZE_Y - 1, 0) - 2, Y,
-                         map(Power, 100, 0, SIZE_Y , 1), 10,
+                         map(Power, 100, 0, SIZE_Y, 1), 10,
                          color);  // cherged
 
         Display.drawLine(X - 4, Y + 3, X - 4, Y + 6, _guage_line_color);  // |1
@@ -459,19 +457,10 @@ uint8_t ::NanitRobot::Nanit::WireManipulate() const {
       NearGND{Near};
 
   // ПЕРША ЖИЛА
-  {  // todo дописатииманіпуляцію жилами
     // маніпулюємо лінією П5_1
-    pinMode(P5_1, OUTPUT);
-    // і слухаємо лінію П6_4
-    pinMode(P6_4, INPUT_PULLUP);
-    // digi
-    // digitalWrire(P5_1,0);
-    delay(1);
-    // якщо сигнал слідує за маніпуляцією лінія ціла
-    if (digitalRead(P6_4))
+    if (!pulseAndListen(P5_1, P6_4))
       // інакше позначаємо її як бита
       result |= 1 << 0;
-  }
 
   // ДРУГА ЖИЛА
   // Читаємо аналогий сигнал П5_2 якщо сигнал близький до GND лінія ціла
@@ -486,13 +475,10 @@ uint8_t ::NanitRobot::Nanit::WireManipulate() const {
     result |= 1 << 2;
 
   // ЧЕТВЕРТА ЖИЛА
-  {
-    pinMode(P5_4, OUTPUT);
-    pinMode(P6_1, INPUT_PULLUP);
-    // digitalWrire(33,0);
-    delay(1);
-    if (digitalRead(P6_1)) result |= 1 << 3;
-  }
+  // маніпулюємо лінією
+  if (!pulseAndListen(P5_4, P6_1))
+    // інакше позгачаємо її битою
+    result |= 1 << 3;
 
   // П'ЯТА ЖИЛА
   // Читаємо аналогий сигнал П6_2 якщо сигнал близький до GND лінія ціла
@@ -506,4 +492,27 @@ uint8_t ::NanitRobot::Nanit::WireManipulate() const {
     // інакше позгачаємо її битою
     result |= 1 << 5;
   return result;
+};
+
+bool pulseAndListen(uint8_t pulse, uint8_t listen, uint8_t repeat = 0xF,
+                    uint16_t wait = 500) {
+  bool result{false};//< Звинувачуємо кабель винним у тому що він не працює
+  pinMode(pulse, OUTPUT);
+  pinMode(listen, INPUT);
+  for (uint8_t it{0}; it != repeat; ++it) {
+    result = false;
+    digitalWrite(pulse, it & 1); // даємо пульс
+    delayMicroseconds((wait >= 500) ? wait : 500); // ждемо
+    if (digitalRead(listen) != bool(it & 1)) break; // якщо пульсу нема то закінчуємо
+    result = true;// якщо був пульс то кабель хороший
+  }
+  // тут виведемо результат
+  // якщо жила ціла буде затримка і отримаємо ОК
+  // якщо жила бита одразу сюди вилітаємо з фейлом
+  return result;
 }
+
+int8_t ::NanitRobot::Nanit::ApproofMode() {
+  int8_t result{};
+  return result;
+};
