@@ -38,7 +38,7 @@
  * @brief Pathc версія бібілотеки
  * @endif
  */
-#define NANIT_PATCH_VERSION (8)
+#define NANIT_PATCH_VERSION (9)
 
 /** @if English
  * @brief Serial port baud rate
