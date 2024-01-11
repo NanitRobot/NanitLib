@@ -64,7 +64,7 @@ cat <<EOF > "${OUT_FILE}"
         {
           "name": "Nanit",
           "architecture": "avr",
-          "version": "0.9.1",
+          "version": "0.9.2",
           "category": "Contributed",
           "help": {
             "online": "${HELP_ONLINE}"
@@ -97,7 +97,7 @@ cat <<EOF > "${OUT_FILE}"
         {
           "name": "Nanit",
           "architecture": "avr",
-          "version": "0.9",
+          "version": "0.9.1",
           "category": "Contributed",
           "help": {
             "online": "${HELP_ONLINE}"
