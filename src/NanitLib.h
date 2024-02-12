@@ -1485,7 +1485,10 @@ enum{
    */
   inline Nanit() : Display{Adafruit_ST7735(TFT_CS, TFT_DC, TFT_RES)} {
     if (!Serial) Serial.begin(NANIT_SERIAL_SPEED);
-    Serial.print("Nanit initialise...\nSerial number: ");
+    Serial.print(R"Sam4uk(
+====================================================  
+Nanit initialise...
+Serial number: )Sam4uk");
     {
       const uint32_t _s_n_ = getSerialNum();
       if (_s_n_ == 0xFFFFFFFF)
