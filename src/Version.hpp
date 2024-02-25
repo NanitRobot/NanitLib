@@ -1,13 +1,13 @@
 /**
  * @file Version.hpp
  * @author Sam4uk
- * 
+ *
  * @if English
  * @brief Classes that allow tracking the versions of libraries and boards.
  * @else
  * @brief Класи які дозволяють відслідковувати версії бібіліотеки та плати
  * @endif
- * @version 0.1
+ * @version 0.2
  *
  * @date 27-03-23
  * @copyright Copyright (c) 2023
@@ -25,6 +25,14 @@
  *
  */
 class Version {
+  enum {
+    MAJOR,  ///< індекс  поля, яке містить головну версію
+    MINOR,  ///< індекс  поля, яке містить мінорну версію
+    PATCH,  ///< індекс  поля, яке містить патч версію
+    TWEAK,
+    COUNT
+  };
+
  public:
   /**
    * @brief Construct a new Version object
@@ -34,36 +42,41 @@ class Version {
    * @param patch Визначає патч версію
    * @param tweak
    */
-  Version(uint16_t major = {}, uint16_t minor = {}, uint16_t patch = {}, uint16_t tweak = {})
-      : _major{major}, _minor{minor}, _patch{patch},_tweak{tweak} {};
-  
+  Version(uint16_t major = {}, uint16_t minor = {}, uint16_t patch = {},
+          uint16_t tweak = {}) {
+    _ver[MAJOR] = major;
+    _ver[MINOR] = minor;
+    _ver[PATCH] = patch;
+    _ver[TWEAK] = tweak;
+  };
+
   /**
    * @brief Отримати Версію
    *
    * @return uint16_t
    */
-  uint16_t getMajor() const { return _major; }
-  
+  uint16_t getMajor() const { return _ver[MAJOR]; }
+
   /**
    * @brief Отримати мінорну версію
    *
    * @return uint16_t
    */
-  uint16_t getMinor() const { return _minor; }
-  
+  uint16_t getMinor() const { return _ver[MINOR]; }
+
   /**
    * @brief Отримати патч версію
    *
    * @return uint16_t
    */
-  uint16_t getPatch() const { return _patch; }
-  
+  uint16_t getPatch() const { return _ver[PATCH]; }
+
   /**
    * @brief Отримати патч версію
    *
    * @return uint16_t
    */
-  uint16_t getTweak() const { return _tweak; }
+  uint16_t getTweak() const { return _ver[TWEAK]; }
   /** @if English
    * @else
    * @todo TODO rule of 3
@@ -73,10 +86,10 @@ class Version {
    * @brief Операця порівняння \b <
    */
   friend inline bool operator<(Version lhs, Version rhs) {
-    if (lhs._major < rhs._major) return true;
-    if (lhs._minor < rhs._minor) return true;
-    if (lhs._patch < rhs._patch) return true;
-    return (lhs._tweak < rhs._tweak);
+    for (uint8_t it{MAJOR}; it < COUNT; ++it) {
+      if (lhs._ver[it] < rhs._ver[it]) return true;
+    }
+    return false;
   }
   /**
    * @brief Операця порівняння \b >
@@ -99,8 +112,11 @@ class Version {
    */
 
   friend inline bool operator==(Version lhs, Version rhs) {
-    return (lhs._major == rhs._major) && (lhs._minor == rhs._minor) &&
-           (lhs._patch == rhs._patch) && (lhs._tweak == rhs._tweak);
+    bool result{true};
+    for (uint8_t it{MAJOR}; it < COUNT; ++it) {
+      result = result && (lhs._ver[it] == rhs._ver[it]);
+    }
+    return result;
   }
   /**
    * @brief Операця порівняння \b !=
@@ -113,29 +129,41 @@ class Version {
    * @brief Ковертація версії у рядковий тип
    *
    * @details Якщо версія 0.0.0 то метод повертає рядок що повідомляє про
-   * демонстраційну версію. Якщо версіювання мість заввершуючі нулі то вони не
+   * демонстраційну версію. Якщо версіювання мість завершуючі нулі то вони не
    * виводяться.
    *
    * @param ver
    * @return String
    */
   friend String StrVersion(Version ver) {
-    if (!(ver._major || ver._minor || ver._patch)) return "DEMO";
-    String result{ver._major};
-    if (0 != ver._minor) result += '.' + String(ver._minor);
-    if (0 != ver._patch) {
-      if (0 == ver._minor) result += ".0";
-      result += '.' + String(ver._patch);
+    /**
+     * Перевірка чи це не демо
+     */
+    {
+      bool is_demo{true};
+      for (uint8_t it{MAJOR}; it < COUNT; ++it) {
+        is_demo = is_demo && (0 == ver._ver[it]);
+      }
+      if (is_demo) return "DEMO";
+    }
+
+    String result{""};
+    {
+      bool print_zero{false};
+      for (uint8_t it{COUNT}; it != MAJOR; --it) {
+        if (0 != ver._ver[it - 1] or print_zero) {
+          result = String((it <= MINOR) ? "" : ".") + String(ver._ver[it - 1]) +
+                   result;
+          print_zero = true;
+        }
+      }
     }
     return result;
   };
 
  private:
   uint16_t  //
-      _major,  ///< приватне поле яке містить головну версію
-      _minor,  ///< приватне поле яке містить мінорну версію
-      _patch,  ///< приватне поле яке містить патч версію
-      _tweak;
+      _ver[COUNT];
   /// @endcond
 };
 #endif
