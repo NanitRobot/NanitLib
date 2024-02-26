@@ -43,22 +43,31 @@ cat <<EOF > "${OUT_FILE}"
         "online": "${HELP_ONLINE}"
       },
       "platforms": [
-        {
-          "name": "esp8266",
-          "architecture": "esp8266",
-          "version": "0.0.1",
+                {
+          "name": "Nanit",
+          "architecture": "avr",
+          "version": "0.9.3",
           "category": "Contributed",
           "help": {
             "online": "${HELP_ONLINE}"
           },
-          "url": "${HOST}/${FILE_PATH}${FILE_NAME_2}",
-          "archiveFileName": "${FILE_NAME_2}",
-          "checksum" : "SHA-256:${SHA256_2}",
-          "size" : "${FILE_SIZE_2}",
+          "url": "${HOST}/${FILE_PATH}${FILE_NAME}",
+          "archiveFileName": "${FILE_NAME}",
+          "checksum" : "SHA-256:${SHA256}",
+          "size" : "${FILE_SIZE}",
           "boards": [
             {
-              "name": "FlyN 1.0"
-            }
+              "name": "Nanit Discovery 2.0"
+            },
+            {
+              "name": "Nanit Discovery 3"
+            },
+            {
+              "name": "Nanit Discovery 3.x"
+            },
+            {
+              "name": "Nanit Master (Nanit 3.x based)"
+            } 
           ]
         },
         {

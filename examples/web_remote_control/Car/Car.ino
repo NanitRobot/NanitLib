@@ -17,10 +17,10 @@ void setup() {
   Serial.begin(9600);   // Ініціалізація порту Serial (для виводу дебаг-інформації)
   Serial3.begin(9600);  // Ініціалізація порту Serial3 (порт UART)
 
-  pinMode(40, OUTPUT);
-  digitalWrite(40, 1);
+  pinMode(MOTOR_ENABLE, OUTPUT);
+  digitalWrite(MOTOR_ENABLE, HIGH);
   pinMode(P12_2, OUTPUT);
-  digitalWrite(P12_2, 1);
+  digitalWrite(P12_2, HIGH);
   pinMode(P1_3, OUTPUT);
   pinMode(P1_4, OUTPUT);
   pinMode(P12_3, OUTPUT);
@@ -34,13 +34,13 @@ void setup() {
   pinMode(red_led, OUTPUT);
   pinMode(grn_led, OUTPUT);
 
-  digitalWrite(P1_3, 0);
-  digitalWrite(P1_4, 0);
-  digitalWrite(P12_3, 0);
-  digitalWrite(P12_4, 0);
+  digitalWrite(P1_3, LOW);
+  digitalWrite(P1_4, LOW);
+  digitalWrite(P12_3, LOW);
+  digitalWrite(P12_4, LOW);
   noTone(buzzPin);
-  digitalWrite(buzzPin, 1);
-  digitalWrite(trigPin, 0);
+  digitalWrite(buzzPin, HIGH);
+  digitalWrite(trigPin, LOW);
 }
 
 void loop() {
@@ -88,33 +88,33 @@ void loop() {
 
     if (y >= 127) {
       analogWrite(MOTOR1_A, z);
-      digitalWrite(MOTOR1_B, 0);
+      digitalWrite(MOTOR1_B, LOW);
       analogWrite(MOTOR2_A, z);
-      digitalWrite(MOTOR2_B, 0);
+      digitalWrite(MOTOR2_B, LOW);
       Serial.println("DOWN");
     } else if (y <= -127) {
-      digitalWrite(MOTOR1_A, 0);
+      digitalWrite(MOTOR1_A, LOW);
       analogWrite(MOTOR1_B, z);
-      digitalWrite(MOTOR2_A, 0);
+      digitalWrite(MOTOR2_A, LOW);
       analogWrite(MOTOR2_B, z);
       Serial.println("UP");
     } else if (x >= 127) {
-      digitalWrite(MOTOR1_A, 0);
+      digitalWrite(MOTOR1_A, LOW);
       analogWrite(MOTOR1_B, z);
-      digitalWrite(MOTOR2_A, 0);
-      digitalWrite(MOTOR2_B, 0);
+      digitalWrite(MOTOR2_A, LOW);
+      digitalWrite(MOTOR2_B, LOW);
       Serial.println("LEFT");
     } else if (x <= -127) {
-      digitalWrite(MOTOR1_A, 0);
-      digitalWrite(MOTOR1_B, 0);
-      digitalWrite(MOTOR2_A, 0);
+      digitalWrite(MOTOR1_A, LOW);
+      digitalWrite(MOTOR1_B, LOW);
+      digitalWrite(MOTOR2_A, LOW);
       analogWrite(MOTOR2_B, z);
       Serial.println("RIGHT");
     } else if (abs(x) < 30 && abs(y) < 30) {
-      digitalWrite(MOTOR1_A, 0);
-      digitalWrite(MOTOR1_B, 0);
-      digitalWrite(MOTOR2_A, 0);
-      digitalWrite(MOTOR2_B, 0);
+      digitalWrite(MOTOR1_A, LOW);
+      digitalWrite(MOTOR1_B, LOW);
+      digitalWrite(MOTOR2_A, LOW);
+      digitalWrite(MOTOR2_B, LOW);
       Serial.println("STOP");
     }
 
@@ -124,7 +124,7 @@ void loop() {
       tone(buzzPin, 500);
       delay(50);
       noTone(buzzPin);
-      digitalWrite(buzzPin, 1);
+      digitalWrite(buzzPin, HIGH);
     }
 
     if (u == 0) servoMotor.write(0);   // Поворот на 0 градусів
@@ -151,10 +151,10 @@ void loop() {
 
 
 int distance(byte trggerPin, byte EchoPin) {
-  digitalWrite(trggerPin, 1);
+  digitalWrite(trggerPin, HIGH);
   delayMicroseconds(10);
-  digitalWrite(trggerPin, 0);
+  digitalWrite(trggerPin, LOW);
 
-  int cm = pulseIn(EchoPin, 1) / 58;
+  int cm = pulseIn(EchoPin, HIGH) / 58;
   return cm;
 }
