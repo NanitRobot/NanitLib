@@ -98,7 +98,15 @@ jobs:
     # 6)
       - name: Build UD
       # //TODO додати компліію розумного будинку
-        run: curl -fsSL https://raw.githubusercontent.com/NanitRobot/downloads/main/ud_v3.1.ino.hex -o binary/ud_v3.1.ino.hex
+        run: |
+          # Клонуємо скетч
+          git submodule add https://${{ secrets.NANIT_DISCOVERY_FULL }}@https://github.com/NanitRobot/ud_v3.1 UD
+          #__________________________ WiFi_______________________________
+          bin/arduino-cli compile -b arduino:avr:mega ./UD/ud_esp/ --build-properties "build.extra_flags=-DNANIT_USE_WiFi=1" -o "./binary/ud_v3.1.ino."
+          # Очищуємо
+          git submodule deinit -f UD
+          rm -fr ./NanitDiscovery
+          # curl -fsSL https://raw.githubusercontent.com/NanitRobot/downloads/main/ud_v3.1.ino.hex -o binary/ud_v3.1.ino.hex
 
     # 7) Компілюємо дискавері
 
