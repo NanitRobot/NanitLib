@@ -59,8 +59,8 @@ jobs:
         run: |
           bin/arduino-cli lib install "NanitLib" 
           bin/arduino-cli lib install "TM1637" 
-          bin/arduino-cli lib install "keypad" 
-          bin/arduino-cli lib install "PassWord"  
+          bin/arduino-cli lib install "Keypad" 
+          bin/arduino-cli lib install "Password"  
 
     # 6) Генеруємо документацію
       - name: Doxygen action
