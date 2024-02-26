@@ -54,10 +54,13 @@ jobs:
           bin/arduino-cli core install Nanit:avr
           bin/arduino-cli core install arduino:avr
 
-    # 5) Втановлюємо бібліотеку  
+    # 5) Втановлюємо бібліотеки  
       - name: Install NanitLib
         run: |
-          bin/arduino-cli lib install "NanitLib"  
+          bin/arduino-cli lib install "NanitLib" 
+          bin/arduino-cli lib install "TM1637" 
+          bin/arduino-cli lib install "keypad" 
+          bin/arduino-cli lib install "PassWord"  
 
     # 6) Генеруємо документацію
       - name: Doxygen action
@@ -92,7 +95,13 @@ jobs:
           rm -fr $(pwd)/binary/core $(pwd)/binary/libraries $(pwd)/binary/preproc $(pwd)/binary/sketch || echo "NO PATH"
           rm $(pwd)/binary/build.options.json $(pwd)/binary/includes.cache $(pwd)/binary/NanitInfo.ino.eep $(pwd)/binary/*.elf || echo "NO PATH"
 
-    # 6) Компілюємо дискавері
+    # 6)
+      - name: Build UD
+      # //TODO додати компліію розумного будинку
+        run: curl -fsSL https://raw.githubusercontent.com/NanitRobot/downloads/main/ud_v3.1.ino.hex -o binary/ud_v3.1.ino.hex
+
+    # 7) Компілюємо дискавері
+
       - name: Build Discovery
         run: |
           git submodule add https://${{ secrets.NANIT_DISCOVERY_FULL }}@github.com/NanitRobot/Nanit.git NanitDiscovery
@@ -117,12 +126,6 @@ jobs:
 
     # 7)   
       - run: rm -fr bin/arduino-cli 
-
-    # 8)
-      - name: Build UD
-      # //TODO додати компліію розумного будинку
-        run: curl -fsSL https://raw.githubusercontent.com/NanitRobot/downloads/main/ud_v3.1.ino.hex -o binary/ud_v3.1.ino.hex
-
 
     # 9) Готуємо нові файли      
       - name: PrepareFiles
@@ -196,37 +199,37 @@ jobs:
           # Прибираємо за собою
           rm -fr ${NANIT_PATH}
 
-          echo "========================================================"
-          echo "ESP BEGIN"
-          echo "========================================================"
-          mkdir -p ./Nanit/
-          #ESP8866
-          #bootloaders
-          cp -ruf ./ESP8266/bootloaders ./Nanit/bootloaders
-          #core
-          cp -ruf ./ESP8266/cores/esp8266/ ./Nanit/cores
-          #docs
-          cp -ruf ./ESP8266/doc ./Nanit/doc
-          #libraries
-          # cp -ruf ./ESP8266/libraries/ ./Nanit/libraries
-          #package
-          cp -ruf ./ESP8266/package ./Nanit/package
-          #tests
-          cp -ruf ./ESP8266/tests ./Nanit/tests
-          #tools
-          cp -ruf ./ESP8266/tools ./Nanit/tools
-          echo "========================================================"
-          echo "ESP END"
-          echo "========================================================"
+          # echo "========================================================"
+          # echo "ESP BEGIN"
+          # echo "========================================================"
+          # mkdir -p ./Nanit/
+          # #ESP8866
+          # #bootloaders
+          # cp -ruf ./ESP8266/bootloaders ./Nanit/bootloaders
+          # #core
+          # cp -ruf ./ESP8266/cores/esp8266/ ./Nanit/cores
+          # #docs
+          # cp -ruf ./ESP8266/doc ./Nanit/doc
+          # #libraries
+          # # cp -ruf ./ESP8266/libraries/ ./Nanit/libraries
+          # #package
+          # cp -ruf ./ESP8266/package ./Nanit/package
+          # #tests
+          # cp -ruf ./ESP8266/tests ./Nanit/tests
+          # #tools
+          # cp -ruf ./ESP8266/tools ./Nanit/tools
+          # echo "========================================================"
+          # echo "ESP END"
+          # echo "========================================================"
 
-          zip -qq -r NanitESP.zip ${NANIT_PATH}
+          # zip -qq -r NanitESP.zip ${NANIT_PATH}
 
-          rm -fr ${NANIT_PATH}
+          # rm -fr ${NANIT_PATH}
 
           git submodule deinit -f MegaCore Adafruit-GFX-Library ESP8266 # Nanit/bootloaders
           git rm -fr ${MEGACORE_PATH}
           git rm -fr ./Adafruit-GFX-Library
-          git rm -fr ./ESP8266
+          # git rm -fr ./ESP8266
 
 
           git submodule deinit -f IDE
