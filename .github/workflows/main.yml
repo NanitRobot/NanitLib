@@ -60,7 +60,8 @@ jobs:
           bin/arduino-cli lib install "NanitLib" 
           bin/arduino-cli lib install "TM1637" 
           bin/arduino-cli lib install "Keypad" 
-          bin/arduino-cli lib install "Password"  
+          bin/arduino-cli lib install "Password" 
+          bin/arduino-cli lib install "DHT sensor library"
 
     # 6) Генеруємо документацію
       - name: Doxygen action
