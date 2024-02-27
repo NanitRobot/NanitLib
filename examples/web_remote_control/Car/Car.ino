@@ -14,8 +14,8 @@ byte grn_led = P4_3;
 void setup() {
   servoMotor.attach(P11_4);
   Nanit_Base_Start();
-  Serial.begin(9600);   // Ініціалізація порту Serial (для виводу дебаг-інформації)
-  Serial3.begin(9600);  // Ініціалізація порту Serial3 (порт UART)
+  Serial.begin(57600);   // Ініціалізація порту Serial (для виводу дебаг-інформації)
+  Serial3.begin(57600);  // Ініціалізація порту Serial3 (порт UART)
 
   pinMode(MOTOR_ENABLE, OUTPUT);
   digitalWrite(MOTOR_ENABLE, HIGH);
@@ -44,30 +44,42 @@ void setup() {
 }
 
 void loop() {
-  Serial.println("--------");
+  kaSerial.println("--------");
   if (Serial3.available() > 0) {  // Перевірка наявності даних в порту Serial3
 
     String input = Serial3.readStringUntil('\n');
 
-    // Використовуємо strtok для розділення рядка на числа
-    char *str = strdup(input.c_str());
-    char *token = strtok(str, ",");
-    if (token) {
-      x = atoi(token);
-      token = strtok(NULL, ",");
-      if (token) {
-        y = atoi(token);
-        token = strtok(NULL, ",");
-        if (token) {
-          z = atoi(token);
-          token = strtok(NULL, ",");
-          if (token) {
-            u = atoi(token);
-          }
-        }
+
+    {
+      // Використовуємо strtok для розділення рядка на числа
+      char *str = strdup(input.c_str());
+      char *token = strtok(str, ",");
+      enum {  ///< Перелік аргументів які отримуємо
+        ARG_X = 0,  ///<
+        ARG_Y,      ///<
+        ARG_Z,      ///<
+        ARG_U,      ///<
+        ARG_COUNT  ///< Для створення масиву це кількість аргументів що
+                   ///< отримуємо
+      };
+      byte index{ARG_X};  ///< Лічильник елемнтів
+      int args[ARG_COUNT];  ///< Масив для зберігання елементів
+      /** Повторюватимемо дії поки */
+      while (token                   /* поки є рядок*/
+             && (index < ARG_COUNT)) /*та місце у масиві */
+      {
+        args[index++] = atoi(token); /** < шукаємо числа у рядку, якщо знаходимо
+                              записуємо у першу комірку і одразу перводимо
+                              вказівник на наступну комірку */
+        token = strtok(NULL, ","); /** < шукаємо цифри у до наступної коми */
       }
+      x = args[ARG_X];
+      y = args[ARG_Y];
+      z = args[ARG_Z];
+      u = args[ARG_U];
+      free(str);
     }
-    free(str);
+
 
     const int dedZone = 35;
     if (abs(x) < dedZone) x = 0;
@@ -86,6 +98,34 @@ void loop() {
     if (u < 0) return;
 
 
+#if 0
+    if(abs(x)>dedZone){
+    analogWrite(MOTOR1_A, (x>0)?x:0);
+    analogWrite(MOTOR1_B, (x<0?(-x):0));
+
+    analogWrite(MOTOR2_B, (x>0)?x:0);
+    analogWrite(MOTOR2_A, (x<0?(-x):0));
+    }
+
+    if(abs(y)>dedZone){
+    analogWrite(MOTOR1_A, (y>0)?y:0);
+    analogWrite(MOTOR1_B, (y<0?(-y):0));
+
+    analogWrite(MOTOR2_A, (y>0)?y:0);
+    analogWrite(MOTOR2_B, (y<0?(-y):0));
+    }
+
+
+
+    if((abs(x)<dedZone)and (abs(y)<dedZone)){
+    analogWrite(MOTOR1_A, 0);
+    analogWrite(MOTOR1_B, 0);
+
+    analogWrite(MOTOR2_B, 0);
+    analogWrite(MOTOR2_A, 0);
+    }
+
+#endif
     if (y >= 127) {
       analogWrite(MOTOR1_A, z);
       digitalWrite(MOTOR1_B, LOW);
