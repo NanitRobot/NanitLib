@@ -4,33 +4,34 @@
  * @else
  * @page SPECIFICATIONS ХАРАКТЕРИСТИКИ
  * @endif
- * 
+ *
  * @if English
  * @brief Technical capabilities
- * 
+ *
  * Technical capabilities
  * ----------------------
  * @else
  * @brief Технічні можливості
- * 
+ *
  * Технічні можливості
  * -------------------
  * @endif
  *
  * @if English
- * Nanit (hereinafter referred to as the device) is designed to study the 
- * fundamentals of designing and programming automated or robotic systems 
+ * Nanit (hereinafter referred to as the device) is designed to study the
+ * fundamentals of designing and programming automated or robotic systems
  * based on microcontrollers.
  * @else
- * Nanit (далі по тексту -- пристрій) призначений для вивчення основ проектування 
- * та програмування автоматизованих чи роботизованих автоматичних систем на 
+ * Nanit (далі по тексту -- пристрій) призначений для вивчення основ
+ * проектування
+ * та програмування автоматизованих чи роботизованих автоматичних систем на
  * основі мікроконтролерів.
- * 
+ *
  * @endif
  * <center>
  * @if English
  * #### Technical Specifications
- * 
+ *
  * | Parameter                               | Value    |
  * |:--------------------------------------- |:--------:|
  * | Supply Voltage                          | 5V       |
@@ -57,10 +58,10 @@
  * | Number of Display Colors                | 65535    |
  * | Number of Physical Ports                | 12       |
  * @else
- * 
- * #### Технічні дані 
- * 
- * |Параметр                            | Значення | 
+ *
+ * #### Технічні дані
+ *
+ * |Параметр                            | Значення |
  * |:-----------------------------------|:--------:|
  * |Напруга живлення                    |    5В    |
  * |Напруга живлення вбудованої батареї |3,7 — 4,2В|
@@ -86,11 +87,11 @@
  * |Кількість кольорів дисплею          | 65535    |
  * |Кількість фізичних  портів          |   12     |
  * @endif
- * 
+ *
  * <br />
- * 
+ *
  * #### PinOut
- * 
+ *
  * ![Arduino](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/PinOutArduino.jpg)
  * |Nanitdef               |Analog |    PIN       |        |        |
  * |:---------------------:|:-----:|:------------:|:------:|:------:|
@@ -147,236 +148,260 @@
  * |   @ref MOTOR_FAIL     |       |     41(I)    |   I    |        |
  * | @ref BUILDIN_STRIP_LED|       |     27(O)    |   O    |        |
  * | @ref LED_BUILTIN      |       |      4(O)    |        |        |
- * 
+ *
  * </center>
  * @if English
- * 
+ *
  * \b I -- pin can work only on input
  *
  * \b O -- The pin can only work on output pin
  *
  * \b IO -- The pin can be used for both input and output
  *
- * 
+ *
  * @else
- * 
+ *
  *  \b I -- пін може працювати тільки на вхід
- * 
+ *
  *  \b O -- Пін може працювати тільки на вивід
- * 
+ *
  *  \b IO -- Пін може бути використаний як на вхід так і на вихід
- * 
+ *
  * @endif
- * 
- * 
+ *
+ *
  * @if English
  * @defgroup factory_settings Default firmware
  * @else
  * @defgroup factory_settings Прошивки за замовчуванням
  * @endif
  * @{
- * 
+ *
+ *
  * @if English
- * 
- * Default firmware
- * ================
- * 
- * В процесі  розробки
- * 
- * @else
- * 
- * Прошивки за замовчуванням
- * =========================
- * 
- * In the process of development
- * 
- * @endif
- * 
- * 
- * @if English
- * 
+ *
  * @else
  * Тут знаходяться прошивки для ```Nanit``` які йдуть по замовчуванню.
- * Якщо, в процесі вивчення програмування, ви не змогли самостійно написати алгоритми поведінки, які реалізовано нами і вам хочеться погратися з режимами які для вас написали творці та автори, `Nanit` ви можете відновити їх за допомомогю функцій IDE Arduino, або скориставшись спеціальною утилітою
- * @endif 
- * 
+ * Якщо, в процесі вивчення програмування, ви не змогли самостійно написати
+ * алгоритми поведінки, які реалізовано нами і вам хочеться погратися з режимами
+ * які для вас написали творці та автори, `Nanit` ви можете відновити їх за
+ * допомомогю функцій IDE Arduino, або скориставшись спеціальною утилітою
+ * @endif
+ *
  * @if English
- * 
+ *
  * @else
- * - [Дискавері](./nanite_v3.1.ino.hex)
- * - [Розумний будинок](./ud_v3.1.ino.hex) 
- * @endif 
- * 
+ * Для початку відновлення через Arduino IDE переконайтеся, що  редакторі
+ * встановлено найновішу версію пакунка плат Nanit. Оновлення реклмендована так
+ * як ви отримаєте найновіші версії програм. (Ми постійно працюємо над цим).
+ *
+ * Якщо пакунок наших плат не втановлено скористайтеся інструкцією як
+ * встановлювати  @ref BoardManager. Після встановлення менджера плат ви можете
+ * продовжити виконання інструкцій описаних у цьому розділі.
+ *
+ * @endif
+ *
  * <div class="tabbed">
  * <ul>
  *  <li> <b class="tab-title">IDE 1.8.x</b>
- * IDE OLD
+ *   @if English
+ *   1) Connect the device to the PC using a cable that is compatible with the
+ *   device
+ *   @else
+ *   1) Підключіть пристрій до ПК за допомогою кабелю, який сумісний з пристроєм
+ *   @endif
+ * 
+ *   @if English
+ *   2) In the menu `Tools` &rarr; `Board` &rarr; `NanitRobot` &rarr; select
+ *   device type or board
+ *   on which the firmware will be restored or updated, for example, `Nanit
+ *   Discovery`
+ *   @else
+ *   2) В меню `Tools` &rarr; `Board` &rarr; `NanitRobot` &rarr; оберіть тип
+ *   пристрою або плату
+ *   на якій буде відновлюватись чи оновлюватися прошивка, наприклад, `Nanit
+ *   Discovery`
+ *   @endif
+ *  
+ *   @if English
+ *   3) Depending on the selected device, additional options for
+ *   recovery. For example, you will need to choose a case type for the Discovery
+ *   set device `Tools` &rarr; `Casing` &rarr; `ABS`
+ *  
+ *   @else
+ *   3) Взалежності від обраного пристрою в меню з'являться додаткові опції для
+ *   відновлення. Наприклад для Дискавері набору потрібно буде обрати тип корпусу
+ *   пристрою
+ *   `Tools` &rarr; `Casing` &rarr; `ABS`
+ *   @endif
+ *  
+ *  
+ *   @if English
+ *   4) Select the port to which the device is connected from the menu
+ *   `Tools` &rarr; `Port` &rarr; device
+ *   Usually, the port is additionally signed `Nanit Discovery`
+ *
+ *   @else
+ *   4) Вибрати з меню порт до якого підключено пристрій
+ *   `Tools` &rarr; `Port` &rarr; пристрій
+ *   Звичайоно порт додатково підписаний `Nanit Discovery`
+ *   @endif
+ *  
+ *   @if English
+ *   5) Select the programmer through which the firmware will be restored
+ *   `Tools` &rarr; `Programmer` &rarr; `NanitBuildin`
+ *   @else
+ *   5) Обрати програматор через який буде відновлюватись прошивка
+ *   `Tools` &rarr; `Programer` &rarr; `NanitBuildin`
+ *   @endif
+ *  
+ *   @if English
+ *   In this case, the built-in programmer will be used to restore the firmware
+ *   For the use of other programmers, physical access to the `ISP` connector is
+ *   required and the corresponding programmer.
+ *   @else
+ *   В цьому випадку для відновлення прошивки буде використовуватись вбудований
+ *   програматор Для використання інших програматорів потрібен фізичний доступ до
+ *   роз'єму `ISP`
+ *   та відповідний програматор.
+ *   @endif
+ *  
+ *   @if English
+ *   <i>If your programmer is not on the list - contact us and we will add it</i>
+ *   @else
+ *   <i>Якщо вашого програматора нема у списку - зверніться до нас і ми його
+ *   додамо</i>
+ *   @endif
+ *  
+ *  
+ *   @if English
+ *   6) Choose
+ *   `Tools` &rarr; `Burn bootloader`
+ *   After that, the program update process will begin. Depending on the setting,
+ *   which have been completed by the steps above will be updated or only the main
+ *   software code, or the software code together with the bootloader firmware
+ *   @else
+ *   6) Оберіть
+ *   `Tools` &rarr;  `Burn bootloader`
+ *   Після цього почнеться процес оновлення програми. У залежності від
+ *   налаштуваня, які були виконані кроками вище буде оновлено або лише основний програмний
+ *   код, або програмний код разом з мікропрограмою бутлоадера
+ *   @endif
+ * 
  *  </li>
  *  <li> <b class="tab-title">IDE 2.x</b>
- * IDE NEW
+ *   @if English
+ *   1) Connect the device to the PC using a cable that is compatible with the
+ *   device
+ *   @else
+ *   1) Підключіть пристрій до ПК за допомогою кабелю, який сумісний з пристроєм
+ *   @endif
+ * 
+ *   @if English
+ *   2) In the menu `Tools` &rarr; `Board` &rarr; `NanitRobot` &rarr; select
+ *   device type or board
+ *   on which the firmware will be restored or updated, for example, `Nanit
+ *   Discovery`
+ *   @else
+ *   2) В меню `Tools` &rarr; `Board` &rarr; `NanitRobot` &rarr; оберіть тип
+ *   пристрою або плату
+ *   на якій буде відновлюватись чи оновлюватися прошивка, наприклад, `Nanit
+ *   Discovery`
+ *   @endif
+ *  
+ *   @if English
+ *   3) Depending on the selected device, additional options for
+ *   recovery. For example, you will need to choose a case type for the Discovery
+ *   set device `Tools` &rarr; `Casing` &rarr; `ABS`
+ *  
+ *   @else
+ *   3) Взалежності від обраного пристрою в меню з'являться додаткові опції для
+ *   відновлення. Наприклад для Дискавері набору потрібно буде обрати тип корпусу
+ *   пристрою
+ *   `Tools` &rarr; `Casing` &rarr; `ABS`
+ *   @endif
+ *  
+ *  
+ *   @if English
+ *   4) Select the port to which the device is connected from the menu
+ *   `Tools` &rarr; `Port` &rarr; device
+ *   Usually, the port is additionally signed `Nanit Discovery`
+ *
+ *   @else
+ *   4) Вибрати з меню порт до якого підключено пристрій
+ *   `Tools` &rarr; `Port` &rarr; пристрій
+ *   Звичайоно порт додатково підписаний `Nanit Discovery`
+ *   @endif
+ *  
+ *   @if English
+ *   5) Select the programmer through which the firmware will be restored
+ *   `Tools` &rarr; `Programmer` &rarr; `NanitBuildin`
+ *   @else
+ *   5) Обрати програматор через який буде відновлюватись прошивка
+ *   `Tools` &rarr; `Programer` &rarr; `NanitBuildin`
+ *   @endif
+ *  
+ *   @if English
+ *   In this case, the built-in programmer will be used to restore the firmware
+ *   For the use of other programmers, physical access to the `ISP` connector is
+ *   required and the corresponding programmer.
+ *   @else
+ *   В цьому випадку для відновлення прошивки буде використовуватись вбудований
+ *   програматор Для використання інших програматорів потрібен фізичний доступ до
+ *   роз'єму `ISP`
+ *   та відповідний програматор.
+ *   @endif
+ *  
+ *   @if English
+ *   <i>If your programmer is not on the list - contact us and we will add it</i>
+ *   @else
+ *   <i>Якщо вашого програматора нема у списку - зверніться до нас і ми його
+ *   додамо</i>
+ *   @endif
+ *  
+ *  
+ *   @if English
+ *   6) Choose
+ *   `Tools` &rarr; `Burn bootloader`
+ *   After that, the program update process will begin. Depending on the setting,
+ *   which have been completed by the steps above will be updated or only the main
+ *   software code, or the software code together with the bootloader firmware
+ *   @else
+ *   6) Оберіть
+ *   `Tools` &rarr;  `Burn bootloader`
+ *   Після цього почнеться процес оновлення програми. У залежності від
+ *   налаштуваня, які були виконані кроками вище буде оновлено або лише основний програмний
+ *   код, або програмний код разом з мікропрограмою бутлоадера
+ *   @endif
+ * 
  *  </li>
  *  <li> <b class="tab-title">CLI</b>
- *  Для відновлення прошивки за-замовчуванням без використання IDE Arduino на вашому ПК має бути встановлений додаток ```avrdude``` і налаштовані всі драйвери та залежності
- *  
- *  __УВАГА ця комада валідна тільки для ```LinuxOS```__
- * 
- * ```zsh
- * avrdude -c wiring -p m2560  -U flash:w:./NanitInfo.ino.hex:i -P /dev/ttyUSB0
- * ```
- *  __Пояснення__
- * 
- *  Запускаємо `avrdude` з використанням вбудованого програматора (`wiring`) для мікроконтроллера __ATmega2560__ запису у флеш пам'ять вмісту файлу [NanitInfo.ino.hex](./NanitInfo.ino.hex), який містить виконуваний код у форматі  IntelHex `:i` через порт 
- * 
- * Запис бутлоадера
- * 
- * __УВАГА__ не намагайтеся записати мікропрограму завантажувача через вбудований програматор. Для запису бутлоедера потрібен доступ до шини `ISP` через будь-який сторонній програматор.
- * 
- * ![ISP](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/ISP_Nanit.png)
- * 
- * Для запису мікропрограми завантажувача потрібен один з файлів
- * 
- * [Дискавері з бутлоадером](./nanite_v3.1.with_bootloader.hex)
- * [NanitInfo з бутлоадером](./NanitInfo.ino.with_bootloader.hex)
  *
- * 
- * Для запису програми на плату `Nanit` потрібно використовути утиліту `avrdude`.
-
-```zsh
- avrdude -c usbtiny -p m2560 -Ulock:w:0x3F:m  -U efuse:w:0xFD:m  -U hfuse:w:0xD8:m  -U lfuse:w:0xFF:m  -U flash:w:NanitInfo.ino.with_bootloader.hex:i -b 152000
- ```
-
- В даному прикладі використовується `usbtiny`. Разом з прогрмамуванням бутлоадера втсановлюються необхідні ф'юзбіти
-
-
-|   Fuse  | Value|
-|:-------:|:----:|
-| lock    | 0x3F |
-| hfuse   | 0xD8 |
-| lfuse   | 0xFF |
-| efuse   | 0xFD |
-
-Підтримувані програматори
-
-
-Щоб дізнатися пітримувані програматори вашою утилітою для запису бутлоадера потрібно  ввести команду
-
-```zsh
- avrdude -c what
-```
-
-<!--
-Ф'ЮЗ-БІТИ для лед кільця
-========================
-
-|   Fuse  | Value|
-|:-------:|:----:|
-| lock    | 0x3F |
-| hfuse   | 0xDC |
-| lfuse   | 0xE1 |
-| efuse   | 0xFE |
-
--->
- *```zsh
- *  avrdude -c usbtiny -p m2560 -Ulock:w:0x3F:m -U efuse:w:0xFE:m -U hfuse:w:0xDC:m -U lfuse:w:0xE1:m -U flash:w:LedRing_v0.9.ino.hex:i
- * ```
- * 
  * </li>
  * </ul>
  * </div>
  * 
  * @if English
- * 
+ *
  * @else
- * 
- * @endif 
- * 
- * @if English
- * 
- * @else
- * 
- * @endif 
- * 
- * @if English
- * 
- * @else
- * 
- * @endif 
- * 
- * @if English
- * 
- * @else
- * 
- * @endif 
- * 
- * @if English
- * 
- * @else
- * 
- * @endif 
- * 
- * @if English
- * 
- * @else
- * 
- * @endif 
- * 
- * @if English
- * 
- * @else
- * 
- * @endif 
- * 
- * @if English
- * 
- * @else
- * 
- * @endif 
- * 
- * @if English
- * 
- * @else
- * 
- * @endif 
- * 
- * @if English
- * 
- * @else
- * 
- * @endif 
- * 
- * @if English
- * 
- * @else
- * 
- * @endif 
- * 
- * @if English
- * 
- * @else
- * 
- * @endif 
- * 
- * @if English
- * 
- * @else
- * 
- * @endif 
- * 
- * @if English
- * 
- * @else
- * 
+ *
  * @endif
- * 
+ *
+ * @}
+ */
+/*
  * [NanitInfo.ino.with_bootloader.hex](https://nanitrobot.github.io/NanitLib/binary/NanitInfo.ino.with_bootloader.hex)
- * 
+ *
  * [NanitInfo.ino.hex](https://nanitrobot.github.io/NanitLib/binary/NanitInfo.ino.hex)
- * 
+ *
  * [nanite_v3.1.ino.with_bootloader.hex](https://nanitrobot.github.io/NanitLib/binary/nanite_v3.1.ino.with_bootloader.hex)
- * 
+ *
  * [nanite_v3.1.ino.hex](https://nanitrobot.github.io/NanitLib/binary/nanite_v3.1.ino.hex)
- * 
+ *
  * [All](https://nanitrobot.github.io/NanitLib/binary/AllNanit.zip)
  * 
+ * 
+ * @}
+ *
  * @}
  */
