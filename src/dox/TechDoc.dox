@@ -189,6 +189,13 @@
  * @endif
  *
  * @if English
+ * To start the recovery through the Arduino IDE, make sure that the editors
+ * the latest version of the Nanit board package is installed. The update is recommended as follows
+ * how you will get the latest versions of the programs. (We are constantly working on this).
+ *
+ * If the package of our boards is not installed, use the how-to instructions
+ * set @ref BoardManager. After installing the board manager, you can
+ * continue to follow the instructions described in this section.
  *
  * @else
  * Для початку відновлення через Arduino IDE переконайтеся, що  редакторі
