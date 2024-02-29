@@ -4,19 +4,6 @@
  * 
  * 
  * @if English
- *
- * - [English]
- * - [Перейти до документації Українською](../Ukrainian/index.html)
- * 
- * @else
- *
- * - [Go to documentation in English](../English/index.html)
- * - [Українська]
- * @endif
- * 
- *
- * 
- * @if English
  * ## Appointment
  *
  * The purpose of the library is to facilitate the study of the basics of 
