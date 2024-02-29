@@ -32,7 +32,7 @@
  * `File` (Файл) &rarr; `Preferences` (Параметри).
  * @endif
  * 
- * ![](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/1.IDE1.8_File_Preference.png)
+ * ![](https://nanitrobot.github.io/static/pic/Arduino_1.8.x/1.IDE1.8_File_Preference.png)
  * 
  * @if English
  * In the `Preferences` window, locate the `Additional Boards Manager URLs` field and paste it
@@ -46,7 +46,7 @@
  * .
  * @endif
  * 
- * ![](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/2.IDE1.8_Window_pref.png)
+ * ![](https://nanitrobot.github.io/static/pic/Arduino_1.8.x/2.IDE1.8_Window_pref.png)
  * 
  * @if English
  * After pasting the URL, click `OK` or `Save` to save the changes.
@@ -58,7 +58,7 @@
  * Перейдіть до меню `Tools` (Засоби) &rarr; `Board` (Плата) &rarr; `Boards Manager` (Менеджер плат).
  * @endif
  * 
- * ![](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/4.IDE1.8_Tools_boards_manager.png)
+ * ![](https://nanitrobot.github.io/static/pic/Arduino_1.8.x/4.IDE1.8_Tools_boards_manager.png)
  *
  * @if English
  * In the Boards Manager, enter `Nanit` in the search field.
@@ -66,7 +66,7 @@
  * У Менеджері плат введіть `Nanit` полі пошуку. 
  * @endif
  * 
- * ![](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/7.IDE1.8.Boards_loading.png)
+ * ![](https://nanitrobot.github.io/static/pic/Arduino_1.8.x/7.IDE1.8.Boards_loading.png)
  * 
  * @if English
  * Click on `Install`.
@@ -74,7 +74,7 @@
  * Натисніть `Install` (Встановити).
  * @endif
  * 
- * ![](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/5.IDE1.8.BoardManager_Nanit_select.png)
+ * ![](https://nanitrobot.github.io/static/pic/Arduino_1.8.x/5.IDE1.8.BoardManager_Nanit_select.png)
  * 
  * @if English
  * Arduino IDE will automatically download and install the necessary files for the board.
@@ -82,7 +82,7 @@
  * Arduino IDE автоматично завантажить та встановить необхідні файли для плати.
  * @endif
  * 
- * ![](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/6.IDE1.8_Board_Install.png)
+ * ![](https://nanitrobot.github.io/static/pic/Arduino_1.8.x/6.IDE1.8_Board_Install.png)
  * 
  * @if English
  * After the board is installed, go to the `Tools` menu, select `Board`, and 
@@ -92,7 +92,7 @@
  * і виберіть нову плату зі списку, яка з'явилася після встановлення.
  * @endif
  * 
- * ![](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/8.IDE1.8_Board_Nanit.png) 
+ * ![](https://nanitrobot.github.io/static/pic/Arduino_1.8.x/8.IDE1.8_Board_Nanit.png) 
  * 
  *  </li>
  *  <li> <b class="tab-title">IDE 2.x</b> 
@@ -104,7 +104,7 @@
  * `File` (Файл) &rarr; `Preferences` (Параметри).
  * @endif
  * 
- * ![](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/1.IDE2.X_File_Preference.png)
+ * ![](https://nanitrobot.github.io/static/pic/Arduino_2.x/1.IDE2.X_File_Preference.png)
  * 
  * @if English
  * In the `Preferences` window, locate the `Additional Boards Manager URLs` field and paste it
@@ -118,7 +118,7 @@
  * .
  * @endif
  * 
- * ![](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/2.IDE2.X_Winow_pref.png)
+ * ![](https://nanitrobot.github.io/static/pic/Arduino_2.x/2.IDE2.X_Winow_pref.png)
  * 
  * @if English
  * After pasting the URL, click `OK` or `Save` to save the changes.
@@ -130,7 +130,7 @@
  * Перейдіть до меню `Tools` (Засоби) &rarr; `Board` (Плата) &rarr; `Boards Manager` (Менеджер плат).
  * @endif
  * 
- * ![](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/3.IDE2.XTools_Boards.png)
+ * ![](https://nanitrobot.github.io/static/pic/Arduino_2.x/3.IDE2.XTools_Boards.png)
  * 
  * @if English
  * @else 
@@ -138,7 +138,7 @@
  * встановити, у поле пошуку. 
  * @endif
  *  
- * ![](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/4.IDE2.X_Tools_boards_managerpng )
+ * ![](https://nanitrobot.github.io/static/pic/Arduino_2.x/4.IDE2.X_Tools_boards_managerpng )
  * 
  * @if English
  * Click on `Install`.
@@ -146,7 +146,7 @@
  * Натисніть `Install` (Встановити).
  * @endif
  * 
- * ![](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/5.IDE2.X_Board_load.png)
+ * ![](https://nanitrobot.github.io/static/pic/Arduino_2.x/5.IDE2.X_Board_load.png)
  * 
  * @if English
  * Arduino IDE will automatically download and install the necessary files for the board.
@@ -154,7 +154,7 @@
  * Arduino IDE автоматично завантажить та встановить необхідні файли для плати.
  * @endif
  * 
- * ![](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/6.IDE2.XBoardInstall.png)
+ * ![](https://nanitrobot.github.io/static/pic/Arduino_2.x/6.IDE2.XBoardInstall.png)
  * 
  * @if English
  * After the board is installed, go to the `Tools` menu, select `Board`, and 
@@ -164,7 +164,7 @@
  * і виберіть нову плату зі списку, яка з'явилася після встановлення.
  * @endif
  * 
- * ![](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/7.IDE2.XBoardManager_Nanit.png)
+ * ![](https://nanitrobot.github.io/static/pic/Arduino_2.x/7.IDE2.XBoardManager_Nanit.png)
  * 
  *  </li>
  *  </ul>

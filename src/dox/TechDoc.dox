@@ -229,6 +229,8 @@
  *   на якій буде відновлюватись чи оновлюватися прошивка, наприклад, `Nanit
  *   Discovery`
  *   @endif
+ * 
+ *   ![](https://nanitrobot.github.io/static/pic/Arduino_1.8.x/1.SelectBoard.png)
  *  
  *   @if English
  *   3) Depending on the selected device, additional options for
@@ -241,6 +243,9 @@
  *   пристрою
  *   `Tools` &rarr; `Casing` &rarr; `ABS`
  *   @endif
+ * 
+ * 
+ *   ![](https://nanitrobot.github.io/static/pic/Arduino_1.8.x/2.SelectCasing.png)
  *  
  *  
  *   @if English
@@ -253,7 +258,9 @@
  *   `Tools` &rarr; `Port` &rarr; пристрій
  *   зазвичай порт додатково підписаний `Nanit Discovery`
  *   @endif
- *  
+ * 
+ *   ![](https://nanitrobot.github.io/static/pic/Arduino_1.8.x/3.SelectPort.png)
+ *   
  *   @if English
  *   5) Select the programmer through which the firmware will be restored
  *   `Tools` &rarr; `Programmer` &rarr; `NanitBuildin`
@@ -280,6 +287,9 @@
  *   додамо</i>
  *   @endif
  *  
+ * 
+ *   ![](https://nanitrobot.github.io/static/pic/Arduino_1.8.x/4.SelectBrogramer.png)
+ *  
  *  
  *   @if English
  *   6) Choose
@@ -291,9 +301,13 @@
  *   6) Оберіть
  *   `Tools` &rarr;  `Burn bootloader`
  *   Після цього почнеться процес оновлення програми. У залежності від
- *   налаштуваня, які були виконані кроками вище буде оновлено або лише основний програмний
+ *   налаштуваня, які були виконані кроками вище, буде оновлено або лише основний програмний
  *   код, або програмний код разом з мікропрограмою бутлоадера
  *   @endif
+ * 
+ *   ![](https://nanitrobot.github.io/static/pic/Arduino_1.8.x/5.Burn.png)
+ *  
+ * 
  * 
  *  </li>
  *  <li> <b class="tab-title">IDE 2.x</b>
@@ -315,6 +329,9 @@
  *   на якій буде відновлюватись чи оновлюватися прошивка, наприклад, `Nanit
  *   Discovery`
  *   @endif
+ * 
+ *   ![](https://nanitrobot.github.io/static/pic/Arduino_2.x/1.SelectBoard.png)
+ *    
  *  
  *   @if English
  *   3) Depending on the selected device, additional options for
@@ -328,7 +345,9 @@
  *   `Tools` &rarr; `Casing` &rarr; `ABS`
  *   @endif
  *  
- *  
+ *   ![](https://nanitrobot.github.io/static/pic/Arduino_2.x/2.SelectCasing.png)
+ *   
+ * 
  *   @if English
  *   4) Select the port to which the device is connected from the menu
  *   `Tools` &rarr; `Port` &rarr; device
@@ -339,6 +358,10 @@
  *   `Tools` &rarr; `Port` &rarr; пристрій
  *   зазвичай порт додатково підписаний `Nanit Discovery`
  *   @endif
+ * 
+ * 
+ *   ![](https://nanitrobot.github.io/static/pic/Arduino_2.x/3.SelectPort.png)
+ *  
  *  
  *   @if English
  *   5) Select the programmer through which the firmware will be restored
@@ -347,6 +370,10 @@
  *   5) Оберіть програматор через який буде відновлюватись прошивка
  *   `Tools` &rarr; `Programer` &rarr; `NanitBuildin`
  *   @endif
+ * 
+ * 
+ *   ![](https://nanitrobot.github.io/static/pic/Arduino_2.x/4.SelectBrogramer.png)
+ *  
  *  
  *   @if English
  *   In this case, the built-in programmer will be used to restore the firmware
@@ -377,12 +404,16 @@
  *   6) Оберіть
  *   `Tools` &rarr;  `Burn bootloader`
  *   Після цього почнеться процес оновлення програми. У залежності від
- *   налаштуваня, які були виконані кроками вище буде оновлено або лише основний програмний
+ *   налаштувань, які були виконані кроками вище, буде оновлено або лише основний програмний
  *   код, або програмний код разом з мікропрограмою бутлоадера
  *   @endif
  * 
- *  </li>
- *  <li> <b class="tab-title">CLI</b>
+ * 
+ *   ![](https://nanitrobot.github.io/static/pic/Arduino_2.x/5.Burn.png)
+ *  
+ * 
+ *  <!--/li>
+ *  <li> <b class="tab-title">CLI</b-->
  *
  * </li>
  * </ul>
@@ -407,8 +438,4 @@
  *
  * [All](https://nanitrobot.github.io/NanitLib/binary/AllNanit.zip)
  * 
- * 
- * @}
- *
- * @}
  */
