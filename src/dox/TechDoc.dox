@@ -412,8 +412,60 @@
  *   ![](https://nanitrobot.github.io/static/pic/Arduino_2.x/5.Burn.png)
  *  
  * 
- *  <!--/li>
- *  <li> <b class="tab-title">CLI</b-->
+ *  </li>
+ *  <li> <b class="tab-title">CLI</b>
+ *    @if English
+ *    __ATTENTION this command is only valid for ```LinuxOS```__
+ *    @else
+ *    __УВАГА ця комада валідна тільки для ```LinuxOS```__
+ *    @endif
+ * 
+ *   ```zsh
+ *   avrdude -c wiring -p m2560  -U flash:w:./NanitInfo.ino.hex:i -P /dev/ttyUSB0
+ *   ```
+ *   @if English
+ *   \b Explanation
+ *   @else
+ *   \b Пояснення
+ *   @endif
+ * 
+ *   @if English
+ *   We run `avrdude` using the built-in programmer (`wiring`) for the __ATmega2560__ 
+ *   microcontroller to write the contents of the file 
+ *   [NanitInfo.ino.hex](https://nanitrobot.github.io/NanitLib/binary/NanitInfo.ino.hex),
+ *   which contains the executable code in IntelHex format, to the flash memory: `i` 
+ *   through port `/dev/ttyUSB0`
+ *   @else
+ *   Запускаємо `avrdude` з використанням вбудованого програматора (`wiring`) 
+ *   для мікроконтроллера __ATmega2560__ запису у флеш пам'ять вмісту файлу 
+ *   [NanitInfo.ino.hex](https://nanitrobot.github.io/NanitLib/binary/NanitInfo.ino.hex), 
+ *   який містить виконуваний код у  форматі  IntelHex `:i` через порт
+ *   @endif 
+ * 
+ *   * [NanitInfo.ino.with_bootloader.hex](https://nanitrobot.github.io/NanitLib/binary/NanitInfo.ino.with_bootloader.hex)
+ *   * [NanitInfo.ino.hex](https://nanitrobot.github.io/NanitLib/binary/NanitInfo.ino.hex)
+ *   * [AllNanit.zip](https://nanitrobot.github.io/NanitLib/binary/AllNanit.zip)
+ * 
+ *   <center>
+ *   |   Fuse  | Value|
+ *   |:-------:|:----:|
+ *   | lock    | 0x3F |
+ *   | hfuse   | 0xD8 |
+ *   | lfuse   | 0xFF |
+ *   | efuse   | 0xFD |
+ *   </center>
+ * 
+ *   \b Supported \b programmers
+ * 
+ *   @if English
+ *   To find out the supported programmers by your bootloader recording utility, you need to enter the command
+ *   @else
+ *
+ *   @endif  
+ *   
+ *   ```zsh
+ *     avrdude -c what
+ *   ```
  *
  * </li>
  * </ul>
@@ -428,14 +480,8 @@
  * @}
  */
 /*
- * [NanitInfo.ino.with_bootloader.hex](https://nanitrobot.github.io/NanitLib/binary/NanitInfo.ino.with_bootloader.hex)
+ *   [nanite_v3.1.ino.with_bootloader.hex](https://nanitrobot.github.io/NanitLib/binary/nanite_v3.1.ino.with_bootloader.hex)
  *
- * [NanitInfo.ino.hex](https://nanitrobot.github.io/NanitLib/binary/NanitInfo.ino.hex)
- *
- * [nanite_v3.1.ino.with_bootloader.hex](https://nanitrobot.github.io/NanitLib/binary/nanite_v3.1.ino.with_bootloader.hex)
- *
- * [nanite_v3.1.ino.hex](https://nanitrobot.github.io/NanitLib/binary/nanite_v3.1.ino.hex)
- *
- * [All](https://nanitrobot.github.io/NanitLib/binary/AllNanit.zip)
+ *   [nanite_v3.1.ino.hex](https://nanitrobot.github.io/NanitLib/binary/nanite_v3.1.ino.hex)
  * 
  */
