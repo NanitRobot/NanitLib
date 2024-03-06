@@ -134,8 +134,8 @@ jobs:
       - name: All in one file
         run: |
           echo "                         Last update: $(date)">> binary/readme
-          touch "binary/$(date +%d-%M-%Y_%H:%M)"
-          zip -qq binary/AllNanit.zip binary/*.hex binary/*.eep binary/readme "binary/$(date +%d-%M-%Y_%H:%M)"
+          touch "binary/$(date +%d-%m-%Y_%H:%M)"
+          zip -qq binary/AllNanit.zip binary/*.hex binary/*.eep binary/readme "binary/$(date +%d-%m-%Y_%H:%M)"
 
     # 7)   
       - run: rm -fr bin/arduino-cli 
