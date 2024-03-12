@@ -260,8 +260,8 @@ jobs:
     # 10) Генеруємо пакет
       - name: Make package_index.json
         run: |
-        sh ./MakePackageJson.sh ${GITHUB_REPOSITORY} $(sha256sum NanitCore.zip) $(sha256sum NanitESP.zip)
-        sh ./NanitService.sh ${GITHUB_REPOSITORY} $(sha256sum NanitService.zip)
+          sh ./MakePackageJson.sh ${GITHUB_REPOSITORY} $(sha256sum NanitCore.zip) $(sha256sum NanitESP.zip)
+          sh ./NanitService.sh ${GITHUB_REPOSITORY} $(sha256sum NanitService.zip)
     # 11) Build site
 
       - name: Build with Jekyll
