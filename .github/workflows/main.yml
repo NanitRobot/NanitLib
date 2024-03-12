@@ -120,10 +120,10 @@ jobs:
           git submodule add https://${{ secrets.NANIT_DISCOVERY_FULL }}@github.com/NanitRobot/Nanit.git NanitDiscovery
           # arduino-builder -build-path $(pwd)/binary -hardware /usr/share/arduino/hardware -tools /usr/share/arduino/hardware/tools/avr -fqbn=arduino:avr:mega:cpu=atmega2560 -libraries ~/Arduino/libraries -verbose -compile ./NanitDiscovery/nanite_v3.1/nanite_v3.1.ino
           #___________________________PLA_______________________________
-          bin/arduino-cli compile -b arduino:avr:mega ./NanitDiscovery/nanite_v3.1/ --build-properties "build.extra_flags=-DNANIT_PLA_COVER=1" -o "./binary/nanite_PLA_v3.1.ino"
+          # bin/arduino-cli compile -b arduino:avr:mega ./NanitDiscovery/nanite_v3.1/ --build-properties "build.extra_flags=-DNANIT_PLA_COVER=1" -o "./binary/nanite_PLA_v3.1.ino"
           #bin/arduino-cli compile -b arduino:avr:mega ./NanitDiscovery/nanite_v3.1/ --build-properties "build.extra_flags=-DABS_COVER_BEJEVIY=1" -o "./binary/nanite_ABS_limit_v3.1.ino"
           #___________________________ABS_______________________________
-          bin/arduino-cli compile -b arduino:avr:mega ./NanitDiscovery/nanite_v3.1/ --build-properties "build.extra_flags=-DNANIT_ABS_COVER=1" -o "./binary/nanite_ABS_v3.1.ino"
+          # bin/arduino-cli compile -b arduino:avr:mega ./NanitDiscovery/nanite_v3.1/ --build-properties "build.extra_flags=-DNANIT_ABS_COVER=1" -o "./binary/nanite_ABS_v3.1.ino"
           rm -fr $(pwd)/binary/core $(pwd)/binary/libraries $(pwd)/binary/preproc $(pwd)/binary/sketch || echo "NO PATH"
           rm $(pwd)/binary/build.options.json $(pwd)/binary/includes.cache $(pwd)/binary/NanitInfo.ino.eep $(pwd)/binary/*.elf || echo "NO PATH"
           git submodule deinit -f NanitDiscovery
