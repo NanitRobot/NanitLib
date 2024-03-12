@@ -145,11 +145,14 @@ jobs:
         run: | 
           # Базові налаштування
           NANIT_PATH="./Nanit"
+          NANIT_SERVICE="./NanitService"
           MEGACORE_PATH="./MegaCore"
           git submodule add https://${{ secrets.NANIT_DISCOVERY_FULL }}@github.com/NanitRobot/NanitIDE.git IDE
 
           mkdir ./Nanit
+          mkdir ${NANIT_SERVICE}
           cp ./IDE/*.txt  ./Nanit/
+          cp ./IDE/*.txt  ${NANIT_SERVICE}/
           # Додаємо репозиторії які розбиремо на донорські файли
           # Megacore треба зробити форк
           git submodule add https://github.com/MCUdude/MegaCore
@@ -172,9 +175,11 @@ jobs:
           mkdir -p ${FlyN_PATH}
           #git submodule add https://github.com/NanitRobot/hex "${NANIT_PATH}/bootloaders"
           mkdir -p "${NANIT_PATH}/bootloaders" 
+          mkdir -p "${NANIT_SERVICE}/bootloaders" 
           # boot loaders ESP
 
           cp binary/*.hex "${NANIT_PATH}/bootloaders/"
+          cp binary/*.hex "${NANIT_SERVICE}/bootloaders/"
           # Копіюємо файл MegaCore
           cp -ruf ./MegaCore/avr/variants/100-pin-arduino-mega/${PINS_ARDUINO} ${PINS_PATH}/${PINS_ARDUINO}
 
@@ -208,9 +213,13 @@ jobs:
           # unzip -o NanitIDE.zip -d ${NANIT_PATH}
           # Пакуємо файл 
           zip -qq -r NanitCore.zip ${NANIT_PATH}
+          # Створюємо пакунок для сервісу в ньому тільки бінарні файли 
+          # Програмувати не можливо!!!
+          zip -qq -r NanitService.zip ${NANIT_SERVICE}
 
           # Прибираємо за собою
           rm -fr ${NANIT_PATH}
+          rm -fr ${NANIT_SERVICE}
 
           # echo "========================================================"
           # echo "ESP BEGIN"
@@ -250,8 +259,9 @@ jobs:
 
     # 10) Генеруємо пакет
       - name: Make package_index.json
-        run: sh ./MakePackageJson.sh ${GITHUB_REPOSITORY} $(sha256sum NanitCore.zip) $(sha256sum NanitESP.zip)
-      
+        run: |
+        sh ./MakePackageJson.sh ${GITHUB_REPOSITORY} $(sha256sum NanitCore.zip) $(sha256sum NanitESP.zip)
+        sh ./NanitService.sh ${GITHUB_REPOSITORY} $(sha256sum NanitService.zip)
     # 11) Build site
 
       - name: Build with Jekyll
