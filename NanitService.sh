@@ -35,7 +35,7 @@ cat <<EOF > "${OUT_FILE}"
   "packages": [
     {
       "name": "NanitService",
-      "maintainer": "NanitRobots",
+      "maintainer": "NanitRobots(NanitService)",
       "websiteURL": "${WEB_SITE_URL}",
       "email": "${EMAIL}",
       "help": {
