@@ -153,7 +153,8 @@ jobs:
           mkdir ${NANIT_SERVICE}
           cp ./IDE/*.txt  ./Nanit/
           cp ./IDE/*.txt  ${NANIT_SERVICE}/
-          cat "${NANIT_SERVICE}/boards.txt" "${NANIT_SERVICE}/boards_service.txt" >> "${NANIT_SERVICE}/boards.txt"
+          mv "${NANIT_SERVICE}/boards.txt" "${NANIT_SERVICE}/boards.bak"
+          cat "${NANIT_SERVICE}/boards.bak" "${NANIT_SERVICE}/boards_service.txt" >> "${NANIT_SERVICE}/boards.txt"
           # Додаємо репозиторії які розбиремо на донорські файли
           # Megacore треба зробити форк
           git submodule add https://github.com/MCUdude/MegaCore
