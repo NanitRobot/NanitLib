@@ -44,7 +44,7 @@ void setup() {
 }
 
 void loop() {
-  kaSerial.println("--------");
+  Serial.println("--------");
   if (Serial3.available() > 0) {  // Перевірка наявності даних в порту Serial3
 
     String input = Serial3.readStringUntil('\n');
