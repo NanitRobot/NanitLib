@@ -50,9 +50,7 @@ jobs:
       - name: Install NanitBoards
         run: |
           bin/arduino-cli config init --additional-urls https://nanitrobot.github.io/NanitLib/package_NanitCore_index.json
-          bin/arduino-cli config init --additional-urls https://raw.githubusercontent.com/damellis/attiny/ide-1.6.x-boards-manager/package_damellis_attiny_index.json
           bin/arduino-cli core update-index
-          bin/arduino-cli core install attiny:avr
           bin/arduino-cli core install Nanit:avr
           bin/arduino-cli core install arduino:avr
 
@@ -135,6 +133,9 @@ jobs:
 
       - name: LED-ring
         run: |
+          bin/arduino-cli config init --additional-urls https://raw.githubusercontent.com/damellis/attiny/ide-1.6.x-boards-manager/package_damellis_attiny_index.json
+          bin/arduino-cli core update-index
+          bin/arduino-cli core install attiny:avr
           git submodule add https://${{ secrets.NANIT_DISCOVERY_FULL }}@github.com/NanitRobot/LedRing.git LedRing   
           bin/arduino-cli compile -b attiny:avr:ATtinyX5:cpu=attiny85,clock=internal16 ./LedRing/LedRing_v0.9/ -o "./binary/LedRing.ino"
           git submodule deinit -f LedRing
