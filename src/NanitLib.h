@@ -38,7 +38,7 @@
  * @brief Pathc версія бібілотеки
  * @endif
  */
-#define NANIT_PATCH_VERSION (10)
+#define NANIT_PATCH_VERSION (11)
 
 /** @if English
  * @brief Tweak version of the library
