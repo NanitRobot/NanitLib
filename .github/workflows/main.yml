@@ -53,6 +53,9 @@ jobs:
           bin/arduino-cli core update-index
           bin/arduino-cli core install Nanit:avr
           bin/arduino-cli core install arduino:avr
+          bin/arduino-cli config init --additional-urls https://raw.githubusercontent.com/damellis/attiny/ide-1.6.x-boards-manager/package_damellis_attiny_index.json
+          bin/arduino-cli core update-index
+          bin/arduino-cli core install attiny:avr
 
     # 5) Втановлюємо бібліотеки  
       - name: Install NanitLib
@@ -113,6 +116,11 @@ jobs:
           rm -fr ./NanitDiscovery
           # curl -fsSL https://raw.githubusercontent.com/NanitRobot/downloads/main/ud_v3.1.ino.hex -o binary/ud_v3.1.ino.hex
 
+      - name: CAR
+      - name: LED RING
+        run: |
+          #attiny:avr:ATtinyX5:cpu=attiny85,clock=internal16
+          bin/arduino-cli compile -b attiny:avr:ATtinyX5:cpu=attiny85,clock=internal16 ./LED_RING/LedRing_v0.9 --build-properties "build.extra_flags=-DNANIT_USE_WiFi=1" -o "./binary/LedRing_v0.9.ino"
     # 7) Компілюємо дискавері
 
       - name: Build Discovery
