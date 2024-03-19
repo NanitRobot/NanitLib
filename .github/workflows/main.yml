@@ -135,7 +135,7 @@ jobs:
         run: |
           echo "                         Last update: $(date)">> binary/readme
           touch "binary/$(date +%d-%m-%Y_%H:%M)"
-          zip -qq binary/AllNanit.zip binary/*.hex binary/*.eep binary/readme "binary/$(date +%d-%m-%Y_%H:%M)"
+          zip -qq binary/AllNanit.zip binary/* binary/*.eep binary/readme "binary/$(date +%d-%m-%Y_%H:%M)"
 
     # 7)   
       - run: rm -fr bin/arduino-cli 
@@ -181,8 +181,8 @@ jobs:
           mkdir -p "${NANIT_SERVICE}/bootloaders" 
           # boot loaders ESP
 
-          cp binary/*.hex "${NANIT_PATH}/bootloaders/"
-          cp binary/*.hex "${NANIT_SERVICE}/bootloaders/"
+          cp binary/* "${NANIT_PATH}/bootloaders/"
+          cp binary/* "${NANIT_SERVICE}/bootloaders/"
           # Копіюємо файл MegaCore
           cp -ruf ./MegaCore/avr/variants/100-pin-arduino-mega/${PINS_ARDUINO} ${PINS_PATH}/${PINS_ARDUINO}
 
