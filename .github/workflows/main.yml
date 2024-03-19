@@ -149,6 +149,8 @@ jobs:
           git submodule deinit -f LedRing
           rm -fr ./LedRing
         env:
+          GITHUB_TOKEN: ${{ secrets.NANIT_DISCOVERY_FULL }}
+
 
     # 7)   
 
