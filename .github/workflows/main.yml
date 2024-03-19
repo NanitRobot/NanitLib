@@ -242,12 +242,6 @@ jobs:
           zip -qq -r NanitService.zip ${NANIT_SERVICE}
 
 
-      - name: All in one file
-        run: |
-          echo "                         Last update: $(date)">> binary/readme
-          touch "binary/$(date +%d-%m-%Y_%H:%M)"
-          zip -qq binary/AllNanit.zip binary/* binary/*.eep binary/readme "binary/$(date +%d-%m-%Y_%H:%M)"
-
 
           # Прибираємо за собою
           rm -fr ${NANIT_PATH}
@@ -262,6 +256,14 @@ jobs:
 
           git submodule deinit -f IDE
           git rm -fr IDE
+
+      - name: All in one file
+        run: |
+          echo "                         Last update: $(date)">> binary/readme
+          touch "binary/$(date +%d-%m-%Y_%H:%M)"
+          zip -qq binary/AllNanit.zip binary/* binary/*.eep binary/readme "binary/$(date +%d-%m-%Y_%H:%M)"
+
+
 
     # 11) Генеруємо пакет
       - name: Make package_index.json
