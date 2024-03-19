@@ -116,12 +116,11 @@ jobs:
           rm -fr ./NanitDiscovery
           # curl -fsSL https://raw.githubusercontent.com/NanitRobot/downloads/main/ud_v3.1.ino.hex -o binary/ud_v3.1.ino.hex
 
-      - name: CAR
-        run: echo "DRONE"
-      # - name: LED RING
-      #   run: |
-      #     #attiny:avr:ATtinyX5:cpu=attiny85,clock=internal16
-      #     bin/arduino-cli compile -b attiny:avr:ATtinyX5:cpu=attiny85,clock=internal16 ./LED_RING/LedRing_v0.9 --build-properties "build.extra_flags=-DNANIT_USE_WiFi=1" -o "./binary/LedRing_v0.9.ino"
+    #  - name: CAR
+    #    run: echo "DRONE"
+    #  - name: LED RING
+    #    run: |
+    #      bin/arduino-cli compile -b attiny:avr:ATtinyX5:cpu=attiny85,clock=internal16 ./LED_RING/LedRing_v0.9 --build-properties "build.extra_flags=-DNANIT_USE_WiFi=1" -o "./binary/LedRing_v0.9.ino"
     # 7) Компілюємо дискавері
 
       - name: Build Discovery
@@ -139,12 +138,6 @@ jobs:
           rm -fr ./NanitDiscovery
         env:
           GITHUB_TOKEN: ${{ secrets.NANIT_DISCOVERY_FULL }}
-
-      - name: All in one file
-        run: |
-          echo "                         Last update: $(date)">> binary/readme
-          touch "binary/$(date +%d-%m-%Y_%H:%M)"
-          zip -qq binary/AllNanit.zip binary/* binary/*.eep binary/readme "binary/$(date +%d-%m-%Y_%H:%M)"
 
     # 7)   
       - run: rm -fr bin/arduino-cli 
@@ -220,45 +213,24 @@ jobs:
           # КОСТИЛЬ
           mv ${NANIT_CORE_PATH}/MCUdude_corefiles "${NANIT_CORE_PATH}/MegaCore"
 
-          #rm -fr "${NANIT_PATH}/bootloaders/.git*"
-          # Розпаковуємо підготовлені файли
-          # unzip -o NanitIDE.zip -d ${NANIT_PATH}
           # Пакуємо файл 
           zip -qq -r NanitCore.zip ${NANIT_PATH}
           # Створюємо пакунок для сервісу в ньому тільки бінарні файли 
           # Програмувати не можливо!!!
           zip -qq -r NanitService.zip ${NANIT_SERVICE}
 
+
+      - name: All in one file
+        run: |
+          echo "                         Last update: $(date)">> binary/readme
+          touch "binary/$(date +%d-%m-%Y_%H:%M)"
+          zip -qq binary/AllNanit.zip binary/* binary/*.eep binary/readme "binary/$(date +%d-%m-%Y_%H:%M)"
+
+
           # Прибираємо за собою
           rm -fr ${NANIT_PATH}
           rm -fr ${NANIT_SERVICE}
 
-          # echo "========================================================"
-          # echo "ESP BEGIN"
-          # echo "========================================================"
-          # mkdir -p ./Nanit/
-          # #ESP8866
-          # #bootloaders
-          # cp -ruf ./ESP8266/bootloaders ./Nanit/bootloaders
-          # #core
-          # cp -ruf ./ESP8266/cores/esp8266/ ./Nanit/cores
-          # #docs
-          # cp -ruf ./ESP8266/doc ./Nanit/doc
-          # #libraries
-          # # cp -ruf ./ESP8266/libraries/ ./Nanit/libraries
-          # #package
-          # cp -ruf ./ESP8266/package ./Nanit/package
-          # #tests
-          # cp -ruf ./ESP8266/tests ./Nanit/tests
-          # #tools
-          # cp -ruf ./ESP8266/tools ./Nanit/tools
-          # echo "========================================================"
-          # echo "ESP END"
-          # echo "========================================================"
-
-          # zip -qq -r NanitESP.zip ${NANIT_PATH}
-
-          # rm -fr ${NANIT_PATH}
 
           git submodule deinit -f MegaCore Adafruit-GFX-Library ESP8266 # Nanit/bootloaders
           git rm -fr ${MEGACORE_PATH}
