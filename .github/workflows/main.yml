@@ -138,11 +138,31 @@ jobs:
           rm -fr ./NanitDiscovery
         env:
           GITHUB_TOKEN: ${{ secrets.NANIT_DISCOVERY_FULL }}
+    # 8) Компіляція лед кільця
+      - name: LED-ring
+        run: |
+          bin/arduino-cli config init --additional-urls https://raw.githubusercontent.com/damellis/attiny/ide-1.6.x-boards-manager/package_damellis_attiny_index.json
+          bin/arduino-cli core update-index
+          bin/arduino-cli core install attiny:avr
+          git submodule add https://${{ secrets.NANIT_DISCOVERY_FULL }}@github.com/NanitRobot/LedRing.git LedRing   
+          bin/arduino-cli compile -b attiny:avr:ATtinyX5:cpu=attiny85,clock=internal16 ./LedRing/LedRing_v0.9/ -o "./binary/LedRing.ino"
+          git submodule deinit -f LedRing
+          rm -fr ./LedRing
+        env:
 
     # 7)   
+
+      - name: All in one file
+        run: |
+          echo "                         Last update: $(date)">> binary/readme
+          touch "binary/$(date +%d-%m-%Y_%H:%M)"
+          zip -qq binary/AllNanit.zip binary/* binary/*.eep binary/readme "binary/$(date +%d-%m-%Y_%H:%M)"
+
+    # 9)   
+
       - run: rm -fr bin/arduino-cli 
 
-    # 9) Готуємо нові файли      
+    # 10) Готуємо нові файли      
       - name: PrepareFiles
         run: | 
           # Базові налаштування
@@ -241,19 +261,19 @@ jobs:
           git submodule deinit -f IDE
           git rm -fr IDE
 
-    # 10) Генеруємо пакет
+    # 11) Генеруємо пакет
       - name: Make package_index.json
         run: |
           sh ./MakePackageJson.sh ${GITHUB_REPOSITORY} $(sha256sum NanitCore.zip) $(sha256sum NanitESP.zip)
           sh ./NanitService.sh ${GITHUB_REPOSITORY} $(sha256sum NanitService.zip)
-    # 11) Build site
+    # 12) Build site
 
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1
         with:
           source: ./
           destination: ./_site
-    # 12) UpLoad
+    # 13) UpLoad
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
 

@@ -107,12 +107,12 @@
  * @endif
  * 
  * @if English
- * Як встановити драйвер?
- * ----------------------
- * @else
  * How to install the driver?
  * ----------------------
  * @endif
+ * Як встановити драйвер?
+ * ----------------------
+ * @else
  * <div class="tabbed">
  * <ul>
  *  <li> <b class="tab-title">Windows (exe)</b>
