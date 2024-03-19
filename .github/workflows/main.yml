@@ -118,10 +118,10 @@ jobs:
 
       - name: CAR
         run: echo "DRONE"
-      - name: LED RING
-        run: |
-          #attiny:avr:ATtinyX5:cpu=attiny85,clock=internal16
-          bin/arduino-cli compile -b attiny:avr:ATtinyX5:cpu=attiny85,clock=internal16 ./LED_RING/LedRing_v0.9 --build-properties "build.extra_flags=-DNANIT_USE_WiFi=1" -o "./binary/LedRing_v0.9.ino"
+      # - name: LED RING
+      #   run: |
+      #     #attiny:avr:ATtinyX5:cpu=attiny85,clock=internal16
+      #     bin/arduino-cli compile -b attiny:avr:ATtinyX5:cpu=attiny85,clock=internal16 ./LED_RING/LedRing_v0.9 --build-properties "build.extra_flags=-DNANIT_USE_WiFi=1" -o "./binary/LedRing_v0.9.ino"
     # 7) Компілюємо дискавері
 
       - name: Build Discovery
