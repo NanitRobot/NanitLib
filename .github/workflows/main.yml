@@ -117,6 +117,7 @@ jobs:
           # curl -fsSL https://raw.githubusercontent.com/NanitRobot/downloads/main/ud_v3.1.ino.hex -o binary/ud_v3.1.ino.hex
 
       - name: CAR
+        run: echo "DRONE"
       - name: LED RING
         run: |
           #attiny:avr:ATtinyX5:cpu=attiny85,clock=internal16
