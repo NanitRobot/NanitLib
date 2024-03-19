@@ -43,7 +43,34 @@ cat <<EOF > "${OUT_FILE}"
         "online": "${HELP_ONLINE}"
       },
       "platforms": [
-                {
+        {
+          "name": "Nanit",
+          "architecture": "avr",
+          "version": "1.0.0",
+          "category": "Contributed",
+          "help": {
+            "online": "${HELP_ONLINE}"
+          },
+          "url": "${HOST}/${FILE_PATH}${FILE_NAME}",
+          "archiveFileName": "${FILE_NAME}",
+          "checksum" : "SHA-256:${SHA256}",
+          "size" : "${FILE_SIZE}",
+          "boards": [
+            {
+              "name": "Nanit Discovery 2.0"
+            },
+            {
+              "name": "Nanit Discovery 3"
+            },
+            {
+              "name": "Nanit Discovery 3.x"
+            },
+            {
+              "name": "Nanit Master (Nanit 3.x based)"
+            } 
+          ]
+        },
+        {
           "name": "Nanit",
           "architecture": "avr",
           "version": "0.9.4",

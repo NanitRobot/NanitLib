@@ -158,7 +158,7 @@ jobs:
         run: |
           echo "                         Last update: $(date)">> binary/readme
           touch "binary/$(date +%d-%m-%Y_%H:%M)"
-          zip -qq binary/AllNanit.zip binary/* binary/*.eep binary/readme "binary/$(date +%d-%m-%Y_%H:%M)"
+          zip -qq AllNanit.zip binary/* binary/*.eep binary/readme "binary/$(date +%d-%m-%Y_%H:%M)"
 
     # 9)   
 
