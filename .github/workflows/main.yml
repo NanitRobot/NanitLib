@@ -66,7 +66,7 @@ jobs:
           # bin/arduino-cli lib install "Password" 
           for VARIABLE in NanitLib TM1637 Keypad Password
           do
-            echo "setup lib $VARIABLE
+            echo "setup lib $VARIABLE"
             bin/arduino-cli lib install $VARIABLE
           done 
 
