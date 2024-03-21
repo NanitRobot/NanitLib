@@ -225,8 +225,8 @@ jobs:
 
           # touch "${NANIT_LIBRARY_PATH}/touch"
 
-          for VARIABLE in EEPROM SPI SoftwareSerial Wire Fonts
-          # HID
+          for VARIABLE in EEPROM SPI SoftwareSerial Wire 
+          # HID Fonts
           do
           cp -ruf "${MEGACORE_LIBRARY_PATH}/$VARIABLE/" "${NANIT_LIBRARY_PATH}/$VARIABLE/"
           done
