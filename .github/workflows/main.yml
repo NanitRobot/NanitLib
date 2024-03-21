@@ -126,7 +126,7 @@ jobs:
       - name: CAR
         run: |
           git submodule add https://github.com/NanitRobot/GroundDrone.git GroundDrone
-          bin/arduino-cli compile -b arduino:avr:mega:cpu=atmega2560 ./GroundDrone/GroundDrone/GroundDrone.ino --build-properties "build.extra_flags=-DNANIT_"=1" -o "./binary/GroundDrone.ino"
+          bin/arduino-cli compile -b arduino:avr:mega:cpu=atmega2560 ./GroundDrone/GroundDrone/GroundDrone.ino --build-properties "build.extra_flags=-DNANIT_=1" -o "./binary/GroundDrone.ino"
           git submodule deinit -f GroundDrone
           rm -fr ./GroundDrone
 
