@@ -60,10 +60,16 @@ jobs:
     # 5) Втановлюємо бібліотеки  
       - name: Install NanitLib
         run: |
-          bin/arduino-cli lib install "NanitLib" 
-          bin/arduino-cli lib install "TM1637" 
-          bin/arduino-cli lib install "Keypad" 
-          bin/arduino-cli lib install "Password" 
+          # bin/arduino-cli lib install "NanitLib" 
+          # bin/arduino-cli lib install "TM1637" 
+          # bin/arduino-cli lib install "Keypad" 
+          # bin/arduino-cli lib install "Password" 
+          for VARIABLE in NanitLib TM1637 Keypad Password
+          do
+            echo "setup lib $VARIABLE
+            bin/arduino-cli lib install $VARIABLE
+          done 
+
           bin/arduino-cli lib install "DHT sensor library"
 
     # 6) Генеруємо документацію
@@ -94,7 +100,7 @@ jobs:
     # 5) Компілюємо NanitInfo
           # ./bin/arduino-cli compile -b arduino:avr:mega ./examples/NanitInfo --build-properties "build.extra_flags=-DVERSION=1" -o "./binary/NanitInfoV1.ino"
       - run: |
-          bin/arduino-cli compile -b arduino:avr:mega ./examples/NanitInfo --build-properties "build.extra_flags=-DVERSION=1" -o "./binary/NanitInfo.ino"
+          bin/arduino-cli compile -b arduino:avr:mega:cpu=atmega2560 ./examples/NanitInfo --build-properties "build.extra_flags=-DVERSION=1" -o "./binary/NanitInfo.ino"
         name: Compile NanitInfo
 
       - run: |
@@ -107,31 +113,32 @@ jobs:
         run: |
           # Клонуємо скетч
           git submodule add https://github.com/NanitRobot/ud_v3.1.git UD
-          #__________________________WiFi_______________________________
-          bin/arduino-cli compile -b arduino:avr:mega ./UD/ud_esp/ --build-properties "build.extra_flags=-DNANIT_USE_WiFi=1" -o "./binary/ud_WiFi_v3.1.ino"
-          #__________________________BlTh_______________________________
-          bin/arduino-cli compile -b arduino:avr:mega ./UD/ud_esp/ --build-properties "build.extra_flags=-DNANIT_USE_WiFi=1" -o "./binary/ud_BlTh_v3.1.ino"
+          for VARIABLE in WiFi BlTh
+          do
+            echo "Build ./binary/ud_$VARIABLE""_v3.1.ino"
+            bin/arduino-cli compile -b arduino:avr:mega:cpu=atmega2560 ./UD/ud_esp/ --build-properties "build.extra_flags=-DNANIT_$VARIABLE""=1" -o "./binary/ud_$VARIABLE""_v3.1.ino"
+          done         
           # Очищуємо
           git submodule deinit -f UD
           rm -fr ./NanitDiscovery
           # curl -fsSL https://raw.githubusercontent.com/NanitRobot/downloads/main/ud_v3.1.ino.hex -o binary/ud_v3.1.ino.hex
 
-    #  - name: CAR
-    #    run: echo "DRONE"
-    #  - name: LED RING
-    #    run: |
-    #      bin/arduino-cli compile -b attiny:avr:ATtinyX5:cpu=attiny85,clock=internal16 ./LED_RING/LedRing_v0.9 --build-properties "build.extra_flags=-DNANIT_USE_WiFi=1" -o "./binary/LedRing_v0.9.ino"
-    # 7) Компілюємо дискавері
+      - name: CAR
+        run: |
+          git submodule add https://github.com/NanitRobot/GroundDrone.git GroundDrone
+          bin/arduino-cli compile -b arduino:avr:mega:cpu=atmega2560 ./GroundDrone/GroundDrone/GroundDrone.ino --build-properties "build.extra_flags=-DNANIT_"=1" -o "./binary/GroundDrone.ino"
+          git submodule deinit -f GroundDrone
+          rm -fr ./GroundDrone
 
+      # 7) Компілюємо дискавері
       - name: Build Discovery
         run: |
           git submodule add https://${{ secrets.NANIT_DISCOVERY_FULL }}@github.com/NanitRobot/Nanit.git NanitDiscovery
-          # arduino-builder -build-path $(pwd)/binary -hardware /usr/share/arduino/hardware -tools /usr/share/arduino/hardware/tools/avr -fqbn=arduino:avr:mega:cpu=atmega2560 -libraries ~/Arduino/libraries -verbose -compile ./NanitDiscovery/nanite_v3.1/nanite_v3.1.ino
-          #___________________________PLA_______________________________
-          bin/arduino-cli compile -b Nanit:avr:nanit_discovery ./NanitDiscovery/nanite_v3.1/ --build-properties "build.extra_flags=-DNANIT_PLA_COVER=1" -o "./binary/nanite_PLA_v3.1.ino"
-          #bin/arduino-cli compile -b arduino:avr:mega ./NanitDiscovery/nanite_v3.1/ --build-properties "build.extra_flags=-DABS_COVER_BEJEVIY=1" -o "./binary/nanite_ABS_limit_v3.1.ino"
-          #___________________________ABS_______________________________
-          bin/arduino-cli compile -b Nanit:avr:nanit_discovery ./NanitDiscovery/nanite_v3.1/ --build-properties "build.extra_flags=-DNANIT_ABS_COVER=1" -o "./binary/nanite_ABS_v3.1.ino"
+          for VARIABLE in ABS PLA
+          do
+            echo "Build ./binary/nanite_$VARIABLE""_v3.1.ino"
+            bin/arduino-cli compile -b arduino:avr:mega:cpu=atmega2560 ./NanitDiscovery/nanite_v3.1/ --build-properties "build.extra_flags=-DNANIT_$VARIABLE""_COVER=1" -o "./binary/nanite_$VARIABLE""_v3.1.ino"
+          done
           rm -fr $(pwd)/binary/core $(pwd)/binary/libraries $(pwd)/binary/preproc $(pwd)/binary/sketch || echo "NO PATH"
           rm $(pwd)/binary/build.options.json $(pwd)/binary/includes.cache $(pwd)/binary/NanitInfo.ino.eep $(pwd)/binary/*.elf || echo "NO PATH"
           git submodule deinit -f NanitDiscovery
@@ -145,6 +152,7 @@ jobs:
           bin/arduino-cli core update-index
           bin/arduino-cli core install attiny:avr
           git submodule add https://${{ secrets.NANIT_DISCOVERY_FULL }}@github.com/NanitRobot/LedRing.git LedRing   
+          # TODO Потрібно уточнити прапорці компіляції
           bin/arduino-cli compile -b attiny:avr:ATtinyX5:cpu=attiny85,clock=internal16 ./LedRing/LedRing_v0.9/ -o "./binary/LedRing.ino"
           git submodule deinit -f LedRing
           rm -fr ./LedRing
@@ -217,17 +225,12 @@ jobs:
 
           # touch "${NANIT_LIBRARY_PATH}/touch"
 
-          cp -ruf ${MEGACORE_LIBRARY_PATH}/EEPROM/ ${NANIT_LIBRARY_PATH}/EEPROM/
-          # # HID
-          # cp -ruf ${MEGACORE_LIBRARY_PATH}/HID/ ${NANIT_LIBRARY_PATH}/HID/
-          # SPI
-          cp -ruf ${MEGACORE_LIBRARY_PATH}/SPI/ ${NANIT_LIBRARY_PATH}/SPI/
-          # SoftwareSerial
-          cp -ruf ${MEGACORE_LIBRARY_PATH}/SoftwareSerial/ ${NANIT_LIBRARY_PATH}/SoftwareSerial/
-          # Wire
-          cp -ruf ${MEGACORE_LIBRARY_PATH}/Wire/ ${NANIT_LIBRARY_PATH}/Wire/
-          # Шрифти
-          cp -ruf ./Adafruit-GFX-Library/Fonts/ ${NANIT_LIBRARY_PATH}/Fonts/
+          for VARIABLE in EEPROM HID SPI SoftwareSerial Wire Fonts
+          # HID
+          do
+          cp -ruf "${MEGACORE_LIBRARY_PATH}/$VARIABLE/" "${NANIT_LIBRARY_PATH}/$VARIABLE/"
+          done
+
           #core
           mkdir -p ${NANIT_CORE_PATH}
           cp -ruf ${MEGACORE_CORE_PATH}/ ${NANIT_CORE_PATH}/
