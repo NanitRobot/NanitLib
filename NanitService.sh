@@ -66,7 +66,7 @@ cat <<EOF > "${OUT_FILE}"
               "version": "7.3.0-atmel3.6.1-arduino7"
             },
             {
-              "packager": "MegaCore",
+              "packager": "NanitService",
               "name": "avrdude",
               "version": "7.2-arduino.1"
             },
