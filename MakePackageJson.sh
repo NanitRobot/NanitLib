@@ -46,7 +46,7 @@ cat <<EOF > "${OUT_FILE}"
         {
           "name": "Nanit",
           "architecture": "avr",
-          "version": "1.0.0",
+          "version": "1.0.$(date +%y%m%d)",
           "category": "Contributed",
           "help": {
             "online": "${HELP_ONLINE}"
