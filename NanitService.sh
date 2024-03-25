@@ -43,7 +43,7 @@ cat <<EOF > "${OUT_FILE}"
       },
       "platforms": [
                 {
-          "name": "NanitService",
+          "name": "NanitService(NanitService)",
           "architecture": "avr",
           "version": "$(date +%-y.%-m.%-d)",
           "category": "Contributed",
