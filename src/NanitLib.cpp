@@ -5,7 +5,7 @@ Version getBoardVersion() {
   if (digitalRead(BOARD_DETECT_PIN)) return Version(2);
   if (!digitalRead(BOARD_DETECT_PIN)) return Version(3, 1);
 }
-
+   
 Version getLibVersion() {
   return Version(NANIT_MAJOR_VERSION, NANIT_MINOR_VERSION, NANIT_PATCH_VERSION);
 }
