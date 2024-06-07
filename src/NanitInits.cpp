@@ -2,8 +2,6 @@
 #include "NanitLib.h"
 
 
-
-
 Servo nanit_servo;
 Adafruit_ST7735 tft = Adafruit_ST7735(TFT_CS, TFT_DC, TFT_RES);
 
