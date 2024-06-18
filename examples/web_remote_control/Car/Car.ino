@@ -12,7 +12,7 @@ byte grn_led = P4_3;
 
 
 void setup() {
-  servoMotor.attach(P11_4);
+  servoMotor.attach(P1_2);
   Nanit_Base_Start();
   Serial.begin(57600);   // Ініціалізація порту Serial (для виводу дебаг-інформації)
   Serial3.begin(57600);  // Ініціалізація порту Serial3 (порт UART)
@@ -26,7 +26,7 @@ void setup() {
   pinMode(P12_3, OUTPUT);
   pinMode(P12_4, OUTPUT);
 
-  pinMode(buzzPin, OUTPUT);
+  //pinMode(buzzPin, OUTPUT);
 
   pinMode(trigPin, OUTPUT);
   pinMode(echoPin, INPUT);
@@ -39,17 +39,25 @@ void setup() {
   digitalWrite(P12_3, LOW);
   digitalWrite(P12_4, LOW);
   noTone(buzzPin);
-  digitalWrite(buzzPin, HIGH);
+  
   digitalWrite(trigPin, LOW);
 }
 
+bool blok_dnspley_print = false;
+
 void loop() {
-  Serial.println("--------");
+  //////////Serial.println("--------");
   if (Serial3.available() > 0) {  // Перевірка наявності даних в порту Serial3
 
     String input = Serial3.readStringUntil('\n');
 
 
+if(!blok_dnspley_print){
+tft.fillRect(0, 90, 160, 40, ST7735_WHITE);
+tft.setCursor(10, 90);
+tft.setTextSize(1);
+tft.print(String(input));
+}
     {
       // Використовуємо strtok для розділення рядка на числа
       char *str = strdup(input.c_str());
@@ -98,34 +106,8 @@ void loop() {
     if (u < 0) return;
 
 
-#if 0
-    if(abs(x)>dedZone){
-    analogWrite(MOTOR1_A, (x>0)?x:0);
-    analogWrite(MOTOR1_B, (x<0?(-x):0));
-
-    analogWrite(MOTOR2_B, (x>0)?x:0);
-    analogWrite(MOTOR2_A, (x<0?(-x):0));
-    }
-
-    if(abs(y)>dedZone){
-    analogWrite(MOTOR1_A, (y>0)?y:0);
-    analogWrite(MOTOR1_B, (y<0?(-y):0));
-
-    analogWrite(MOTOR2_A, (y>0)?y:0);
-    analogWrite(MOTOR2_B, (y<0?(-y):0));
-    }
-
-
-
-    if((abs(x)<dedZone)and (abs(y)<dedZone)){
-    analogWrite(MOTOR1_A, 0);
-    analogWrite(MOTOR1_B, 0);
-
-    analogWrite(MOTOR2_B, 0);
-    analogWrite(MOTOR2_A, 0);
-    }
-
-#endif
+/*
+    ///Простий спосіб керування
     if (y >= 127) {
       analogWrite(MOTOR1_A, z);
       digitalWrite(MOTOR1_B, LOW);
@@ -138,13 +120,13 @@ void loop() {
       digitalWrite(MOTOR2_A, LOW);
       analogWrite(MOTOR2_B, z);
       Serial.println("UP");
-    } else if (x >= 127) {
+    } else if (x <= -127) {
       digitalWrite(MOTOR1_A, LOW);
       analogWrite(MOTOR1_B, z);
       digitalWrite(MOTOR2_A, LOW);
       digitalWrite(MOTOR2_B, LOW);
       Serial.println("LEFT");
-    } else if (x <= -127) {
+    } else if (x >= 127) {
       digitalWrite(MOTOR1_A, LOW);
       digitalWrite(MOTOR1_B, LOW);
       digitalWrite(MOTOR2_A, LOW);
@@ -157,7 +139,13 @@ void loop() {
       digitalWrite(MOTOR2_B, LOW);
       Serial.println("STOP");
     }
+    
+*/
 
+///Складний спосіб керування
+keruvaty_sposib_II();
+
+/*   //// Sonar !!!!
     if (distance(trigPin, echoPin) < 15) {
       tone(buzzPin, 100);
       delay(50);
@@ -166,7 +154,7 @@ void loop() {
       noTone(buzzPin);
       digitalWrite(buzzPin, HIGH);
     }
-
+*/
     if (u == 0) servoMotor.write(0);   // Поворот на 0 градусів
     if (u == 1) servoMotor.write(90);  // Поворот на 0 градусів
 
@@ -176,16 +164,16 @@ void loop() {
     digitalWrite(red_led, light);
     digitalWrite(grn_led, light);
     // Використання значень x і y
-    Serial.println("--------");
+    //////////////////Serial.println("--------");
 
-    Serial.print("Received x: ");
+    /*Serial.print("Received x: ");
     Serial.println(x);
     Serial.print("Received y: ");
     Serial.println(y);
     Serial.print("Received z: ");
     Serial.println(z);
     Serial.print("Received u: ");
-    Serial.println(z);
+    Serial.println(u);*/
   }
 }
 
@@ -198,3 +186,159 @@ int distance(byte trggerPin, byte EchoPin) {
   int cm = pulseIn(EchoPin, HIGH) / 58;
   return cm;
 }
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#define dipMax 501
+#define dipMin 500
+bool LRevers = false;
+bool RRevers = false;
+int ruh = 255;
+byte max_gaz = 255;
+
+void keruvaty_sposib_II() {
+  max_gaz = z;
+  int _Gaz = map(y, 255, -255, 0, 1000);
+  int _LivoPravo = map(x, -255, 255, 0, 1000);
+  //////////////////////////Спосіб керування №2
+  int L_ = 0;
+  int R_ = 0;
+
+
+  Serial.print ("_Gaz= ");  Serial.println (_Gaz);
+  Serial.print ("_LivoPravo= ");  Serial.println (_LivoPravo);
+
+  // Якщо газ вперед
+  if (_Gaz > dipMax) { 
+    blok_dnspley_print = true; /// Блокуємо серіал щоб не заважав
+
+     LRevers = false;
+     RRevers = false;
+
+    int ruh = map(_Gaz, 500, 1000, 0, max_gaz);  ///Спільний газ
+     Serial.print ("ruh= ");  Serial.println (ruh);
+
+    //Робота з лівим каналом (Розрахунок на те що в ліво буде падати сигнал з 500 до 0)
+    if (_LivoPravo <= 500) {
+      L_ = 500 - _LivoPravo;
+    } else {
+      L_ = 0;
+    }
+
+   int Rk = 0;
+   int Lk = 0;
+    L_ = map(L_, 0, 500, 0, ruh);
+
+    
+    if (_LivoPravo > 500) {
+    Lk = map(_LivoPravo, 500, 1000, ruh, max_gaz);
+    } else {Lk = ruh - L_;}
+    Serial.print ("L_= ");  Serial.println (L_);
+    Serial.print ("Lk= ");  Serial.println (Lk);
+
+
+    //Робота з правим каналом (Розрахунок на те що в право буде рости сигнал сигнал з 500 до 1000)
+    if (_LivoPravo > 500) {
+      R_ = _LivoPravo - 500;
+    } else {
+      R_ = 0;
+    }
+
+    R_ = map(R_, 0, 500, 0, ruh);
+   
+    if (_LivoPravo < 500) {
+    Rk = map(_LivoPravo, 500, 0, ruh, max_gaz);
+    } else {Rk = ruh - R_;}
+    Serial.print ("R_= ");  Serial.println (R_);
+    Serial.print ("Rk= ");  Serial.println (Rk);
+
+
+
+    /// Тормоз якщо газ на 0
+    if (Lk < 1) {
+      digitalWrite(MOTOR2_A, LOW);
+      digitalWrite(MOTOR2_B, LOW);
+    }
+    if (Rk < 1) {
+      digitalWrite(MOTOR1_A, LOW);
+      digitalWrite(MOTOR1_B, LOW);
+    }
+
+      digitalWrite(MOTOR1_A, LOW);
+      analogWrite(MOTOR1_B, Rk);
+      digitalWrite(MOTOR2_A, LOW);
+      analogWrite(MOTOR2_B, Lk);
+  }
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  // Якщо газ назад
+   if (_Gaz <= dipMax) {
+
+     LRevers = false;
+     RRevers = false;
+
+    int ruh = map(_Gaz, 500, 0, 0, max_gaz);  ///Спільний газ
+     Serial.print ("ruhNN= ");  Serial.println (ruh);
+
+    //Робота з лівим каналом (Розрахунок на те що в ліво буде падати сигнал з 500 до 0)
+    if (_LivoPravo <= 500) {
+      L_ = 500 - _LivoPravo;
+    } else {
+      L_ = 0;
+    }
+
+   int Rk = 0;
+   int Lk = 0;
+    L_ = map(L_, 0, 500, 0, ruh);
+
+    
+    if (_LivoPravo < 500) {
+    Lk = map(_LivoPravo, 500, 0, ruh, max_gaz);
+    } else {Lk = ruh - L_;}
+    Serial.print ("L_= ");  Serial.println (L_);
+    Serial.print ("Lk= ");  Serial.println (Lk);
+
+
+    //Робота з правим каналом (Розрахунок на те що в право буде рости сигнал сигнал з 500 до 1000)
+    if (_LivoPravo > 500) {
+      R_ = _LivoPravo - 500;
+    } else {
+      R_ = 0;
+    }
+
+    R_ = map(R_, 0, 500, 0, ruh);
+   
+    if (_LivoPravo > 500) {
+    Rk = map(_LivoPravo, 500, 1000, ruh, max_gaz);
+    } else {Rk = ruh - R_;}
+    Serial.print ("R_= ");  Serial.println (R_);
+    Serial.print ("Rk= ");  Serial.println (Rk);
+
+
+
+    /// Тормоз якщо газ на 0
+    if (Lk < 1) {
+      digitalWrite(MOTOR2_A, LOW);
+      digitalWrite(MOTOR2_B, LOW);
+    }
+    if (Rk < 1) {
+      digitalWrite(MOTOR1_A, LOW);
+      digitalWrite(MOTOR1_B, LOW);
+    }
+
+      analogWrite(MOTOR1_A, Rk);
+      digitalWrite(MOTOR1_B, LOW);
+      analogWrite(MOTOR2_A, Lk);
+      digitalWrite(MOTOR2_B, LOW);
+  }
+}
+
+
+
+
