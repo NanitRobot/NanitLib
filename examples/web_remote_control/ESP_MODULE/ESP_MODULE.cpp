@@ -208,37 +208,49 @@ void handleSlider() {
   BLUE_OFF();
 }
 
-void re_name_ssid() {                         //ssid change
+void re_name_ssid() {  //ssid change
   if (server.arg("rename_ssid") != "") {
+    String new_ssid = server.arg("rename_ssid");
+    Serial.print("Saving new SSID: ");
+    Serial.println(new_ssid);
 
-    for (int i = 0; i < 31 ; i++)
-    {
-      if (i < server.arg("rename_ssid").length() ) {
-        EEPROM.write(0x00 + i, server.arg("rename_ssid")[i]);
-      }
-      else {
+    for (int i = 0; i < 31; i++) {
+      if (i < new_ssid.length()) {
+        EEPROM.write(0x00 + i, new_ssid[i]);
+      } else {
         EEPROM.write(0x00 + i, '`');
       }
     }
     EEPROM.commit();
+    server.send(200, "text/plain", "OK");
+  } else if (server.arg("rename_ssid") == "") {
+    Serial.println("Not select_ssid");
+    server.send(200, "text/plain", "OK");
   }
-  else if (server.arg("rename_ssid") == "") Serial.println("Not select_ssid");
 }
-void re_name_password() {           //password change
+
+void re_name_password() {  //password change
   if (server.arg("rename_password") != "") {
-    for (int i = 0; i < 31 ; i++)
-    {
-      if (i < server.arg("rename_password").length() ) {
-        EEPROM.write(0x1F + i, server.arg("rename_password")[i]);
-      }
-      else {
+    String new_password = server.arg("rename_password");
+    Serial.print("Saving new password: ");
+    Serial.println(new_password);
+
+    for (int i = 0; i < 31; i++) {
+      if (i < new_password.length()) {
+        EEPROM.write(0x1F + i, new_password[i]);
+      } else {
         EEPROM.write(0x1F + i, '`');
       }
     }
     EEPROM.commit();
+    server.send(200, "text/plain", "OK");
+  } else if (server.arg("rename_password") == "") {
+    Serial.println("Not select_password");
+    server.send(200, "text/plain", "OK");
   }
-  else if (server.arg("rename_password") == "")Serial.println("Not select_password");
 }
+
+
 constexpr uint8_t PushButton= 4;
 void setup(void)
 {
@@ -261,7 +273,7 @@ void setup(void)
   pinMode(PushButton,INPUT_PULLUP);
   while (1)
   {
-    if(millis()>30000 or ! digitalRead(PushButton)){
+    if(millis()>10000 or ! digitalRead(PushButton)){
       serialNumber="XXXXXXXXXX";
       break;
     }
@@ -310,8 +322,12 @@ void setup(void)
 
   for (i = 0; i <= 5; i++)
   {
+    Serial.print("CON...."); Serial.println(i);
     delay(3000);
-    if (WiFi.status() == WL_CONNECTED) break;
+    if (WiFi.status() == WL_CONNECTED) { 
+    Serial.print("IP:");
+    Serial.println(WiFi.localIP()); 
+    break;}
     else if (i == 5 && WiFi.status() != WL_CONNECTED) {
       WiFi.disconnect();
       WiFi.mode(WIFI_AP);
@@ -321,9 +337,9 @@ void setup(void)
     }
     delay(500);
   }
-
+  Serial.println("WiFi not found"); delay(1000);
   RED_OFF();
-
+  Serial.println("IP:192.168.1.1");
   if (serialNumber == 0x0000000) {
     while (serialNumber != 0x0000000) {
       if (Serial.available()) //if data is coming
