@@ -30,7 +30,7 @@
  * @brief Мінорна версія бібліотеки
  * @endif
  */
-#define NANIT_MINOR_VERSION (3)
+#define NANIT_MINOR_VERSION (4)
 
 /** @if English
  * @brief Patch version of the library
@@ -38,7 +38,7 @@
  * @brief Pathc версія бібілотеки
  * @endif
  */
-#define NANIT_PATCH_VERSION (11)
+#define NANIT_PATCH_VERSION (3)
 
 /** @if English
  * @brief Tweak version of the library
