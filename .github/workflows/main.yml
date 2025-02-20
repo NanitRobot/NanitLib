@@ -34,7 +34,7 @@ jobs:
     steps:
     # 1) 
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
     # 2) Інсаталюємо ардуїно    
       # - name: Install Arduino
@@ -282,7 +282,7 @@ jobs:
           destination: ./_site
     # 13) UpLoad
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v4
 
 
 
