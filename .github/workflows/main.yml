@@ -282,7 +282,7 @@ jobs:
           destination: ./_site
     # 13) UpLoad
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v4
 
 
 
@@ -297,4 +297,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@v3
