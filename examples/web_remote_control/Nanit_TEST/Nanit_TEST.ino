@@ -1,4 +1,4 @@
-#include <SoftwareSerial.h> // data transfer via UART
+#include <SoftwareSerial.h>  // data transfer via UART
 #include <NanitLib.h>
 
 void setup() {
@@ -61,11 +61,13 @@ void setup() {
   pinMode(P12_4, OUTPUT);
 
   Serial.begin(9600);
-  Serial3.begin(9600);
+  Serial3.begin(57600);
 }
-char   bufer_TX;
+char bufer_TX;
 String byfer_UART;
 String Comand;
+
+unsigned long clearCommand = 0;
 // PORT STATUS
 bool port1 = 0;
 bool port2 = 0;
@@ -103,39 +105,30 @@ void motorRun(bool motorURState, bool motorBRState, bool motorULState, bool moto
   digitalWrite(P12_4, 0);
 }
 
-void Comand_Nanit(String value)
-{
+void Comand_Nanit(String value) {
   /*            Joystick in site             */
   if (value == "_LYRIGHT") {
     Serial.println(value += "OK");
     motorRun(1, 0, 0, 0);
-  }
-  else if (value == "_LXDOWN") {
+  } else if (value == "_LXDOWN") {
     Serial.println(value += "OK");
     motorRun(0, 1, 0, 1);
-  }
-  else if (value == "_LYLEFT") {
+  } else if (value == "_LYLEFT") {
     Serial.println(value += "OK");
     motorRun(0, 0, 1, 0);
-  }
-  else if (value == "_LXUP") {
+  } else if (value == "_LXUP") {
     Serial.println(value += "OK");
     motorRun(1, 0, 1, 0);
-  }
-  else if (value == "_RYRIGHT") {
+  } else if (value == "_RYRIGHT") {
     Serial.println(value += "OK");
-  }
-  else if (value == "_RXDOWN") {
+  } else if (value == "_RXDOWN") {
     Serial.println(value += "OK");
-  }
-  else if (value == "_RYLEFT") {
+  } else if (value == "_RYLEFT") {
     Serial.println(value += "OK");
-  }
-  else if (value == "_RXUP") {
+  } else if (value == "_RXUP") {
     byfer_UART += "_IP? ";
     Serial.println(value += "OK");
-  }
-  else if (value == "_SERNOM?") {
+  } else if (value == "_SERNOM?") {
     byfer_UART += "0x1S4DF0Q ";
     Serial.println(value += "OK");
   }
@@ -143,48 +136,37 @@ void Comand_Nanit(String value)
   else if (value == "/p1_1read" && port1 == 1) {
     byfer_UART += String(analogRead(P1_1)) += " ";
     Serial.println(value += "OK");
-  }
-  else if (value == "/p1_2read" && port1 == 1) {
+  } else if (value == "/p1_2read" && port1 == 1) {
     byfer_UART += String(analogRead(P1_2)) += " ";
     Serial.println(value += "OK");
-  }
-  else if (value == "/p2_1read" && port2 == 1) {
+  } else if (value == "/p2_1read" && port2 == 1) {
     byfer_UART += String(analogRead(10)) += " ";
     Serial.println(value += "OK");
-  }
-  else if (value == "/p2_2read" && port2 == 1) {
+  } else if (value == "/p2_2read" && port2 == 1) {
     byfer_UART += String(analogRead(P2_2)) += " ";
     Serial.println(value += "OK");
-  }
-  else if (value == "/p2_4read" && port2 == 1) {
+  } else if (value == "/p2_4read" && port2 == 1) {
     byfer_UART += String(analogRead(P2_4)) += " ";
     Serial.println(value += "OK");
-  }
-  else if (value == "/p4_1read" && port4 == 1) {
+  } else if (value == "/p4_1read" && port4 == 1) {
     byfer_UART += String(analogRead(P4_1)) += " ";
     Serial.println(value += "OK");
-  }
-  else if (value == "/p5_2read" && port5 == 1) {
+  } else if (value == "/p5_2read" && port5 == 1) {
     byfer_UART += String(analogRead(P5_2)) += " ";
     Serial.println(value += "OK");
-  }
-  else if (value == "/p5_3read" && port5 == 1) {
+  } else if (value == "/p5_3read" && port5 == 1) {
     byfer_UART += String(analogRead(P5_3)) += " ";
     Serial.println(value += "OK");
-  }
-  else if (value == "/p7_1read" && port7 == 1) {
+  } else if (value == "/p7_1read" && port7 == 1) {
     byfer_UART += String(analogRead(P7_1)) += " ";
     Serial.println(value += "OK");
-  }
-  else if (value == "/p7_2read" && port7 == 1) {
+  } else if (value == "/p7_2read" && port7 == 1) {
     byfer_UART += String(analogRead(P7_2)) += " ";
     Serial.println(value += "OK");
-  }
-  else if (value == "/p10_1read" && port10 == 1) {
+  } else if (value == "/p10_1read" && port10 == 1) {
     byfer_UART += String(analogRead(P10_1)) += " ";
     Serial.println(value += "OK");
-  }
-  else if (value == "/p10_2read" && port10 == 1) {
+  } else if (value == "/p10_2read" && port10 == 1) {
     byfer_UART += String(analogRead(P10_2)) += " ";
     Serial.println(value += "OK");
   }
@@ -196,8 +178,7 @@ void Comand_Nanit(String value)
   if (value == "_PORT1CONNECT") {
     port1 = 1;
     Serial.println(port1);
-  }
-  else if (value == "_PORT1DISCONNECT") {
+  } else if (value == "_PORT1DISCONNECT") {
     port1 = 0;
     Serial.println(port1);
   }
@@ -205,8 +186,7 @@ void Comand_Nanit(String value)
   if (port1 == 1 && value == "/p1_3on") {
     digitalWrite(P1_3, 1);
     digitalWrite(P1_4, 0);
-  }
-  else if (port1 == 1 && value == "/p1_3off") {
+  } else if (port1 == 1 && value == "/p1_3off") {
     digitalWrite(P1_3, 0);
     digitalWrite(P1_4, 0);
   }
@@ -219,8 +199,7 @@ void Comand_Nanit(String value)
   if (value == "_PORT2CONNECT") {
     port2 = 1;
     Serial.println(port2);
-  }
-  else if (value == "_PORT2DISCONNECT") {
+  } else if (value == "_PORT2DISCONNECT") {
     port2 = 0;
     Serial.println(port2);
   }
@@ -229,32 +208,26 @@ void Comand_Nanit(String value)
   if (value == "_PORT3CONNECT") {
     port3 = 1;
     Serial.println(port3);
-  }
-  else if (value == "_PORT3DISCONNECT") {
+  } else if (value == "_PORT3DISCONNECT") {
     port3 = 0;
     Serial.println(port3);
   }
 
   else if (port3 == 1 && value == "/p3_2on") {
     digitalWrite(P3_2, 1);
-  }
-  else if (port3 == 1 && value == "/p3_2off") {
+  } else if (port3 == 1 && value == "/p3_2off") {
     digitalWrite(P3_2, 0);
-  }
-  else if (port3 == 1 && value == "/p3_3on") {
+  } else if (port3 == 1 && value == "/p3_3on") {
     digitalWrite(P3_3, 1);
-  }
-  else if (port3 == 1 && value == "/p3_3off") {
+  } else if (port3 == 1 && value == "/p3_3off") {
     digitalWrite(P3_3, 0);
-  }
-  else if (port3 == 1 && value == "/p3_4on") {
+  } else if (port3 == 1 && value == "/p3_4on") {
     digitalWrite(P3_4, 1);
-  }
-  else if (port3 == 1 && value == "/p3_4off") {
+  } else if (port3 == 1 && value == "/p3_4off") {
     digitalWrite(P3_4, 0);
   }
 
-else if (port3 == 0) {
+  else if (port3 == 0) {
     digitalWrite(P3_2, 0);
     digitalWrite(P3_3, 0);
     digitalWrite(P3_4, 0);
@@ -264,31 +237,24 @@ else if (port3 == 0) {
   if (value == "_PORT4CONNECT") {
     port4 = 1;
     Serial.println(port4);
-  }
-  else if (value == "_PORT4DISCONNECT") {
+  } else if (value == "_PORT4DISCONNECT") {
     port4 = 0;
     Serial.println(port4);
   }
 
   if (port4 == 1 && value == "/p4_2on") {
     digitalWrite(P4_2, 1);
-  }
-  else if (port4 == 1 && value == "/p4_2off") {
+  } else if (port4 == 1 && value == "/p4_2off") {
     digitalWrite(P4_2, 0);
-  }
-  else if (port4 == 1 && value == "/p4_3on") {
+  } else if (port4 == 1 && value == "/p4_3on") {
     digitalWrite(P4_3, 1);
-  }
-  else if (port4 == 1 && value == "/p4_3off") {
+  } else if (port4 == 1 && value == "/p4_3off") {
     digitalWrite(P4_3, 0);
-  }
-  else if (port4 == 1 && value == "/p4_4on") {
+  } else if (port4 == 1 && value == "/p4_4on") {
     digitalWrite(P4_4, 1);
-  }
-  else if (port4 == 1 && value == "/p4_4off") {
+  } else if (port4 == 1 && value == "/p4_4off") {
     digitalWrite(P4_4, 0);
-  }
-  else if (port4 == 0) {
+  } else if (port4 == 0) {
     digitalWrite(P4_2, 0);
     digitalWrite(P4_3, 0);
     digitalWrite(P4_4, 0);
@@ -298,22 +264,18 @@ else if (port3 == 0) {
   if (value == "_PORT5CONNECT") {
     port5 = 1;
     Serial.println(port5);
-  }
-  else if (value == "_PORT5DISCONNECT") {
+  } else if (value == "_PORT5DISCONNECT") {
     port5 = 0;
     Serial.println(port5);
   }
 
   if (port5 == 1 && value == "/p5_1on") {
     digitalWrite(P5_1, 1);
-  }
-  else if (port5 == 1 && value == "/p5_1off") {
+  } else if (port5 == 1 && value == "/p5_1off") {
     digitalWrite(P5_1, 0);
-  }
-  else if (port5 == 1 && value == "/p5_4on") {
+  } else if (port5 == 1 && value == "/p5_4on") {
     digitalWrite(P5_4, 1);
-  }
-  else if (port5 == 1 && value == "/p5_4off") {
+  } else if (port5 == 1 && value == "/p5_4off") {
     digitalWrite(P5_4, 0);
   }
 
@@ -325,172 +287,138 @@ else if (port3 == 0) {
   if (value == "_PORT6CONNECT") {
     port6 = 1;
     Serial.println(port6);
-  }
-  else if (value == "_PORT6DISCONNECT") {
+  } else if (value == "_PORT6DISCONNECT") {
     port6 = 0;
     Serial.println(port6);
   }
 
   if (port6 == 1 && value == "/p6_1on") {
     digitalWrite(P6_1, 0);
-  }
-  else if (port6 == 1 && value == "/p6_1off") {
+  } else if (port6 == 1 && value == "/p6_1off") {
     digitalWrite(P6_1, 0);
-  }
-  else if (port6 == 1 && value == "/p6_4on") {
+  } else if (port6 == 1 && value == "/p6_4on") {
     digitalWrite(P6_4, 1);
-  }
-  else if (port6 == 1 && value == "/p6_4off") {
+  } else if (port6 == 1 && value == "/p6_4off") {
     digitalWrite(P6_4, 0);
   }
   //PORT 7 - JOYSTICK
   if (value == "_PORT7CONNECT") {
     port7 = 1;
     Serial.println(port7);
-  }
-  else if (value == "_PORT7DISCONNECT") {
+  } else if (value == "_PORT7DISCONNECT") {
     port7 = 0;
     Serial.println(port7);
   }
 
   if (port7 == 1 && value == "/p7_3on") {
     digitalWrite(P7_3, 1);
-  }
-  else if (port7 == 1 && value == "/p7_3off") {
+  } else if (port7 == 1 && value == "/p7_3off") {
     digitalWrite(P7_3, 0);
-  }
-  else if (port7 == 1 && value == "/p7_4on") {
+  } else if (port7 == 1 && value == "/p7_4on") {
     digitalWrite(P7_4, 1);
-  }
-  else if (port7 == 1 && value == "/p7_4off") {
+  } else if (port7 == 1 && value == "/p7_4off") {
     digitalWrite(P7_4, 0);
   }
   //PORT 8 - NONE
   if (value == "_PORT8CONNECT") {
     port8 = 1;
     Serial.println(port8);
-  }
-  else if (value == "_PORT8DISCONNECT") {
+  } else if (value == "_PORT8DISCONNECT") {
     port8 = 0;
     Serial.println(port8);
   }
 
   if (port8 == 1 && value == "/p8_3on") {
     digitalWrite(P8_3, 1);
-  }
-  else if (port8 == 1 && value == "/p8_3off") {
+  } else if (port8 == 1 && value == "/p8_3off") {
     digitalWrite(P8_3, 0);
   }
   //PORT 9 - GYROSCOPE
   if (value == "_PORT9CONNECT") {
     port9 = 1;
     Serial.println(port9);
-  }
-  else if (value == "_PORT9DISCONNECT") {
+  } else if (value == "_PORT9DISCONNECT") {
     port9 = 0;
     Serial.println(port9);
   }
 
   if (port9 == 1 && value == "/p9_1on") {
     digitalWrite(P9_1, 1);
-  }
-  else if (port9 == 1 && value == "/p9_1off") {
+  } else if (port9 == 1 && value == "/p9_1off") {
     digitalWrite(P9_1, 0);
-  }
-  else if (port9 == 1 && value == "/p9_2on") {
+  } else if (port9 == 1 && value == "/p9_2on") {
     digitalWrite(P9_2, 1);
-  }
-  else if (port9 == 1 && value == "/p9_2off") {
+  } else if (port9 == 1 && value == "/p9_2off") {
     digitalWrite(P9_2, 0);
-  }
-  else if (port9 == 1 && value == "/p9_3on") {
+  } else if (port9 == 1 && value == "/p9_3on") {
     digitalWrite(P9_3, 1);
-  }
-  else if (port9 == 1 && value == "/p9_3off") {
+  } else if (port9 == 1 && value == "/p9_3off") {
     digitalWrite(P9_3, 0);
-  }
-  else if (port9 == 1 && value == "/p9_4on") {
+  } else if (port9 == 1 && value == "/p9_4on") {
     digitalWrite(P9_4, 1);
-  }
-  else if (port9 == 1 && value == "/p9_4off") {
+  } else if (port9 == 1 && value == "/p9_4off") {
     digitalWrite(P9_4, 0);
   }
   //PORT 10 - LIGHT SENSOR
   if (value == "_PORT10CONNECT") {
     port10 = 1;
     Serial.println(port10);
-  }
-  else if (value == "_PORT10DISCONNECT") {
+  } else if (value == "_PORT10DISCONNECT") {
     port10 = 0;
     Serial.println(port10);
   }
 
-if (port10 == 1 && value == "/p10_3on") {
+  if (port10 == 1 && value == "/p10_3on") {
     digitalWrite(P10_3, 1);
-  }
-  else if (port10 == 1 && value == "/p10_3off") {
+  } else if (port10 == 1 && value == "/p10_3off") {
     digitalWrite(P10_3, 0);
-  }
-  else if (port10 == 1 && value == "/p10_4on") {
+  } else if (port10 == 1 && value == "/p10_4on") {
     digitalWrite(P10_4, 1);
-  }
-  else if (port10 == 1 && value == "/p10_4off") {
+  } else if (port10 == 1 && value == "/p10_4off") {
     digitalWrite(P10_4, 0);
   }
   //PORT 11 - NONE
   if (value == "_PORT11CONNECT") {
     port11 = 1;
     Serial.println(port11);
-  }
-  else if (value == "_PORT11DISCONNECT") {
+  } else if (value == "_PORT11DISCONNECT") {
     port11 = 0;
     Serial.println(port11);
   }
 
   if (port11 == 1 && value == "/p11_3on") {
     digitalWrite(P11_3, 1);
-  }
-  else if (port11 == 1 && value == "/p11_3off") {
+  } else if (port11 == 1 && value == "/p11_3off") {
     digitalWrite(P11_3, 0);
-  }
-  else if (port11 == 1 && value == "/p11_4on") {
+  } else if (port11 == 1 && value == "/p11_4on") {
     digitalWrite(P11_4, 1);
-  }
-  else if (port11 == 1 && value == "/p11_4off") {
+  } else if (port11 == 1 && value == "/p11_4off") {
     digitalWrite(P11_4, 0);
   }
   //PORT 12 - MOTOR
   if (value == "_PORT12CONNECT") {
     port12 = 1;
     Serial.println(port12);
-  }
-  else if (value == "_PORT12DISCONNECT") {
+  } else if (value == "_PORT12DISCONNECT") {
     port12 = 0;
     Serial.println(port12);
   }
 
   if (port12 == 1 && value == "/p12_1on") {
     digitalWrite(P12_1, 1);
-  }
-  else if (port12 == 1 && value == "/p12_1off") {
+  } else if (port12 == 1 && value == "/p12_1off") {
     digitalWrite(P12_1, 0);
-  }
-  else if (port12 == 1 && value == "/p12_2on") {
+  } else if (port12 == 1 && value == "/p12_2on") {
     digitalWrite(P12_2, 1);
-  }
-  else if (port12 == 1 && value == "/p12_2off") {
+  } else if (port12 == 1 && value == "/p12_2off") {
     digitalWrite(P12_2, 0);
-  }
-  else if (port12 == 1 && value == "/p12_3on") {
+  } else if (port12 == 1 && value == "/p12_3on") {
     digitalWrite(P12_3, 1);
-  }
-  else if (port12 == 1 && value == "/p12_3off") {
+  } else if (port12 == 1 && value == "/p12_3off") {
     digitalWrite(P12_3, 0);
-  }
-  else if (port12 == 1 && value == "/p12_4on") {
+  } else if (port12 == 1 && value == "/p12_4on") {
     digitalWrite(P12_4, 1);
-  }
-  else if (port12 == 1 && value == "/p12_4off") {
+  } else if (port12 == 1 && value == "/p12_4off") {
     digitalWrite(P12_4, 0);
   }
 
@@ -505,21 +433,27 @@ if (port10 == 1 && value == "/p10_3on") {
 }
 
 void loop() {
-  if (Serial3.available()) //if data is coming
+  if (Serial3.available())  //if data is coming
   {
     bufer_TX = Serial3.read();
-    if (bufer_TX == ' ')
-    {
-      Comand_Nanit(Comand);
+
+    // Захист від сторонніх символів у буфері    
+    if((millis() - clearCommand) > 200){
       Comand.remove(0);
     }
-    else
-    {
+    clearCommand = millis();
+    // -----------------------------------
+
+    Serial.print(bufer_TX);
+    if (bufer_TX == ' ') {
+      Comand_Nanit(Comand);
+      Comand.remove(0);
+    } else {
       Comand += bufer_TX;
     }
   }
 
-  if (byfer_UART != "") //if there is a need to send data
+  if (byfer_UART != "")  //if there is a need to send data
   {
     Serial3.print(byfer_UART);
     byfer_UART.remove(0);
