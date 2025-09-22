@@ -282,7 +282,7 @@ jobs:
           destination: ./_site
     # 13) UpLoad
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v4
+        uses: actions/upload-pages-artifact@v3
 
 
 
