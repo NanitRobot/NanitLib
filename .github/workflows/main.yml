@@ -284,6 +284,8 @@ jobs:
     # 13) UpLoad
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./_site
 
 
 
