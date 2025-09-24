@@ -64,7 +64,7 @@ jobs:
           # bin/arduino-cli lib install "TM1637" 
           # bin/arduino-cli lib install "Keypad" 
           # bin/arduino-cli lib install "Password" 
-          for VARIABLE in NanitLib TM1637 Keypad Password
+          for VARIABLE in NanitLib TM1637 Keypad Password buildTime MPU6050
           do
             echo "setup lib $VARIABLE"
             bin/arduino-cli lib install $VARIABLE
