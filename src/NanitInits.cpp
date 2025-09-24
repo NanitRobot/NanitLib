@@ -16,7 +16,6 @@ void Nanit_Display_Init()
   pinMode(TFT_BL, OUTPUT);
   digitalWrite(TFT_BL, HIGH);
 
-  //виводимо тестове повідомлення
   tft.setCursor(10, 10);
   tft.setTextWrap(true);
   tft.setRotation(1);
@@ -30,7 +29,7 @@ void Nanit_Display_Init()
 
 void Nanit_RGB_Init()
 {
-  pinMode(P4_4, OUTPUT); //red, порт або P4_6(стара версія), або P4_4
+  pinMode(P4_4, OUTPUT); //red,
   pinMode(P4_2, OUTPUT); //green
   pinMode(P4_3, OUTPUT); //blue
 }
@@ -43,7 +42,7 @@ void Nanit_Servo_Init()
 
 void Nanit_ActiveBuzz_Init()
 {
-  pinMode(P5_4, OUTPUT); // 33 - це P5_6 (стара версія), або P5_4
+  pinMode(P5_4, OUTPUT);
 }
 
 void Nanit_Sound_Init()

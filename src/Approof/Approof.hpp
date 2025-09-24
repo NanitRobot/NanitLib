@@ -24,13 +24,7 @@
   PinDown();
 
 
-/*
-Підготовка до тестування пінів
-*/
 void PinTestSetup();
-/*
-Цикл тестування пінів
-*/
 void PinTestLoop();
 
 void PinDown();

@@ -1,5 +1,4 @@
 #!/bin/bash
-#файл генерує json файл параметри запуску
 # https://arduino.github.io/arduino-cli/0.32/package_index_json-specification/
 
 #sh ./MakePackageJson.sh  {{GITHUB_REPOSITORY}} $(sha256sum NanitCore.zip)

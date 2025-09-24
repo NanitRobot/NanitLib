@@ -39,14 +39,12 @@ bool digitalRead(const uint8_t pin, const uint16_t maxValue,
 
 String getSerialNumber() {
   if (!checkSerialNum(getSerialNum())) {
-    // Запрошення на дисплей підключити до серійного порту
     START_NANIT.Display.setCursor(10, 100);
     START_NANIT.Display.setTextSize(0);
     START_NANIT.Display.print("Please open terminal");
   }
   const long WAIT_FIRST_RUN{30};
   while (!checkSerialNum(getSerialNum())) {
-    // допоки не отримаємо серійний номер нічого не вийде
     Serial.println("Please enter correct serial nummer\n");
     unsigned long unlock{millis() + (WAIT_FIRST_RUN * 1000)};
     while (Serial.available() == 0) {
@@ -108,7 +106,7 @@ void Nanit_RGB_Write(byte red, byte green, byte blue) {
   green = (green >= 0 && green <= 255) ? green : 0;
   blue = (blue >= 0 && blue <= 255) ? blue : 0;
 
-  analogWrite(P4_4, red);  // 46 це або P4_4, або P4_6 (стара версія)
+  analogWrite(P4_4, red);  
   analogWrite(P4_2, green);
   analogWrite(P4_3, blue);
 }
@@ -140,13 +138,13 @@ bool Nanit_Sound_IsSoundDetected(int sound_limit) {
 bool isClapping() {
   uint16_t signal = analogRead(P5_2);
   delayMicroseconds(300);
-  static float                     //
-      MiddleLine = signal,         // Рівень тишини
-      SoundBorder = signal + 100;  // Рівень хлопку
+  static float                     
+      MiddleLine = signal,        
+      SoundBorder = signal + 100;  
 
-  constexpr float  //
-      k = 0.01,  // Коефіуцієт фільрації рівня тишини
-      k2 = 0.02;  // коефіцієнт фільтрації порогового рівня
+  constexpr float  
+      k = 0.01, 
+      k2 = 0.02;  
 
   static_assert(k < k2, "k2 не може бути меншим за k");
 
@@ -154,13 +152,13 @@ bool isClapping() {
 
   if (signal > MiddleLine) SoundBorder += (signal - SoundBorder) * k2;
   const float          //
-      KoefNoClap = 4,  // Коефіцієнт не чутливості
+      KoefNoClap = 4,  
       shift = 20;
   float  //
       top = MiddleLine + (SoundBorder - MiddleLine) * KoefNoClap +
-            shift,  // Верхній поріг
+            shift, 
       butt = MiddleLine - (SoundBorder - MiddleLine) * KoefNoClap -
-             shift;  // Нижній поріг
+             shift;  
   return (signal > top) or (signal < butt);
 }
 
@@ -456,38 +454,23 @@ uint8_t ::NanitRobot::Nanit::WireManipulate() const {
       NearVCC{(1 << ADC_BITRATE) - Near},  //
       NearGND{Near};
 
-  // ПЕРША ЖИЛА
-    // маніпулюємо лінією П5_1
+
     if (!pulseAndListen(P5_1, P6_4))
-      // інакше позначаємо її як бита
+
       result |= 1 << 0;
 
-  // ДРУГА ЖИЛА
-  // Читаємо аналогий сигнал П5_2 якщо сигнал близький до GND лінія ціла
   if (analogRead(P5_2) > NearGND)
-    // інакше позгачаємо її битою
     result |= 1 << 1;
 
-  // ТРЕТЯ ЖИЛА
-  // читаємно аналоговий сигнал, якщо він близький до Vcc лінія ціла
   if (analogRead(P5_3) < NearVCC)
-    // інакше позгачаємо її битою
     result |= 1 << 2;
 
-  // ЧЕТВЕРТА ЖИЛА
-  // маніпулюємо лінією
   if (!pulseAndListen(P5_4, P6_1))
-    // інакше позгачаємо її битою
     result |= 1 << 3;
 
-  // П'ЯТА ЖИЛА
-  // Читаємо аналогий сигнал П6_2 якщо сигнал близький до GND лінія ціла
   if (analogRead(P6_2) > NearGND)
-    // інакше позгначаємо її битою
     result |= 1 << 4;
 
-  // ШОСТА ЖИЛА
-  // читаємно аналоговий сигнал, якщо він близький до Vcc лінія ціла
   if (analogRead(P6_3) < NearVCC)
     // інакше позгачаємо її битою
     result |= 1 << 5;
@@ -496,19 +479,16 @@ uint8_t ::NanitRobot::Nanit::WireManipulate() const {
 
 bool pulseAndListen(uint8_t pulse, uint8_t listen, uint8_t repeat = 0xF,
                     uint16_t wait = 500) {
-  bool result{false};//< Звинувачуємо кабель винним у тому що він не працює
+  bool result{false};
   pinMode(pulse, OUTPUT);
   pinMode(listen, INPUT);
   for (uint8_t it{0}; it != repeat; ++it) {
     result = false;
-    digitalWrite(pulse, it & 1); // даємо пульс
-    delayMicroseconds((wait >= 500) ? wait : 500); // ждемо
-    if (digitalRead(listen) != bool(it & 1)) break; // якщо пульсу нема то закінчуємо
-    result = true;// якщо був пульс то кабель хороший
+    digitalWrite(pulse, it & 1); 
+    delayMicroseconds((wait >= 500) ? wait : 500); 
+    if (digitalRead(listen) != bool(it & 1)) break; 
+    result = true;
   }
-  // тут виведемо результат
-  // якщо жила ціла буде затримка і отримаємо ОК
-  // якщо жила бита одразу сюди вилітаємо з фейлом
   return result;
 }
 

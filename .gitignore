@@ -7,7 +7,6 @@
 # 
 # 
 !.gitignore
-# Інструменти які лишають сміття
 .vscode
 TestDoxy/
 
@@ -16,16 +15,10 @@ binary/*.*
 bin/
 
 
-# Робочі білди
 [Bb]uild
-
-# Ігноруємо каталоги сторені doxygen'ом
-# i18n
 German/
 Ukrainian/
 English/
-
-# Ігноруємо всі файли які породить doxygen корінному каталозі
 /*.png
 /*.html
 /*.md5
