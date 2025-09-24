@@ -25,18 +25,24 @@
  * @endif
  *
  * @if English
+ *
  * Nanit (hereinafter referred to as the device) is designed to study the
  * fundamentals of designing and programming automated or robotic systems
  * based on microcontrollers.
+ *
  * @else
+ *
  * Nanit (далі по тексту -- пристрій) призначений для вивчення основ
  * проектування
  * та програмування автоматизованих чи роботизованих автоматичних систем на
  * основі мікроконтролерів.
  *
  * @endif
+ *
  * <center>
+ *
  * @if English
+ *
  * #### Technical Specifications
  *
  * | Parameter                               | Value    |
@@ -64,6 +70,7 @@
  * | Display Resolution                      | 160x128  |
  * | Number of Display Colors                | 65535    |
  * | Number of Physical Ports                | 12       |
+ *
  * @else
  *
  * #### Технічні дані
@@ -93,6 +100,7 @@
  * |Роздільна здатність дисплею         |160х128   |
  * |Кількість кольорів дисплею          | 65535    |
  * |Кількість фізичних  портів          |   12     |
+ *
  * @endif
  *
  * <br />
@@ -157,6 +165,7 @@
  * | @ref LED_BUILTIN      |       |      4(O)    |        |        |
  *
  * </center>
+ *
  * @if English
  *
  * \b I -- pin can work only on input
@@ -196,6 +205,7 @@
  * @endif
  *
  * @if English
+ *
  * To start the recovery through the Arduino IDE, make sure that the editors
  * the latest version of the Nanit board package is installed. The update is recommended as follows
  * how you will get the latest versions of the programs. (We are constantly working on this).
@@ -205,6 +215,7 @@
  * continue to follow the instructions described in this section.
  *
  * @else
+ *
  * Для початку відновлення через Arduino IDE переконайтеся, що в редакторі
  * встановлено найновішу версію пакунка плат Nanit. Оновлення рекомендоване оскільки
  * ви отримаєте найновіші версії програм. (Ми постійно працюємо над цим).
@@ -256,27 +267,35 @@
  *  
  *  
  *   @if English
+ *
  *   4) Select the port to which the device is connected from the menu
  *   `Tools` &rarr; `Port` &rarr; device
  *   Usually, the port is additionally signed `Nanit Discovery`
  *
  *   @else
+ *
  *   4) Виберіть з меню порт до якого підключено пристрій
  *   `Tools` &rarr; `Port` &rarr; пристрій
  *   зазвичай порт додатково підписаний `Nanit Discovery`
+ *
  *   @endif
  * 
  *   ![](https://nanitrobot.github.io/static/pic/Arduino_1.8.x/3.SelectPort.png)
  *   
  *   @if English
+ *
  *   5) Select the programmer through which the firmware will be restored
  *   `Tools` &rarr; `Programmer` &rarr; `NanitBuildin`
+ *
  *   @else
+ *
  *   5) Оберіть програматор через який буде відновлюватись прошивка
  *   `Tools` &rarr; `Programer` &rarr; `NanitBuildin`
+ *
  *   @endif
  *  
  *   @if English
+ *
  *   In this case, the built-in programmer will be used to restore the firmware
  *   For the use of other programmers, physical access to the `ISP` connector is
  *   required and the corresponding programmer.
