@@ -425,9 +425,13 @@
  *
  *
  * @if English
+ *
  * @brief About the advanced core MEGACORE
+ *
  * @else
+ *
  * @brief Про розширене ядро MEGACORE
+ *
  * @endif
  *
  *
@@ -447,7 +451,7 @@
  * скористатись менеджером плат
  * @endif
  * 
- * @image html https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/MegaCorePinOut.png "MegaCore Pinout" width=50%
+ * @image html https://imgur.com/O7WtWAj.jpg "MegaCore Pinout" width=50%
  *
  * @if English
  * An alternative way to use the output is by accessing the level registers

@@ -20,15 +20,17 @@
 
 // #define DEMO "DEMO"
 
-/**
+/** @if English
+ * @brief Class version
+ * @else
  * @brief Клас Версія
- *
+ * @endif
  */
 class Version {
   enum {
-    MAJOR,  ///< індекс  поля, яке містить головну версію
-    MINOR,  ///< індекс  поля, яке містить мінорну версію
-    PATCH,  ///< індекс  поля, яке містить патч версію
+    MAJOR,
+    MINOR,
+    PATCH,
     TWEAK,
     COUNT
   };
@@ -36,10 +38,15 @@ class Version {
  public:
   /**
    * @brief Construct a new Version object
-   *
+   * @if English
+   * @param major Specifies the major version
+   * @param minor Specifies the minor version
+   * @param patch Specifies the patch version
+   * @else
    * @param major Визначає головну версію
    * @param minor Визначає мінорну версію
    * @param patch Визначає патч версію
+   * @endif
    * @param tweak
    */
   Version(uint16_t major = {}, uint16_t minor = {}, uint16_t patch = {},
@@ -50,66 +57,58 @@ class Version {
     _ver[TWEAK] = tweak;
   };
 
-  /**
-   * @brief Отримати Версію
-   *
+   /** @if English
+   * @brief Get major version
+   * @else
+   * @brief Отримати мажор версію
+   * @endif
    * @return uint16_t
    */
   uint16_t getMajor() const { return _ver[MAJOR]; }
 
-  /**
-   * @brief Отримати мінорну версію
-   *
+   /** @if English
+   * @brief Get minor version
+   * @else
+   * @brief Отримати мінор версію
+   * @endif
    * @return uint16_t
    */
   uint16_t getMinor() const { return _ver[MINOR]; }
 
-  /**
+   /** @if English
+   * @brief Get pathc version
+   * @else
    * @brief Отримати патч версію
-   *
+   * @endif
    * @return uint16_t
    */
   uint16_t getPatch() const { return _ver[PATCH]; }
 
-  /**
-   * @brief Отримати патч версію
-   *
+   /** @if English
+   * @brief Get tweek version
+   * @else
+   * @brief Отримати твік версію
+   * @endif
    * @return uint16_t
    */
   uint16_t getTweak() const { return _ver[TWEAK]; }
-  /** @if English
-   * @else
-   * @todo TODO rule of 3
-   * @endif
-   */
-  /**
-   * @brief Операця порівняння \b <
-   */
+
   friend inline bool operator<(Version lhs, Version rhs) {
     for (uint8_t it{MAJOR}; it < COUNT; ++it) {
       if (lhs._ver[it] < rhs._ver[it]) return true;
     }
     return false;
   }
-  /**
-   * @brief Операця порівняння \b >
-   */
+
   friend inline bool operator>(Version lhs, Version rhs) { return (rhs < lhs); }
-  /**
-   * @brief Операця порівняння \b <=
-   */
+
   friend inline bool operator<=(Version lhs, Version rhs) {
     return !(lhs > rhs);
   }
-  /**
-   * @brief Операця порівняння \b >=
-   */
+
   friend inline bool operator>=(Version lhs, Version rhs) {
     return !(lhs < rhs);
   }
-  /**
-   * @brief Операця порівняння \b ==
-   */
 
   friend inline bool operator==(Version lhs, Version rhs) {
     bool result{true};
@@ -118,27 +117,30 @@ class Version {
     }
     return result;
   }
-  /**
-   * @brief Операця порівняння \b !=
-   */
+
   friend inline bool operator!=(Version lhs, Version rhs) {
     return !(lhs == rhs);
   }
-
-  /**
-   * @brief Ковертація версії у рядковий тип
+  /** @if English
    *
+   * @brief Converting a version to a string type
+   *
+   * @details If the version is 0.0.0, the method returns a string indicating the
+   * demo version. If the versioning contains trailing zeros, they are not
+   * printed.
+   * @else
+   *
+   * @brief Ковертація версії у рядковий тип
+
    * @details Якщо версія 0.0.0 то метод повертає рядок що повідомляє про
    * демонстраційну версію. Якщо версіювання мість завершуючі нулі то вони не
    * виводяться.
+   * @endif
    *
    * @param ver
    * @return String
    */
   friend String StrVersion(Version ver) {
-    /**
-     * Перевірка чи це не демо
-     */
     {
       bool is_demo{true};
       for (uint8_t it{MAJOR}; it < COUNT; ++it) {
