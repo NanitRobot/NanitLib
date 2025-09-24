@@ -1,8 +1,12 @@
 /**
  * @if English
+ *
  * @page SPECIFICATIONS
+ *
  * @else
+ *
  * @page SPECIFICATIONS ХАРАКТЕРИСТИКИ
+ *
  * @endif
  *
  * @if English
@@ -10,11 +14,14 @@
  *
  * Technical capabilities
  * ----------------------
+ *
  * @else
+ *
  * @brief Технічні можливості
  *
  * Технічні можливості
  * -------------------
+ *
  * @endif
  *
  * @if English
