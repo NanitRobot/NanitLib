@@ -19,11 +19,11 @@
 #  error "Include <NanitLib.h> instead of this file."
 #endif
 
-#include <FastLED_NeoPixel.h> ///< Стороння біблітека для керування адресними світлодіодами
-#include <Adafruit_GFX.h>///< Стороня бібліотека для роботи вбудованого дисплею
-#include <Adafruit_ST7735.h>///< Стороння бібіліотека для роботи вбудованого дисплею
-#include <EEPROM.h>///< Стороння бібліотека для доступу до енергонезалежгої пам'яті
-#include <Servo.h>///< Стороння бібліотека для роботи зі сервоприводами
+#include <FastLED_NeoPixel.h> 
+#include <Adafruit_GFX.h>
+#include <Adafruit_ST7735.h>
+#include <EEPROM.h>
+#include <Servo.h>
 
 // #include <SPI.h>
 

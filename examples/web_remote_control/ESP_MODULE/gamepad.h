@@ -376,7 +376,7 @@ const char webpageGamePad[] PROGMEM
     height: 70px;
     font-size: 25px;
     border: none;
-    background-color: #4CAF50; /* Зелений колір для кнопки OPEN */
+    background-color: #4CAF50;
     color: white;
     border-radius: 8px;
     cursor: pointer;

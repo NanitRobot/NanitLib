@@ -376,8 +376,8 @@ void setup(void)
 
 /*****************************************************************/
   server.on("/joystick", handleJoystick);
-  server.on("/button", handleButton);  // Обробник для кнопок
-  server.on("/slider", handleSlider);  // Обробник для слайдера
+  server.on("/button", handleButton);
+  server.on("/slider", handleSlider);
 /*****************************************************************/
 
   server.on("/b_left", button_left); //control with the left joystick buttons

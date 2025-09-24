@@ -79,25 +79,24 @@ void PinTestSetup() {
   for (uint8_t pin_to_set_mode = 0; pin_to_set_mode < NUM_DIGITAL_PINS;
        pin_to_set_mode++)  // Всі піни
   {
-    if (pin_to_set_mode == TFT_BL  // окрім підсітки дисплею
-        or pin_to_set_mode == TFT_CS  //  пін роботи з SD та дисплею
-        or pin_to_set_mode == TFT_DC  // пін роботи з SD та дисплею
-        or pin_to_set_mode == TFT_MOSI  // пін роботи з SD та дисплею
-        or pin_to_set_mode == TFT_SCK  // пін роботи з SD та дисплею
-        or pin_to_set_mode == TFT_RES  // пін роботи з SD та дисплею
-        or pin_to_set_mode == BATTERY_PIN  // АЦП батареї
+    if (pin_to_set_mode == TFT_BL  
+        or pin_to_set_mode == TFT_CS
+        or pin_to_set_mode == TFT_DC
+        or pin_to_set_mode == TFT_MOSI
+        or pin_to_set_mode == TFT_SCK
+        or pin_to_set_mode == TFT_RES
+        or pin_to_set_mode == BATTERY_PIN
     )
 
-      continue;                        // пропускаємо
-    pinMode(pin_to_set_mode, OUTPUT);  // інші переводимо на виведення
+      continue;
+    pinMode(pin_to_set_mode, OUTPUT);
   }
-#ifndef MEGACORE      // якщо не викостовується MEGACORE
-  DDRE |= 1 << DDE6;  // 71 пін висавляємо на виведення
+#ifndef MEGACORE
+  DDRE |= 1 << DDE6;
 #endif
-  digitalWrite(MOTOR_ENABLE, HIGH);  // вмикаємо драйвер DC двигунів
+  digitalWrite(MOTOR_ENABLE, HIGH);
 }
 void PinTestLoop() {
-  // Карта пінів
   // clang-format off
   const uint8_t PinMap[k_port_count][k_pin_count]{
       {P1_1, P1_2, PORT1_MOTOR, IGNORE_PIN}, // port 1
@@ -120,23 +119,22 @@ void PinTestLoop() {
   // clang-format on
 
 #if 1
-  /* Піни піднімаються групами */
-  for (uint8_t pin = 0; pin < k_pin_count; pin++)  // Перевіряємо кожен пін
+  for (uint8_t pin = 0; pin < k_pin_count; pin++)
   {
     for (uint8_t port = 0; port < k_port_count; port++) {
       if (digitalRead(J_7)) break;
       switch (PinMap[port][pin]) {
 #ifndef MEGACORE
-        case 71:  // Перевірка піна без MegaGore
+        case 71:
           PORTE |= 1 << PORTE6;
           break;
 #endif
-        case IGNORE_PIN:  // Пропускаємо піни
+        case IGNORE_PIN:
           break;
-        case PORT1_MOTOR:  // Реверс 1 мотору
+        case PORT1_MOTOR:
           check_1(drive);
           break;
-        case PORT12_MOTOR:  // Реверс 2 мотору
+        case PORT12_MOTOR:
           check_12(drive);
           break;
         default:
@@ -151,15 +149,15 @@ void PinTestLoop() {
       if (digitalRead(J_7)) break;
       switch (PinMap[port][pin]) {
 #ifndef MEGACORE
-        case 71:  // Перевірка піна без MegaGore
+        case 71:
           PORTE &= ~(1 << PORTE6);
           break;
 #endif
-        case IGNORE_PIN:  // Пропускаємо піни
+        case IGNORE_PIN:
           break;
-        case PORT1_MOTOR:  // Реверс 1 мотору
+        case PORT1_MOTOR:
           break;
-        case PORT12_MOTOR:  // Реверс 2 мотору
+        case PORT12_MOTOR:
           break;
         default:
           digitalWrite(PinMap[port][pin], LOW);
@@ -170,28 +168,27 @@ void PinTestLoop() {
     delay(k_blink_delay);
   }
 #else
-  /* Піни піднімаються послідовно по колу */
-  for (uint8_t port = 0; port < k_port_count; port++)  // Перевіряємо кожен порт
-    for (uint8_t pin = 0; pin < k_pin_count; pin++) {  // Перевіряємо кожен пін
+  for (uint8_t port = 0; port < k_port_count; port++)
+    for (uint8_t pin = 0; pin < k_pin_count; pin++) {
       if (digitalRead(J_7)) break;
       switch (PinMap[port][pin]) {
 #ifndef MEGACORE
-        case 71:  // Перевірка піна без MegaGore
+        case 71:
           PORTE |= 1 << PORTE6;
           delay(k_blink_delay);
           PORTE &= ~(1 << PORTE6);
           delay(k_blink_delay);
           break;
 #endif
-        case IGNORE_PIN:  // Пропускаємо піни
+        case IGNORE_PIN:
           break;
-        case PORT1_MOTOR:  // Реверс 1 мотору
+        case PORT1_MOTOR:
           check_1(drive);
           break;
-        case PORT12_MOTOR:  // Реверс 2 мотору
+        case PORT12_MOTOR:
           check_12(drive);
           break;
-        default:  // Надсилаємо сигнал на піни для перевірки тестером
+        default:
         {
           digitalWrite(PinMap[port][pin], HIGH);
           delay(k_blink_delay);
@@ -207,27 +204,21 @@ void PinTestLoop() {
 
 void PinDown() {
   for (uint8_t pin_to_set_mode = 0; pin_to_set_mode < NUM_DIGITAL_PINS;
-       pin_to_set_mode++)  // Всі піни
+       pin_to_set_mode++)
   {
-    if (pin_to_set_mode == TFT_BL  // окрім підсітки дисплею
-        or pin_to_set_mode == TFT_CS  //  пін роботи з SD та дисплею
-        or pin_to_set_mode == TFT_DC  // пін роботи з SD та дисплею
-        or pin_to_set_mode == TFT_MOSI  // пін роботи з SD та дисплею
-        or pin_to_set_mode == TFT_SCK  // пін роботи з SD та дисплею
-        or pin_to_set_mode == TFT_RES  // пін роботи з SD та дисплею
-        or pin_to_set_mode == BATTERY_PIN  // АЦП батареї
+    if (pin_to_set_mode == TFT_BL
+        or pin_to_set_mode == TFT_CS
+        or pin_to_set_mode == TFT_DC
+        or pin_to_set_mode == TFT_MOSI
+        or pin_to_set_mode == TFT_SCK
+        or pin_to_set_mode == TFT_RES
+        or pin_to_set_mode == BATTERY_PIN
     )
 
-      continue;                        // пропускаємо
-    pinMode(pin_to_set_mode, INPUT);  // інші переводимо у високоімпедансний стан
+      continue;
+    pinMode(pin_to_set_mode, INPUT);
   }
 }
-/** @if English
- * @else
- *  @todo Переписати функції check_1 та check_2 таким чином щоб максимально
- * перемістити перевірку пінів у `PinTestLoop`
- * @endif
- */
 void check_1(bool what) {
   if (what) {
     digitalWrite(MOTOR1_A, !TOGGLE);

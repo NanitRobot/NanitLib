@@ -17,26 +17,11 @@
 
 #include "Offsets.hpp"
 // #define SERIAL_NUM (E2END - sizeof(uint32_t))
-/*
-    XXXXXXXXXX
-    ^ ^ ^ ^ ^
-    | | | | |
-    | | | | +--3 цифри порядковий номер в цей день (001--999)
-    | | | +----2 цифри рік виготовлення (22--99)
-    | | +------2 цифри число місяця виготовлення (01--31)
-    | +--------2 місяць виготовлеення (01--12)
-    +----------1 тип виробу (1--9)
-                0 - Інший
-                1 - розумний будинок
-                2 - Дискавері
-                3 - Дискавері задод
-                4 - 
-*/
 
 typedef uint32_t serial_num;
 
 /**
- * @brief Фукція читає серійний номер виробу з енергонезалежної пам'яті
+ * @brief 
  * 
  * @return serial_num 
  * 
@@ -44,7 +29,7 @@ typedef uint32_t serial_num;
 serial_num getSerialNum();
 
 /**
- * @brief Перевірка коректності серійного номеру
+ * @brief 
  * 
  * @param num 
  * @return true 
@@ -53,7 +38,7 @@ serial_num getSerialNum();
 bool checkSerialNum(serial_num num);
 
 /**
- * @brief Записати серйний номер в пам'ять
+ * @brief 
  * 
  * @param num 
  * @return true 

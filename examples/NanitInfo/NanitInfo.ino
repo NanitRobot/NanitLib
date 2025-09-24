@@ -3,42 +3,41 @@
 | * @author Sam4uk
 | * @date 04-04-2023
 | *
-| * Інструкція
+| * Instructions
 | * ==========
 | *
-| * Для початку користування бібліотекою потрібно підключити header файл
+| * To start using the library, you need to include the header file
 | */
 
 #include <NanitLib.h>
 
-/** Після підключення даного файлу вам доступні порти введення виведення
-| * Для програмування доступні 12 портів в кожному порті присутні 4 піни
-| * для введення виведення та два піни для живлення зовнішнього датчику
-| * (+) та (-) живлення.
-| * (-) є загальним для всіх портів
-| * (+) позитивний полюс живлення. 1, 2, 11 та 12 порти живляться безпосе-
-| * рeдньо від вбудованої акумуляторної батареї. В залежності від стану за-
-| * ряду батареї напруга може бути в межах між 4,2 (повний заряд) та 2,7
-| * (повний розряд) вольт. Інші порти мають стабілізовану напругу живлення
-| * 5 вольт.
+/** After connecting this file, you have access to input/output ports
+| * 12 ports are available for programming, each port has 4 pins
+| * for input/output and two pins for powering an external sensor
+| * (+) and (-) power.
+| * (-) is common to all ports
+| * (+) positive power pole. Ports 1, 2, 11 and 12 are powered directly
+| * from the built-in rechargeable battery. Depending on the state of charge of the battery, the voltage can be between 4.2 (full charge) and 2.7
+| * (full discharge) volts. Other ports have a stabilized supply voltage
+| * 5 volts.
 | *
-| * Звернення до виводів
+| * Pin reference
 | *    P3_1
 | *    ^^ ^
 | *    || |
-| *    || +--- Номер піна (число від 1 до 4)
-| *    |+----- Номер порта (число від 1 до 12)
-| *    +------ Обов'язкова ознака порт-піна
+| *    || +--- Pin number (number from 1 to 4)
+| *    |+----- Port number (number from 1 to 12)
+| *    +------ Required port pin attribute
 | *
 \******************************************************************************/
 void setup() {
-  /// Функці яка виводить на вбудований дисплей повідомлення "Hello Nanit"
-  /// Версію апаратної частини (плати)
-  /// Версію бібліотеки
-  /// Рівень зараяду батареї
+/// Function that displays the message "Hello Nanit" on the built-in display
+/// Hardware version
+/// Library version
+/// Battery level
   Serial.begin(NANIT_SERIAL_SPEED);
   NanitInfo();
 }
 void loop() {
-  /// Nanit ніякої корисної роботи не виконує
+/// Nanit does not perform any useful work
 }
