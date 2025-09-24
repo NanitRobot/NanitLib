@@ -1,12 +1,12 @@
 // clang-format off
 /**
- * найактуальнішу версію цього прикладу можна завантажити за адресою
- * 
- * Підтримка цього прикладу в рамках бібліотеки NanitLib зупинено.
- * 
- * Веб інтрефейс винесено в окремий проект який можна завантажити за адресою 
- *
- * https://github.com/NanitRobot/Nanit_WIFI_interface
- * 
- */
+* the most current version of this example can be downloaded at
+*
+* Support for this example within the NanitLib library has been discontinued.
+*
+* The web interface has been moved to a separate project which can be downloaded at
+*
+* https://github.com/NanitRobot/Nanit_WIFI_interface
+*
+*/
 // clang-format on

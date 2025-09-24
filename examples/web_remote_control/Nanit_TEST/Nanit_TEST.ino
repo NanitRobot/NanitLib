@@ -437,7 +437,7 @@ void loop() {
   {
     bufer_TX = Serial3.read();
 
-    // Захист від сторонніх символів у буфері    
+    // Protection against extraneous characters in the buffer
     if((millis() - clearCommand) > 200){
       Comand.remove(0);
     }

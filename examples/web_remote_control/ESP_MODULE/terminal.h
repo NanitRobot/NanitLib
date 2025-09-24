@@ -507,7 +507,7 @@ function send_command() {
     xhttp_password.send();
     /* xhttp_password.cloce(); */
     
-    isFunctionExecuted = true; // позначити, що функція була виконана
+    isFunctionExecuted = true;
   }
 }
 </script>
