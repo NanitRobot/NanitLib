@@ -108,7 +108,7 @@
  *
  * #### PinOut
  *
- * ![Arduino](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/PinOutArduino.jpg)
+ * ![Arduino](https://raw.githubusercontent.com/NanitRobot/NanitLib/main/pic/PinOutNanit.png)
  * |Nanitdef               |Analog |    PIN       |        |        |
  * |:---------------------:|:-----:|:------------:|:------:|:------:|
  * |      @ref P1_1        |  A7   |   61(IO)     |  *PF7* |   IO   |
