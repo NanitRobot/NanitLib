@@ -24,23 +24,23 @@ That's all you need to start learning the C/C++ programming language with Nanit
 
 === Discovery KIT
 
-image::https://nanitrobot.com/wp-content/uploads/2023/06/Frame-63-1.jpg[Discovery KIT]
+image::https://raw.githubusercontent.com/NanitRobot/downloads/refs/heads/main/pic%60s/4.png[Discovery KIT]
 
 
-=== Smart Home KIT
+=== Master KIT
 
-image::https://nanitrobot.com/wp-content/uploads/2023/06/Frame-66-1.jpg[Smart Home KIT]
+image::https://raw.githubusercontent.com/NanitRobot/downloads/refs/heads/main/pic%60s/25.png[Master KIT]
 
 === Ground Drone KIT
 
-image::https://nanitrobot.github.io/Frame-66-1.jpg[]
+image::https://nanitrobot.github.io/Frame-66-1.jpg[Ground Drone KIT]
 
 = Your Nanite projects
 
 === They start here
 
 
-image::https://nanitrobot.com/wp-content/themes/nanit/assets/images/logo.svg[]
+image::https://nanitrobot.com/wp-content/themes/nanit/assets/images/logo.svg[logo]
 
 https://nanitrobot.com[https://nanitrobot.com]
 
