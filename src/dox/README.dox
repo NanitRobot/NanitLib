@@ -107,42 +107,6 @@
  * 
  * <div class="tabbed">
  * <ul>
- *  <li> <b class="tab-title">IDE 1.8.x</b>
- *  @if English
- *  First you need to start the development environment.
- *  @else
- *  Для початку вам потрібно запустити середовище розробки.
- *  @endif
- * 
- *  ![IDE 1.8.x](https://nanitrobot.github.io/static/pic/Arduino_1.8.x/IDE1_8.png)
- * 
- *  @if English
- *  In the open environment window, select `Sketch` &rarr; `Add Library` &rarr; `Add ZIP library`.
- *  @else
- *  У відкритому вікні середовища обираємо пункт `Скетч` &rarr; `Додати бібілотеку` &rarr; `Додати ZIP-бібліотеку`.
- *  @endif
- * 
- *  ![IDE 1.8.x](https://nanitrobot.github.io/static/pic/Arduino_1.8.x/IDE1_8_menu.png)
- * 
- *  @if English
- *  A file selection window will appear. Select the file you downloaded from the Internet.
- *  @else
- *  Перед вами відкриється вікно вибору файлу. Потрібно обрати файл, який ви
- *  завантажили з мережі інтернет.
- *  @endif
- * 
- *  ![IDE 1.8.x](https://nanitrobot.github.io/static/pic/Arduino_1.8.x/IDE1_8_fileSelection.png)
- * 
- *  @if English
- *  After you click the confirmation button, the contents of the archive will be automatically 
- *  extracted to the necessary directories. And you can start using the installed library.
- *  @else
- *  Після натиснення кнопки підтвердження вміст архіву буде автоматично
- *  розпаковано у необхідні каталоги. І ви вже можете почати користуватися
- *  встановленою бібліотекою.
- *  @endif
- * 
- *  </li>
  *  <li> <b class="tab-title">IDE 2.x</b>
  *  @if English
  *  First you need to start the development environment.
