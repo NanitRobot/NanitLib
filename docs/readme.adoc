@@ -31,10 +31,6 @@ image::https://raw.githubusercontent.com/NanitRobot/downloads/refs/heads/main/pi
 
 image::https://raw.githubusercontent.com/NanitRobot/downloads/refs/heads/main/pic%60s/25.png[Master KIT]
 
-=== Ground Drone KIT
-
-image::https://nanitrobot.github.io/Frame-66-1.jpg[Ground Drone KIT]
-
 = Your Nanite projects
 
 === They start here
