@@ -12,6 +12,10 @@
  * @copyright Copyright (c) NanitRobots
  *
  */
+
+// Independent library files "FastLed"
+#include "Nanit_FastLed/FastLED_NeoPixel.h"
+
 #ifndef NANITLIB_H_
 #define NANITLIB_H_
 
