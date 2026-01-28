@@ -46,7 +46,12 @@ jobs:
           curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh -s 0.9.0
           sudo apt-get install gcc-avr 
 
-    # 4) Встановлюємо плати Nanit та інші
+    # 4) Встановлюємо бібліотеку Adafruit NeoPixel
+      - name: Install Adafruit NeoPixel library
+        run: |
+          bin/arduino-cli lib install "Adafruit NeoPixel"
+
+    # 5) Встановлюємо плати Nanit та інші
       - name: Install NanitBoards
         run: |
           bin/arduino-cli config init --additional-urls https://nanitrobot.github.io/NanitLib/package_NanitCore_index.json
@@ -57,7 +62,7 @@ jobs:
           bin/arduino-cli core update-index
           bin/arduino-cli core install attiny:avr
 
-    # 5) Втановлюємо бібліотеки  
+    # 6) Втановлюємо бібліотеки  
       - name: Install NanitLib
         run: |
           # bin/arduino-cli lib install "NanitLib" 
@@ -72,7 +77,7 @@ jobs:
 
           bin/arduino-cli lib install "DHT sensor library"
 
-    # 6) Генеруємо документацію
+    # 7) Генеруємо документацію
       - name: Doxygen action
         run: |
           git submodule add https://github.com/jothepro/doxygen-awesome-css.git doxygen-awesome-css
