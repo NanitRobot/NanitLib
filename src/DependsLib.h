@@ -21,6 +21,7 @@
 
 // #include <FastLED_NeoPixel.h> 
 #include <FastLed_Neopixel_Nanit.h>
+#include <Adafruit_NeoPixel.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_ST7735.h>
 #include <EEPROM.h>
