@@ -165,8 +165,8 @@ bool isClapping() {
 bool isLight() {
   uint8_t light = analogRead(P10_2) >> 2;
   static uint8_t min_light = light, max_light = light;
-  min_light = min(min_light, light);
-  max_light = max(max_light, light);
+  min_light = min_light < light ? min_light : light;
+  max_light = max_light > light ? max_light : light;
 
   constexpr uint8_t k_adaptation = 32;
   if ((max_light - min_light) > k_adaptation) {
@@ -180,8 +180,8 @@ bool isLight() {
 bool isRightLine(uint8_t sen = k_adap) {
   uint8_t light = analogRead(P10_2) >> 2;
   static uint8_t min_light = light, max_light = light;
-  min_light = min(min_light, light);
-  max_light = max(max_light, light);
+  min_light = min_light < light ? min_light : light;
+  max_light = max_light > light ? max_light : light;
 
   if ((max_light - min_light) > sen) {
     min_light += 1;
@@ -195,8 +195,8 @@ bool isRightLine(uint8_t sen = k_adap) {
 bool isLeftLine(uint8_t sen = k_adap) {
   uint8_t light = analogRead(P10_1) >> 2;
   static uint8_t min_light = light, max_light = light;
-  min_light = min(min_light, light);
-  max_light = max(max_light, light);
+  min_light = min_light < light ? min_light : light;
+  max_light = max_light > light ? max_light : light;
 
   if ((max_light - min_light) > sen) {
     min_light += 1;
